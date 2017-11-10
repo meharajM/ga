@@ -126,55 +126,76 @@
         <h6>My Appointments</h6>
         <div class="row bg-light border">
 
-            <div class="col-md-3 col-sm-12 bg-light">
+           <div class="col-md-4 col-sm-12 bg-light">
                 <div class="row">
-                    <div class="col-4 text-center border-right-green">
+                  <div class="col-4 text-center border-right-green">
                         <h4 id="total">--</h4>
                         <span>total</span>
-                    </div>
-                    <div class="col-4 text-center border-right-green">
+                      </div>
+                      <div class="col-4 text-center border-right-green">
                         <h4 id="pending">--</h4>
                         <span>pending</span>
-                    </div>
-                    <div class="col-4 text-center border-right-green">
+                      </div>
+                      <div class="col-4 text-center border-right-green">
                         <h4 id="missed">--</h4>
                         <span>missed</span>
-                    </div>
+                      </div>
                 </div>
+              </div>
+          <div class="col-md-8 col-sm-12 bg-light">
+            <div class="row">
+              <div class="col-2 text-center btn-success">
+                <div class="btn btn-default" id="previous_day">Prev Date</div>
+              </div>
+              <!-- <div class="col-3 text-center">
+                <div class="btn btn-default"><span id="schedule-date"></span></div>
+              </div> -->
+              
+              <div class="col-4 input-group">
+                
+				<!-- <div class="input-group"> -->
+					<input class="form-control" id="date" name="date" type="text" style="text-align:center" onclick="cal();"/>
+					
+				<!-- </div> -->
+              </div>
+			  <div class="col-2 text-center btn-info">
+                <div class="btn btn-default" id="next_day">Next Date</div>
+              </div>
+              <div class="col-3 text-center btn-success">
+                <div class="btn btn-default">Filter</div>
+              </div>
             </div>
-            <div id="filter" class="col-md-9 col-sm-12">
-			
-			</div>
-            
+          </div>
 
-
-
-            </div>
-        
-        <div class="row mt-3">
-            <!-- hiding for small screen -->
+      </div>
+          <div class="row mt-3 content">
+          <!-- hiding for small screen -->
             <div class="col-3 hidden-sm-down">
-                <ul id="appointment-list" class="list-group"></ul>
+              <ul id="appointment-list" class="list-group">
+              </ul>
             </div>
             <!-- showing for small screen -->
             <div class="col-12 hidden-sm-up">
-                <ul id="appointment-list-phone" class="list-inline"></ul>
+              <ul id="appointment-list-phone" class="list-inline">
+
+              </ul>
             </div>
             <div class="col-md-4 col-sm-12 appointment-info d-none">
-                <div class="text-center">
-                    <div id="videos" class="App-control-container">
-                        <div class="btn-success btn btn-default" id="start-vedio-consultation">Start Consultation</div>
-                        <div class="btn-danger hidden-xs-up ots-video-control circle " id="close-vedio-consultation"></div>
-                        <!-- <div id="controls" class='App-control-container hidden'> -->
+              <div class="text-center">
+                <div id="videos" class="App-control-container">
+                    <div class="btn-success btn btn-default" id="start-vedio-consultation">Start Consultation</div>
+                    <div class="btn-danger hidden-xs-up ots-video-control circle " id="close-vedio-consultation"></div>
+                     <!-- <div id="controls" class='App-control-container hidden'> -->
                         <div class="ots-video-control circle audio" id="toggleLocalAudio"></div>
                         <div class="ots-video-control circle video" id="toggleLocalVideo"></div>
-                        <!-- </div> -->
-                    </div>
+                        <div class="ots-video-control circle full-screen" id="showFullScreen"></div>
+                    <!-- </div> -->
                 </div>
-                <div id="subscriber" class="hidden-xs-up"></div>
-                <div id="publisher" class="hidden-xs-up"></div>
+              </div>
+              <div id="subscriber" class="hidden-xs-up"></div>
+              <div id="publisher" class="hidden-xs-up"></div>
             </div>
-            <div class="col-md-5 col-sm-12 appointment-info d-none">
+            <div class="col-md-5 col-sm-12 appointment-info-details d-none">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
@@ -279,47 +300,41 @@
 
     })
 </script> -->
-<!--
 <script>
-function cal(){
-    var today= moment().format("MMM Do YY");
-    //var dd=document.getElementById('calendar');
-    var day=moment().format('dddd');
+var date = new Date();
+var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+$(function () {
+    // This writes out the current date to the text field as starter
+    $('#date').val(date.toLocaleDateString('en-US', options));
 
-    document.getElementById('date').value = day+', '+today;
-}
-</script> -->
-<!--<script>
-function cal(){
-    var d = new Date();
-    var day = d.getDay();
-    var date = d.getDate();
-    var month = d.getMonth()+1; //January is 0!
-    var year = d.getFullYear();
+    // Hook up previous button event
+    $('#previous_day').click(function () {
+        // Set our current date to 1 day earlier
+        date.setDate(date.getDate() - 1);
+        // Write the result to our text input
+        $('#date').val(date.toLocaleDateString('en-US', options))
+    });
+    // Hook up next button event
+    $('#next_day').click(function () {
+        // Set our current date to 1 day later
+        date.setDate(date.getDate() + 1);
+        // Write the result to our text input
+        $('#date').val(date.toLocaleDateString('en-US', options))
+    });
+});
 
-    if(day==0)
-        day='Sunday';
-    if(day==1)
-        day='Monday';
-    if(day==2)
-        day='Tuesday';
-    if(day==3)
-        day='Wednesday';
-    if(day==4)
-        day='Thursday';
-    if(day==5)
-        day='Saturday';
-    if(day==6)
-        day='Sunday';
-
-    if(date<10) {
-        date='0'+date;
-    }
-
-    if(month<10) {
-        month='0'+month;
-    }
-    d= day+', '+date+'-'+month+'-'+year;
-    document.getElementById("date").value = d;
-    }
-</script>-->
+</script>
+<script>
+    $(document).ready(function(){
+        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'DD, dd-M-yy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+		
+		
+    })
+</script>

@@ -119,11 +119,19 @@ $(document).ready(function(){
 			$(this).addClass('muted');
 		}
 	}
+	var showFullScreen = function(ev){
+		if(!$('#publisher').hasClass('hidden-xs-up')){
+			$('.appointment-info').removeClass('col-md-4').addClass('col-md-12').addClass('show-full-screen');
+			$('.appointment-info-details').addClass('hidden-xs-up')
+		}else if(!$('#subscriber').hasClass('hidden-xs-up')){
+			$('#subscriber').addClass('show-full-screen');
+		}
+	}
 	$('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails)
 	$('.appointment-details #prescription').on('submit', addPrescription)
 	$('#start-vedio-consultation').on('click', startVedio)
 	$('#close-vedio-consultation').on('click', stopVideo)
 	$('#toggleLocalAudio').on('click', muteAudio)
 	$('#toggleLocalVideo').on('click', muteVideo)
-	
+	$('#showFullScreen').on('click', showFullScreen)
 })
