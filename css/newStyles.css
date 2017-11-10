@@ -16,6 +16,9 @@ body{
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
 }
+.content{
+  height: 100vh;
+}
 #search::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: white;
 }
@@ -128,11 +131,13 @@ body{
 #close-vedio-consultation{
     background-image: url(https://tokbox.com/developer/tools/playground/img/icons/force_unpublish.png);
 }
-
-
-.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: #ffffff !important;} .asteriskField{color: red;}
-
-.no-padding{
-padding:0;
-
+.App-control-container .ots-video-control.full-screen {
+    background-image: url(../img/exp.png);
+}
+.appointment-info.show-full-screen{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
