@@ -91,45 +91,45 @@
                         <label class="control-label" for="radio">
                            <strong> Changes made to current medication?</strong>
                         </label>
-						<div class="">
-                        <div class="radio">
-                            <label class="radio-inline">
-                                <input type="radio" name="changes" id="Yes" value="Yes">
-                                Yes
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="changes" id="No" value="No">
-                                No
-                            </label>
-                        </div>
-                    </div>
-
+						<div class="col-sm-4 medicin-unit">	
+						<div class="btn-group" data-toggle="buttons">
+				  <label class="btn btn-light active">
+				    <input type="radio" name="options" id="option1" autocomplete="off" checked> Yes
+				  </label>
+				  <label class="btn btn-light">
+				    <input type="radio" name="options" id="option2" autocomplete="off"> No
+				  </label>				  
+				</div>
+				</div>
 					</div>
                     <div class="form-group">
 						
                         <label class="control-label" for="waive">
                             <strong>Waive Fee for this Consultation?</strong>
                         </label>
-                        <div class="radio">
-                            <label class="radio-inline">
-                                <input type="radio" name="waive" id="No" value="No" onclick="javascript:yesnoCheck();">
-                                No
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="waive" id="Full" value="Full" onclick="javascript:yesnoCheck();">
-                                Full
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="waive" id="Partial" value="Partial" onclick="javascript:yesnoCheck();">
-                                Partial
-                            </label>
-							<label class="control-label col-xs-3">
-							<div class="ifPartial" style="visibility: hidden " class="col-md-12">
-                                <input class="form-control" type="text" name="p_check" id="p_check" style="width:50%">
-								</div>
-							
-							</div>
-							
+						<div class="row">
+							<div class="col-sm-6 col-md-6 medicin-unit">	
+						<div class="btn-group" data-toggle="buttons">
+				  <label class="btn btn-light active">
+				    <input type="radio" name="options" id="No_fee" autocomplete="off" onclick="javascript:yesnoCheck();" checked> No
+				  </label>
+				  <label class="btn btn-light">
+				    <input type="radio" name="options" id="Full_fee" autocomplete="off" onclick="javascript:yesnoCheck();">Full
+				  </label>
+					<label class="btn btn-light">
+				    <input type="radio" name="options" id="Partial_fee" autocomplete="off" onclick="javascript:yesnoCheck();"> Partial
+				  </label>	</div></div>
+				  <div class="input-group col-md-4 col-sm-4">
+					
+					<div class="ifPartial" style="visibility: hiden " class="col-md-12">
+					<label class="btn btn-light">
+				    <input type="text" name="options" id="p_check" autocomplete="off" style="width:70%"> 
+				  </label>
+				  </div>					 
+				</div>
+				</div></div>
+						
+			</div>
                         
                     </div>
 
@@ -208,17 +208,20 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script>
 function yesnoCheck() {
-    if (document.getElementById('Partial').checked) {
-        document.getElementById('p_check').style.visibility = 'visible';
+ $("#No_fee").click(function(){
+  document.getElementById('p_check').style.visibility = 'hidden';
 		document.getElementById('p_check').value=' ';
-    }
-	else if(document.getElementById('Full').checked) {
-		document.getElementById('p_check').style.visibility = 'visible';
-		document.getElementById('p_check').value='1000';
-	}	
-    else document.getElementById('p_check').style.visibility = 'hidden';
+ });
 
-}	
+ $("#Yes_fee").click(function(){
+  document.getElementById('p_check').style.visibility = 'visible';
+		document.getElementById('p_check').value='1000';
+ });
+ $("#Partial_fee").click(function(){
+  document.getElementById('p_check').style.visibility = 'visible';
+		document.getElementById('p_check').value=' ';
+ });
+ }
 </script>
 <!--
 <script>
