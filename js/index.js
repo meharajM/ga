@@ -121,8 +121,8 @@ $(document).ready(function(){
 	}
 	var showFullScreen = function(ev){
 		if(!$('#publisher').hasClass('hidden-xs-up')){
-			$('.appointment-info').removeClass('col-md-4').addClass('col-md-12').addClass('show-full-screen');
-			$('.appointment-info-details').addClass('hidden-xs-up')
+			$('.video-container').removeClass('col-md-4').addClass('col-md-12').addClass('show-full-screen');
+			$('.appointment-info.details').addClass('hidden-xs-up')
 		}else if(!$('#subscriber').hasClass('hidden-xs-up')){
 			$('#subscriber').addClass('show-full-screen');
 		}
