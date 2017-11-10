@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-iso.css" rel="stylesheet">
+<link href="css/bootstrap-datepicker3.css" rel="stylesheet">
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+ 
+
+    <link href="css/custom.css" rel="stylesheet">
+	
+					<!--JS Files--> 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
+		
+		
+		<!--<script src="./js/jquery-1.11.3.js"></script>-->
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script>
+	 $(document).ready(function(){
+        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'DD, dd-M-yy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+		
+		
+    })
+	</script>
+<script src="./js/tether.min.js"></script>
+<script src="./js/moment.min.js"></script> 
+		
+	<script src="js/jquery-ui.min.js"></script>
+<!--	<script src="js/jquery-3.2.1.min.js"></script>-->
+	<!--<script src="js/jquery-ui.js"></script>-->
+<!--	<script src="./js/jquery-1.11.3.js"></script>-->
+	<script src="./js/tether.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/bootstrap-datepicker.min.js"></script>
+	<script src="./js/moment.min.js"></script> 
+	
+	
+    <title>Bootstrap 101 Template</title>
+
+    <link href="css/custom.css" rel="stylesheet">
+	
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <br>
+
+                <form>
+                    <div class="form-group">
+                        <label class="control-label required field" for="diagnosis"><strong>Patient Diagnosis / Diagnoses</strong></label>
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        <input class="form-control" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label required field" for="plan"><strong>Management Plan / Advice</strong></label>
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        <textarea class="form-control" cols="40" id="advice" name="advice" rows="5"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="radio">
+                           <strong> Changes made to current medication?</strong>
+                        </label>
+						<div class="">
+                        <div class="radio">
+                            <label class="radio-inline">
+                                <input type="radio" name="changes" id="Yes" value="Yes">
+                                Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="changes" id="No" value="No">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+					</div>
+                    <div class="form-group">
+						
+                        <label class="control-label" for="waive">
+                            <strong>Waive Fee for this Consultation?</strong>
+                        </label>
+                        <div class="radio">
+                            <label class="radio-inline">
+                                <input type="radio" name="waive" id="No" value="No" onclick="javascript:yesnoCheck();">
+                                No
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="waive" id="Full" value="Full" onclick="javascript:yesnoCheck();">
+                                Full
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="waive" id="Partial" value="Partial" onclick="javascript:yesnoCheck();">
+                                Partial
+                            </label>
+							<label class="control-label col-xs-3">
+							<div class="ifPartial" style="visibility: hidden " class="col-md-12">
+                                <input class="form-control" type="text" name="p_check" id="p_check" style="width:50%">
+								</div>
+							
+							</div>
+							
+                        
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="follow_up">
+                            <strong>Next Follow-up?</strong>
+                        </label>
+
+						
+                        <div class="follow">
+						<div class="div-inline">
+                            <div class="dropdown">
+                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-block col-md-12" id="follow_up" style="width:150px" onclick="javascript:answers();">
+                                   <strong> Select  </strong>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li onclick="javascript:answers();" id="After_1_Week">After 1 Week</li>
+                                    <li onclick="javascript:answers();" id="After_10_Days">After 10 Days</li>
+                                    <li onclick="javascript:answers();" id="After_2_Weeks">After 2 Weeks</li>
+                                    <li onclick="javascript:answers();" id="After_1_Month">After 1 Month</li>
+                                </ul>
+                            </div>
+							</div>
+							<div class="div-inline">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" id="date" name="date" />
+                                    <div class="input-group-addon" id="cal">
+                                        <i class="fa fa-calendar-times-o">
+                                        </i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="suggested_invest"><strong>Suggested Investigations (Optional)</strong></label>
+                        <textarea class="form-control" cols="40" id="suggested_invest" name="suggested_invest" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="control-label " for="refer">
+                          <strong>  Referred to Doctor (Optional)</strong>
+                        </label>
+                        <input class="form-control" id="refer" name="refer" type="text" />
+                    </div>
+                    <!--    <div class="form-group">
+                            <label for="inputDOB">Date of Birth</label>
+                            <input class="form-control" type="date" id="inputDOB" />
+                        </div>-->
+                    <div class="form-group">
+                        <div class="btn-group">
+                            <div class="col-md-12 col-xs-6" >
+                                <button class="btn btn-success btn-lg btn-block" type="submit">Save</button>
+                            </div>
+                            <div class="col-md-12 col-xs-6">
+                                <button class="btn btn-info btn-lg btn-block">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
+
+
+	
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script>
+function yesnoCheck() {
+    if (document.getElementById('Partial').checked) {
+        document.getElementById('p_check').style.visibility = 'visible';
+		document.getElementById('p_check').value=' ';
+    }
+	else if(document.getElementById('Full').checked) {
+		document.getElementById('p_check').style.visibility = 'visible';
+		document.getElementById('p_check').value='1000';
+	}	
+    else document.getElementById('p_check').style.visibility = 'hidden';
+
+}	
+</script>
+<!--
+<script>
+function answers() 
+{
+
+//	var d = new Date();
+	var today= moment().format("MMM Do YY");
+	var dd=document.getElementById('follow_up');
+	var days=dd.options[dd.selectedIndex].text;
+	var day=moment().format('dddd');
+	
+
+	if(days=='After 3 Days')
+		{
+		today=moment().add(3, 'days').calendar();
+		today=moment().format("MMM Do YY");
+		}
+//	if(days=='select')
+	//	today="";
+	if(days=='After 1 Week')
+	{
+		today=moment().add(7, 'days').format("MMM Do YY");
+		//today=moment().format("MMM Do YY");
+		day=moment().add(7,'days').format('dddd');
+		}
+	if(days=='After 10 Days')
+		{
+		today=moment().add(10, 'days').format("MMM Do YY");
+		day=moment().add(10,'days').format('dddd');
+		}
+	if(days=='After 2 Weeks')
+		{
+		today=moment().add(14, 'days').format("MMM Do YY");
+		day=moment().add(14,'days').format('dddd');
+		}
+	if(days=='After 1 Month')
+		{
+		today=moment().add(30, 'days').format("MMM Do YY");
+		day=moment().add(30,'days').format('dddd');
+		}
+	
+	document.getElementById('date').value = day+', '+today;
+
+}
+</script>-->
+<script>
+function answers()
+{
+    $("#After_1_Week").click(function(){
+        today=moment().add(7, 'days').format("MMM Do YY");
+		//today=moment().format("MMM Do YY");
+		day=moment().add(7,'days').format('dddd');
+		document.getElementById('date').value = day+', '+today;
+    });
+	 $("#After_10_Days").click(function(){
+        today=moment().add(10, 'days').format("MMM Do YY");
+		//today=moment().format("MMM Do YY");
+		day=moment().add(10,'days').format('dddd');
+		document.getElementById('date').value = day+', '+today;
+	});
+	 $("#After_2_Weeks").click(function(){
+        today=moment().add(14, 'days').format("MMM Do YY");
+		//today=moment().format("MMM Do YY");
+		day=moment().add(14,'days').format('dddd');
+		document.getElementById('date').value = day+', '+today;
+	});
+	 $("#After_1_Month").click(function(){
+        today=moment().add(30, 'days').format("MMM Do YY");
+		//today=moment().format("MMM Do YY");
+		day=moment().add(30,'days').format('dddd');
+		document.getElementById('date').value = day+', '+today;
+	});
+}
+</script>

@@ -1,0 +1,13 @@
+$values = array(
+  "diagnosis" =>        $_POST["diagnosis"],
+  "advice" =>         $_POST["advice"],
+  "changes" =>            $_POST["changes"],
+  "waive" =>         $_POST["waive"],
+  "p_check" =>              $_POST["p_check"],
+  "follow_up" =>          	$_POST["follow_up"],
+  "date" =>         		$_POST["date"],
+  "suggested_invest" =>      $_POST["suggested_invest"],
+  "refer" =>      $_POST["refer"]
+);
+
+$json_obj = json_encode($values);
