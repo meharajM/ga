@@ -64,7 +64,7 @@ $(document).ready(function(){
 
 	  // Create a publisher
 	  $('#publisher').removeClass('hidden-xs-up')
-	  $('.App-control-container').removeClass('hidden')
+	  $('.audio, .video, .full-screen').removeClass('hidden-xs-up')
 	  publisher = OT.initPublisher('publisher', {
 		    insertMode: 'append',
 		    width: '100%',
@@ -98,7 +98,7 @@ $(document).ready(function(){
 			vedioSession.session.disconnect()
 			$('#start-vedio-consultation').removeClass('hidden-xs-up')
 	 		$('#close-vedio-consultation').addClass('hidden-xs-up')
-	 		$('.App-control-container').addClass('hidden');
+	 		$('.audio, .video, .full-screen').addClass('hidden-xs-up');
 		}
 	}
 	var muteAudio = function(ev){
