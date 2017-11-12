@@ -64,12 +64,12 @@
     <script type="text/x-handlebars-template" id="appointmentTemplate">
         {{#appointment}}
         <li id={{appointment_id}} class="appointment list-group-item bg-light">
-            <div class="col-8">
+            <div class="col-9 ">
                 <h5>{{appointment_time}}</h5>
                 <span>{{health_seeker.health_seeker_name}}</span>
             </div>
-            <div class="col-4">
-                <span id="appointment-type">{{appointment_type}}</span>
+            <div class="col-3 appointment-type no-padding">
+                <div class={{appointment_type}}></div>
             </div>
         </li>
         {{/appointment}}
@@ -81,7 +81,7 @@
 <body onload="cal();">
     <div>
         <!-- add fixed-top for fix nav -->
-        <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+        <nav class="navbar navbar-toggleable-sm navbar-light">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -89,15 +89,15 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">lorem ipsum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">lorem ipsum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">lorem ipsum</a>
-                    </li>
+                    <!--<li class="nav-item">-->
+                        <!--<a href="#" class="nav-link">lorem ipsum</a>-->
+                    <!--</li>-->
+                    <!--<li class="nav-item">-->
+                        <!--<a href="#" class="nav-link">lorem ipsum</a>-->
+                    <!--</li>-->
+                    <!--<li class="nav-item">-->
+                        <!--<a href="#" class="nav-link">lorem ipsum</a>-->
+                    <!--</li>-->
                 </ul>
                 <div>
                     <img class="mr-1" src="img/notify.png">
@@ -107,51 +107,50 @@
             </div>
         </nav>
     </div>
-    <div class="row bg-success">
+    <!--<div class="row bg-success">-->
 
-        <div class="col-2 ">
+        <!--<div class="col-2 ">-->
 
-        </div>
-        <div class="col-8 ">
-            <form class="form-inline">
-                <input id="search" class=" form-control col-10 bg-success " type="text" placeholder="Search" />
-                <span class=" col-2 p-0 "><img src="img/search.png"></span>
-            </form>
+        <!--</div>-->
+        <!--<div class="col-8 ">-->
+            <!--<form class="form-inline">-->
+                <!--<input id="search" class=" form-control col-10 bg-success " type="text" placeholder="Search" />-->
+                <!--<span class=" col-2 p-0 "><img src="img/search.png"></span>-->
+            <!--</form>-->
 
 
-        </div>
-        <div class="col-2 "></div>
-    </div>
-    <div class="content-container container">
+        <!--</div>-->
+        <!--<div class="col-2 "></div>-->
+    <!--</div>-->
+    <div class="content-container container bg-faded">
         <h6>My Appointments</h6>
-        <div class="row bg-light border">
+        <div class="border">
+            <div class="col-12">
+                <div class="row bg-light">
+                    <div class="col-md-3 col-sm-12 bg-light">
+                        <div class="row">
+                            <div class="col-4 text-center border-right-green">
+                                <h4 id="total">--</h4>
+                                <span>total</span>
+                            </div>
+                            <div class="col-4 text-center border-right-green">
+                                <h4 id="pending">--</h4>
+                                <span>pending</span>
+                            </div>
+                            <div class="col-4 text-center border-right-green">
+                                <h4 id="missed">--</h4>
+                                <span>missed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="filter" class="col-md-9 col-sm-12">
 
-        <div class="col-md-3 col-sm-12 bg-light">
-            <div class="row">
-                <div class="col-4 text-center border-right-green">
-                    <h4 id="total">--</h4>
-                    <span>total</span>
-                </div>
-                <div class="col-4 text-center border-right-green">
-                    <h4 id="pending">--</h4>
-                    <span>pending</span>
-                </div>
-                <div class="col-4 text-center border-right-green">
-                    <h4 id="missed">--</h4>
-                    <span>missed</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="filter" class="col-md-9 col-sm-12">
 
-        </div>
-
-
-
-
-    </div>
-
-    <div class="row mt-3 content">
+        <div class="row mt-3 content">
         <!-- hiding for small screen -->
         <div class="col-3 hidden-sm-down">
             <ul id="appointment-list" class="list-group"></ul>
@@ -172,6 +171,7 @@
                                 <div class="ots-video-control circle audio" id="toggleLocalAudio"></div>
                                 <div class="ots-video-control circle video" id="toggleLocalVideo"></div>
                                 <div class="ots-video-control circle full-screen" id="showFullScreen"></div>
+                                <div class="ots-video-control circle full-screen-off hidden-xs-up" ></div>
                                 <!-- </div> -->
                             </div>
                         </div>
