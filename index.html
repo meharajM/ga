@@ -12,54 +12,27 @@
     <link href="css/bootstrap-iso.css" rel="stylesheet">
     <link href="css/bootstrap-datepicker3.css" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-    <!--Font Awesome-->
-    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
-
-    <link href="css/styles.css" type="text/css" rel="stylesheet" />
+	 <link rel="stylesheet" href="css/fa/css/font-awesome.min.css">
+	<link href="css/styles.css" type="text/css" rel="stylesheet" />
     <link href="css/jquery-ui.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" type="text/css" href="css/newStyles.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
 
 
     <!--added by Nishant -->
-    <!-- <script src="js/jquery-1.11.3.js"></script> -->
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="js/moment.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
+	<script src="/js/bootstrap-datepicker.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.date.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/default.time.css" />
+    <script src="js/moment.min.js"></script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-   <!-- <link rel="stylesheet" href="/resources/demos/style.css">-->
-    <!--<script>
-        $(function () {
-            $("#date").datepicker({
-      dateFormat: "DD, dd-M-yy"
-        });
-    </script>-->
-
-    <script>
-        var dateTypeVar = $('#date').datepicker('getDate');
-        $.datepicker.formatDate('DD, dd-M-yy', dateTypeVar);
-    </script>
-
+	<script src="js/jquery-ui.min.js"></script>
 
     <script type="text/x-handlebars-template" id="appointmentTemplate">
         {{#appointment}}
@@ -74,11 +47,11 @@
         </li>
         {{/appointment}}
     </script>
-    <link href="css/app.css" rel="stylesheet" type="text/css">
+   <!-- <link href="css/app.css" rel="stylesheet" type="text/css">-->
     <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
-    <link rel="stylesheet" href="css/fa/css/font-awesome.min.css">
+
 </head>
-<body onload="cal();">
+<body>
     <div>
         <!-- add fixed-top for fix nav -->
         <nav class="navbar navbar-toggleable-sm navbar-light">
@@ -247,8 +220,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
     </div>
 
     <script src="./js/getData.js"></script>
