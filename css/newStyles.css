@@ -9,34 +9,12 @@ body{
 	background-color: #f5f5f5;
 }
 
-::-webkit-scrollbar-track
-{
-    border-radius: 10px;
-    background-color: #F5F5F5;
-}
-
-::-webkit-scrollbar
-{
-    width: 8px;
-    background-color: #ccc;
-}
-
-::-webkit-scrollbar-thumb
-{
-    border-radius: 10px;
-    background-color: #ccc;
-}
-
-
 .border-right-green{
 	border-right: 2px solid green;
 }
 .border{
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
-}
-.content{
-  height: 100vh;
 }
 #search::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: white;
@@ -56,13 +34,8 @@ body{
 
 .tab-content{
     background-color: white;
-    border: 1px solid transparent;
+    order: 1px solid transparent;
     border-color: #ddd #ddd #fff;
-    height: 70vh;
-    overflow-y: scroll;
-}
-.tab-content{
-    border-top: none;
 }
 .appointment-details{
     padding: 25px;
@@ -129,10 +102,9 @@ body{
     border: 2px solid white;    
     background-position: center;
     background-color: rgba(27, 134, 144, 0.4);
-    background-color: rgba(211, 211, 211, 0.32);
+    background-color: lightgrey;
     background-repeat: no-repeat;
     cursor: pointer;
-    z-index: 50;
 }
 .circle{
   border-radius: 50%;
@@ -156,34 +128,62 @@ body{
 #close-vedio-consultation{
     background-image: url(https://tokbox.com/developer/tools/playground/img/icons/force_unpublish.png);
 }
-.App-control-container .ots-video-control.full-screen {
-    background-image: url(../img/exp.png);
-}
 
-.App-control-container .ots-video-control.full-screen-off {
-    background-image: url(../img/resto.png);
-}
 
-.appointment-info.show-full-screen{
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.controls-group{
-    position: absolute;
-    left: 40%;
-}
-.content-container.container{
-    width: 100%;
-}
-.appointment-type .VC{
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    background-image: url(../img/vidiCon.png);
-}
+.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: #ffffff !important;} .asteriskField{color: red;}
+
 .no-padding{
-    padding: 0;
+padding:0;
+
+}
+
+/*Added By Nishant */
+/*in summary.html file */
+#p_check{
+width: 70%;
+}
+
+
+.follow_up{
+width:150px;
+}
+
+.ifPartial{
+visibility:hiden; /**wrongly written as hiden for testing purposes only */
+}
+
+/*Added By Nishant */
+/*in filter.html file */
+
+#filter_row{
+padding:0;
+}
+
+
+#previous_day{
+border: 1px solid #ccc;
+border-radius: 253px;
+height: 30px;
+width: 30px;
+background-image: url(../img/calLft.png); 
+background-position: center;
+padding:10px;
+margin-top:11px;
+margin-left:5px;
+}
+
+
+#next_day{
+border: 1px solid #ccc;
+border-radius: 253px;
+height: 30px;
+width: 30px;
+background-image: url(../img/calRgt.png);
+background-position: center;
+padding:10px;
+margin-top:11px;
+}
+
+#date{
+text-align:center;
 }

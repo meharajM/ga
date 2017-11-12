@@ -4,33 +4,15 @@
         <div class="col-md-10 col-sm-7 input-group" style="padding:0;">
          <!--  <div class="col-12 pull-right">-->
 
-                <div class="btn btn-default" id="previous_day" style="border: 1px solid #ccc;
-				border-radius: 253px;
-				height: 30px;
-				width: 30px;
-				background-image: url(img/calLft.png);
-				background-position: center;
-				padding:10px;
-				margin-top:11px;
-				margin-left:5px;
-
-}"></div>
-                <div class="input-group col-8">
-                    <input class="form-control" id="date" name="date" type="text" style="text-align:center" onclick="cal();" />
+                <div class="btn btn-default" id="previous_day"></div>
+                <div class="input-group col-6">
+                    <input class="form-control" id="date" name="date" type="text" />
                 </div>
-                <div class="btn btn-default" id="next_day" style="border: 1px solid #ccc;
-				border-radius: 253px;
-				height: 30px;
-				width: 30px;
-				background-image: url(img/calRgt.png);
-				background-position: center;
-				padding:10px;
-				margin-top:11px;
-}"></div>
+                <div class="btn btn-default" id="next_day"></div>
 
             <!--</div>--></div>
             <div class="col-md-2 col-sm-5 pull-right">
-                <div class="text-center btn-default btn-sm col-12">
+                <div class="text-center btn-default btn-sm">
                     <button type="button" class="btn btn-outline-success"><span class="hidden-xs-down">Filter</span><i class="fa fa-filter pull-right" aria-hidden="true"></i></button>
 
               
@@ -72,8 +54,6 @@
             container: container,
             todayHighlight: true,
             autoclose: true,
-        })
-
-
+        });
     })
 </script>
