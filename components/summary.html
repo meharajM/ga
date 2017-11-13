@@ -4,8 +4,33 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<script src="./js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-iso.css" rel="stylesheet">
+<link href="css/bootstrap-datepicker3.css" rel="stylesheet">
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+
+    <link href="css/custom.css" rel="stylesheet">
+
+					<!--JS Files-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
+
+
+		<!--<script src="./js/jquery-1.11.3.js"></script>-->
+		<script src="js/jquery-3.2.1.min.js"></script>
 		<script>
 	 $(document).ready(function(){
         var date_input=$('input[name="date"]'); //our date input has the name "date"
@@ -16,12 +41,27 @@
             todayHighlight: true,
             autoclose: true,
         })
-	})
+
+
+    })
 	</script>
-	
+<script src="./js/tether.min.js"></script>
+<script src="./js/moment.min.js"></script>
+
+	<script src="js/jquery-ui.min.js"></script>
+<!--	<script src="js/jquery-3.2.1.min.js"></script>-->
+	<!--<script src="js/jquery-ui.js"></script>-->
+<!--	<script src="./js/jquery-1.11.3.js"></script>-->
+	<script src="./js/tether.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/bootstrap-datepicker.min.js"></script>
+	<script src="./js/moment.min.js"></script>
+
 	
     <title></title>
-	
+
+    <link href="css/custom.css" rel="stylesheet">
+
 </head>
 <body>
     <div class="container">
@@ -81,9 +121,9 @@
 				  </label>	</div></div>
 				  <div class="input-group col-md-4 col-sm-4">
 					
-					<div class="ifPartial" class="col-md-12">
+					<div class="ifPartial" style="visibility: hiden " class="col-md-12">
 					<label class="btn btn-light">
-				    <input type="text" name="options" id="p_check" autocomplete="off"> 
+				    <input type="text" name="options" id="p_check" autocomplete="off" style="width:70%">
 				  </label>
 				  </div>					 
 				</div>
@@ -102,7 +142,7 @@
                         <div class="row">
 						<div class="col-sm-6">
                             <div class="dropdown">
-                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm col-md-6" id="follow_up" onclick="javascript:answers();">
+                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm col-md-6" id="follow_up" style="width:150px" onclick="javascript:answers();">
                                    <strong> Select  </strong>
                                     <span class="caret"></span>
                                 </button>

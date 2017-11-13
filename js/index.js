@@ -119,11 +119,32 @@ $(document).ready(function(){
 			$(this).addClass('muted');
 		}
 	}
+	var showFullScreen = function(ev){
+		if(!$('#publisher').hasClass('hidden-xs-up')){
+			$('.video-container').removeClass('col-md-4').addClass('col-md-12').addClass('show-full-screen');
+			$('.appointment-info.details').addClass('hidden-xs-up')
+		}else if(!$('#subscriber').hasClass('hidden-xs-up')){
+			$('#subscriber').addClass('show-full-screen');
+		}
+		$('.full-screen-off').removeClass('hidden-xs-up')
+		$('.full-screen').addClass('hidden-xs-up')
+	}
+	var removeFullScreen = function (ev) {
+        if(!$('#publisher').hasClass('hidden-xs-up')){
+            $('.video-container').addClass('col-md-4').removeClass('col-md-12').removeClass('show-full-screen');
+            $('.appointment-info.details').removeClass('hidden-xs-up')
+        }else if(!$('#subscriber').hasClass('hidden-xs-up')){
+            $('#subscriber').removeClass('show-full-screen');
+        }
+        $('.full-screen').removeClass('hidden-xs-up')
+		$('.full-screen-off').addClass('hidden-xs-up')
+    }
 	$('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails)
 	$('.appointment-details #prescription').on('submit', addPrescription)
 	$('#start-vedio-consultation').on('click', startVedio)
 	$('#close-vedio-consultation').on('click', stopVideo)
 	$('#toggleLocalAudio').on('click', muteAudio)
 	$('#toggleLocalVideo').on('click', muteVideo)
-	
+	$('.full-screen').on('click', showFullScreen)
+	$('.App-control-container').on('click', '.full-screen-off', removeFullScreen)
 })
