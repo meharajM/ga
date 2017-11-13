@@ -88,9 +88,9 @@ $(document).ready(function(){
 	var vedioSession;
 	var startVedio = function(){
 		var apiKey = "45638452",
-        sessionId = "2_MX40NTYzODQ1Mn5-MTUwODQzMDQzMDgzMn5HQUtvVlFYTDVxZnpUSXNPd3pRVGxUSEF-fg",
-        token = "T1==cGFydG5lcl9pZD00NTYzODQ1MiZzaWc9NjE1ZGJmZDYxZjBhNmRhMzUxNTA5NjQwYzQ4YTUyOWYwN2FiNDkzZjpzZXNzaW9uX2lkPTJfTVg0ME5UWXpPRFExTW41LU1UVXdPRFF6TURRek1EZ3pNbjVIUVV0dlZsRllURFZ4Wm5wVVNYTlBkM3BSVkd4VVNFRi1mZyZjcmVhdGVfdGltZT0xNTA5MjE2MzM1JnJvbGU9cHVibGlzaGVyJm5vbmNlPTE1MDkyMTYzMzUuODI4Mzc0MzAwNDI4OA==";
-       // (optional) add server code here
+        sessionId = "2_MX40NTYzODQ1Mn5-MTUxMDU5Nzg0NzE4OH5wV3h6Smc0M1ZQTTJVQ2xWUUdLK0lpODZ-fg",
+        token = "T1==cGFydG5lcl9pZD00NTYzODQ1MiZzaWc9YjYzNTRlYzI4NDRkMTgyY2Y3ZjNjMWQ2MmYzZjMzYjg2NGZmNjA4NDpzZXNzaW9uX2lkPTJfTVg0ME5UWXpPRFExTW41LU1UVXhNRFU1TnpnME56RTRPSDV3VjNoNlNtYzBNMVpRVFRKVlEyeFdVVWRMSzBscE9EWi1mZyZjcmVhdGVfdGltZT0xNTEwNTk3OTA0Jm5vbmNlPTAuNjk5OTgzMTcyNzA4OTc0JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE1MTMxODk5MDMmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0="
+			// (optional) add server code here
 		vedioSession = initializeSession(apiKey, sessionId, token);
 	}
 	var stopVideo = function(){

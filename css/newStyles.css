@@ -109,6 +109,16 @@ body{
 	height: 100%;
 	width: 100%;
 }
+#publisher{
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    bottom: 10px;
+    left: 10px;
+    z-index: 100;
+    border: 3px solid #ccc;
+    border-radius: 3px;
+}
 
 .App-control-container {
     height: 100%;
