@@ -81,6 +81,9 @@ $(document).ready(function(){
 	      session.publish(publisher, handleError);
 	    }
 	  });
+	  $('.video-container').removeClass('hidden-xs-up');
+	  $($('.video-container')[0]).scrollTop(200);
+	  $('.appointment-info.details').addClass('hidden-xs-up')
 	  $('#start-vedio-consultation').addClass('hidden-xs-up')
 	  $('#close-vedio-consultation').removeClass('hidden-xs-up')
 	  return {session: session, stream: publisher.stream};
@@ -96,7 +99,10 @@ $(document).ready(function(){
 	var stopVideo = function(){
 		if(vedioSession){
 			vedioSession.session.disconnect()
-			$('#start-vedio-consultation').removeClass('hidden-xs-up')
+            $('.video-container').addClass('hidden-xs-up');
+            $('.appointment-info.details').removeClass('hidden-xs-up')
+
+            $('#start-vedio-consultation').removeClass('hidden-xs-up')
 	 		$('#close-vedio-consultation').addClass('hidden-xs-up')
 	 		$('.audio, .video, .full-screen').addClass('hidden-xs-up');
 		}
