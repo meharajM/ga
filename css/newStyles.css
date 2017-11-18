@@ -36,9 +36,6 @@ body{
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
 }
-.content{
-  height: 100vh;
-}
 #search::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: white;
 }
