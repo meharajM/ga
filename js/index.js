@@ -1,3 +1,4 @@
+var appointment_id;
 $(document).ready(function(){
 	$('#summary').load('./components/summary.html')
 	$('#filter').load('./components/filter.html')
@@ -20,9 +21,10 @@ $(document).ready(function(){
 	})
 
 	/*getting appointment details*/
+
 	var getAppointmentDetails = function(ev){
-		var id = ev.currentTarget.id;
-		getData.getAppointmentDetails(id).then(function(res){
+		appointment_id = ev.currentTarget.id;
+		getData.getAppointmentDetails(appointment_id).then(function(res){
 		    $('.no-appointment-selected').addClass('d-none')
 		    $('.appointment-info').removeClass('d-none')
 		    var source = $('#detailsTemplate').html();

@@ -89,7 +89,7 @@ var getData = {
 				    "prev_appointment_date": "14-08-2017"
 				  }
 				}
-	   		}	
+	   		}
 		}).then(function(res){
 			return res
 		}).catch(function(res){
@@ -438,5 +438,56 @@ var getData = {
                    }
         })
         return call;
-	}
+    },
+    UpdatePrescriptionDetails: function (id,prescriptions) {
+        var url = "/UpdatePrescriptionDetails.php"
+        var doctorId = 13;
+        var apmt_input = {
+            apmt_id: id,
+            doctor_id: 13,
+            hs_id: 57,
+            hcc_id: "",
+        }
+
+        debugger
+        var data = {
+            apmt_input: apmt_input,
+            prescription: prescriptions,
+            session_info: session_info
+        }
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data: data,
+            dataType: 'json',
+            success: function (res, status){
+                debugger
+                return res;
+
+            },
+            // error: function (err, status) {
+            //     return {
+            //         "error": {
+            //             "result": "0",
+            //             "error_code": "00",
+            //             "error_message": "",
+            //             "error_type": ""
+            //         },
+            //         "prescription_details": {
+            //             "med_name": "Paracitamal",
+            //             "med_type": "Tablet",
+            //             "med_dosage": "12-04-2017",
+            //             "med_timings": "19:30:00+05:30",
+            //             "med_duration": "2 Days",
+            //             "food_timings": "After Food",
+            //             "instructions": "Drink Water More",
+            //             "template_id": "20",
+            //             "prev_prescription_exits": "yes"
+            //         }
+            //     }
+            // }
+
+        });
+        return call;
+    },
 }

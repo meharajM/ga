@@ -55,13 +55,13 @@
 				<div class="col-sm-10">
 					<div class="btn-group" data-toggle="buttons">
 						<label class="btn btn-lg morning active">
-							<input type="checkbox" name="mrng" id="mrng" checked autocomplete="off">
+							<input type="checkbox" name="med_timings" id="mrng" checked autocomplete="off">
 						</label>
 						<label class="btn btn-lg noon">
-							<input type="checkbox" name="noon" id="noon" autocomplete="off">
+							<input type="checkbox" name="med_timings" id="noon" autocomplete="off">
 						</label>
 						<label class="btn btn-lg night">
-							<input type="checkbox" name="night" id="night" autocomplete="off">
+							<input type="checkbox" name="med_timings" id="night" autocomplete="off">
 						</label>
 					</div>
 				</div>
@@ -109,8 +109,8 @@
 			</div>
 			<div class="form-group rows">
 				<button class="btn btn-success" id="add-prescription">Add</button>
-				<button class="btn btn-primary">Next</button>
-			</div>
+                <button class="btn btn-primary" id="save_continue">Save & Continue</button>
+            </div>
 		</form>
 	</div>
 	<hr/>
@@ -149,6 +149,7 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
+        var prescription_data=[];
         $('.form').hide();
 	    $('#add').on('click', function(){
 	        $('.form').slideToggle();
@@ -161,6 +162,7 @@
 		formData.map(function(feild){
 			data[feild.name]=feild.value;
 		});
+        prescription_data.push(data);
         var source   = $("#prescriptiontable").html();
 		var template = Handlebars.compile(source);
 		var html = template({prescription: data});
@@ -169,6 +171,11 @@
             $("#form3").reset();
 
 		});
+        $("#save_continue").on("click",function(evt) {
+            getData.UpdatePrescriptionDetails(appointment_id, prescription_data);
+            evt.preventDefault();
+
+        });
 		
 
 	});
