@@ -180,19 +180,8 @@
             formData.map(function(feild){
                 data[feild.name]=feild.value;
             });
-            summary_data.push(data);
-            var source   = $("#prescriptiontable").html();
-            var template = Handlebars.compile(source);
-            var html = template({prescription: data});
-            $('#tab1').html(html);
-            $('.form').slideToggle();
-            $("#form3").reset();
-
-        });
-        $("#save_continue").on("click",function(evt) {
-            getData.UpdatePrescriptionDetails(appointment_id, prescription_data);
+            getData.UpdateConsultationSummary(appointment_id, summary_data);
             evt.preventDefault();
-
         });
 
 

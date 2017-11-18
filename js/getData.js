@@ -115,4 +115,39 @@ var getData = {
         });
         return call;
     },
-}
+
+    UpdateConsultationSummary: function(id,summary){
+        var url = "/UpdateConsultationSummary.php"
+        var doctorId = 13;
+        var apmt_input = {
+            apmt_id: id,
+            doctor_id: 26,
+            hs_id: 21,
+            hcc_id: "",
+        }
+
+        debugger
+        var data = {
+            apmt_input: apmt_input,
+            summary: summary,
+            session_info: session_info
+        }
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data: data,
+            dataType: 'json',
+            success: function (res,status) {
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status)
+            }
+        }).then(function(res){
+            return res;
+        }).catch(function(res){
+            console.log("caught error in response: Summary API"+res)
+        })
+        return call;
+    },
+    }
