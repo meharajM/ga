@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	$('#prescription').load('./components/prescription.html')
 	$('#summary').load('./components/summary.html')
 	$('#filter').load('./components/filter.html')
 	getData.getDashboardData().then(function(res){
@@ -30,8 +29,8 @@ $(document).ready(function(){
             var template = Handlebars.compile(source);
             var html = template(res.appointments_details);
             $('#detailsTemplate').html(html)
-
-		}).catch(function(a,b){
+            $('#prescription').load('./components/prescription.html')
+        }).catch(function(a,b){
 
 		    debugger
 		})

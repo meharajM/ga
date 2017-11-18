@@ -11,125 +11,136 @@
         {{/prescription}}
     </script>
 <div class="col-xs-12 appointment-details">
-	<form id="form3">
-		<div class="form-group">
-			<input type="text" placeholder="medicin" name="med_name" class="form-control"/>		
-		</div>
-		<div class="form-group row">
-			<label for="type" class="col-sm-2 col-form-label">Type</label>
-			<div class="col-sm-10">
-			  <select class="custom-select form-control" name="med_type">
-				  <option selected>Select medicine type</option>
-				  <option value="1">Pills</option>
-				  <option value="2">Injection</option>
-				  <option value="3">Syrup</option>
-				</select>
+	<div class="form">
+		<form id="form3">
+			<div class="form-group">
+				<input type="text" placeholder="medicin" name="med_name" class="form-control"/>
 			</div>
-			
-		</div>
-		<div class="form-group row">
-			<label for="type" class="col-sm-2 col-form-label">Dosages</label>
-			<div class="col-sm-6">
-			  <select class="custom-select form-control" name="med_dosage">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="3">4</option>
-				  <option value="3">5</option>
-				</select>
-			</div>
-			<div class="col-sm-4 medicin-unit">				
-				<div class="btn-group" data-toggle="buttons">
-				  <label class="btn btn-light active">
-				    <input type="radio" name="options" id="option1" autocomplete="off" checked> MG
-				  </label>
-				  <label class="btn btn-light">
-				    <input type="radio" name="options" id="option2" autocomplete="off"> ML
-				  </label>				  
+			<div class="form-group row">
+				<label for="type" class="col-sm-2 col-form-label">Type</label>
+				<div class="col-sm-10">
+					<select class="custom-select form-control" name="med_type">
+						<option selected>Select medicine type</option>
+						<option value="1">Pills</option>
+						<option value="2">Injection</option>
+						<option value="3">Syrup</option>
+					</select>
 				</div>
-			</div>			
-		</div>
-		<div class="form-group row timings">
-			<label for="type" class="col-sm-2 col-form-label">When</label>
-			<div class="col-sm-10">
-			  	<div class="btn-group" data-toggle="buttons">
-				  <label class="btn btn-lg morning active">				  	
-				  		<input type="checkbox" name="mrng" id="mrng" checked autocomplete="off"> 			  		
-				  </label>
-				  <label class="btn btn-lg noon">
-				    <input type="checkbox" name="noon" id="noon" autocomplete="off">
-				  </label>
-				  <label class="btn btn-lg night">
-				    <input type="checkbox" name="night" id="night" autocomplete="off"> 
-				  </label>
-				</div>			
-			</div>			
-		</div>
-		<div class="text-center form-group">or</div>
-		<div class="form-group">
-			<input type="text" placeholder="specify" class="form-control">
-		</div>
-		<div class="form-group row">
-			<div class="col-sn-5">
-				<label for="type" class="col-form-label">Duration</label>
-				<input type="text" name="med_duration">
+
 			</div>
-			<div class="col-sm-5">
-				<div class="btn-group" data-toggle="buttons">
-				  <label class="btn btn-sm active">				  	
-				  		<input type="checkbox" name="days" checked autocomplete="off">Days			  		
-				  </label>
-				  <label class="btn btn-sm">
-				    <input type="checkbox" name="weeks" autocomplete="off">Weeks
-				  </label>
-				  <label class="btn btn-sm">
-				    <input type="checkbox" name="months" autocomplete="off"> Months
-				  </label>
-				</div>		
-			</div>			
-		</div>
-		<div class="form-group row">
-			<div class="col-sm-2">			
-				<label for="type" class="col-form-label">Food</label>
+			<div class="form-group row">
+				<label for="type" class="col-sm-2 col-form-label">Dosages</label>
+				<div class="col-sm-6">
+					<select class="custom-select form-control" name="med_dosage">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="3">4</option>
+						<option value="3">5</option>
+					</select>
+				</div>
+				<div class="col-sm-4 medicin-unit">
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-light active">
+							<input type="radio" name="options" id="option1" autocomplete="off" checked> MG
+						</label>
+						<label class="btn btn-light">
+							<input type="radio" name="options" id="option2" autocomplete="off"> ML
+						</label>
+					</div>
+				</div>
 			</div>
-			<div class="col-sm-10">
-			  	<div class="btn-group food" data-toggle="buttons">
-				  <label class="btn btn-sm btn-light active">
-				    <input type="radio" name="food_timings" id="option1" value="before" autocomplete="off" checked>Before
-				  </label>
-				  <label class="btn btn-sm btn-light">
-				    <input type="radio" name="food_timings" id="option2" value="after" autocomplete="off">After
-				  </label>
-				</div>			
-			</div>		
-		</div>
-		<div class="form-group">		    
-		    <textarea class="form-control" id="exampleTextarea" name="instructions " placeholder="instructions..." rows="3"></textarea>
-		</div>
-		<div class="form-group rows">
-			<button class="btn btn-success" id="add">Add</button>
-			<button class="btn btn-primary">Next</button>
-		</div>
-	</form>
+			<div class="form-group row timings">
+				<label for="type" class="col-sm-2 col-form-label">When</label>
+				<div class="col-sm-10">
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-lg morning active">
+							<input type="checkbox" name="mrng" id="mrng" checked autocomplete="off">
+						</label>
+						<label class="btn btn-lg noon">
+							<input type="checkbox" name="noon" id="noon" autocomplete="off">
+						</label>
+						<label class="btn btn-lg night">
+							<input type="checkbox" name="night" id="night" autocomplete="off">
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="text-center form-group">or</div>
+			<div class="form-group">
+				<input type="text" placeholder="specify" class="form-control">
+			</div>
+			<div class="form-group row">
+				<div class="col-sn-5">
+					<label for="type" class="col-form-label">Duration</label>
+					<input type="text" name="med_duration">
+				</div>
+				<div class="col-sm-5">
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-sm active">
+							<input type="checkbox" name="days" checked autocomplete="off">Days
+						</label>
+						<label class="btn btn-sm">
+							<input type="checkbox" name="weeks" autocomplete="off">Weeks
+						</label>
+						<label class="btn btn-sm">
+							<input type="checkbox" name="months" autocomplete="off"> Months
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-2">
+					<label for="type" class="col-form-label">Food</label>
+				</div>
+				<div class="col-sm-10">
+					<div class="btn-group food" data-toggle="buttons">
+						<label class="btn btn-sm btn-light active">
+							<input type="radio" name="food_timings" id="option1" value="before" autocomplete="off" checked>Before
+						</label>
+						<label class="btn btn-sm btn-light">
+							<input type="radio" name="food_timings" id="option2" value="after" autocomplete="off">After
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<textarea class="form-control" id="exampleTextarea" name="instructions " placeholder="instructions..." rows="3"></textarea>
+			</div>
+			<div class="form-group rows">
+				<button class="btn btn-success" id="add-prescription">Add</button>
+				<button class="btn btn-primary">Next</button>
+			</div>
+		</form>
+	</div>
 	<hr/>
-	<div><h6>Prescribed Medications</h6>
+	<div>
+		<div class="row">
+			<div class="col-10">
+				<h6>Prescribed Medications</h6>
+			</div>
+			<div class="col-2">
+				<div id="add" class="btn btn-default fa fa-plus float-right btn-primary btn-sm"></div>
+			</div>
+		</div>
+
+
       <table class="table table-sm">
     <thead>
       <tr>
         <th>Name</th>
         <th>Type</th>
         <th>Dosage</th>
-        <th>Freq</th>
+        <th>Food</th>
         <th>Freq</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody id="tab1">
       <tr >
-       <!--  <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td> -->
+        <td>
+			Please add Prescriptions.
+		</td>
       </tr>
     </tbody>
   </table>
@@ -138,7 +149,11 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#add").on("click",function(evt){
+        $('.form').hide();
+	    $('#add').on('click', function(){
+	        $('.form').slideToggle();
+		})
+		$("#add-prescription").on("click",function(evt){
 			var formData=$("#form3").serializeArray();
 			evt.preventDefault();
 		debugger
@@ -150,7 +165,8 @@
 		var template = Handlebars.compile(source);
 		var html = template({prescription: data});
          $('#tab1').html(html);
-
+            $('.form').slideToggle();
+            $("#form3").reset();
 
 		});
 		
