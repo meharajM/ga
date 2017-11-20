@@ -32,8 +32,10 @@ $(document).ready(function(){
             var html = template(res.appointments_details);
             $('#detailsTemplate').html(html)
             $('#prescription').load('./components/prescription.html')
-			if(res.appointment_det.apmt_type != "VC"){
+			if(res.appointments_details.appointment_det.apmt_type != "VC"){
 				$('#start-vedio-consultation').hide();
+			}else{
+                $('#start-vedio-consultation').show();
 			}
         }).catch(function(a,b){
 
