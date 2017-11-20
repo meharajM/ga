@@ -8,7 +8,7 @@
     <script src="./js/bootstrap-datepicker.min.js"></script>
     <script>
         $(document).ready(function(){
-            var date_input=$('input[name="date"]'); //our date input has the name "date"
+            var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
             var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
             date_input.datepicker({
                 format: 'DD, dd-M-yy',
@@ -30,7 +30,7 @@
         <div class="col-xs-12 col-md-12" style="display:block;width:100%">
             <br>
 
-            <form>
+            <form id="form4">
                 <div class="form-group">
 
                     <label class="control-label required field" for="diagnosis"><strong>Patient Diagnosis / Diagnoses</strong></label>
@@ -38,7 +38,7 @@
                             *
                         </span>
                     <div class="input-group">
-                    <input class="form-control" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" />
+                    <input class="form-control" type="text" id="diagnosis" name="Diagnosis" placeholder="Enter diagnosis / diagnoses" />
 
                     </div></div>
 
@@ -49,7 +49,7 @@
                             *
                         </span>
                     <div class="input-group">
-                    <textarea class="form-control" cols="40" id="advice" name="advice" rows="5"></textarea>
+                    <textarea class="form-control" cols="40" id="advice" name="mgmt_plan" rows="5"></textarea>
                     </div></div>
 
                 <div class="form-group">
@@ -77,20 +77,20 @@
                         <div class="col-sm-6 col-md-6 medicin-unit">
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-light active">
-                                    <input type="radio" name="options" id="No_fee" autocomplete="off" onclick="javascript:yesnoCheck();" checked> No
+                                    <input type="radio" name="waive_fee" id="No_fee" autocomplete="off" onclick="javascript:yesnoCheck();" checked> No
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="options" id="Full_fee" autocomplete="off" onclick="javascript:yesnoCheck();">Full
+                                    <input type="radio" name="waive_fee" id="Full_fee" autocomplete="off" onclick="javascript:yesnoCheck();">Full
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="options" id="Partial_fee" autocomplete="off" onclick="javascript:yesnoCheck();"> Partial
+                                    <input type="radio" name="waive_fee" id="Partial_fee" autocomplete="off" onclick="javascript:yesnoCheck();"> Partial
                                 </label>	</div></div>
 
                                 <div class="col-sm-4 col-md-4 offset-md-1">
                                     <div class="input-control ifPartial">
                       <!--      <div class="input-group ifPartial" class="col-md-6 col-sm-6">-->
                                 <label class="control-label">
-                                    <input class="form-control" type="text" name="p_check" id="p_check" autocomplete="off">
+                                    <input class="form-control" type="text" name="waived_amount" id="p_check" autocomplete="off">
                                 </label>
                                         <!--</div> --></div></div>
                         </div></div>
@@ -112,16 +112,16 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li onclick="javascript:answers();" id="After_1_Week">After 1 Week</li>
-                        <li onclick="javascript:answers();" id="After_10_Days">After 10 Days</li>
-                        <li onclick="javascript:answers();" id="After_2_Weeks">After 2 Weeks</li>
-                        <li onclick="javascript:answers();" id="After_1_Month">After 1 Month</li>
+                        <li onclick="javascript:answers();" id="After_1_Week" name="followup_in">After 1 Week</li>
+                        <li onclick="javascript:answers();" id="After_10_Days" name="followup_in">After 10 Days</li>
+                        <li onclick="javascript:answers();" id="After_2_Weeks" name="followup_in">After 2 Weeks</li>
+                        <li onclick="javascript:answers();" id="After_1_Month" name="followup_in">After 1 Month</li>
                     </ul>
                 </div>
             </div>
             <div class="col-sm-8">
                 <div class="input-group">
-                    <input class="form-control" type="text" id="date" name="date" />
+                    <input class="form-control" type="text" id="date" name="followup_date" />
                     <div class="input-group-addon" id="cal">
                         <i class="fa fa-calendar-times-o">
                         </i>
@@ -136,7 +136,7 @@
         <label class="control-label" for="suggested_invest"><strong>Suggested Investigations (Optional)</strong></label>
 
         <div class="input-group">
-            <textarea class="form-control" cols="40" id="suggested_invest" name="suggested_invest" rows="3"></textarea>
+            <textarea class="form-control" cols="40" id="suggested_invest" name="instruction_text" rows="3"></textarea>
     </div></div>
 
     <div class="form-group ">
@@ -145,7 +145,7 @@
             <strong>  Referred to Doctor (Optional)</strong>
         </label>
         <div class="input-group">
-        <input class="form-control" id="refer" name="refer" type="text" />
+        <input class="form-control" id="refer" name="doctor_name" type="text" />
         </div></div>
 
     <div class="form-group-inline text-center">
@@ -167,6 +167,26 @@
 
 </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        var summary_data=[];
+        $('.form').hide();
+
+        $("#save").on("click",function(evt){
+            var formData=$("#form4").serializeArray();
+            evt.preventDefault();
+            var data={};
+            formData.map(function(feild){
+                data[feild.name]=feild.value;
+            });
+            getData.UpdateConsultationSummary(appointment_id, summary_data);
+            evt.preventDefault();
+        });
+
+
+    });
+</script>
 
 
 
