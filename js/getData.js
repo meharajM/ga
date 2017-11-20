@@ -8,7 +8,7 @@ var getData = {
 	getDashboardData: function(date){
 		var url = "/getDocAppointmentDashboard.php"
 		var apmt_input = {
-                "date" : "20-09-2017",
+                "date" : date,
                 "doctor_id" : "12",
                 "hcc_id" : ""
     	}

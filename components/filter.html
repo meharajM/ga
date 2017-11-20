@@ -38,7 +38,13 @@
             minDate: 0,
             todayHighlight: true,
             autoclose: true,
-        });
+        }).on('changeDate', function(e){
+                var actualDate= e.date;
+                var date=actualDate.getDate()+'-'+(actualDate.getMonth()+1)+'-'+actualDate.getFullYear();
+                getData.getDashboardData(date).then(function(res){
+                    showDashboardDetails(res);
+                })
+            });
 
 	
          var date = new Date();
@@ -52,13 +58,28 @@
                 date.setDate(date.getDate() - 1);
                 // Write the result to our text input
                 $('#date').val(date.toLocaleDateString('en-US', options));
-        });
+                var actualDate = new Date(date); // convert to actual date;
+                var d=actualDate.getDate()+'-'+(actualDate.getMonth()+1)+'-'+actualDate.getFullYear();
+                getData.getDashboardData(d).then(function(res){
+                    showDashboardDetails(res);
+                }).catch(function(error){
+                    console.error(error);
+                })
+            });
             // Hook up next button event
             $('#next_day').click(function () {
                 // Set our current date to 1 day later
                 date.setDate(date.getDate() + 1);
                 // Write the result to our text input
-                $('#date').val(date.toLocaleDateString('en-US', options))
+                $('#date').val(date.toLocaleDateString('en-US', options));
+                var actualDate = new Date(date); // convert to actual date;
+                var d=actualDate.getDate()+'-'+(actualDate.getMonth()+1)+'-'+actualDate.getFullYear();
+                getData.getDashboardData(d).then(function(res){
+                    showDashboardDetails(res);
+                }).catch(function(error){
+                    console.error(error);
+                })
+
             });
         });
 

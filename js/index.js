@@ -2,22 +2,10 @@ var appointment_id;
 $(document).ready(function(){
 	$('#summary').load('./components/summary.html')
 	$('#filter').load('./components/filter.html')
-	getData.getDashboardData().then(function(res){
-		$('#total').text(res.appointments_details.appointment_summary.total)
-		$('#pending').text(res.appointments_details.appointment_summary.pending)
-		$('#missed').text(res.appointments_details.appointment_summary.missed)
-		$('#shcedule-date').text(res.appointments_details.appointment[0].appointment_date)
-		var source   = $("#appointmentTemplate").html();
-		var template = Handlebars.compile(source);
-		var html = template(res.appointments_details);
-
-		if($(window).width() < 500){
-			$('#appointment-list-phone').html(html)
-			$('#appointment-list-phone').removeClass('list-group').addClass('list-inline')
-			$('#appointment-list-phone .list-group-item').removeClass('list-group-item').addClass('list-inline-item')
-		}else{
-			$('#appointment-list').html(html)
-		}
+	var actualDate=new Date();
+    var date=actualDate.getDate()+'-'+(actualDate.getMonth()+1)+'-'+actualDate.getFullYear();
+    getData.getDashboardData(date).then(function(res){
+		showDashboardDetails(res);
 	})
 
 	/*getting appointment details*/
@@ -41,6 +29,23 @@ $(document).ready(function(){
 
 		    debugger
 		})
+	}
+	showDashboardDetails=function(res){
+        $('#total').text(res.appointments_details.appointment_summary.total)
+        $('#pending').text(res.appointments_details.appointment_summary.pending)
+        $('#missed').text(res.appointments_details.appointment_summary.missed)
+        $('#shcedule-date').text(res.appointments_details.appointment[0].appointment_date)
+        var source   = $("#appointmentTemplate").html();
+        var template = Handlebars.compile(source);
+        var html = template(res.appointments_details);
+
+        if($(window).width() < 500){
+            $('#appointment-list-phone').html(html)
+            $('#appointment-list-phone').removeClass('list-group').addClass('list-inline')
+            $('#appointment-list-phone .list-group-item').removeClass('list-group-item').addClass('list-inline-item')
+        }else{
+            $('#appointment-list').html(html)
+        }
 	}
 	var addPrescription = function(ev){
 
