@@ -5,15 +5,15 @@ var session_info = {
     		}
 var base_url = "http://52.66.157.195/growayu/ganewdesign";
 var getData = {
-	getDashboardData: function(){
+	getDashboardData: function(date){
 		var url = "/getDocAppointmentDashboard.php"
-		var appntment_input = {
+		var apmt_input = {
                 "date" : "20-09-2017",
                 "doctor_id" : "12",
                 "hcc_id" : ""
     	}
         var data = {
-        	appntment_input: appntment_input,
+        	appntment_input: apmt_input,
         	session_info: session_info
         }
         var call = $.ajax({
@@ -25,12 +25,12 @@ var getData = {
 	        	return res;
 	      	},
 	   		error: function(err,status){
-	   			console.error(err, status)
+	   			console.error(err, status);
 	   		}
 		}).then(function(res){
-			return res
+			return res;
 		}).catch(function(res){
-			console.log("caught error in response"+ res)
+			console.log("caught error in response"+ res);
 		});
 		return call;
 	},
@@ -55,17 +55,17 @@ var getData = {
                 return res;
             },
             error: function(err,status){
-                console.error(err, status)
+                console.error(err, status);
             }
         }).then(function(res){
             return res;
         }).catch(function(a,b){
-            console.log("caught error in response"+a,b)
+            console.log("caught error in response"+a,b);
         })
         return call;
     },
     UpdatePrescriptionDetails: function (id,prescriptions) {
-        var url = "/UpdatePrescriptionDetails.php"
+        var url = "/UpdatePrescriptionDetails.php";
         var doctorId = 13;
         var apmt_input = {
             apmt_id: id,
@@ -90,34 +90,15 @@ var getData = {
                 return res;
 
             },
-            // error: function (err, status) {
-            //     return {
-            //         "error": {
-            //             "result": "0",
-            //             "error_code": "00",
-            //             "error_message": "",
-            //             "error_type": ""
-            //         },
-            //         "prescription_details": {
-            //             "med_name": "Paracitamal",
-            //             "med_type": "Tablet",
-            //             "med_dosage": "12-04-2017",
-            //             "med_timings": "19:30:00+05:30",
-            //             "med_duration": "2 Days",
-            //             "food_timings": "After Food",
-            //             "instructions": "Drink Water More",
-            //             "template_id": "20",
-            //             "prev_prescription_exits": "yes"
-            //         }
-            //     }
-            // }
+             error: function (err, status) {
+            }
 
         });
         return call;
     },
 
     UpdateConsultationSummary: function(id,summary){
-        var url = "/UpdateConsultationSummary.php"
+        var url = "/UpdateConsultationSummary.php";
         var doctorId = 13;
         var apmt_input = {
             apmt_id: id,
@@ -141,12 +122,12 @@ var getData = {
                 return res;
             },
             error: function(err,status){
-                console.error(err, status)
+                console.error(err, status);
             }
         }).then(function(res){
             return res;
         }).catch(function(res){
-            console.log("caught error in response: Summary API"+res)
+            console.log("caught error in response: Summary API"+res);
         })
         return call;
     },

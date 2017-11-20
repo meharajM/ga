@@ -166,7 +166,7 @@
         var source   = $("#prescriptiontable").html();
 		var template = Handlebars.compile(source);
 		var html = template({prescription: data});
-         $('#tab1').html(html);
+         $('#tab1').append(html);
             $('.form').slideToggle();
             $("#form3").reset();
 

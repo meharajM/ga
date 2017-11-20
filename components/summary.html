@@ -6,18 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="./js/bootstrap-datepicker.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
-            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-            date_input.datepicker({
-                format: 'DD, dd-M-yy',
-                container: container,
-                todayHighlight: true,
-                autoclose: true,
-            })
-        })
-    </script>
+
 
 
 
@@ -72,96 +61,96 @@
                     <label class="control-label" for="waive">
                         <strong>Waive Fee for this Consultation?</strong>
                     </label>
-                   <!-- <div class="row"> -->
+                    <!-- <div class="row"> -->
                     <div class="input-group">
-                        <div class="col-sm-6 col-md-6 medicin-unit">
+                        <div class="col-sm-3 col-md-3 medicin-unit">
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-light active">
-                                    <input type="radio" name="waive_fee" id="No_fee" autocomplete="off" onclick="javascript:yesnoCheck();" checked> No
+                                    <input type="radio" name="waive_fee" value="No" id="No_fee" autocomplete="off"> No
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="waive_fee" id="Full_fee" autocomplete="off" onclick="javascript:yesnoCheck();">Full
+                                    <input type="radio" name="waive_fee" value="Full" id="No_fee" autocomplete="off">Full
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="waive_fee" id="Partial_fee" autocomplete="off" onclick="javascript:yesnoCheck();"> Partial
-                                </label>	</div></div>
-
-                                <div class="col-sm-4 col-md-4 offset-md-1">
-                                    <div class="input-control ifPartial">
-                      <!--      <div class="input-group ifPartial" class="col-md-6 col-sm-6">-->
+                                    <input type="radio" name="waive_fee" value="Partial" id="No_fee" autocomplete="off"> Partial
+                                </label>
+                            </div></div>
+                        <div class="col-sm-4 col-md-4">
+                            <div class="input-control ifPartial" id="ifPartial">
+                                <!--      <div class="input-group ifPartial" class="col-md-6 col-sm-6">-->
                                 <label class="control-label">
                                     <input class="form-control" type="text" name="waived_amount" id="p_check" autocomplete="off">
                                 </label>
-                                        <!--</div> --></div></div>
-                        </div></div>
+                                <!--</div> --></div></div>
+                    </div></div>
 
 
 
 
-    <div class="form-group">
-        <label class="control-label" for="follow_up">
-            <strong>Next Follow-up?</strong>
-        </label>
+                <div class="form-group">
+                    <label class="control-label" for="follow_up">
+                        <strong>Next Follow-up?</strong>
+                    </label>
 
 
-        <div class="input-group">
-            <div class="col-sm-4">
-                <div class="dropdown">
-                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-md col-sm-12" id="follow_up" onclick="javascript:answers();">
-                        <strong> Select  </strong>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li onclick="javascript:answers();" id="After_1_Week" name="followup_in">After 1 Week</li>
-                        <li onclick="javascript:answers();" id="After_10_Days" name="followup_in">After 10 Days</li>
-                        <li onclick="javascript:answers();" id="After_2_Weeks" name="followup_in">After 2 Weeks</li>
-                        <li onclick="javascript:answers();" id="After_1_Month" name="followup_in">After 1 Month</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="input-group">
-                    <input class="form-control" type="text" id="date" name="followup_date" />
-                    <div class="input-group-addon" id="cal">
-                        <i class="fa fa-calendar-times-o">
-                        </i>
+                    <div class="input-group">
+                        <div class="col-sm-3">
+                            <div class="dropdown">
+                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-md col-sm-12" id="follow_up">
+                                    <strong><span id="select_dropdown"> Select  </span></strong>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu text-center">
+                                    <li id="After_1_Week" name="followup_in">After 1 Week</li>
+                                    <li id="After_10_Days" name="followup_in">After 10 Days</li>
+                                    <li id="After_2_Weeks" name="followup_in">After 2 Weeks</li>
+                                    <li id="After_1_Month" name="followup_in">After 1 Month</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input class="form-control" type="text" id="followup_date" name="followup_date" />
+                                <div class="input-group-addon" id="cal">
+                                    <i class="fa fa-calendar-times-o">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="form-group">
+
+                    <label class="control-label" for="suggested_invest"><strong>Suggested Investigations (Optional)</strong></label>
+
+                    <div class="input-group">
+                        <textarea class="form-control" cols="40" id="suggested_invest" name="instruction_text" rows="3"></textarea>
+                    </div></div>
+
+                <div class="form-group ">
+
+                    <label class="control-label " for="refer">
+                        <strong>  Referred to Doctor (Optional)</strong>
+                    </label>
+                    <div class="input-group">
+                        <input class="form-control" id="refer" name="doctor_name" type="text" />
+                    </div></div>
+
+                <div class="form-group-inline">
+
+
+                    <div class="btn btn-success col-md-1">Save</div>
+
+
+                    <div class="btn btn-info col-md-1">Close</div>
+
+
+                </div>
+
+            </form>
         </div>
     </div>
-
-    <div class="form-group">
-
-        <label class="control-label" for="suggested_invest"><strong>Suggested Investigations (Optional)</strong></label>
-
-        <div class="input-group">
-            <textarea class="form-control" cols="40" id="suggested_invest" name="instruction_text" rows="3"></textarea>
-    </div></div>
-
-    <div class="form-group ">
-
-        <label class="control-label " for="refer">
-            <strong>  Referred to Doctor (Optional)</strong>
-        </label>
-        <div class="input-group">
-        <input class="form-control" id="refer" name="doctor_name" type="text" />
-        </div></div>
-
-    <div class="form-group-inline text-center">
-
-
-        <div class="btn btn-success col-md-5">Save</div>
-
-
-        <div class="btn btn-info col-md-5">Close</div>
-
-
-    </div>
-
-    </form>
-</div>
-</div>
 </div>
 
 
@@ -171,7 +160,6 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var summary_data=[];
-        $('.form').hide();
 
         $("#save").on("click",function(evt){
             var formData=$("#form4").serializeArray();
@@ -184,103 +172,53 @@
             evt.preventDefault();
         });
 
-
-    });
-</script>
-
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script>
-    function yesnoCheck() {
-        $("#No_fee").click(function(){
-            document.getElementById("p_check").style.visibility = 'hidden';
-            document.getElementById("p_check").value=' ';
-        });
-
-        $("#Full_fee").click(function(){
-            document.getElementById("p_check").style.visibility = 'visible';
-            document.getElementById("p_check").value='1000';
-        });
-        $("#Partial_fee").click(function(){
-            document.getElementById("p_check").style.visibility = 'visible';
-            document.getElementById("p_check").value=' ';
-        });
-    }
-</script>
-<!--
-<script>
-function answers()
-{
-
-//	var d = new Date();
-	var today= moment().format("MMM Do YY");
-	var dd=document.getElementById('follow_up');
-	var days=dd.options[dd.selectedIndex].text;
-	var day=moment().format('dddd');
-
-
-	if(days=='After 3 Days')
-		{
-		today=moment().add(3, 'days').calendar();
-		today=moment().format("MMM Do YY");
-		}
-//	if(days=='select')
-	//	today="";
-	if(days=='After 1 Week')
-	{
-		today=moment().add(7, 'days').format("MMM Do YY");
-		//today=moment().format("MMM Do YY");
-		day=moment().add(7,'days').format('dddd');
-		}
-	if(days=='After 10 Days')
-		{
-		today=moment().add(10, 'days').format("MMM Do YY");
-		day=moment().add(10,'days').format('dddd');
-		}
-	if(days=='After 2 Weeks')
-		{
-		today=moment().add(14, 'days').format("MMM Do YY");
-		day=moment().add(14,'days').format('dddd');
-		}
-	if(days=='After 1 Month')
-		{
-		today=moment().add(30, 'days').format("MMM Do YY");
-		day=moment().add(30,'days').format('dddd');
-		}
-
-	document.getElementById('date').value = day+', '+today;
-
-}
-</script>-->
-<script>
-    function answers()
-    {
         $("#After_1_Week").click(function(){
             today=moment().add(7, 'days').format("MMM Do YY");
             //today=moment().format("MMM Do YY");
             day=moment().add(7,'days').format('dddd');
-            document.getElementById('date').value = day+', '+today;
+            document.getElementById('followup_date').value = day+', '+today;
         });
         $("#After_10_Days").click(function(){
             today=moment().add(10, 'days').format("MMM Do YY");
             //today=moment().format("MMM Do YY");
             day=moment().add(10,'days').format('dddd');
-            document.getElementById('date').value = day+', '+today;
+            document.getElementById('followup_date').value = day+', '+today;
         });
         $("#After_2_Weeks").click(function(){
             today=moment().add(14, 'days').format("MMM Do YY");
             //today=moment().format("MMM Do YY");
             day=moment().add(14,'days').format('dddd');
-            document.getElementById('date').value = day+', '+today;
+            document.getElementById('followup_date').value = day+', '+today;
         });
         $("#After_1_Month").click(function(){
             today=moment().add(30, 'days').format("MMM Do YY");
             //today=moment().format("MMM Do YY");
             day=moment().add(30,'days').format('dddd');
-            document.getElementById('date').value = day+', '+today;
+            document.getElementById('followup_date').value = day+', '+today;
         });
-    }
+	
+	 var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
+            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'DD, dd-M-yy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            });
+
+        $("#No_fee").click(function(){
+            alert("hi");
+            document.getElementById('ifPartial').style.visibility = 'hidden';
+            document.getElementById('ifPartial').value=' ';
+        });
+
+        $("#Full_fee").click(function(){
+            document.getElementById('ifPartial').style.visibility = 'visible';
+            document.getElementById('ifPartial').value='1000';
+        });
+        $("#Partial_fee").click(function(){
+            document.getElementById('ifPartial').style.visibility = 'visible';
+            document.getElementById('ifPartial').value=' ';
+        });
+    });
 </script>

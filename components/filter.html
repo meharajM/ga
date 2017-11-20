@@ -1,11 +1,11 @@
-
+<script src="./js/bootstrap-datepicker.min.js"></script>
 <div class="bg-light border">
     <div class="row	mt-2 mb-2 pt-2 pb-1">
         <div class="col-sm-10 ">
          <!--  <div class="col-12 pull-right">-->
 
                     <div class="fa fa-angle-left prev"  id="previous_day"></div>
-                    <input id="date" name="date" type="text" style="text-align:center" class="" onclick="cal();" />
+                    <input id="date" name="date" type="text" style="text-align:center"/>
                     <div class="fa fa-angle-right next" id="next_day">
                     </div>
 
@@ -30,40 +30,37 @@
 </div>
 
 <script>
-    var date = new Date();
-    var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
-    $(function () {
-        // This writes out the current date to the text field as starter
-        $('#date').val(date.toLocaleDateString('en-US', options));
-
-        // Hook up previous button event
-        $('#previous_day').click(function () {
-            // Set our current date to 1 day earlier
-            date.setDate(date.getDate() - 1);
-            // Write the result to our text input
-            $('#date').val(date.toLocaleDateString('en-US', options))
-        });
-        // Hook up next button event
-        $('#next_day').click(function () {
-            // Set our current date to 1 day later
-            date.setDate(date.getDate() + 1);
-            // Write the result to our text input
-            $('#date').val(date.toLocaleDateString('en-US', options))
-        });
-    });
-
-</script>
-<script>
     $(document).ready(function () {
-        var date_input = $('input[name="date"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
+            $("#date").datepicker({
             format: 'DD, dd-M-yy',
-            container: container,
+	    changeMonth: true,
+            changeYear: true,
+            minDate: 0,
             todayHighlight: true,
             autoclose: true,
-        })
+        });
 
+	
+         var date = new Date();
+         var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+         $(function () {
+            // This writes out the current date to the text field as starter
+            $('#date').val(date.toLocaleDateString('en-US', options));
+            // Hook up previous button event
+            $('#previous_day').click(function () {
+                // Set our current date to 1 day earlier
+                date.setDate(date.getDate() - 1);
+                // Write the result to our text input
+                $('#date').val(date.toLocaleDateString('en-US', options));
+        });
+            // Hook up next button event
+            $('#next_day').click(function () {
+                // Set our current date to 1 day later
+                date.setDate(date.getDate() + 1);
+                // Write the result to our text input
+                $('#date').val(date.toLocaleDateString('en-US', options))
+            });
+        });
 
     })
 </script>
