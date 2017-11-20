@@ -1,15 +1,16 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
 <script  type="text/x-handlebars-template" id="prescriptiontable">
-        {{#prescription}}
-        	<tr>
-	           <td>{{med_name}}</td>
-	           <td>{{med_type}}</td>
-	           <td>{{med_dosage}}</td>
-	           <td>{{med_timings}}</td>
-	           <td>{{med_duration}}</td>
-           </tr>
-        {{/prescription}}
-    </script>
+	{{#prescription}}
+	<tr>
+		<td>{{med_name}}</td>
+		<td>{{med_type}}</td>
+		<td>{{med_dosage}}</td>
+		<td>{{med_timings}}</td>
+		<td>{{med_duration}}</td>
+	</tr>
+
+	{{/prescription}}
+</script>
 <div class="col-xs-12 appointment-details">
 	<div class="form">
 		<form id="form3">
@@ -21,9 +22,9 @@
 				<div class="col-sm-10">
 					<select class="custom-select form-control" name="med_type">
 						<option selected>Select medicine type</option>
-						<option value="1">Pills</option>
-						<option value="2">Injection</option>
-						<option value="3">Syrup</option>
+						<option value="Pills">Pills</option>
+						<option value="Injection">Injection</option>
+						<option value="Syrup">Syrup</option>
 					</select>
 				</div>
 
@@ -42,10 +43,10 @@
 				<div class="col-sm-4 medicin-unit">
 					<div class="btn-group" data-toggle="buttons">
 						<label class="btn btn-light active">
-							<input type="radio" name="options" id="option1" autocomplete="off" checked> MG
+							<input type="radio" name="med_dosage_option" value="mg" id="option1" autocomplete="off" checked> MG
 						</label>
 						<label class="btn btn-light">
-							<input type="radio" name="options" id="option2" autocomplete="off"> ML
+							<input type="radio" name="med_dosage_option" value="ml" id="option2" autocomplete="off"> ML
 						</label>
 					</div>
 				</div>
@@ -55,13 +56,13 @@
 				<div class="col-sm-10">
 					<div class="btn-group" data-toggle="buttons">
 						<label class="btn btn-lg morning active">
-							<input type="checkbox" name="med_timings" id="mrng" checked autocomplete="off">
+							<input type="checkbox" name="timings_morning" id="mrng" checked autocomplete="off">
 						</label>
 						<label class="btn btn-lg noon">
-							<input type="checkbox" name="med_timings" id="noon" autocomplete="off">
+							<input type="checkbox" name="timings_afternoon" id="noon" autocomplete="off">
 						</label>
 						<label class="btn btn-lg night">
-							<input type="checkbox" name="med_timings" id="night" autocomplete="off">
+							<input type="checkbox" name="timings_night" id="night" autocomplete="off">
 						</label>
 					</div>
 				</div>
@@ -78,13 +79,13 @@
 				<div class="col-sm-5">
 					<div class="btn-group" data-toggle="buttons">
 						<label class="btn btn-sm active">
-							<input type="checkbox" name="days" checked autocomplete="off">Days
+							<input type="radio" name="days" value="Days" checked autocomplete="off">Days
 						</label>
 						<label class="btn btn-sm">
-							<input type="checkbox" name="weeks" autocomplete="off">Weeks
+							<input type="radio" name="weeks" value="Weeks" autocomplete="off">Weeks
 						</label>
 						<label class="btn btn-sm">
-							<input type="checkbox" name="months" autocomplete="off"> Months
+							<input type="radio" name="months" value="Months" autocomplete="off"> Months
 						</label>
 					</div>
 				</div>
@@ -96,10 +97,10 @@
 				<div class="col-sm-10">
 					<div class="btn-group food" data-toggle="buttons">
 						<label class="btn btn-sm btn-light active">
-							<input type="radio" name="food_timings" id="option1" value="before" autocomplete="off" checked>Before
+							<input type="radio" name="food_timings" value="Before Food" autocomplete="off" checked>Before
 						</label>
 						<label class="btn btn-sm btn-light">
-							<input type="radio" name="food_timings" id="option2" value="after" autocomplete="off">After
+							<input type="radio" name="food_timings" value="After Food" autocomplete="off">After
 						</label>
 					</div>
 				</div>
@@ -109,7 +110,8 @@
 			</div>
 			<div class="form-group rows">
 				<button class="btn btn-success" id="add-prescription">Add</button>
-            </div>
+				<button class="btn btn-primary" id="save_continue">Save & Continue</button>
+			</div>
 		</form>
 	</div>
 	<hr/>
@@ -124,59 +126,67 @@
 		</div>
 
 
-      <table class="table table-sm">
-		<thead>
-		  <tr>
-			<th>Name</th>
-			<th>Type</th>
-			<th>Dosage</th>
-			<th>Food</th>
-			<th>Freq</th>
-			<th>Action</th>
-		  </tr>
-		</thead>
-		<tbody id="tab1">
-		  <tr >
-			<td>
-				Please add Prescriptions.
-			</td>
-		  </tr>
-		</tbody>
-	  </table>
-		<button class="btn btn-primary" id="save_continue">Save & Continue</button>
+		<table class="table table-sm">
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Dosage</th>
+				<th>Food</th>
+				<th>Freq</th>
+				<th>Action</th>
+			</tr>
+			</thead>
+			<tbody id="tab1">
+			<tr >
+				<td>
+					Please add Prescriptions.
+				</td>
+			</tr>
+
+			</tbody>
+		</table>
 	</div>
 
 </div>
 <script type="text/javascript">
-	$(document).ready(function(){
+    $(document).ready(function(){
         var prescription_data=[];
         $('.form').hide();
-	    $('#add').on('click', function(){
-	        $('.form').slideToggle();
-		})
-		$("#add-prescription").on("click",function(evt){
-			var formData=$("#form3").serializeArray();
-			evt.preventDefault();
-		debugger
-		var data={};
-		formData.map(function(feild){
-			data[feild.name]=feild.value;
-		});
-        prescription_data.push(data);
-        var source   = $("#prescriptiontable").html();
-		var template = Handlebars.compile(source);
-		var html = template({prescription: data});
-         $('#tab1').append(html);
+        $('#add').on('click', function(){
+            $('.form').slideToggle();
+        })
+        $("#add-prescription").on("click",function(evt){
+            var formData=$("#form3").serializeArray();
+            evt.preventDefault();
+
+            var data={};
+            formData.map(function(feild){
+                data[feild.name]=feild.value;
+
+
+            });
+            debugger
+			data.med_dosage=data.med_dosage+' '+data.med_dosage_option;
+            data.med_timings=Number(!!data.timings_morning)+'-'+Number(!!data.timings_afternoon)+'-'+Number(!!data.timings_night);
+            var duration=!!data.days || !!data.weeks || !! data.months;
+            prescription_data.push(data);
+            debugger
+            var source   = $("#prescriptiontable").html();
+            var template = Handlebars.compile(source);
+            var html = template({prescription: data});
+            $('#tab1').append(html);
             $('.form').slideToggle();
             $("#form3").reset();
 
-		});
+        });
         $("#save_continue").on("click",function(evt) {
+            debugger
             getData.UpdatePrescriptionDetails(appointment_id, prescription_data);
             evt.preventDefault();
 
         });
-		
 
-	});
+
+    });
 </script>
