@@ -3,7 +3,7 @@ var session_info = {
                 "access_token": "aeuhsy78989ljjsj",
                 "device_id": "1"
     		}
-var base_url = "http://52.66.157.195/growayu/ganewdesign";
+var base_url = "http://52.66.157.195/growayu/ganewdesign/api/";
 var getData = {
 	getDashboardData: function(date){
 		var url = "/getDocAppointmentDashboard.php"
