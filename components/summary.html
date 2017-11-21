@@ -14,45 +14,44 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12 col-md-12" style="display:block;width:100%">
+        <div class="col-xs-12 col-md-12" style="display:block;width:100%; padding-bottom:10px">
             <br>
 
             <form id="form4">
                 <div class="form-group">
+                    <label class="control-label required field" for="diagnosis"><strong>Patient Diagnosis / Diagnoses</strong><span class="asteriskField">*</span></label>
 
-                    <label class="control-label required field" for="diagnosis"><strong>Patient Diagnosis / Diagnoses</strong></label>
-                    <span class="asteriskField">
-                            *
-                        </span>
                     <div class="input-group">
-                    <input class="form-control" type="text" id="diagnosis" name="Diagnosis" placeholder="Enter diagnosis / diagnoses" />
+                    <input class="form-control" type="text" id="diagnosis" name="Diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" required />
 
                     </div></div>
 
                 <div class="form-group">
 
-                    <label class="control-label required field" for="plan"><strong>Management Plan / Advice</strong></label>
-                    <span class="asteriskField">
-                            *
-                        </span>
+                    <label class="control-label required field" for="plan"><strong>Management Plan / Advice</strong><span class="asteriskField">*</span></label>
+
                     <div class="input-group">
-                    <textarea class="form-control" cols="40" id="advice" name="mgmt_plan" rows="5"></textarea>
+                    <textarea class="form-control" cols="40" id="advice" name="mgmt_plan" rows="3"  title="Please enter details" required></textarea>
                     </div></div>
 
                 <div class="form-group">
                     <label class="control-label" for="radio">
                         <strong> Changes made to current medication?</strong>
                     </label>
-                    <div class="col-sm-4 medicin-unit">
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-light active">
-                                <input type="radio" name="options" id="option1" autocomplete="off" checked> Yes
-                            </label>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                             <div class="medicin-unit">
+                                   <div class="btn-group" data-toggle="buttons">
+                                       <label class="btn btn-light active">
+                                           <input type="radio" name="options" id="option1" autocomplete="off"> Yes
+                                       </label>
                             <label class="btn btn-light">
                                 <input type="radio" name="options" id="option2" autocomplete="off"> No
                             </label>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -62,26 +61,27 @@
                         <strong>Waive Fee for this Consultation?</strong>
                     </label>
                     <!-- <div class="row"> -->
-                    <div class="input-group">
-                        <div class="col-sm-3 col-md-3 medicin-unit">
+                    <div class="form-group row">
+                        <div class="col-sm-4 col-md-3" >
+                            <div class="medicin-unit">
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-light active">
-                                    <input type="radio" name="waive_fee" value="No" id="No_fee" autocomplete="off"> No
+                                    <input type="radio" name="waiver_status" value="No" id="No_fee" autocomplete="off"> No
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="waive_fee" value="Full" id="No_fee" autocomplete="off">Full
+                                    <input type="radio" name="waive_status" value="Full" id="Full_fee" autocomplete="off"> Full
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="waive_fee" value="Partial" id="No_fee" autocomplete="off"> Partial
+                                    <input type="radio" name="waive_status" value="Partial" id="Partial_fee" autocomplete="off"> Partial
                                 </label>
-                            </div></div>
-                        <div class="col-sm-4 col-md-4">
-                            <div class="input-control ifPartial" id="ifPartial">
+                            </div></div></div>
+                        <div class="col-sm-4 col-md-4 input-control" id="ifPartial" style="display: none">
+
                                 <!--      <div class="input-group ifPartial" class="col-md-6 col-sm-6">-->
                                 <label class="control-label">
                                     <input class="form-control" type="text" name="waived_amount" id="p_check" autocomplete="off">
                                 </label>
-                                <!--</div> --></div></div>
+                                <!--</div> --></div>
                     </div></div>
 
 
@@ -93,8 +93,8 @@
                     </label>
 
 
-                    <div class="input-group">
-                        <div class="col-sm-3">
+                    <div class="form-group row">
+                        <div class="col-md-3 col-sm-12">
                             <div class="dropdown">
                                 <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-md col-sm-12" id="follow_up">
                                     <strong><span id="select_dropdown"> Select  </span></strong>
@@ -108,7 +108,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-md-4 col-sm-12">
                             <div class="input-group">
                                 <input class="form-control" type="text" id="followup_date" name="followup_date" />
                                 <div class="input-group-addon" id="cal">
@@ -125,7 +125,7 @@
                     <label class="control-label" for="suggested_invest"><strong>Suggested Investigations (Optional)</strong></label>
 
                     <div class="input-group">
-                        <textarea class="form-control" cols="40" id="suggested_invest" name="instruction_text" rows="3"></textarea>
+                        <textarea class="form-control" cols="40" id="suggested_invest" name="suggested_test" rows="3"></textarea>
                     </div></div>
 
                 <div class="form-group ">
@@ -134,16 +134,16 @@
                         <strong>  Referred to Doctor (Optional)</strong>
                     </label>
                     <div class="input-group">
-                        <input class="form-control" id="refer" name="doctor_name" type="text" />
+                        <input class="form-control" id="refer" name="doctor_notes" type="text" />
                     </div></div>
 
                 <div class="form-group-inline">
 
 
-                    <div class="btn btn-success col-md-1">Save</div>
+                    <div class="btn btn-success col-md-1" id="save">Save</div>
 
 
-                    <div class="btn btn-info col-md-1">Close</div>
+                    <div class="btn btn-info col-md-1" id="close">Close</div>
 
 
                 </div>
@@ -172,28 +172,39 @@
             evt.preventDefault();
         });
 
+    /*    $("#close").on("click",function(evt){
+            var formData=$("#form4").serializeArray();
+            evt.preventDefault();
+            var data={};
+            formData.map(function(feild){
+                data[feild.name]=feild.value;
+            });
+            getData.CloseConsultation(appointment_id);
+            evt.preventDefault();
+        }); */
+
         $("#After_1_Week").click(function(){
-            today=moment().add(7, 'days').format("MMM Do YY");
+            var today=moment().add(7, 'days').format("MMM Do YY");
             //today=moment().format("MMM Do YY");
-            day=moment().add(7,'days').format('dddd');
+            var day=moment().add(7,'days').format('dddd');
             document.getElementById('followup_date').value = day+', '+today;
         });
         $("#After_10_Days").click(function(){
-            today=moment().add(10, 'days').format("MMM Do YY");
+           var today=moment().add(10, 'days').format("MMM Do YY");
             //today=moment().format("MMM Do YY");
-            day=moment().add(10,'days').format('dddd');
+           var day=moment().add(10,'days').format('dddd');
             document.getElementById('followup_date').value = day+', '+today;
         });
         $("#After_2_Weeks").click(function(){
-            today=moment().add(14, 'days').format("MMM Do YY");
+            var today=moment().add(14, 'days').format("MMM Do YY");
             //today=moment().format("MMM Do YY");
-            day=moment().add(14,'days').format('dddd');
+            var day=moment().add(14,'days').format('dddd');
             document.getElementById('followup_date').value = day+', '+today;
         });
         $("#After_1_Month").click(function(){
-            today=moment().add(30, 'days').format("MMM Do YY");
+            var today=moment().add(30, 'days').format("MMM Do YY");
             //today=moment().format("MMM Do YY");
-            day=moment().add(30,'days').format('dddd');
+            var day=moment().add(30,'days').format('dddd');
             document.getElementById('followup_date').value = day+', '+today;
         });
 	
@@ -206,19 +217,23 @@
                 autoclose: true,
             });
 
-        $("#No_fee").click(function(){
-            alert("hi");
-            document.getElementById('ifPartial').style.visibility = 'hidden';
-            document.getElementById('ifPartial').value=' ';
-        });
-
-        $("#Full_fee").click(function(){
-            document.getElementById('ifPartial').style.visibility = 'visible';
-            document.getElementById('ifPartial').value='1000';
-        });
-        $("#Partial_fee").click(function(){
-            document.getElementById('ifPartial').style.visibility = 'visible';
-            document.getElementById('ifPartial').value=' ';
+        $("input[name='waive_status']").change(function(){
+            if($(this).val()=="Partial")
+            {
+                $("#p_check")[0].disabled = false;
+                $("#ifPartial").show();
+                $("#p_check").val("");
+            }
+            else if($(this).val()=="Full")
+            {
+                $("#p_check")[0].disabled = true;
+                $("#ifPartial").show();
+                $("#p_check").val("1000");
+            }
+            else
+            {
+                $("#ifPartial").hide();
+            }
         });
     });
 </script>

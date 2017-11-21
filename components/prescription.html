@@ -15,13 +15,14 @@
 	<div class="form">
 		<form id="form3">
 			<div class="form-group">
-				<input type="text" placeholder="medicin" name="med_name" class="form-control"/>
+				<input type="text" placeholder="Medicine name" id="med_name" name="med_name" class="form-control" title="Please enter a medicine name" required/>
+				<div id="suggesstion-box"></div><p id="demo"></p>
 			</div>
 			<div class="form-group row">
 				<label for="type" class="col-sm-2 col-form-label">Type</label>
 				<div class="col-sm-10">
-					<select class="custom-select form-control" name="med_type">
-						<option selected>Select medicine type</option>
+					<select class="custom-select form-control" name="med_type" pattern="Select the medicine type" required>
+						<option value="" selected>Select medicine type</option>
 						<option value="Pills">Pills</option>
 						<option value="Injection">Injection</option>
 						<option value="Syrup">Syrup</option>
@@ -43,10 +44,10 @@
 				<div class="col-sm-4 medicin-unit">
 					<div class="btn-group" data-toggle="buttons">
 						<label class="btn btn-light active">
-							<input type="radio" name="med_dosage_option" value="mg" id="option1" autocomplete="off" checked> MG
+							<input type="radio" name="dosage_uom" value="mg" id="option1" autocomplete="off" checked> MG
 						</label>
 						<label class="btn btn-light">
-							<input type="radio" name="med_dosage_option" value="ml" id="option2" autocomplete="off"> ML
+							<input type="radio" name="dosage_uom" value="ml" id="option2" autocomplete="off"> ML
 						</label>
 					</div>
 				</div>
@@ -69,15 +70,16 @@
 			</div>
 			<div class="text-center form-group">or</div>
 			<div class="form-group">
-				<input type="text" placeholder="specify" class="form-control">
+				<input type="text" name="med_dosage_text" placeholder="specify" class="form-control">
 			</div>
 			<div class="form-group row">
-				<div class="col-sn-5">
-					<label for="type" class="col-form-label">Duration</label>
-					<input type="text" name="med_duration">
+
+				<label for="type" class="col-form-label col-sm-2">Duration</label>
+				<div class="col-sm-2">
+					<input type="text" name="med_duration" class="form-control">
 				</div>
 				<div class="col-sm-5">
-					<div class="btn-group" data-toggle="buttons">
+					<div class="btn-group duration" data-toggle="buttons">
 						<label class="btn btn-sm active">
 							<input type="radio" name="days" value="Days" checked autocomplete="off">Days
 						</label>
@@ -106,11 +108,16 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<textarea class="form-control" id="exampleTextarea" name="instructions " placeholder="instructions..." rows="3"></textarea>
+				<textarea class="form-control" id="exampleTextarea" name="instructions" placeholder="instructions..." rows="3"></textarea>
+			</div>
+			<div class="form-group">
+				<input type="text" name="template_id" placeholder="template_id" />
+				<input type="text" name="delete_flag" placeholder="N" />
+				<input type="text" name="prescription_id" placeholder="20" />
 			</div>
 			<div class="form-group rows">
-				<button class="btn btn-success" id="add-prescription">Add</button>
-				<button class="btn btn-primary" id="save_continue">Save & Continue</button>
+				<button class="btn btn-success" id="add-prescription" type="submit">Add</button>
+
 			</div>
 		</form>
 	</div>
@@ -146,12 +153,15 @@
 
 			</tbody>
 		</table>
+		<button class="btn btn-primary" id="save_continue">Save & Continue</button>
 	</div>
 
 </div>
+
 <script type="text/javascript">
     $(document).ready(function(){
         var prescription_data=[];
+      /*  var medicine_data=[]; */
         $('.form').hide();
         $('#add').on('click', function(){
             $('.form').slideToggle();
@@ -163,30 +173,40 @@
             var data={};
             formData.map(function(feild){
                 data[feild.name]=feild.value;
-
-
             });
-            debugger
-			data.med_dosage=data.med_dosage+' '+data.med_dosage_option;
+			data.med_dosage=data.med_dosage+' '+data.dosage_uom;
             data.med_timings=Number(!!data.timings_morning)+'-'+Number(!!data.timings_afternoon)+'-'+Number(!!data.timings_night);
-            var duration=!!data.days || !!data.weeks || !! data.months;
+            var duration=data.days || data.weeks ||  data.months;
+            data.med_duration=data.med_duration+' '+duration;
             prescription_data.push(data);
-            debugger
             var source   = $("#prescriptiontable").html();
             var template = Handlebars.compile(source);
             var html = template({prescription: data});
             $('#tab1').append(html);
             $('.form').slideToggle();
-            $("#form3").reset();
-
+            $("#form3").get(0).reset();
         });
         $("#save_continue").on("click",function(evt) {
-            debugger
             getData.UpdatePrescriptionDetails(appointment_id, prescription_data);
             evt.preventDefault();
-
         });
 
+        /*	$("#autocomplete").autocomplete(function (evt) {
+                getData.getMymedicineList(med);
+                evt.preventDefault();
+            });
+    */
+            /*$("#autocomplete").autocomplete(function(evt){
+                debugger
+                var formData=$("#autocomplete").serializeArray();
+                var data={};
+                formData.map(function(feild){
+                    data[feild.name]=feild.value;
+                });
+                medicine_data.push(data);
+                getData.getMymedicineList(medicine_data);
+                evt.preventDefault();
+            });*/
 
     });
 </script>

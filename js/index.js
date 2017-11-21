@@ -1,4 +1,4 @@
-var appointment_id, hs_id;
+var appointment_id, hs_id,next_apmt_date,prev_apmt_date;
 $(document).ready(function(){
 	$('#summary').load('./components/summary.html')
 	$('#filter').load('./components/filter.html')
@@ -47,6 +47,8 @@ $(document).ready(function(){
         }else{
             $('#appointment-list').html(html)
         }
+        next_apmt_date=res.appointments_details.next_appointment_date;
+        prev_apmt_date=res.appointments_details_.prev_appointment_date;
 	}
 	var addPrescription = function(ev){
 
