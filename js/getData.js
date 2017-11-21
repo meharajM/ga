@@ -9,8 +9,8 @@ var getData = {
 		var url = "/getDocAppointmentDashboard.php"
 		var apmt_input = {
                 "date" : date,
-                "doctor_id" : "12",
-                "hcc_id" : ""
+                "doctor_id" : "1",
+                "hcc_id" : "1"
     	}
         var data = {
         	appntment_input: apmt_input,
@@ -19,7 +19,7 @@ var getData = {
         var call = $.ajax({
         	type: "POST",
         	url: base_url+url,
-        	data: data,
+        	data: JSON.stringify(data),
         	dataType: 'json',
         	success: function (res,status) {
 	        	return res;
@@ -36,11 +36,11 @@ var getData = {
 	},
 	getAppointmentDetails: function(id){
 		var url = "/getAppointmentDetails.php"
-		var doctorId = 13;
+		var doctorId = 1;
 		var apmt_input= {
             apmt_id : id,
             doctor_id :doctorId,
-            hcc_id : "",
+            hcc_id : "1",
         }
         var data = {
         	apmt_input: apmt_input,
@@ -49,7 +49,7 @@ var getData = {
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
-            data: data,
+            data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
                 return res;

@@ -40,27 +40,25 @@
             autoclose: true,
         }).on('changeDate', function(e){
                 var actualDate= e.date;
-                var date=actualDate.getDate()+'-'+(actualDate.getMonth()+1)+'-'+actualDate.getFullYear();
+                var date=moment(actualDate).format("YYYYMMDD");
                 getData.getDashboardData(date).then(function(res){
                     showDashboardDetails(res);
                 })
             });
-
-	
-         var date = new Date();
+         var current_date = new Date();
          var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
          $(function () {
             // This writes out the current date to the text field as starter
-            $('#date').val(date.toLocaleDateString('en-US', options));
+            $('#date').val(current_date.toLocaleDateString('en-US', options));
             // Hook up previous button event
             $('#previous_day').click(function () {
                 // Set our current date to 1 day earlier
-                date.setDate(date.getDate() - 1);
+                current_date.setDate(current_date.getDate() - 1);
                 // Write the result to our text input
-                $('#date').val(date.toLocaleDateString('en-US', options));
-                var actualDate = new Date(date); // convert to actual date;
-                var d=actualDate.getDate()+'-'+(actualDate.getMonth()+1)+'-'+actualDate.getFullYear();
-                getData.getDashboardData(d).then(function(res){
+                $('#date').val(current_date.toLocaleDateString('en-US', options));
+                var actualDate = new Date(current_date); // convert to actual date;
+                var date=moment(actualDate).format("YYYYMMDD");
+                getData.getDashboardData(date).then(function(res){
                     showDashboardDetails(res);
                 }).catch(function(error){
                     console.error(error);
@@ -69,12 +67,12 @@
             // Hook up next button event
             $('#next_day').click(function () {
                 // Set our current date to 1 day later
-                date.setDate(date.getDate() + 1);
+                current_date.setDate(current_date.getDate() + 1);
                 // Write the result to our text input
-                $('#date').val(date.toLocaleDateString('en-US', options));
-                var actualDate = new Date(date); // convert to actual date;
-                var d=actualDate.getDate()+'-'+(actualDate.getMonth()+1)+'-'+actualDate.getFullYear();
-                getData.getDashboardData(d).then(function(res){
+                $('#date').val(current_date.toLocaleDateString('en-US', options));
+                var actualDate = new Date(current_date); // convert to actual date;
+                var date=moment(actualDate).format("YYYYMMDD");
+                getData.getDashboardData(date).then(function(res){
                     showDashboardDetails(res);
                 }).catch(function(error){
                     console.error(error);

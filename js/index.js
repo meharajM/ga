@@ -3,7 +3,7 @@ $(document).ready(function(){
 	$('#summary').load('./components/summary.html')
 	$('#filter').load('./components/filter.html')
 	var actualDate=new Date();
-    var date=actualDate.getDate()+'-'+(actualDate.getMonth()+1)+'-'+actualDate.getFullYear();
+    var date=moment(actualDate).format("YYYYMMDD");
     getData.getDashboardData(date).then(function(res){
 		showDashboardDetails(res);
 	})
