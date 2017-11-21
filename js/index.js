@@ -1,4 +1,4 @@
-var appointment_id;
+var appointment_id, hs_id;
 $(document).ready(function(){
 	$('#summary').load('./components/summary.html')
 	$('#filter').load('./components/filter.html')
@@ -25,6 +25,7 @@ $(document).ready(function(){
 			}else{
                 $('#start-vedio-consultation').show();
 			}
+			hs_id = res.appointments_details.health_seeker_profile.hs_id;
         }).catch(function(a,b){
 
 		    debugger
