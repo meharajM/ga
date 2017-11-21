@@ -69,10 +69,10 @@
                                     <input type="radio" name="waiver_status" value="No" id="No_fee" autocomplete="off"> No
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="waive_status" value="Full" id="Full_fee" autocomplete="off"> Full
+                                    <input type="radio" name="waiver_status" value="Full" id="Full_fee" autocomplete="off"> Full
                                 </label>
                                 <label class="btn btn-light">
-                                    <input type="radio" name="waive_status" value="Partial" id="Partial_fee" autocomplete="off"> Partial
+                                    <input type="radio" name="waiver_status" value="Partial" id="Partial_fee" autocomplete="off"> Partial
                                 </label>
                             </div></div></div>
                         <div class="col-sm-4 col-md-4 input-control" id="ifPartial" style="display: none">
@@ -217,7 +217,7 @@
                 autoclose: true,
             });
 
-        $("input[name='waive_status']").change(function(){
+        $("input[name='waiver_status']").change(function(){
             if($(this).val()=="Partial")
             {
                 $("#p_check")[0].disabled = false;
