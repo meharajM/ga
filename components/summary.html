@@ -168,7 +168,8 @@
             formData.map(function(feild){
                 data[feild.name]=feild.value;
             });
-            getData.UpdateConsultationSummary(appointment_id, summary_data);
+            summary_data.push(data);
+            getData.UpdateConsultationSummary(appointment_id,summary_data);
             evt.preventDefault();
         });
 

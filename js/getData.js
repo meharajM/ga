@@ -3,10 +3,10 @@ var session_info = {
                 "access_token": "aeuhsy78989ljjsj",
                 "device_id": "1"
     		}
-var base_url = "http://52.66.157.195/growayu/ganewdesign/api/";
+var base_url = "http://52.66.157.195/growayu/ganewdesign/api";
 var getData = {
 	getDashboardData: function(date){
-		var url = "/getDocAppointmentDashboard.php"
+		var url = "/getDocAppointmentDashboard.php";
 		var apmt_input = {
                 "date" : date,
                 "doctor_id" : "1",
@@ -87,11 +87,14 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res, status){
+
+                alert("success update pres");
                 return res;
 
             },
              error: function (err, status) {
-               console.error(err);
+                 alert("error update pres");
+                 console.error(err);
             }
 
         });
@@ -101,17 +104,17 @@ var getData = {
     UpdateConsultationSummary: function(id,summary){
         var url = "/UpdateConsultationSummary.php";
         var doctorId = 1;
-        var apmt_input = {
+        var apmt = {
             apmt_id: id,
             doctor_id: doctorId,
             hs_id: hs_id,
-            hcc_id: "1",
+            hcc_id: "1"
         }
 
         debugger
         var data = {
-            apmt_input: apmt_input,
-            summary: summary,
+            apmt: apmt,
+            summary:summary,
             session_info: session_info
         }
         var call = $.ajax({
@@ -120,9 +123,11 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
+                alert("success in update summary");
                 return res;
             },
             error: function(err,status){
+                alert("error in update summary");
                 console.error(err, status);
             }
         }).then(function(res){
