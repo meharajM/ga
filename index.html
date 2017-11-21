@@ -42,6 +42,48 @@
         </li>
         {{/appointment}}
     </script>
+    <script type="text/x-handlebars-template" id="detailsTemplate">
+        <div class="appointment-details">
+
+        <p>
+        <b>General</b><br>
+        Appointment ID: {{appointment_det.apmt_id}}<br>
+        Patient Name: {{health_seeker_profile.hs_name}}<br>
+        Contact No: {{health_seeker_profile.hs_phone}}<br>
+        Schedule: {{appointment_det.apmt_date}} | {{appointment_det.apmt_time}}<br>
+        Age:	{{health_seeker_profile.age}}<br>
+        Blood Group:	{{health_seeker_profile.blood_group}}<br>
+        Sex:	{{health_seeker_profile.gender}}<br>
+        Reason:	{{case_sheet.consultation_reason}}<br>
+        Consultation Type:	{{appointment_det.apmt_type}}<br>
+        Address:	{{address.health_seeker_profile}}
+        </p>
+
+
+        not there in response
+        <p>
+        <b>Medical Details</b><br>
+        BP:	120/80<br>
+        Pulse Rate:	60 to 100 beats a minute<br>
+        Weight:	500<br>
+        Blood Pressure:	120/98<br>
+        BMI:	18.5<br>
+        Temperature:	98.6
+        </p>
+
+        <p>
+        <b>Attached Documents</b><br>
+        <a href="reports/sugar_test.pdf" target="_blank" class="embedURL">Sugar Test</a><br>
+        <a href="reports/blood_test.pdf" target="_blank" class="embedURL">Blood Test</a><br>
+        <a href="reports/urine_test.pdf" target="_blank" class="embedURL">Urine Culture Test</a>
+        </p>
+
+        <div id="loaData">
+            <a href="#" class="loadData">Previous Conversation History</a>
+        </div>
+
+        </div>
+    </script>
     <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
     <link rel="stylesheet" href="css/fa/css/font-awesome.min.css">
 </head>
@@ -143,46 +185,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="details" role="tabpanel">
 
-                            <div id="detailsTemplate" class="appointment-details">
 
-                                <p>
-                                    <b>General</b><br>
-                                    Appointment ID: {{appointment_det.apmt_id}}<br>
-                                    Patient Name: {{health_seeker_profile.hs_name}}<br>
-                                    Contact No: {{health_seeker_profile.hs_phone}}<br>
-                                    Schedule: {{appointment_det.apmt_date}} | {{appointment_det.apmt_time}}<br>
-                                    Age:	{{health_seeker_profile.age}}<br>
-                                    Blood Group:	{{health_seeker_profile.blood_group}}<br>
-                                    Sex:	{{health_seeker_profile.gender}}<br>
-                                    Reason:	{{case_sheet.consultation_reason}}<br>
-                                    Consultation Type:	{{appointment_det.apmt_type}}<br>
-                                    Address:	{{address.health_seeker_profile}}
-                                </p>
-
-
-                                not there in response
-                                <p>
-                                    <b>Medical Details</b><br>
-                                    BP:	120/80<br>
-                                    Pulse Rate:	60 to 100 beats a minute<br>
-                                    Weight:	500<br>
-                                    Blood Pressure:	120/98<br>
-                                    BMI:	18.5<br>
-                                    Temperature:	98.6
-                                </p>
-
-                                <p>
-                                    <b>Attached Documents</b><br>
-                                    <a href="reports/sugar_test.pdf" target="_blank" class="embedURL">Sugar Test</a><br>
-                                    <a href="reports/blood_test.pdf" target="_blank" class="embedURL">Blood Test</a><br>
-                                    <a href="reports/urine_test.pdf" target="_blank" class="embedURL">Urine Culture Test</a>
-                                </p>
-
-                                <div id="loaData">
-                                    <a href="#" class="loadData">Previous Conversation History</a>
-                                </div>
-
-                            </div>
                         </div>
                         <div class="tab-pane" id="prescription" role="tabpanel">...</div>
                         <div class="tab-pane" id="summary" role="tabpanel">...</div>
