@@ -18,7 +18,7 @@ $(document).ready(function(){
 		    var source = $('#detailsTemplate').html();
             var template = Handlebars.compile(source);
             var html = template(res.appointments_details);
-            $('#detailsTemplate').html(html)
+            $('#details').html(html)
             $('#prescription').load('./components/prescription.html')
 			if(res.appointments_details.appointment_det.apmt_type != "VC"){
 				$('#start-vedio-consultation').hide();
