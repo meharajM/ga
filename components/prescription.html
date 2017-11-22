@@ -2,13 +2,18 @@
 <script  type="text/x-handlebars-template" id="prescriptiontable">
 	{{#prescription}}
 	<tr>
-		<td>{{med_name}}</td>
 		<td>{{med_type}}</td>
+		<td>{{med_name}}</td>
 		<td>{{med_dosage}}</td>
 		<td>{{med_timings}}</td>
 		<td>{{med_duration}}</td>
+		<td>{{food_timings}}</td>
+		<td>{{instructions}}</td>
+		<td>
+			<span id="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+			<span id="delete"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></span>
+		</td>
 	</tr>
-
 	{{/prescription}}
 </script>
 <div class="col-xs-12 appointment-details">
@@ -132,11 +137,13 @@
 		<table class="table table-sm">
 			<thead>
 			<tr>
-				<th>Name</th>
-				<th>Type</th>
+				<th>Type of Medicine</th>
+				<th>Name of Medicine</th>
 				<th>Dosage</th>
-				<th>Food</th>
-				<th>Freq</th>
+				<th>Timings</th>
+				<th>Course Duration</th>
+				<th>Medicine Intake</th>
+				<th>Instructions</th>
 				<th>Action</th>
 			</tr>
 			</thead>
@@ -161,14 +168,22 @@
         $('.form').hide();
         $('#add').on('click', function(){
             $('.form').slideToggle();
-        })
+        });
 		var showPrescriptions = function(prescriptions_list){
             var source   = $("#prescriptiontable").html();
             var template = Handlebars.compile(source);
             var rows = prescriptions_list.map(function (data) {
 				return template({prescription: data});
+				//alert(({prescription:data}));
 			});
             $('#tab1').html(rows.join(''));
+		};
+        if(apmt_status=="closed")
+		{
+		    $("#add").hide();
+		    $("#save_continue").hide();
+		  //  $("#form4").hide();
+		   // alert("appointment closed");
 		}
         $("#add-prescription").on("click",function(evt){
             var formData=$("#form3").serializeArray();
@@ -185,11 +200,14 @@
             prescription_data.push(data);
             showPrescriptions(prescription_data);
             $('.form').slideToggle();
-            $("#form3").get(0).reset();
+           // $("#form3").get(0).reset();
         });
         $("#save_continue").on("click",function(evt) {
             getData.UpdatePrescriptionDetails(appointment_id, prescription_data);
+           // showPrescriptions(prescription_data);
+           // alert(showPrescriptions(prescription_data));
             evt.preventDefault();
+            //alert(evt);
         });
 
         /*	$("#autocomplete").autocomplete(function (evt) {

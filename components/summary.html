@@ -1,19 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="./js/bootstrap-datepicker.min.js"></script>
-
-
-
-
-    <title></title>
-
-</head>
-<body>
+<script  type="text/x-handlebars-template" id="summarytable">
+    {{#summary}}
+    <div class="summary">
+        <table>
+            <tr>
+                <td>Diagnosis: </td>
+                <td>{{diagnosis}}</td>
+            </tr>
+            <tr>
+                <td>Management Plan: </td>
+                <td>{{mgmt_plan}}</td>
+            </tr>
+            <tr>
+                <td>Next Followup date: </td>
+                <td>{{followup_date}}</td>
+            </tr>
+            <tr>
+                <td>Suggested Tests: </td>
+                <td>{{suggested_invest}}</td>
+            </tr>
+            <tr>
+                <td>Referred to Doctor</td>
+                <td>{{doctor_notes}}</td>
+            </tr>
+        </table>
+    </div>
+    {{/summary}}
+</script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12 col-md-12" style="display:block;width:100%; padding-bottom:10px">
@@ -24,9 +36,10 @@
                     <label class="control-label required field" for="diagnosis"><strong>Patient Diagnosis / Diagnoses</strong><span class="asteriskField">*</span></label>
 
                     <div class="input-group">
-                    <input class="form-control" type="text" id="diagnosis" name="Diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" required />
+                    <input class="form-control" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" required />
 
-                    </div></div>
+                    </div>
+                </div>
 
                 <div class="form-group">
 
@@ -34,7 +47,8 @@
 
                     <div class="input-group">
                     <textarea class="form-control" cols="40" id="advice" name="mgmt_plan" rows="3"  title="Please enter details" required></textarea>
-                    </div></div>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label class="control-label" for="radio">
@@ -64,25 +78,26 @@
                     <div class="form-group row">
                         <div class="col-sm-4 col-md-3" >
                             <div class="medicin-unit">
-                            <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-light active">
-                                    <input type="radio" name="waiver_status" value="No" id="No_fee" autocomplete="off"> No
-                                </label>
-                                <label class="btn btn-light">
-                                    <input type="radio" name="waiver_status" value="Full" id="Full_fee" autocomplete="off"> Full
-                                </label>
-                                <label class="btn btn-light">
-                                    <input type="radio" name="waiver_status" value="Partial" id="Partial_fee" autocomplete="off"> Partial
-                                </label>
-                            </div></div></div>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-light active">
+                                        <input type="radio" name="waiver_status" value="No" id="No_fee" autocomplete="off"> No
+                                    </label>
+                                    <label class="btn btn-light">
+                                        <input type="radio" name="waiver_status" value="Full" id="Full_fee" autocomplete="off"> Full
+                                    </label>
+                                    <label class="btn btn-light">
+                                        <input type="radio" name="waiver_status" value="Partial" id="Partial_fee" autocomplete="off"> Partial
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-sm-4 col-md-4 input-control" id="ifPartial" style="display: none">
-
-                                <!--      <div class="input-group ifPartial" class="col-md-6 col-sm-6">-->
-                                <label class="control-label">
-                                    <input class="form-control" type="text" name="waived_amount" id="p_check" autocomplete="off">
-                                </label>
-                                <!--</div> --></div>
-                    </div></div>
+                            <label class="control-label">
+                                <input class="form-control" type="text" name="waived_amount" id="p_check" autocomplete="off">
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
 
 
@@ -112,21 +127,20 @@
                             <div class="input-group">
                                 <input class="form-control" type="text" id="followup_date" name="followup_date" />
                                 <div class="input-group-addon" id="cal">
-                                    <i class="fa fa-calendar-times-o">
-                                    </i>
+                                    <i class="fa fa-calendar-times-o"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group">
 
                     <label class="control-label" for="suggested_invest"><strong>Suggested Investigations (Optional)</strong></label>
 
                     <div class="input-group">
                         <textarea class="form-control" cols="40" id="suggested_invest" name="suggested_test" rows="3"></textarea>
-                    </div></div>
+                    </div>
+                </div>
 
                 <div class="form-group ">
 
@@ -137,19 +151,43 @@
                         <input class="form-control" id="refer" name="doctor_notes" type="text" />
                     </div></div>
 
+              <!-- <div class="form-group">
+                    <input type="text" name="test_id" placeholder="test_id: 5" />
+                    <textarea class="form-control" cols="40" id="test_name" name="test_name" rows="3" placeholder="test_name: blood"></textarea>
+                    <input type="text" name="instruction_id" placeholder="instruction_id: 5" />
+                    <textarea class="form-control" cols="40" id="test_name" name="instruction_text" rows="3" placeholder="instruction_text: test"></textarea>
+                    <input type="text" name="ga_notes" placeholder="ga_notes: test consultation notes to growayu" />
+                    <input type="text" name="consultation_id" placeholder="consultation_id" />
+
+                </div>-->
+                <input type="text" name="consultation_id" placeholder="consultation_id" />
                 <div class="form-group-inline">
-
-
                     <div class="btn btn-success col-md-1" id="save">Save</div>
-
-
                     <div class="btn btn-info col-md-1" id="close">Close</div>
-
-
                 </div>
-
             </form>
         </div>
+        <div class="summary">
+            <p>I would like to summarize the online consultation with <b>Dr. NISHANT</b> on <b>25/10/2017</b> as below :<br> </p><hr><br>
+            <table class="table table-sm">
+                <tbody id="tab2">
+                <tr >
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <hr><p>
+            <h4> Regards,<br><strong> Dr. Nishant Verma </strong>
+            </h4></p>
+            <p>
+                <br><br>
+                (This is electronically generated consultation summary. Signature not required.)
+            </p>
+            <hr>
+            <button class="btn-primary btn-lg text-center" type="submit" id="close_consultation">Close Consultation</button>
+        </div>
+
     </div>
 </div>
 
@@ -160,8 +198,20 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var summary_data=[];
+        $(".summary").hide();
+
+        var showSummary = function(summary_list){
+            var source   = $("#summarytable").html();
+            var template = Handlebars.compile(source);
+            var rows = summary_list.map(function (data) {
+                return template({summary: data});
+                //alert(({prescription:data}));
+            });
+            $('#tab2').html(rows.join(''));
+        };
 
         $("#save").on("click",function(evt){
+           // $('.form').slideToggle();
             var formData=$("#form4").serializeArray();
             evt.preventDefault();
             var data={};
@@ -169,26 +219,42 @@
                 data[feild.name]=feild.value;
             });
             summary_data.push(data);
-            getData.UpdateConsultationSummary(appointment_id,summary_data);
+          //  showSummary(summary_data);
+           getData.UpdateConsultationSummary(appointment_id,summary_data);
             evt.preventDefault();
         });
 
-    /*    $("#close").on("click",function(evt){
-            var formData=$("#form4").serializeArray();
+       $("#close").on("click",function(evt) {
+
+            $("#form4").hide();
+            $(".summary").show();
+            showSummary(summary_data);
+        });
+
+        $("#close_consultation").on("click",function(evt) {
+            alert("Do you want to close this Consultation? You wouldn't be able to edit details after closing the consulation");
+            getData.closeConsultation(appointment_id);
             evt.preventDefault();
-            var data={};
-            formData.map(function(feild){
-                data[feild.name]=feild.value;
-            });
-            getData.CloseConsultation(appointment_id);
+        });
+
+       /* $("#close").on("click",function(evt) {
+            getData.closeConsultation(appointment_id);
             evt.preventDefault();
-        }); */
+        });*/
+
+       /* var showSummary = function(res){
+            var source   = $("#summarytable").html();
+            var template = Handlebars.compile(source);
+            var html = template(res.summary)
+            $('#summary').html(html);
+
+        }; */
 
         $("#After_1_Week").click(function(){
-            var today=moment().add(7, 'days').format("MMM Do YY");
-            //today=moment().format("MMM Do YY");
-            var day=moment().add(7,'days').format('dddd');
-            document.getElementById('followup_date').value = day+', '+today;
+           // var today=moment().add(7, 'days').format("MMM Do YY");
+            var today=moment().format("DD-MM-YY");
+            //var day=moment().add(7,'days').format('dddd');
+            document.getElementById('followup_date').value = today;
         });
         $("#After_10_Days").click(function(){
            var today=moment().add(10, 'days').format("MMM Do YY");
@@ -215,7 +281,7 @@
                 format: 'DD, dd-M-yy',
                 container: container,
                 todayHighlight: true,
-                autoclose: true,
+                autoclose: true
             });
 
         $("input[name='waiver_status']").change(function(){

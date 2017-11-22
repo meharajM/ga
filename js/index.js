@@ -1,4 +1,4 @@
-var appointment_id, hs_id,next_apmt_date,prev_apmt_date;
+var appointment_id, hs_id,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list;
 $(document).ready(function(){
 	$('#summary').load('./components/summary.html')
 	$('#filter').load('./components/filter.html')
@@ -26,11 +26,12 @@ $(document).ready(function(){
                 $('#start-vedio-consultation').show();
 			}
 			hs_id = res.appointments_details.health_seeker_profile.hs_id;
+			apmt_status=res.appointments_details.appointment_det.apmt_status;
         }).catch(function(a,b){
 
 		    debugger
 		})
-	}
+	};
 	showDashboardDetails=function(res){
         $('#total').text(res.appointments_details.appointment_summary.total)
         $('#pending').text(res.appointments_details.appointment_summary.pending)
