@@ -162,6 +162,14 @@
         $('#add').on('click', function(){
             $('.form').slideToggle();
         })
+		var showPrescriptions = function(prescriptions_list){
+            var source   = $("#prescriptiontable").html();
+            var template = Handlebars.compile(source);
+            var rows = prescriptions_list.map(function (data) {
+				return template({prescription: data});
+			});
+            $('#tab1').html(rows.join(''));
+		}
         $("#add-prescription").on("click",function(evt){
             var formData=$("#form3").serializeArray();
             evt.preventDefault();
@@ -175,10 +183,7 @@
             var duration=data.days || data.weeks ||  data.months;
             data.med_duration=data.med_duration+' '+duration;
             prescription_data.push(data);
-            var source   = $("#prescriptiontable").html();
-            var template = Handlebars.compile(source);
-            var html = template({prescription: data});
-            $('#tab1').append(html);
+            showPrescriptions(prescription_data);
             $('.form').slideToggle();
             $("#form3").get(0).reset();
         });
