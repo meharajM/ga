@@ -19,7 +19,6 @@ $(document).ready(function(){
             var template = Handlebars.compile(source);
             var html = template(res.appointments_details);
             $('#details').html(html)
-            $('#prescription').load('./components/prescription.html')
 			if(res.appointments_details.appointment_det.apmt_type != "VC"){
 				$('#start-vedio-consultation').hide();
 			}else{
@@ -27,6 +26,9 @@ $(document).ready(function(){
 			}
 			hs_id = res.appointments_details.health_seeker_profile.hs_id;
 			apmt_status=res.appointments_details.appointment_det.apmt_status;
+			prescriptions_list=res.appointments_details.consultation_details.prescription_details;
+            $('#prescription').load('./components/prescription.html');
+
         }).catch(function(a,b){
 
 		    debugger

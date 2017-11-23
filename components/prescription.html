@@ -18,7 +18,7 @@
 </script>
 <div class="col-xs-12 appointment-details">
 	<div class="form">
-		<form id="form3">
+		<form id="form3" method="post">
 			<div class="form-group">
 				<input type="text" placeholder="Medicine name" id="med_name" name="med_name" class="form-control" title="Please enter a medicine name" required/>
 				<div id="suggesstion-box"></div><p id="demo"></p>
@@ -164,6 +164,10 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var prescription_data=[];
+        if(prescriptions_list)
+		{
+		    prescription_data=prescriptions_list;
+		}
       /*  var medicine_data=[]; */
         $('.form').hide();
         $('#add').on('click', function(){
@@ -178,13 +182,12 @@
 			});
             $('#tab1').html(rows.join(''));
 		};
-        if(apmt_status=="closed")
-		{
-		    $("#add").hide();
-		    $("#save_continue").hide();
-		  //  $("#form4").hide();
-		   // alert("appointment closed");
-		}
+        if(apmt_status=="closed") {
+            $("#add").hide();
+            $("#save_continue").hide();
+        }
+		  //  $("#form4").hide()
+		showPrescriptions(prescription_data);
         $("#add-prescription").on("click",function(evt){
             var formData=$("#form3").serializeArray();
             evt.preventDefault();
@@ -200,14 +203,16 @@
             prescription_data.push(data);
             showPrescriptions(prescription_data);
             $('.form').slideToggle();
-           // $("#form3").get(0).reset();
+            $("#form3").get(0).reset();
         });
         $("#save_continue").on("click",function(evt) {
-            getData.UpdatePrescriptionDetails(appointment_id, prescription_data);
-           // showPrescriptions(prescription_data);
-           // alert(showPrescriptions(prescription_data));
+            getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then (function (res) {
+                showPrescriptions(res.prescription_details);
+                //WRITE LOGIC TO SHOW NEXT TAB
+
+            });
+
             evt.preventDefault();
-            //alert(evt);
         });
 
         /*	$("#autocomplete").autocomplete(function (evt) {
