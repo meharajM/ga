@@ -145,7 +145,7 @@ $(document).ready(function(){
 
             $('#start-vedio-consultation').removeClass('hidden-xs-up')
 	 		$('#close-vedio-consultation').addClass('hidden-xs-up')
-	 		$('.audio, .video, .full-screen').addClass('hidden-xs-up');
+	 		$('.audio, .video, .full-screen-off').addClass('hidden-xs-up');
 		}
 	}
 	var muteAudio = function(ev){
@@ -168,8 +168,10 @@ $(document).ready(function(){
 	}
 	var showFullScreen = function(ev){
 		if(!$('#publisher').hasClass('hidden-xs-up')){
+            $('.appointment-list-container').removeClass('hidden-xs-up');
+            $('.appointment-content').addClass('col-9').removeClass('col-12');
 			$('.video-container').removeClass('col-md-4').addClass('col-md-12').addClass('show-full-screen');
-			$('.appointment-info.details').addClass('hidden-xs-up')
+			$('.appointment-info.details').addClass('hidden-xs-up').addClass('col-sm-12').removeClass('col-sm-8');
 		}else if(!$('#subscriber').hasClass('hidden-xs-up')){
 			$('#subscriber').addClass('show-full-screen');
 		}
@@ -178,8 +180,10 @@ $(document).ready(function(){
 	}
 	var removeFullScreen = function (ev) {
         if(!$('#publisher').hasClass('hidden-xs-up')){
+        	$('.appointment-list-container').addClass('hidden-xs-up');
+        	$('.appointment-content').removeClass('col-9').addClass('col-12');
             $('.video-container').addClass('col-md-4').removeClass('col-md-12').removeClass('show-full-screen');
-            $('.appointment-info.details').removeClass('hidden-xs-up')
+            $('.appointment-info.details').removeClass('hidden-xs-up').removeClass('col-sm-12').addClass('col-sm-8');
         }else if(!$('#subscriber').hasClass('hidden-xs-up')){
             $('#subscriber').removeClass('show-full-screen');
         }

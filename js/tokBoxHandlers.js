@@ -17,7 +17,7 @@ function handleSubscriberError(error){
 }
 function handlePublishComplete(error){
     $('#publisher').removeClass('hidden-xs-up')
-    $('.audio, .video, .full-screen').removeClass('hidden-xs-up')
+    $('.audio, .video, .full-screen-off').removeClass('hidden-xs-up')
     showMessage("Waiting for <span id='calli-name'>"+ current_appointment_details.health_seeker_profile.hs_name +"</span> to join");
 }
 function handleConnectionError(error){
