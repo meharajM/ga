@@ -1,4 +1,4 @@
-var appointment_id, hs_id,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list;
+var appointment_id, hs_id,next_apmt_date,prev_apmt_date;
 $(document).ready(function(){
 	$('#summary').load('./components/summary.html')
 	$('#filter').load('./components/filter.html')
@@ -19,21 +19,19 @@ $(document).ready(function(){
             var template = Handlebars.compile(source);
             var html = template(res.appointments_details);
             $('#details').html(html)
+            $('#prescription').load('./components/prescription.html')
 			if(res.appointments_details.appointment_det.apmt_type != "VC"){
 				$('#start-vedio-consultation').hide();
 			}else{
                 $('#start-vedio-consultation').show();
 			}
+			current_appointment_details = res.appointments_details;
 			hs_id = res.appointments_details.health_seeker_profile.hs_id;
-			apmt_status=res.appointments_details.appointment_det.apmt_status;
-			prescriptions_list=res.appointments_details.consultation_details.prescription_details;
-            $('#prescription').load('./components/prescription.html');
-
         }).catch(function(a,b){
 
 		    debugger
 		})
-	};
+	}
 	showDashboardDetails=function(res){
         $('#total').text(res.appointments_details.appointment_summary.total)
         $('#pending').text(res.appointments_details.appointment_summary.pending)
@@ -64,38 +62,38 @@ $(document).ready(function(){
 	    alert(error.message);
 	  }
 	}
-	var publisher;
+	var publisher, subscriber;
 	function initializeSession(apiKey, sessionId, token) {
 	  var session = OT.initSession(apiKey, sessionId);
 
 	  // Subscribe to a newly created stream
 	  session.on('streamCreated', function(event) {
-	  	$('#subscriber').removeClass('hidden-xs-up')
-		  session.subscribe(event.stream, 'subscriber', {
+		  subscriber = session.subscribe(event.stream, 'subscriber', {
 		    insertMode: 'append',
 		    width: '100%',
 		    height: '100%',
 		    showControls: false
-		  }, handleError);
+		  }, handleSubscriberError);
+		  subscriber.on('connected', function (event) {
+          })
 		});
 
 	  // Create a publisher
-	  $('#publisher').removeClass('hidden-xs-up')
-	  $('.audio, .video, .full-screen').removeClass('hidden-xs-up')
 	  publisher = OT.initPublisher('publisher', {
 		    insertMode: 'append',
 		    width: '100%',
 		    height: '100%',
 		    showControls: false
-		  }, handleError);
+		  }, handleInitiatePublisherError);
 
 	  // Connect to the session
 	  session.connect(token, function(error) {
 	    // If the connection is successful, publish to the session
-	    if (error) {
-	      handleError(error);
+		  showToaster("connection established.")
+		  if (error) {
+            handleConnectionError(error);
 	    } else {
-	      session.publish(publisher, handleError);
+	      session.publish(publisher, handlePublishComplete);
 	    }
 	  });
 	  $('.video-container').removeClass('hidden-xs-up');
@@ -161,6 +159,17 @@ $(document).ready(function(){
         }
         $('.full-screen').removeClass('hidden-xs-up')
 		$('.full-screen-off').addClass('hidden-xs-up')
+    }
+    var showToaster = function (message) {
+        var x = $('#toaster');
+
+        // Add the "show" class to DIV
+        x.html(message);
+        x.addClass("show");
+
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ x.removeClass("show"); x.html('')}, 1000);
     }
 	$('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails)
 	$('.appointment-details #prescription').on('submit', addPrescription)
