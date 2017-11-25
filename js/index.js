@@ -1,4 +1,8 @@
 var appointment_id, hs_id,next_apmt_date,prev_apmt_date;
+var showToaster;
+function showMessage(message) {
+    $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
+}
 $(document).ready(function(){
 	$('#summary').load('./components/summary.html')
 	$('#filter').load('./components/filter.html')
@@ -64,44 +68,66 @@ $(document).ready(function(){
 	}
 	var publisher, subscriber;
 	function initializeSession(apiKey, sessionId, token) {
-	  var session = OT.initSession(apiKey, sessionId);
+		showMessage("Checking for the Support ans system requirements")
+		if(OT.checkSystemRequirements()){
+			var session = OT.initSession(apiKey, sessionId);
 
-	  // Subscribe to a newly created stream
-	  session.on('streamCreated', function(event) {
-		  subscriber = session.subscribe(event.stream, 'subscriber', {
-		    insertMode: 'append',
-		    width: '100%',
-		    height: '100%',
-		    showControls: false
-		  }, handleSubscriberError);
-		  subscriber.on('connected', function (event) {
-          })
-		});
+            // Subscribe to a newly created stream
+            session.on('streamCreated', function(event) {
+                subscriber = session.subscribe(event.stream, 'subscriber', {
+                    width: '100%',
+                    height: '100%',
+                    showControls: false
+                }, handleSubscriberError);
+                subscriber.on('connected', function (event) {
+                })
+            });
+            session.on({
+                streamDestroyed: function (event) {
+                    if (event.reason === 'networkDisconnected') {
+                        event.preventDefault();
+                        var subscribers = session.getSubscribersForStream(event.stream);
+                        // if (subscribers.length > 0) {
+                        //     var subscriber = document.getElementById(subscribers[0].id);
+                        //     // Display error message inside the Subscriber
+                        //     subscriber.innerHTML = 'Lost connection. This could be due to your internet connection '
+                        //         + 'or because the other party lost their connection.';
+                        //     event.preventDefault();   // Prevent the Subscriber from being removed
+                        // }
+						showMessage('Lost connection. This could be due to your internet connection '
+                            + 'or because the other party lost their connection.');
+						event.preventDefault();
+                    }
+                }
+            });
 
-	  // Create a publisher
-	  publisher = OT.initPublisher('publisher', {
-		    insertMode: 'append',
-		    width: '100%',
-		    height: '100%',
-		    showControls: false
-		  }, handleInitiatePublisherError);
+            // Create a publisher
+            publisher = OT.initPublisher('publisher', {
+                insertMode: 'append',
+                width: '100%',
+                height: '100%',
+                showControls: false
+            }, handleInitiatePublisherError);
 
-	  // Connect to the session
-	  session.connect(token, function(error) {
-	    // If the connection is successful, publish to the session
-		  showToaster("connection established.")
-		  if (error) {
-            handleConnectionError(error);
-	    } else {
-	      session.publish(publisher, handlePublishComplete);
-	    }
-	  });
-	  $('.video-container').removeClass('hidden-xs-up');
-	  $($('.video-container')[0]).scrollTop(200);
-	  $('.appointment-info.details').addClass('hidden-xs-up')
-	  $('#start-vedio-consultation').addClass('hidden-xs-up')
-	  $('#close-vedio-consultation').removeClass('hidden-xs-up')
-	  return {session: session, stream: publisher.stream};
+            // Connect to the session
+            session.connect(token, function(error) {
+                // If the connection is successful, publish to the session
+                showToaster("connection established.")
+                if (error) {
+                    handleConnectionError(error);
+                } else {
+                    session.publish(publisher, handlePublishComplete);
+                }
+            });
+            $('.video-container').removeClass('hidden-xs-up');
+            $($('.video-container')[0]).scrollTop(200);
+            $('.appointment-info.details').addClass('hidden-xs-up')
+            $('#start-vedio-consultation').addClass('hidden-xs-up')
+            $('#close-vedio-consultation').removeClass('hidden-xs-up')
+            return {session: session, stream: publisher.stream};
+		}else{
+			showMessage("your browser does not support webRTC please upgrade your browser");
+		}
 	}
 	var vedioSession;
 	var startVedio = function(){
@@ -160,7 +186,7 @@ $(document).ready(function(){
         $('.full-screen').removeClass('hidden-xs-up')
 		$('.full-screen-off').addClass('hidden-xs-up')
     }
-    var showToaster = function (message) {
+    showToaster = function (message) {
         var x = $('#toaster');
 
         // Add the "show" class to DIV

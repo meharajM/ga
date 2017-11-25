@@ -113,26 +113,25 @@ body{
     background: #33333321;
     opacity: 0.5;
     color: black;
+    text-align: center;
+    display: table;
 }
-#subscriber .message .text{
-    position: absolute;
-    top: 50%;
-    left: 40%;
+#subscriber .message .text, #subscriber .message .spinner{
+    color: black;
+    display: table-cell;
+    vertical-align: middle;
 }
-#subscriber .message .text{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
+
 #publisher{
     position: absolute;
     width: 150px;
-    height: 200px;
-    bottom: 10px;
-    left: 10px;
+    height: 126px;
+    bottom: 0px;
     z-index: 100;
-    border: 3px solid #ccc;
-    border-radius: 3px;
+}
+#publisher:hover{
+    border: 0.2px solid white;
+    box-shadow: 0px 0px 20px 1px white;
 }
 
 .App-control-container {
