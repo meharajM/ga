@@ -74,13 +74,20 @@ $(document).ready(function(){
 
             // Subscribe to a newly created stream
             session.on('streamCreated', function(event) {
-                subscriber = session.subscribe(event.stream, 'subscriber', {
-                    width: '100%',
-                    height: '100%',
-                    showControls: false
-                }, handleSubscriberError);
-                subscriber.on('connected', function (event) {
-                })
+                if(!publisherError){
+                    subscriber = session.subscribe(event.stream, 'subscriber', {
+                        width: '100%',
+                        height: '100%',
+                        showControls: false
+                    }, handleSubscriberError);
+                    subscriber.on('connected', function (event) {
+                    });
+                }else{
+                    showMessage("<span>"+current_appointment_details.health_seeker_profile.hs_name+" has joined the call but, App does not have access to Camera and Microphone. Please allow access to Camera ans Microphone.</span><br/>" +
+                        "Fix : <a href='https://support.google.com/chrome/answer/2693767?hl=en'>Google chrome</a>, <a href='https://www.google.co.in/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiovJWr-tnXAhVIpZQKHSD8CPIQFggnMAE&url=https%3A%2F%2Fhelp.seesaw.me%2Fhc%2Fen-us%2Farticles%2F207891173-How-to-give-camera-mic-and-push-notifications-permissions-to-Seesaw&usg=AOvVaw2gUF7tM_fORFNgkbFoQkBv'>Firefox</a> " +
+                        "<br/>>Please reload the app after access us given.");
+                }
+
             });
             session.on({
                 streamDestroyed: function (event) {
@@ -115,7 +122,7 @@ $(document).ready(function(){
                 showToaster("connection established.")
                 if (error) {
                     handleConnectionError(error);
-                } else {
+                } else if(!publisherError){
                     session.publish(publisher, handlePublishComplete);
                 }
             });
