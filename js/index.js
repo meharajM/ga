@@ -119,9 +119,9 @@ $(document).ready(function(){
                     session.publish(publisher, handlePublishComplete);
                 }
             });
+            $('.appointment-list-container').addClass('hidden-xs-up');
             $('.video-container').removeClass('hidden-xs-up');
             $($('.video-container')[0]).scrollTop(200);
-            $('.appointment-info.details').addClass('hidden-xs-up')
             $('#start-vedio-consultation').addClass('hidden-xs-up')
             $('#close-vedio-consultation').removeClass('hidden-xs-up')
             return {session: session, stream: publisher.stream};
@@ -141,11 +141,12 @@ $(document).ready(function(){
 		if(vedioSession){
 			vedioSession.session.disconnect()
             $('.video-container').addClass('hidden-xs-up');
-            $('.appointment-info.details').removeClass('hidden-xs-up')
-
+			$('.left-container').removeClass('col-12').addClass('col-3');
+            $('.appointment-list-container').removeClass('hidden-xs-up');
+            $('.appointment-content').removeClass('hidden-xs-up');
             $('#start-vedio-consultation').removeClass('hidden-xs-up')
 	 		$('#close-vedio-consultation').addClass('hidden-xs-up')
-	 		$('.audio, .video, .full-screen-off').addClass('hidden-xs-up');
+	 		$('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');
 		}
 	}
 	var muteAudio = function(ev){
@@ -168,10 +169,8 @@ $(document).ready(function(){
 	}
 	var showFullScreen = function(ev){
 		if(!$('#publisher').hasClass('hidden-xs-up')){
-            $('.appointment-list-container').removeClass('hidden-xs-up');
-            $('.appointment-content').addClass('col-9').removeClass('col-12');
-			$('.video-container').removeClass('col-md-4').addClass('col-md-12').addClass('show-full-screen');
-			$('.appointment-info.details').addClass('hidden-xs-up').addClass('col-sm-12').removeClass('col-sm-8');
+            $('.appointment-content').addClass('hidden-xs-up');
+            $('.left-container').addClass('col-12').removeClass('col-3');
 		}else if(!$('#subscriber').hasClass('hidden-xs-up')){
 			$('#subscriber').addClass('show-full-screen');
 		}
@@ -180,10 +179,8 @@ $(document).ready(function(){
 	}
 	var removeFullScreen = function (ev) {
         if(!$('#publisher').hasClass('hidden-xs-up')){
-        	$('.appointment-list-container').addClass('hidden-xs-up');
-        	$('.appointment-content').removeClass('col-9').addClass('col-12');
-            $('.video-container').addClass('col-md-4').removeClass('col-md-12').removeClass('show-full-screen');
-            $('.appointment-info.details').removeClass('hidden-xs-up').removeClass('col-sm-12').addClass('col-sm-8');
+        	$('.appointment-content').removeClass('hidden-xs-up');
+            $('.left-container').addClass('col-3').removeClass('col-12');
         }else if(!$('#subscriber').hasClass('hidden-xs-up')){
             $('#subscriber').removeClass('show-full-screen');
         }
