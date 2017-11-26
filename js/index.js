@@ -115,7 +115,7 @@ $(document).ready(function(){
                 height: '100%',
                 showControls: false
             }, handleInitiatePublisherError);
-
+            $('#publisher').draggable();
             // Connect to the session
             session.connect(token, function(error) {
                 // If the connection is successful, publish to the session
