@@ -299,3 +299,16 @@ width:35%;
     height: 75vh;
     overflow: auto;
 }
+#hs-name-container{
+    position: absolute;
+    padding: 10px;
+    z-index: 1;
+    color: white;
+}
+#timer{
+    position: absolute;
+    color: white;
+    bottom: 10px;
+    z-index: 1;
+    right: 20px;
+}

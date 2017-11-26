@@ -1,4 +1,4 @@
-var publisherError;
+var publisherError, subscriberAvailable;
 function handleInitiatePublisherError(error){// The method succeeds when the user grants access to the camera and microphone. The method fails if the user denies access to the camera and microphone
     if(error){
         publisherError = true;
@@ -14,13 +14,23 @@ function handleSubscriberError(error){
     if(error){
         showMessage(error)
     }else{
+        subscriberAvailable = true;
         showToaster(current_appointment_details.health_seeker_profile.hs_name + " has joined the call.")
+        $('#hs-name-container').html('consulting <strong>'+current_appointment_details.health_seeker_profile.hs_name+'</strong>')
+        var sec = 0;
+        function pad ( val ) { return val > 9 ? val : "0" + val; }
+        setInterval( function(){
+            $("#seconds").html(pad(++sec%60));
+            $("#minutes").html(pad(parseInt(sec/60,10)));
+        }, 1000);
     }
 }
 function handlePublishComplete(error){
-    $('#publisher').removeClass('hidden-xs-up')
-    $('.audio, .video, .full-screen').removeClass('hidden-xs-up')
-    showMessage("Waiting for <span id='calli-name'>"+ current_appointment_details.health_seeker_profile.hs_name +"</span> to join");
+    $('#publisher').removeClass('hidden-xs-up');
+    $('.audio, .video, .full-screen').removeClass('hidden-xs-up');
+    if(!subscriberAvailable){
+        showMessage("Waiting for <span id='calli-name'>"+ current_appointment_details.health_seeker_profile.hs_name +"</span> to join");
+    }
 }
 function handleConnectionError(error){
     debugger
