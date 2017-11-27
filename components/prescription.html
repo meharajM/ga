@@ -10,8 +10,8 @@
 		<td>{{food_timings}}</td>
 		<td>{{instructions}}</td>
 		<td>
-			<span id="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
-			<span id="delete"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></span>
+			<span class="edit" id="e_{{prescription_id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+			<span class="delete" id="d_{{prescription_id}}"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></span>
 		</td>
 	</tr>
 	{{/prescription}}
@@ -20,7 +20,14 @@
 	<div class="form">
 		<form id="form3" method="post">
 			<div class="form-group">
-				<input type="text" placeholder="Medicine name" id="med_name" name="med_name" class="form-control" title="Please enter a medicine name" required/>
+			 <div class="col-2 pull-right">
+			<button type="button" class="close" id="pres_close" aria-label="Close">
+				<span id="close-button" aria-hidden="true"><h3>&times;</h3></span>
+			</button>
+			</div>
+			</div>
+			<div class="form-group">
+				<input type="text" placeholder="Medicine name" id="med_name" name="med_name" class="form-control" autofocus="true" title="Please enter a medicine name" required/>
 				<div id="suggesstion-box"></div><p id="demo"></p>
 			</div>
 			<div class="form-group row">
@@ -165,14 +172,107 @@
     $(document).ready(function(){
         var prescription_data=[];
         if(prescriptions_list)
-		{
-		    prescription_data=prescriptions_list;
-		}
+        {
+            prescription_data=prescriptions_list;
+        }
+        /*  var medicine_data=[]; */
+        $('.form').hide();
+        $('#add').on('click', function(){
+            $('.form').slideToggle();
+        });
+        $("#pres_close").on('click', function () {
+			$('.form').slideToggle();
+        })
+        var showPrescriptions = function(prescriptions_list){
+            var source   = $("#prescriptiontable").html();
+            var template = Handlebars.compile(source);
+            var rows = prescriptions_list.map(function (data) {
+                return template({prescription: data});
+                //alert(({prescription:data}));
+            });
+            $('#tab1').html(rows.join(''));
+        };
+        if(apmt_status=="closed") {
+            $("#add").hide();
+            $("#save_continue").hide();
+        }
+        //  $("#form4").hide()
+        showPrescriptions(prescription_data);
+        $("#add-prescription").on("click",function(evt){
+            var formData=$("#form3").serializeArray();
+            evt.preventDefault();
+
+            var data={};
+            formData.map(function(feild){
+                data[feild.name]=feild.value;
+            });
+            data.med_dosage=data.med_dosage+' '+data.dosage_uom;
+            data.med_timings=Number(!!data.timings_morning)+'-'+Number(!!data.timings_afternoon)+'-'+Number(!!data.timings_night);
+            var duration=data.days || data.weeks ||  data.months;
+            data.med_duration=data.med_duration+' '+duration;
+            prescription_data.push(data);
+            showPrescriptions(prescription_data);
+            $('.form').slideToggle();
+            $("#form3").get(0).reset();
+        });
+        $("#save_continue").on("click",function(evt) {
+            getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then (function (res) {
+                showPrescriptions(res.prescription_details);
+               var next = $('#mytabs li.active').next();
+                next.length?
+                    next.find('a').click():
+                    $('#mytabs li a')[2].click();
+            });
+            evt.preventDefault();
+        });
+
+        /*	$("#autocomplete").autocomplete(function (evt) {
+                getData.getMymedicineList(med);
+                evt.preventDefault();
+            });
+    */
+        /*$("#autocomplete").autocomplete(function(evt){
+            debugger
+            var formData=$("#autocomplete").serializeArray();
+            var data={};
+            formData.map(function(feild){
+                data[feild.name]=feild.value;
+            });
+            medicine_data.push(data);
+            getData.getMymedicineList(medicine_data);
+            evt.preventDefault();
+        });*/
+
+    });
+</script>
+<!--
+<script type="text/javascript">
+    $(document).ready(function(){
+       // alert($('.edit').attr('id'));
+        var prescription_data;
+        if(prescriptions_list)
+        {
+            prescription_data=prescriptions_list;
+        }
+        alert("pres_data :" +prescription_data);
       /*  var medicine_data=[]; */
         $('.form').hide();
         $('#add').on('click', function(){
             $('.form').slideToggle();
         });
+
+       // $("#e_1").on('click', function(){
+         //   var word=$("#e_1").attr('id');
+			//alert(word);
+          // var idword=message.split("_");
+
+            //var myString = "23/05/2013";
+          //  var arr = myString.split('/');
+
+
+        });
+
+
 		var showPrescriptions = function(prescriptions_list){
             var source   = $("#prescriptiontable").html();
             var template = Handlebars.compile(source);
@@ -185,10 +285,11 @@
         if(apmt_status=="closed") {
             $("#add").hide();
             $("#save_continue").hide();
+            $("#form4").hide();
         }
-		  //  $("#form4").hide()
-		showPrescriptions(prescription_data);
-        $("#add-prescription").on("click",function(evt){
+           showPrescriptions(prescription_data);
+
+		$("#add-prescription").on("click",function(evt){
             var formData=$("#form3").serializeArray();
             evt.preventDefault();
 
@@ -209,11 +310,15 @@
             getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then (function (res) {
                 showPrescriptions(res.prescription_details);
                 //WRITE LOGIC TO SHOW NEXT TAB
-
+                var next = $('#mytabs li.active').next();
+                next.length?
+                    next.find('a').click():
+                    $('#mytabs li a')[2].click();
+            });
+            evt.preventDefault();
             });
 
-            evt.preventDefault();
-        });
+
 
         /*	$("#autocomplete").autocomplete(function (evt) {
                 getData.getMymedicineList(med);
@@ -231,6 +336,4 @@
                 getData.getMymedicineList(medicine_data);
                 evt.preventDefault();
             });*/
-
-    });
-</script>
+</script> -->

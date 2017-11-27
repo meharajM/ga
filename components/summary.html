@@ -1,42 +1,38 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/css/select2.min.css" />
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/js/select2.min.js"></script>
+
 <script  type="text/x-handlebars-template" id="summarytable">
-    {{#summary}}
-    <div class="summary">
-        <table>
-            <tr>
-                <td>Diagnosis: </td>
-                <td>{{diagnosis}}</td>
-            </tr>
-            <tr>
-                <td>Management Plan: </td>
-                <td>{{mgmt_plan}}</td>
-            </tr>
-            <tr>
-                <td>Next Followup date: </td>
-                <td>{{followup_date}}</td>
-            </tr>
-            <tr>
-                <td>Suggested Tests: </td>
-                <td>{{suggested_invest}}</td>
-            </tr>
-            <tr>
-                <td>Referred to Doctor</td>
-                <td>{{doctor_notes}}</td>
-            </tr>
-        </table>
-    </div>
-    {{/summary}}
+
+        I would like to summarize the online consultation with <b>Dr. NISHANT</b> on <b>	{{appointments_det.apmt_date}}</b> as below: <br>
+        <b>Diagnosis: </b>{{consultation_details.consultation_summary.Diagnosis}}<br>
+        <b>Management Plan: </b>{{consultation_details.consultation_summary.mgmt_plan}}<br>
+        <b>Next Follow-up in: </b>{{consultation_details.consultation_summary.followup_in}}<br>
+        <b>Next Follow-up Consultation: </b>{{consultation_details.consultation_summary.followup_date}}<br>
+        <b>Suggested Investigations: </b>{{consultation_details.consultation_summary.ga_notes}}<br>
+        <b>Referred to Doctor: </b>{{consultation_details.consultation_summary.doctor_notes}}<br>
+        </p>
+        <p>
+            Regards,<br>
+            Dr. Nishant Verma
+        </p>
+        <p>
+            (This is electronically generated consultation summary. Signature not required.)
+        </p>
+
+
 </script>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-12" style="display:block;width:100%; padding-bottom:10px">
             <br>
 
-            <form id="form4" method="post">
+            <form id="form4" method="get">
                 <div class="form-group">
                     <label class="control-label required field" for="diagnosis"><strong>Patient Diagnosis / Diagnoses</strong><span class="asteriskField">*</span></label>
 
                     <div class="input-group">
-                    <input class="form-control" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" required />
+                        <input class="form-control" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" required />
 
                     </div>
                 </div>
@@ -46,7 +42,7 @@
                     <label class="control-label required field" for="plan"><strong>Management Plan / Advice</strong><span class="asteriskField">*</span></label>
 
                     <div class="input-group">
-                    <textarea class="form-control" cols="40" id="advice" name="mgmt_plan" rows="3"  title="Please enter details" required></textarea>
+                        <textarea class="form-control" cols="40" id="advice" name="mgmt_plan" rows="3"  title="Please enter details" required></textarea>
                     </div>
                 </div>
 
@@ -56,16 +52,16 @@
                     </label>
                     <div class="form-group row">
                         <div class="col-sm-4">
-                             <div class="medicin-unit">
-                                   <div class="btn-group" data-toggle="buttons">
-                                       <label class="btn btn-light active">
-                                           <input type="radio" name="options" id="option1" autocomplete="off"> Yes
-                                       </label>
-                            <label class="btn btn-light">
-                                <input type="radio" name="options" id="option2" autocomplete="off"> No
-                            </label>
-                        </div>
-                    </div>
+                            <div class="medicin-unit">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-light active">
+                                        <input type="radio" name="change_medication" autocomplete="off"> Yes
+                                    </label>
+                                    <label class="btn btn-light">
+                                        <input type="radio" name="change_medication" autocomplete="off"> No
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -111,16 +107,23 @@
                     <div class="form-group row">
                         <div class="col-md-3 col-sm-12">
                             <div class="dropdown">
-                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-md col-sm-12" id="follow_up">
-                                    <strong><span id="select_dropdown"> Select  </span></strong>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu text-center">
-                                    <li id="After_1_Week" name="followup_in">After 1 Week</li>
-                                    <li id="After_10_Days" name="followup_in">After 10 Days</li>
-                                    <li id="After_2_Weeks" name="followup_in">After 2 Weeks</li>
-                                    <li id="After_1_Month" name="followup_in">After 1 Month</li>
-                                </ul>
+
+
+                                <select class="form-control" name="followup_in">
+                                    <option name="followup_in" selected>Select</option>
+                                    <option id="After_1_Week">After 1 Week</option>
+                                    <option id="After_10_Days">After 10 Days</option>
+                                    <option id="After_2_Weeks">After 2 Weeks</option>
+                                    <option id="After_1_Month">After 1 Month</option>
+                                </select>
+
+
+                                <!--  <ul class="dropdown-menu text-center">
+                                      <li id="After_1_Week" name="followup_in">After 1 Week</li>
+                                      <li id="After_10_Days" name="followup_in">After 10 Days</li>
+                                      <li id="After_2_Weeks" name="followup_in">After 2 Weeks</li>
+                                      <li id="After_1_Month" name="followup_in">After 1 Month</li>
+                                  </ul>-->
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12">
@@ -133,15 +136,73 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="form-group">
+                    <label class="control-label" for="suggested_test">
+                        <strong>Suggested Tests</strong>
+                    </label>
+                    <div class="input-group">
+                        <select class="test_id col-md-6" multiple="" name="suggested_test[]" id="suggested_test">
+                            <option value="Blood">Blood</option>
+                            <option value="Chemo">Chemo</option>
+                            <option name="test_id">Sonography</option>
+                            <option name="test_id">MRI</option>
+                            <option name="test_id">Diabetes Test</option>
+                        </select>
+                    </div>
+                </div>
+
+                        <!--  <select multiple class="form-control" name="test_id">
+                               <option name="test_id" value="1" data-test-name="Blood">Blood</option>
+                               <option  name="test_id" value="2" data-test-name="MRI">MRI</option>
+                               <option  name="test_id" value="3" data-test-name="Chemo">Chemo</option>
+                               <option  name="test_id" value="4" data-test-name="Urine">Urine</option>
+                               <option  name="test_id" value="5" data-test-name="Thyro">Thyro</option>
+                           </select>-->
+                   <!-- <label>1</label>
+                    <input type="text" name="suggested_test[0][test_id]">
+                    <input type="text" name="suggested_test[0][test_name]">
+                    <label>2</label>
+                    <input type="text" name="suggested_test[1][test_id]">
+                    <input type="text" name="suggested_test[1][test_name]">-->
+
+                       <!-- <input name='suggested_test[0][test_id]' value='Dahut'>
+                        <input name='suggested_test[0][test_name]' value='Hypatia'>
+                        <input name='suggested_test[1][test_id]' value='Felis Stultus'>
+                        <input name='suggested_test[1][test_name]' value='Billie'>-->
+
+
+
+
+
+                <!--  <div class="form-group">
+                  <input type="text" name="[1]:number"           value="1"/>
+                  <input type="text" name="numbers[1.1]:number"         value="1.1"/>-->
+                <!--      <div class="form-group">
+                          <label class="control-label" for="seeker_instructions">
+                              <strong>Suggested Tests</strong>
+                          </label>
+                          <select multiple class="form-control" name="test_name">
+                              <option name="instruction_id">Blood Test</option>
+                              <option  name="instruction_id">MRI</option>
+                              <option  name="test_id">Chemo</option>
+                              <option  name="test_id">Urine</option>
+                              <option  name="test_id">Thyro</option>
+                          </select>
+
+                      </div>-->
+
+
+
+           <div class="form-group">
 
                     <label class="control-label" for="suggested_invest"><strong>Suggested Investigations (Optional)</strong></label>
 
                     <div class="input-group">
-                        <textarea class="form-control" cols="40" id="suggested_invest" name="suggested_test" rows="3"></textarea>
+                        <textarea class="form-control" cols="40" id="suggested_invest" name="ga_notes" rows="3"></textarea>
                     </div>
                 </div>
-
                 <div class="form-group ">
 
                     <label class="control-label " for="refer">
@@ -151,42 +212,31 @@
                         <input class="form-control" id="refer" name="doctor_notes" type="text" />
                     </div></div>
 
-              <!-- <div class="form-group">
-                    <input type="text" name="test_id" placeholder="test_id: 5" />
-                    <textarea class="form-control" cols="40" id="test_name" name="test_name" rows="3" placeholder="test_name: blood"></textarea>
-                    <input type="text" name="instruction_id" placeholder="instruction_id: 5" />
-                    <textarea class="form-control" cols="40" id="test_name" name="instruction_text" rows="3" placeholder="instruction_text: test"></textarea>
-                    <input type="text" name="ga_notes" placeholder="ga_notes: test consultation notes to growayu" />
-                    <input type="text" name="consultation_id" placeholder="consultation_id" />
+                <!-- <div class="form-group">
+                      <input type="text" name="test_id" placeholder="test_id: 5" />
+                      <textarea class="form-control" cols="40" id="test_name" name="test_name" rows="3" placeholder="test_name: blood"></textarea>
+                      <input type="text" name="instruction_id" placeholder="instruction_id: 5" />
+                      <textarea class="form-control" cols="40" id="test_name" name="instruction_text" rows="3" placeholder="instruction_text: test"></textarea>
+                      <input type="text" name="ga_notes" placeholder="ga_notes: test consultation notes to growayu" />
+                      <input type="text" name="consultation_id" placeholder="consultation_id" />
 
-                </div>-->
-                <input type="text" name="consultation_id" placeholder="consultation_id" />
+                  </div>-->
+
                 <div class="form-group-inline">
                     <div class="btn btn-success col-md-1" id="save">Save</div>
                     <div class="btn btn-info col-md-1" id="close">Close</div>
                 </div>
             </form>
+
         </div>
-        <div class="summary">
-            <p>I would like to summarize the online consultation with <b>Dr. NISHANT</b> on <b>25/10/2017</b> as below :<br> </p><hr><br>
-            <table class="table table-sm">
-                <tbody id="tab2">
-                <tr >
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
-            <hr><p>
-            <h4> Regards,<br><strong> Dr. Nishant Verma </strong>
-            </h4></p>
-            <p>
-                <br><br>
-                (This is electronically generated consultation summary. Signature not required.)
-            </p>
-            <hr>
-            <button class="btn-primary btn-lg text-center" type="submit" id="close_consultation">Close Consultation</button>
-        </div>
+<div class="summary_show" >
+    <br>
+    <button class="btn-primary btn-lg text-center" type="submit" id="close_consultation">Close Consultation</button>
+    <div class="pdf">
+    <button class="btn-success btn-lg text-center" type="submit" id="generate_pdf">Generate PDF</button>
+    </div>
+</div>
+</div>
 
     </div>
 </div>
@@ -196,70 +246,98 @@
 </html>
 
 <script type="text/javascript">
+    var consultation_id;
     $(document).ready(function(){
         var summary_data=[];
-        $(".summary").hide();
+        $(".test_id").select2({
+            tags: true
+        });
 
-        var showSummary = function(summary_list){
+        $("select").on("select2:select", function (evt) {
+            var element = evt.params.data.element;
+            var $element = $(element);
+
+            $element.detach();
+            $(this).append($element);
+            $(this).trigger("change");
+        });
+
+
+       $("#generate_pdf").hide();
+        var showSummary = function(data){
             var source   = $("#summarytable").html();
             var template = Handlebars.compile(source);
-            var rows = summary_list.map(function (data) {
-                return template({summary: data});
-                //alert(({prescription:data}));
-            });
-            $('#tab2').html(rows.join(''));
+            $('#summary').html(template(data));
         };
-
-        $("#save").on("click",function(evt){
-           // $('.form').slideToggle();
-            var formData=$("#form4").serializeArray();
+        if(appointment&&apmt_status=="closed")
+        {
+            showSummary(appointment);
+        }
+        $("#save").on("click",function(evt) {
+            // $('.form').slideToggle();
+            var formData = $("#form4").serializeArray();
             evt.preventDefault();
+          //  var data = {suggested_test: [{'1':"Blood"}, {'2':"Urea"}]};
             var data={};
-            formData.map(function(feild){
-                data[feild.name]=feild.value;
+            formData.map(function (feild) {
+                //  if(feild.name == "test_id"){
+                //        var test = {'test_id': feild.value};
+                //       data['suggested_test'] = data['suggested_test'].push(test)
+                //    }
+                //  else {
+                data[feild.name] = feild.value;
             });
-            summary_data.push(data);
-          //  showSummary(summary_data);
-           getData.UpdateConsultationSummary(appointment_id,summary_data);
-            evt.preventDefault();
+            debugger;
+            if(consultation_id)
+            {
+                data.consultation_id=consultation_id;
+            }
+            getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
+                consultation_id=res.consultation_id;
+              //  index.getAppointmentDetails(appointment_id);
+                getData.getAppointmentDetails(appointment_id).then(function(res){
+                    $("#close").on("click",function(evt) {
+                        $("#form4").hide();
+                        $(".summary_show").show();
+                        showSummary(appointment);
+                        evt.preventDefault();
+                    });
+                });
+                return res;
+            });
         });
-
-       $("#close").on("click",function(evt) {
-
-            $("#form4").hide();
-            $(".summary").show();
-            showSummary(summary_data);
-        });
-
         $("#close_consultation").on("click",function(evt) {
             alert("Do you want to close this Consultation? You wouldn't be able to edit details after closing the consulation");
-            getData.closeConsultation(appointment_id);
+            getData.closeConsultation(appointment_id).then(function(res){
+                res.appointment_status=="closed";
+                $("#generate_pdf").show();
+
+            });
             evt.preventDefault();
         });
 
-       /* $("#close").on("click",function(evt) {
-            getData.closeConsultation(appointment_id);
-            evt.preventDefault();
-        });*/
+        /* $("#close").on("click",function(evt) {
+             getData.closeConsultation(appointment_id);
+             evt.preventDefault();
+         });*/
 
-       /* var showSummary = function(res){
-            var source   = $("#summarytable").html();
-            var template = Handlebars.compile(source);
-            var html = template(res.summary)
-            $('#summary').html(html);
+        /* var showSummary = function(res){
+             var source   = $("#summarytable").html();
+             var template = Handlebars.compile(source);
+             var html = template(res.summary)
+             $('#summary_show').html(html);
 
-        }; */
-
+         }; */
         $("#After_1_Week").click(function(){
-           // var today=moment().add(7, 'days').format("MMM Do YY");
-            var today=moment().format("DD-MM-YY");
+            // var today=moment().add(7, 'days').format("MMM Do YY");
+            var today=moment().format("YYYY-MM-DD");
             //var day=moment().add(7,'days').format('dddd');
             document.getElementById('followup_date').value = today;
         });
         $("#After_10_Days").click(function(){
-           var today=moment().add(10, 'days').format("MMM Do YY");
+            var today=moment().add(10, 'days').format("MMM Do YY");
             //today=moment().format("MMM Do YY");
-           var day=moment().add(10,'days').format('dddd');
+            var day=moment().add(10,'days').format('dddd');
             document.getElementById('followup_date').value = day+', '+today;
         });
         $("#After_2_Weeks").click(function(){
@@ -274,16 +352,14 @@
             var day=moment().add(30,'days').format('dddd');
             document.getElementById('followup_date').value = day+', '+today;
         });
-	
-	 var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
-            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-            date_input.datepicker({
-                format: 'DD, dd-M-yy',
-                container: container,
-                todayHighlight: true,
-                autoclose: true
-            });
-
+        var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'yyyy-dd-mm',
+            container: container,
+            todayHighlight: true,
+            autoclose: true
+        });
         $("input[name='waiver_status']").change(function(){
             if($(this).val()=="Partial")
             {
@@ -302,5 +378,5 @@
                 $("#ifPartial").hide();
             }
         });
-    });
+    })
 </script>

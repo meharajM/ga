@@ -1,16 +1,16 @@
-var appointment_id, hs_id,next_apmt_date,prev_apmt_date;
+var appointment_id, hs_id,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, appointment,consultation_id;
 var showToaster;
 function showMessage(message) {
     $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
 }
 $(document).ready(function(){
-	$('#summary').load('./components/summary.html')
-	$('#filter').load('./components/filter.html')
+	$('#filter').load('./components/filter.html');
 	var actualDate=new Date();
     var date=moment(actualDate).format("YYYYMMDD");
     getData.getDashboardData(date).then(function(res){
 		showDashboardDetails(res);
-	})
+	});
+    getData.getDoctorProfile(1);
 
 	/*getting appointment details*/
 
@@ -29,18 +29,32 @@ $(document).ready(function(){
 			}else{
                 $('#start-vedio-consultation').show();
 			}
-			current_appointment_details = res.appointments_details;
 			hs_id = res.appointments_details.health_seeker_profile.hs_id;
-        }).catch(function(a,b){
+			apmt_status=res.appointments_details.appointment_det.apmt_status;
+			prescriptions_list=res.appointments_details.consultation_details.prescription_details;
+			//summary_details=res.appointments_details.consultation_details.consultation_summary;
+			appointment=res.appointments_details;
+			//alert(summary_list);
+            $('#prescription').load('./components/prescription.html');
+            $('#summary').load('./components/summary.html');
 
-		    debugger
+         /*   if(apmt_status=="closed")
+			{
+				$("#badge-button").html('<span class="badge badge-pill badge-success">Closed</span>');
+			}
+			else if(apmt_status=="pending")
+			{
+                $("#badge-button").html('<span class="badge badge-pill badge-warning">Pending</span>');
+            } */
+
+        }).catch(function(a,b){
 		})
-	}
+	};
 	showDashboardDetails=function(res){
-        $('#total').text(res.appointments_details.appointment_summary.total)
-        $('#pending').text(res.appointments_details.appointment_summary.pending)
-        $('#missed').text(res.appointments_details.appointment_summary.missed)
-        $('#shcedule-date').text(res.appointments_details.appointment[0].appointment_date)
+        $('#total').text(res.appointments_details.appointment_summary.total);
+        $('#pending').text(res.appointments_details.appointment_summary.pending);
+        $('#missed').text(res.appointments_details.appointment_summary.missed);
+        $('#shcedule-date').text(res.appointments_details.appointment[0].appointment_date);
         var source   = $("#appointmentTemplate").html();
         var template = Handlebars.compile(source);
         var html = template(res.appointments_details);

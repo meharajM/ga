@@ -202,6 +202,7 @@ body{
 .content-container.container{
     width: 100%;
 }
+
 .appointment-type .VC{
     width: 32px;
     height: 32px;
@@ -247,6 +248,38 @@ body{
 
 #p_check{
 width:35%;
+}
+
+.closed{
+    background-color: #00b050;
+}
+.booked{
+    background-color: #bf800c;
+}
+.inprogress{
+    background-color: #0275d8;
+}
+
+#close-button{
+    color:red;
+}
+
+.test_id{
+    width:525px;
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+
 }
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
