@@ -1,4 +1,4 @@
-var appointment_id, hs_id,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, appointment,consultation_id;
+var appointment_id, hs_id,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, appointment,consultation_id,record_id;
 var showToaster;
 function showMessage(message) {
     $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
@@ -10,7 +10,8 @@ $(document).ready(function(){
     getData.getDashboardData(date).then(function(res){
 		showDashboardDetails(res);
 	});
-    getData.getDoctorProfile(1);
+    getData.getDoctorProfile(2);
+
 
 	/*getting appointment details*/
 
@@ -30,6 +31,7 @@ $(document).ready(function(){
                 $('#start-vedio-consultation').show();
 			}
 			hs_id = res.appointments_details.health_seeker_profile.hs_id;
+           // getData.getDocumentBlobData(hs_id);
 			apmt_status=res.appointments_details.appointment_det.apmt_status;
 			prescriptions_list=res.appointments_details.consultation_details.prescription_details;
 			//summary_details=res.appointments_details.consultation_details.consultation_summary;
@@ -68,11 +70,10 @@ $(document).ready(function(){
         }
         next_apmt_date=res.appointments_details.next_appointment_date;
         prev_apmt_date=res.appointments_details_.prev_appointment_date;
-	}
+	};
 	var addPrescription = function(ev){
 
-		debugger
-	}
+	};
 
 	// Handling all of our errors here by alerting them
 	function handleError(error) {

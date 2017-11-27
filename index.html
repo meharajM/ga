@@ -38,7 +38,7 @@
         {{#appointment}}
         <li id={{appointment_id}} class="appointment list-group-item bg-light">
             <div class="col-10 ">
-                <h5>{{appointment_time}}<sup><span class="{{appointment_status}} badge badge-primary">{{appointment_status}}</span></sup></h5>
+                <h5>{{appointment_time}}  <sup><span class="{{appointment_status}} badge badge-primary">{{appointment_status}}</span></sup></h5>
                 <span>{{health_seeker.health_seeker_name}}</span>
             </div>
             <div class="col-2 appointment-type no-padding">
@@ -85,7 +85,7 @@
 
         <p>
         <b>Attached Documents</b><br>
-        <a href="reports/sugar_test.pdf" target="_blank" class="embedURL">Sugar Test</a><br>
+        <a href="http://52.66.157.195/growayu/ganewdesign/pdfs/{{health_record.[name]}}" target="_blank" class="embedURL">Sugar Test</a><br>
         <a href="reports/blood_test.pdf" target="_blank" class="embedURL">Blood Test</a><br>
         <a href="reports/urine_test.pdf" target="_blank" class="embedURL">Urine Culture Test</a>
         </p>
@@ -227,3 +227,15 @@
     <script type="text/javascript" src="./js/index.js"></script>
 </body>
 </html>
+<script>
+    $(document).ready(function(){
+        $("#appointment-list").on("click", function (evt) {
+            var next = $('#mytabs li.active').next();
+            next.length?
+                next.find('a').click():
+                $('#mytabs li a')[0].click();
+
+        })
+    })
+
+</script>

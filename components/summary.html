@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/css/select2.min.css" />
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/js/select2.min.js"></script>
-
+<!--
 <script  type="text/x-handlebars-template" id="summarytable">
 
         I would like to summarize the online consultation with <b>Dr. NISHANT</b> on <b>	{{appointments_det.apmt_date}}</b> as below: <br>
@@ -19,12 +19,32 @@
         <p>
             (This is electronically generated consultation summary. Signature not required.)
         </p>
+</script>-->
+
+<script  type="text/x-handlebars-template" id="summarytable">
+
+    I would like to summarize the online consultation with <b>Dr. NISHANT</b> on <b>	{{appointments_det.apmt_date}}</b> as below: <br>
+    <b>Diagnosis: </b>{{Diagnosis}}<br>
+    <b>Management Plan: </b>{{mgmt_plan}}<br>
+    <b>Next Follow-up in: </b>{{followup_in}}<br>
+    <b>Next Follow-up Consultation: </b>{{followup_date}}<br>
+    <b>Suggested Tests: </b>{{suggested_test}}<br>
+    <b>Suggested Investigations: </b>{{ga_notes}}<br>
+    <b>Referred to Doctor: </b>{{doctor_notes}}<br>
+    </p>
+    <p>
+        Regards,<br>
+        Dr. Nishant Verma
+    </p>
+    <p>
+        (This is electronically generated consultation summary. Signature not required.)
+    </p>
 
 
 </script>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-md-12" style="display:block;width:100%; padding-bottom:10px">
+        <div class="col-xs-12 col-md-12 font-12" style="display:block;width:100%; padding-bottom:10px">
             <br>
 
             <form id="form4" method="get">
@@ -42,7 +62,7 @@
                     <label class="control-label required field" for="plan"><strong>Management Plan / Advice</strong><span class="asteriskField">*</span></label>
 
                     <div class="input-group">
-                        <textarea class="form-control" cols="40" id="advice" name="mgmt_plan" rows="3"  title="Please enter details" required></textarea>
+                        <textarea class="form-control" cols="40" id="advice" name="mgmt_plan" rows="3" placeholder="Enter Management Plan"  title="Please enter details" required></textarea>
                     </div>
                 </div>
 
@@ -109,7 +129,7 @@
                             <div class="dropdown">
 
 
-                                <select class="form-control" name="followup_in">
+                                <select class="followup form-control" name="followup_in" id="follow_up">
                                     <option name="followup_in" selected>Select</option>
                                     <option id="After_1_Week">After 1 Week</option>
                                     <option id="After_10_Days">After 10 Days</option>
@@ -223,7 +243,7 @@
                   </div>-->
 
                 <div class="form-group-inline">
-                    <div class="btn btn-success col-md-1" id="save">Save</div>
+                    <div class="btn btn-success col-md-1" id="save" type="submit">Save</div>
                     <div class="btn btn-info col-md-1" id="close">Close</div>
                 </div>
             </form>
@@ -299,7 +319,7 @@
                     $("#close").on("click",function(evt) {
                         $("#form4").hide();
                         $(".summary_show").show();
-                        showSummary(appointment);
+                        showSummary(data);
                         evt.preventDefault();
                     });
                 });
@@ -307,7 +327,7 @@
             });
         });
         $("#close_consultation").on("click",function(evt) {
-            alert("Do you want to close this Consultation? You wouldn't be able to edit details after closing the consulation");
+            alert("Do you want to close this Consultation? You wouldn't be able to edit details after closing the Consulation");
             getData.closeConsultation(appointment_id).then(function(res){
                 res.appointment_status=="closed";
                 $("#generate_pdf").show();
@@ -328,30 +348,35 @@
              $('#summary_show').html(html);
 
          }; */
-        $("#After_1_Week").click(function(){
-            // var today=moment().add(7, 'days').format("MMM Do YY");
-            var today=moment().format("YYYY-MM-DD");
-            //var day=moment().add(7,'days').format('dddd');
-            document.getElementById('followup_date').value = today;
+        $('#follow_up').change(function(){
+            var followup_days = $('#follow_up').val();
+            if(followup_days=="After 2 Days")
+            {
+                var today=moment().add(2,'days').format("YYYY-MM-DD");
+                document.getElementById('followup_date').value = today;
+            }
+            if(followup_days=="After 1 Week")
+            {
+                var today=moment().add(7,'days').format("YYYY-MM-DD");
+                document.getElementById('followup_date').value = today;
+            }
+            if(followup_days=="After 10 Days")
+            {
+                var today=moment().add(10,'days').format("YYYY-MM-DD");
+                document.getElementById('followup_date').value = today;
+            }
+            if(followup_days=="After 2 Weeks")
+            {
+                var today=moment().add(14,'days').format("YYYY-MM-DD");
+                document.getElementById('followup_date').value = today;
+            }
+            if(followup_days=="After 1 Month")
+            {
+                var today=moment().add(30,'days').format("YYYY-MM-DD");
+                document.getElementById('followup_date').value = today;
+            }
         });
-        $("#After_10_Days").click(function(){
-            var today=moment().add(10, 'days').format("MMM Do YY");
-            //today=moment().format("MMM Do YY");
-            var day=moment().add(10,'days').format('dddd');
-            document.getElementById('followup_date').value = day+', '+today;
-        });
-        $("#After_2_Weeks").click(function(){
-            var today=moment().add(14, 'days').format("MMM Do YY");
-            //today=moment().format("MMM Do YY");
-            var day=moment().add(14,'days').format('dddd');
-            document.getElementById('followup_date').value = day+', '+today;
-        });
-        $("#After_1_Month").click(function(){
-            var today=moment().add(30, 'days').format("MMM Do YY");
-            //today=moment().format("MMM Do YY");
-            var day=moment().add(30,'days').format('dddd');
-            document.getElementById('followup_date').value = day+', '+today;
-        });
+
         var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
         var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
         date_input.datepicker({
@@ -364,19 +389,49 @@
             if($(this).val()=="Partial")
             {
                 $("#p_check")[0].disabled = false;
+                $('#p_check').attr('readonly', false);
                 $("#ifPartial").show();
                 $("#p_check").val("");
             }
             else if($(this).val()=="Full")
             {
-                $("#p_check")[0].disabled = true;
+                $("#p_check")[0].disabled = false;
                 $("#ifPartial").show();
                 $("#p_check").val("1000");
+                $('#p_check').attr('readonly', true);
+
             }
             else
             {
                 $("#ifPartial").hide();
             }
         });
+
+        /*
+                $("#After_1_Week").click(function(){
+                    // var today=moment().add(7, 'days').format("MMM Do YY");
+                    var today=moment().format("YYYY-MM-DD");
+                    //var day=moment().add(7,'days').format('dddd');
+                    document.getElementById('followup_date').value = today;
+                });
+                $("#After_10_Days").click(function(){
+                    var today=moment().add(10, 'days').format("MMM Do YY");
+                    //today=moment().format("MMM Do YY");
+                    var day=moment().add(10,'days').format('dddd');
+                    document.getElementById('followup_date').value = day+', '+today;
+                });
+                $("#After_2_Weeks").click(function(){
+                    var today=moment().add(14, 'days').format("MMM Do YY");
+                    //today=moment().format("MMM Do YY");
+                    var day=moment().add(14,'days').format('dddd');
+                    document.getElementById('followup_date').value = day+', '+today;
+                });
+                $("#After_1_Month").click(function(){
+                    var today=moment().add(30, 'days').format("MMM Do YY");
+                    //today=moment().format("MMM Do YY");
+                    var day=moment().add(30,'days').format('dddd');
+                    document.getElementById('followup_date').value = day+', '+today;
+                });
+                */
     })
 </script>
