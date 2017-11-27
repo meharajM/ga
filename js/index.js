@@ -69,6 +69,7 @@ $(document).ready(function(){
 	var publisher, subscriber;
 	function initializeSession(apiKey, sessionId, token) {
 		showMessage("Checking for the Support ans system requirements")
+        OT.addEventListener("exception", exceptionHandler);
 		if(OT.checkSystemRequirements()){
 			var session = OT.initSession(apiKey, sessionId);
 
@@ -91,7 +92,7 @@ $(document).ready(function(){
             });
             session.on({
                 streamDestroyed: function (event) {
-                    if (event.reason === 'networkDisconnected') {
+                	if (event.reason === 'networkDisconnected') {
                         event.preventDefault();
                         var subscribers = session.getSubscribersForStream(event.stream);
                         // if (subscribers.length > 0) {
@@ -107,6 +108,9 @@ $(document).ready(function(){
                     }
                 }
             });
+            session.on("sessionDisconnected", function(event) {
+                //on stop consultation
+            });
 
             // Create a publisher
             publisher = OT.initPublisher('publisher', {
@@ -119,7 +123,6 @@ $(document).ready(function(){
             // Connect to the session
             session.connect(token, function(error) {
                 // If the connection is successful, publish to the session
-                showToaster("connection established.")
                 if (error) {
                     handleConnectionError(error);
                 } else if(!publisherError){

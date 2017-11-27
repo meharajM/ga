@@ -1,4 +1,7 @@
 var publisherError, subscriberAvailable;
+function exceptionHandler(error){
+    debugger
+}
 function handleInitiatePublisherError(error){// The method succeeds when the user grants access to the camera and microphone. The method fails if the user denies access to the camera and microphone
     if(error){
         publisherError = true;
@@ -26,6 +29,7 @@ function handleSubscriberError(error){
     }
 }
 function handlePublishComplete(error){
+    showToaster("connection established.");
     $('#publisher').removeClass('hidden-xs-up');
     $('.audio, .video, .full-screen').removeClass('hidden-xs-up');
     if(!subscriberAvailable){
@@ -33,6 +37,5 @@ function handlePublishComplete(error){
     }
 }
 function handleConnectionError(error){
-    debugger
-
+    showMessage("App is unable to connect to the server Please check your internet connection and Try again.");
 }
