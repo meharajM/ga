@@ -10,8 +10,8 @@
 		<td>{{food_timings}}</td>
 		<td>{{instructions}}</td>
 		<td>
-			<span class="edit" id="e_{{prescription_id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
-			<span class="delete" id="d_{{prescription_id}}"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></span>
+			<span class="edit" id="e_"+{{prescription_id}}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+			<span class="delete" id="d_"+{{prescription_id}}><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></span>
 		</td>
 	</tr>
 	{{/prescription}}
@@ -177,11 +177,13 @@
         }
         /*  var medicine_data=[]; */
         $('.form').hide();
-        $('#add').on('click', function(){
-            $('.form').slideToggle();
+        $('#add').on('click', function(ev){
+            $('.form').show(1000);
+            ev.stopPropagation();
         });
-        $("#pres_close").on('click', function () {
-			$('.form').slideToggle();
+        $("#close-button").on('click', function () {
+			$('.form').hide(1000);
+			ev.stopPropagation();
         })
         var showPrescriptions = function(prescriptions_list){
             var source   = $("#prescriptiontable").html();
@@ -212,7 +214,7 @@
             data.med_duration=data.med_duration+' '+duration;
             prescription_data.push(data);
             showPrescriptions(prescription_data);
-            $('.form').slideToggle();
+            $('.form').hide(1000);
             $("#form3").get(0).reset();
         });
         $("#save_continue").on("click",function(evt) {
