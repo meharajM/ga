@@ -250,6 +250,33 @@ var getData = {
                 return res;
             },
             error: function (err, status) {
+                console.error(err, status);
+            }
+        });
+        return call;
+    },
+
+    getDocumentBlobData: function (id) {
+        var url = "/wapi/getDocumentBlobData.php";
+        var hs_id = id;
+        var record_id=441;
+        var document = {
+            hs_id:hs_id,
+            record_id:record_id
+        };
+        var data = {
+            document: document
+        };
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res, status){
+                return res;
+            },
+            error: function (err, status) {
+                console.error(err, status);
             }
         });
         return call;

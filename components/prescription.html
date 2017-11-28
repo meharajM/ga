@@ -31,10 +31,10 @@
 				<div id="suggesstion-box"></div><p id="demo"></p>
 			</div>
 			<div class="form-group row">
-				<label for="type" class="col-sm-2 col-form-label">Type</label>
+				<label for="type" class="col-sm-2 col-form-label"><strong>Type</strong></label>
 				<div class="col-sm-10">
 					<select class="custom-select form-control" name="med_type" pattern="Select the medicine type" required>
-						<option value="" selected>Select medicine type</option>
+						<option value="" selected><strong>Select medicine type</strong></option>
 						<option value="Pills">Pills</option>
 						<option value="Injection">Injection</option>
 						<option value="Syrup">Syrup</option>
@@ -43,7 +43,7 @@
 
 			</div>
 			<div class="form-group row">
-				<label for="type" class="col-sm-2 col-form-label">Dosages</label>
+				<label for="type" class="col-sm-2 col-form-label"><strong>Dosages</strong></label>
 				<div class="col-sm-6">
 					<select class="custom-select form-control" name="med_dosage">
 						<option value="1">1</option>
@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="form-group row timings">
-				<label for="type" class="col-sm-2 col-form-label">When</label>
+				<label for="type" class="col-sm-2 col-form-label"><strong>When</strong></label>
 				<div class="col-sm-10">
 					<div class="btn-group" data-toggle="buttons">
 						<label class="btn btn-lg morning active">
@@ -80,13 +80,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="text-center form-group">or</div>
+			<div class="text-center form-group"><strong>or</strong></div>
 			<div class="form-group">
 				<input type="text" name="med_dosage_text" placeholder="specify" class="form-control">
 			</div>
 			<div class="form-group row">
 
-				<label for="type" class="col-form-label col-sm-2">Duration</label>
+				<label for="type" class="col-form-label col-sm-2"><strong>Duration</strong></label>
 				<div class="col-sm-2">
 					<input type="text" name="med_duration" class="form-control">
 				</div>
@@ -106,7 +106,7 @@
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-2">
-					<label for="type" class="col-form-label">Food</label>
+					<label for="type" class="col-form-label"><strong>Food</strong></label>
 				</div>
 				<div class="col-sm-10">
 					<div class="btn-group food" data-toggle="buttons">
@@ -133,7 +133,7 @@
 	<div>
 		<div class="row">
 			<div class="col-10">
-				<h6>Prescribed Medications</h6>
+				<strong>Prescribed Medications</strong>
 			</div>
 			<div class="col-2">
 				<div id="add" class="btn btn-default fa fa-plus float-right btn-primary btn-sm"></div>
@@ -144,14 +144,14 @@
 		<table class="table table-sm">
 			<thead>
 			<tr>
-				<th>Type of Medicine</th>
-				<th>Name of Medicine</th>
-				<th>Dosage</th>
-				<th>Timings</th>
-				<th>Course Duration</th>
-				<th>Medicine Intake</th>
-				<th>Instructions</th>
-				<th>Action</th>
+				<th><b>Type of Medicine</b></th>
+				<th><b>Name of Medicine</b></th>
+				<th><b>Dosage</b></th>
+				<th><b>Timings</b></th>
+				<th><b>Course Duration</b></th>
+				<th><b>Medicine Intake</b></th>
+				<th><b>Instructions</b></th>
+				<th id="strong"><b>Action</b></th>
 			</tr>
 			</thead>
 			<tbody id="tab1">
@@ -175,7 +175,6 @@
         {
             prescription_data=prescriptions_list;
         }
-        /*  var medicine_data=[]; */
         $('.form').hide();
         $('#add').on('click', function(ev){
             $('.form').show(1000);
@@ -197,6 +196,9 @@
         if(apmt_status=="closed") {
             $("#add").hide();
             $("#save_continue").hide();
+            $("#strong").hide();
+            $(".edit").hide();
+            $(".delete").hide();
         }
         //  $("#form4").hide()
         showPrescriptions(prescription_data);
