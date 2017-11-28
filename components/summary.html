@@ -131,6 +131,7 @@
 
                                 <select class="followup form-control" name="followup_in" id="follow_up">
                                     <option name="followup_in" selected>Select</option>
+                                    <option id="After_2_Days">After 2 Days</option>
                                     <option id="After_1_Week">After 1 Week</option>
                                     <option id="After_10_Days">After 10 Days</option>
                                     <option id="After_2_Weeks">After 2 Weeks</option>
@@ -273,6 +274,7 @@
             tags: true
         });
 
+
         $("select").on("select2:select", function (evt) {
             var element = evt.params.data.element;
             var $element = $(element);
@@ -352,28 +354,27 @@
             var followup_days = $('#follow_up').val();
             if(followup_days=="After 2 Days")
             {
-                var today=moment().add(2,'days').format("YYYY-MM-DD");
-                document.getElementById('followup_date').value = today;
+                $("#followup_date").val(moment().add(2,'days').format("YYYY-MM-DD"));
             }
-            if(followup_days=="After 1 Week")
-            {
-                var today=moment().add(7,'days').format("YYYY-MM-DD");
-                document.getElementById('followup_date').value = today;
-            }
+          if(followup_days=="After 1 Week")
+          {
+              $("#followup_date").val(moment().add(7,'days').format("YYYY-MM-DD"));
+
+          }
             if(followup_days=="After 10 Days")
             {
-                var today=moment().add(10,'days').format("YYYY-MM-DD");
-                document.getElementById('followup_date').value = today;
+                $("#followup_date").val(moment().add(10,'days').format("YYYY-MM-DD"));
+
             }
             if(followup_days=="After 2 Weeks")
             {
-                var today=moment().add(14,'days').format("YYYY-MM-DD");
-                document.getElementById('followup_date').value = today;
+                $("#followup_date").val(moment().add(14,'days').format("YYYY-MM-DD"));
+
             }
             if(followup_days=="After 1 Month")
             {
-                var today=moment().add(30,'days').format("YYYY-MM-DD");
-                document.getElementById('followup_date').value = today;
+                $("#followup_date").val(moment().add(30,'days').format("YYYY-MM-DD"));
+
             }
         });
 

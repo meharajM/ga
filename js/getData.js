@@ -64,6 +64,71 @@ var getData = {
         });
         return call;
     },
+    doDoctorLogin: function(data){
+        var url = "/wapi/doDoctorLogin.php";
+        var doctor_info = {
+            "doctor_email" : "bala621986@gmail.com",
+            "doctor_pwd" : "f8574e9cf2c845ac37f74c634ca80f3dff6e62bec58b4b4f35f20f8e910d81ba",
+            "hcc_id" : "1",
+            "location" : {
+                "latitude" : "-12.54896",
+                "longitude" : "50.54896"
+            },
+            "device_id" : "125894785"
+        };
+        var data = {
+            doctor_info: doctor_info,
+            session_info: session_info
+        };
+        var call = $.ajax({
+            type: "POST",
+            url: base_url+url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res,status) {
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        }).catch(function(res){
+            console.log("caught error in response"+ res);
+        });
+        return call;
+    },
+    startVideoConsultation: function(id,hs_id){
+        var url = "/wapi/startVideoConsultation.php";
+        var apmt_info = {
+            "hcc_id" : "1",
+            "doctor_id" : "1",
+            "apmt_id" : id,
+            "health_seeker_id" : hs_id,
+            "date" : ""
+        };
+        var data = {
+            apmt_info: apmt_info,
+            session_info: session_info
+        };
+        var call = $.ajax({
+            type: "POST",
+            url: base_url+url,
+            data: JSON.stringify(data),
+           dataType: 'json',
+            success: function (res,status) {
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        }).catch(function(res){
+            console.log("caught error in response"+ res);
+        });
+        return call;
+    },
     UpdatePrescriptionDetails: function (id,prescriptions) {
         var url = "/api/UpdatePrescriptionDetails.php";
         var doctorId = 1;
@@ -198,7 +263,7 @@ var getData = {
         });
         return call;
     },
-    getDoctorProfile: function(id){
+   /* getDoctorProfile: function(id){
         var url = "/wapi/getDoctorProfile.php";
         var doctorId = id;
         var hcc_id="1";
@@ -227,7 +292,7 @@ var getData = {
 
         });
         return call;
-    },
+    }, */
     closeConsultation: function (id) {
         var url = "/wapi/closeConsultation.php";
         var doctorId = 1;
@@ -281,5 +346,4 @@ var getData = {
         });
         return call;
     }
-
 }
