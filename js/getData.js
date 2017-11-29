@@ -227,7 +227,6 @@ var getData = {
             }
         }).then(function(res){
             return res;
-        }).catch(function(res){
         });
         return call;
     },

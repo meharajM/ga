@@ -322,7 +322,7 @@
                 data.consultation_id=consultation_id;
             }
             getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
-                consultation_id=res.consultation_id;
+                consultation_id=res.summary.consultation_id;
               //  index.getAppointmentDetails(appointment_id);
                 getData.getAppointmentDetails(appointment_id).then(function(res){
                     $("#close").on("click",function(evt) {
