@@ -239,6 +239,13 @@ $(document).ready(function(){
     function getDocument() {
 		getData.getDocumentBlobData()
     }
+    $("#appointment-list").on("click", function (evt) {
+        var next = $('#mytabs li.active').next();
+        next.length?
+            next.find('a').click():
+            $('#mytabs li a')[0].click();
+
+    });
 	$('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails)
 	$('.appointment-details #prescription').on('submit', addPrescription)
 	//$('#start-vedio-consultation').on('click', startVedio)
