@@ -91,7 +91,7 @@
 
         <p>
         <b>Attached Documents</b><br>
-        <a href="#" target="_blank" class="embedURL">Sugar Test</a><br>
+        <a href="http://52.66.157.195/growayu/ganewdesign/pdfs/{{health_record.[name]}}" target="_blank" class="embedURL">Sugar Test</a><br>
         <a href="reports/blood_test.pdf" target="_blank" class="embedURL">Blood Test</a><br>
         <a href="reports/urine_test.pdf" target="_blank" class="embedURL">Urine Culture Test</a>
         </p>
@@ -112,5 +112,112 @@
 <script src="./js/index.js"></script>
 <script src="../js/getData.js"></script>
 
+        <!--<div class="col-2 ">-->
+
+        <!--</div>-->
+        <!--<div class="col-8 ">-->
+            <!--<form class="form-inline">-->
+                <!--<input id="search" class=" form-control col-10 bg-success " type="text" placeholder="Search" />-->
+                <!--<span class=" col-2 p-0 "><img src="img/search.png"></span>-->
+            <!--</form>-->
+
+
+        <!--</div>-->
+        <!--<div class="col-2 "></div>-->
+    <!--</div>-->
+    <div class="content-container container bg-faded pt-2">
+
+
+        <div class="row mt-3 content">
+        <!-- hiding for small screen -->
+        <div class="col-3 hidden-sm-down left-container">
+            <div class="appointment-list-container">
+                <div id="filter"></div>
+                <div id="appointment-list">
+                    <ul  class="list-group"></ul>
+                </div>
+            </div>
+            <div class="col-sm-12 appointment-info video-container d-none hidden-xs-up show-full-screen">
+                <div id="hs-name-container"></div>
+                <div id="timer"><span id="minutes"></span>:<span id="seconds"></span></div>
+                <div class="row controls-group">
+                    <div class="text-center">
+                        <div id="videos" class="App-control-container">
+                            <div class="btn-danger hidden-xs-up ots-video-control circle " id="close-vedio-consultation"></div>
+                            <!-- <div id="controls" class='App-control-container hidden'> -->
+                            <div class="ots-video-control circle audio hidden-xs-up" id="toggleLocalAudio"></div>
+                            <div class="ots-video-control circle video hidden-xs-up" id="toggleLocalVideo"></div>
+                            <div class="ots-video-control circle full-screen hidden-xs-up" id="showFullScreen"></div>
+                            <div class="ots-video-control circle full-screen-off hidden-xs-up" ></div>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div id="subscriber">
+
+                </div>
+                <div id="publisher" class="hidden-xs-up"></div>
+            </div>
+        </div>
+        <!-- showing for small screen -->
+        <div class="col-12 hidden-sm-up">
+            <div id="filter"></div>
+            <ul id="appointment-list-phone" class="list-inline"></ul>
+        </div>
+        <div class="col-9 appointment-content">
+            <div class="row">
+                <div class="col-sm-12 appointment-info details d-none">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist" id="mytabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#details" role="tab"><span class="fa fa-info-circle"> </span> Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#prescription" role="tab"><span class="fa fa-plus-circle"> </span> Prescription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#summary" role="tab"><span class="fa fa-list-alt"> </span> Summary</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="btn-success btn btn-default" id="start-vedio-consultation"><span class="fa fa-video-camera"> </span></div>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="details" role="tabpanel">
+
+
+                        </div>
+                        <div class="tab-pane" id="prescription" role="tabpanel">...</div>
+                        <div class="tab-pane" id="summary" role="tabpanel">...</div>
+                    </div>
+                </div>
+                <div class="no-appointment-selected col-9 text-center">
+                    <img src="img/no_time.png" />
+                    <p>You don't have any scheduled appointments</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    <div id="toaster">Some text some message..</div>
+<!--end of body-->
+    <script src="./js/tokBoxHandlers.js"></script>
+    <script src="./js/getData.js"></script>
+    <script type="text/javascript" src="./js/index.js"></script>
 </body>
 </html>
+<script>
+    $(document).ready(function(){
+        $("#appointment-list").on("click", function (evt) {
+            var next = $('#mytabs li.active').next();
+            next.length?
+                next.find('a').click():
+                $('#mytabs li a')[0].click();
+
+        })
+    })
+
+</script>

@@ -20,11 +20,11 @@
 	<div class="form">
 		<form id="form3" method="post">
 			<div class="form-group">
-			 <div class="col-2 pull-right">
-			<button type="button" class="close" id="pres_close" aria-label="Close">
-				<span id="close-button" aria-hidden="true"><h3>&times;</h3></span>
-			</button>
-			</div>
+				<div class="col-2 pull-right">
+					<button type="button" class="close" id="pres_close" aria-label="Close">
+						<span id="close-button" aria-hidden="true"><h3>&times;</h3></span>
+					</button>
+				</div>
 			</div>
 			<div class="form-group">
 				<input type="text" placeholder="Medicine name" id="med_name" name="med_name" class="form-control" autofocus="autofocus" title="Please enter a medicine name"  required/>
@@ -120,7 +120,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<textarea class="form-control" id="exampleTextarea" name="remarks" placeholder="instructions..." rows="3"></textarea>
+				<textarea class="form-control" id="exampleTextarea" name="remarks" placeholder="remarks..." rows="3"></textarea>
 			</div>
 
 			<div class="form-group rows">
@@ -181,8 +181,8 @@
             ev.stopPropagation();
         });
         $("#close-button").on('click', function (ev) {
-			$('.form').hide(1000);
-			ev.stopPropagation();
+            $('.form').hide(1000);
+            ev.stopPropagation();
         })
         var showPrescriptions = function(prescriptions_list){
             var source   = $("#prescriptiontable").html();
@@ -219,10 +219,10 @@
             var duration=data.days || data.weeks ||  data.months;
             data.course=data.course+' '+duration;
             if($('.form').attr('data-id')){
-				data.prescription_id = $('.form').attr('data-id')
-				prescription_data = prescription_data.filter(function(p){
-				    return p.prescription_id != data.prescription_id;
-				})
+                data.prescription_id = $('.form').attr('data-id')
+                prescription_data = prescription_data.filter(function(p){
+                    return p.prescription_id != data.prescription_id;
+                })
             }
             prescription_data.push(data);
             showPrescriptions(prescription_data);
@@ -232,7 +232,6 @@
         $("#save_continue").on("click",function(evt) {
             getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then (function (res) {
                 showPrescriptions(res.prescription_details);
-                prescription_data = res.prescription_details;
                 var next = $('#mytabs li.active').next();
                 next.length?
                     next.find('a').click():
@@ -240,43 +239,43 @@
             });
             evt.preventDefault();
         });
-		$('#tab1').on('click', '.edit' ,function (ev) {
-		    debugger
-			var id = ev.currentTarget.id.split('_')[1];
-			var prescription = prescription_data.filter(function (p) {
-				return p.prescription_id == id
+        $('#tab1').on('click', '.edit' ,function (ev) {
+            debugger
+            var id = ev.currentTarget.id.split('_')[1];
+            var prescription = prescription_data.filter(function (p) {
+                return p.prescription_id == id
             });
-			if(prescription.length){
-			    prescription = prescription[0];
-			}
-			$('.form').attr('data-id', prescription.prescription_id);
-			$('#med_name').val(prescription.med_name);
-			$('.med_type_div option[value="'+prescription.med_type+'"]').attr('selected', true);
-			$('.dosage-div option[value="'+prescription.dosage.split(' ')[0]+'"]').attr('selected', true);
-			$('.medicin-unit .dosage-mg').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'mg' ? 'active' : '');
-			$('.medicin-unit .dosage-ml').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'ml' ?'active' : '');
+            if(prescription.length){
+                prescription = prescription[0];
+            }
+            $('.form').attr('data-id', prescription.prescription_id);
+            $('#med_name').val(prescription.med_name);
+            $('.med_type_div option[value="'+prescription.med_type+'"]').attr('selected', true);
+            $('.dosage-div option[value="'+prescription.dosage.split(' ')[0]+'"]').attr('selected', true);
+            $('.medicin-unit .dosage-mg').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'mg' ? 'active' : '');
+            $('.medicin-unit .dosage-ml').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'ml' ?'active' : '');
             $('.timings #mrng').removeAttr('checked').attr('checked', prescription.frequency.split('-')[0] == 1);
-			$('.timings #noon').removeAttr('checked').attr('checked', prescription.frequency.split('-')[1] == 1);
-			$('.timings #night').removeAttr('checked').attr('checked', prescription.frequency.split('-')[2] == 1);
+            $('.timings #noon').removeAttr('checked').attr('checked', prescription.frequency.split('-')[1] == 1);
+            $('.timings #night').removeAttr('checked').attr('checked', prescription.frequency.split('-')[2] == 1);
             $('.timings .morning').removeClass('active').addClass( prescription.frequency.split('-')[0] == 1 ? 'active' : '');
             $('.timings .noon').removeClass('active').addClass( prescription.frequency.split('-')[1] == 1 ? 'active' : '');
             $('.timings .night').removeClass('active').addClass(prescription.frequency.split('-')[2] == 1 ? 'active' : '');
-			$('input[name="med_dosage_text"]').val(prescription.med_dosage_text ? prescription.med_dosage_text : '');
-			$('input[name="course"]').val(prescription.course.split(' ')[0]);
+            $('input[name="med_dosage_text"]').val(prescription.med_dosage_text ? prescription.med_dosage_text : '');
+            $('input[name="course"]').val(prescription.course.split(' ')[0]);
             $('input[name="'+prescription.course.split(' ')[1]+'"]').attr('checked', true);
             $('.food .food_timings_before').removeClass('active').addClass(prescription.med_intake == 'Before Food' ? 'active' : '');
-			$('.food .food_timings_after').removeClass('active').addClass(prescription.med_intake == 'After Food' ? 'active' : '');
-			$('textarea[name="remarks"]').text(prescription.remarks);
-			$('.form').show(1000);
+            $('.food .food_timings_after').removeClass('active').addClass(prescription.med_intake == 'After Food' ? 'active' : '');
+            $('textarea[name="remarks"]').text(prescription.remarks);
+            $('.form').show(1000);
         });
         $('#tab1').on('click', '.delete',  function (ev) {
             var id = ev.currentTarget.id.split('_')[1];
             prescription_data = prescription_data.map(function (p) {
                 if(p.prescription_id == id){
                     p.delete_flag = 'Y';
-				}
-				return p;
-			});
+                }
+                return p;
+            });
             showPrescriptions(prescription_data);
         });
         /*	$("#autocomplete").autocomplete(function (evt) {

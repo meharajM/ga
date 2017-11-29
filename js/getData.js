@@ -366,9 +366,11 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res, status){
+                alert("success in blob");
                 return res;
             },
             error: function (err, status) {
+                alert("error in blob");
                 console.error(err, status);
             }
         });
