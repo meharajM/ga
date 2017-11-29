@@ -43,6 +43,17 @@ $(document).ready(function(){
 
             });
 
+			$("#blob").on("click", function (evt) {
+				getData.getDocumentBlobData(hs_id).then(function (res) {
+					var encodedString = res.document.doc_data;
+					var decodedString = atob(encodedString);
+					console.log(decodedString);
+                    $(".pdf").html(decodedString);
+
+                });
+				evt.preventDefault();
+            })
+
            // getData.getDocumentBlobData(hs_id);
 			apmt_status=res.appointments_details.appointment_det.apmt_status;
 			prescriptions_list=res.appointments_details.consultation_details.prescription_details;
