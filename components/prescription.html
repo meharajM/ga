@@ -4,11 +4,11 @@
 	<tr>
 		<td>{{med_type}}</td>
 		<td>{{med_name}}</td>
-		<td>{{med_dosage}}</td>
-		<td>{{med_timings}}</td>
-		<td>{{med_duration}}</td>
-		<td>{{food_timings}}</td>
-		<td>{{instructions}}</td>
+		<td>{{dosage}}</td>
+		<td>{{frequency}}</td>
+		<td>{{course}}</td>
+		<td>{{med_intake}}</td>
+		<td>{{remarks}}</td>
 		<td>
 			<span class="edit" id="e_{{prescription_id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
 			<span class="delete" id="d_{{prescription_id}}"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></span>
@@ -45,7 +45,7 @@
 			<div class="form-group row">
 				<label for="type" class="col-sm-2 col-form-label"><strong>Dosages</strong></label>
 				<div class="col-sm-6 dosage-div">
-					<select class="custom-select form-control" name="med_dosage">
+					<select class="custom-select form-control" name="dosage">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -88,7 +88,7 @@
 
 				<label for="type" class="col-form-label col-sm-2"><strong>Duration</strong></label>
 				<div class="col-sm-2">
-					<input type="text" name="med_duration" class="form-control">
+					<input type="text" name="course" class="form-control">
 				</div>
 				<div class="col-sm-5">
 					<div class="btn-group duration" data-toggle="buttons">
@@ -111,16 +111,16 @@
 				<div class="col-sm-10">
 					<div class="btn-group food" data-toggle="buttons">
 						<label class="btn btn-sm btn-light active food_timings_before">
-							<input type="radio" name="food_timings" value="Before Food" autocomplete="off" checked>Before
+							<input type="radio" name="med_intake" value="Before Food" autocomplete="off" checked>Before
 						</label>
 						<label class="btn btn-sm btn-light food_timings_after">
-							<input type="radio" name="food_timings" value="After Food" autocomplete="off">After
+							<input type="radio" name="med_intake" value="After Food" autocomplete="off">After
 						</label>
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
-				<textarea class="form-control" id="exampleTextarea" name="instructions" placeholder="instructions..." rows="3"></textarea>
+				<textarea class="form-control" id="exampleTextarea" name="remarks" placeholder="instructions..." rows="3"></textarea>
 			</div>
 
 			<div class="form-group rows">
@@ -214,10 +214,10 @@
             });
             debugger
 
-            data.med_dosage=data.med_dosage+' '+data.dosage_uom;
-            data.med_timings=Number(!!data.timings_morning)+'-'+Number(!!data.timings_afternoon)+'-'+Number(!!data.timings_night);
+            data.dosage=data.dosage+' '+data.dosage_uom;
+            data.frequency=Number(!!data.timings_morning)+'-'+Number(!!data.timings_afternoon)+'-'+Number(!!data.timings_night);
             var duration=data.days || data.weeks ||  data.months;
-            data.med_duration=data.med_duration+' '+duration;
+            data.course=data.course+' '+duration;
             if($('.form').attr('data-id')){
 				data.prescription_id = $('.form').attr('data-id')
 				prescription_data = prescription_data.filter(function(p){
@@ -232,7 +232,8 @@
         $("#save_continue").on("click",function(evt) {
             getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then (function (res) {
                 showPrescriptions(res.prescription_details);
-               var next = $('#mytabs li.active').next();
+                prescription_data = res.prescription_details;
+                var next = $('#mytabs li.active').next();
                 next.length?
                     next.find('a').click():
                     $('#mytabs li a')[2].click();
@@ -251,21 +252,21 @@
 			$('.form').attr('data-id', prescription.prescription_id);
 			$('#med_name').val(prescription.med_name);
 			$('.med_type_div option[value="'+prescription.med_type+'"]').attr('selected', true);
-			$('.dosage-div option[value="'+prescription.med_dosage.split(' ')[0]+'"]').attr('selected', true);
-			$('.medicin-unit .dosage-mg').removeClass('active').addClass(prescription.med_dosage.split(' ')[1] == 'mg' ? 'active' : '');
-			$('.medicin-unit .dosage-ml').removeClass('active').addClass(prescription.med_dosage.split(' ')[1] == 'ml' ?'active' : '');
-            $('.timings #mrng').removeAttr('checked').attr('checked', prescription.med_timings.split('-')[0] == 1);
-			$('.timings #noon').removeAttr('checked').attr('checked', prescription.med_timings.split('-')[1] == 1);
-			$('.timings #night').removeAttr('checked').attr('checked', prescription.med_timings.split('-')[2] == 1);
-            $('.timings .morning').removeClass('active').addClass( prescription.med_timings.split('-')[0] == 1 ? 'active' : '');
-            $('.timings .noon').removeClass('active').addClass( prescription.med_timings.split('-')[1] == 1 ? 'active' : '');
-            $('.timings .night').removeClass('active').addClass(prescription.med_timings.split('-')[2] == 1 ? 'active' : '');
+			$('.dosage-div option[value="'+prescription.dosage.split(' ')[0]+'"]').attr('selected', true);
+			$('.medicin-unit .dosage-mg').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'mg' ? 'active' : '');
+			$('.medicin-unit .dosage-ml').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'ml' ?'active' : '');
+            $('.timings #mrng').removeAttr('checked').attr('checked', prescription.frequency.split('-')[0] == 1);
+			$('.timings #noon').removeAttr('checked').attr('checked', prescription.frequency.split('-')[1] == 1);
+			$('.timings #night').removeAttr('checked').attr('checked', prescription.frequency.split('-')[2] == 1);
+            $('.timings .morning').removeClass('active').addClass( prescription.frequency.split('-')[0] == 1 ? 'active' : '');
+            $('.timings .noon').removeClass('active').addClass( prescription.frequency.split('-')[1] == 1 ? 'active' : '');
+            $('.timings .night').removeClass('active').addClass(prescription.frequency.split('-')[2] == 1 ? 'active' : '');
 			$('input[name="med_dosage_text"]').val(prescription.med_dosage_text ? prescription.med_dosage_text : '');
-			$('input[name="med_duration"]').val(prescription.med_duration.split(' ')[0]);
-            $('input[name="'+prescription.med_duration.split(' ')[1]+'"]').attr('checked', true);
-            $('.food .food_timings_before').removeClass('active').addClass(prescription.food_timings == 'Before Food' ? 'active' : '');
-			$('.food .food_timings_after').removeClass('active').addClass(prescription.food_timings == 'After Food' ? 'active' : '');
-			$('textarea[name="instructions"]').text(prescription.instructions);
+			$('input[name="course"]').val(prescription.course.split(' ')[0]);
+            $('input[name="'+prescription.course.split(' ')[1]+'"]').attr('checked', true);
+            $('.food .food_timings_before').removeClass('active').addClass(prescription.med_intake == 'Before Food' ? 'active' : '');
+			$('.food .food_timings_after').removeClass('active').addClass(prescription.med_intake == 'After Food' ? 'active' : '');
+			$('textarea[name="remarks"]').text(prescription.remarks);
 			$('.form').show(1000);
         });
         $('#tab1').on('click', '.delete',  function (ev) {
