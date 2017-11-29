@@ -49,7 +49,7 @@
 
             <form id="form4" method="get">
                 <div class="form-group">
-                    <label class="control-label required field" for="diagnosis"><strong>Patient Diagnosis / Diagnoses</strong><span class="asteriskField">*</span></label>
+                    <label class="control-label required field" for="diagnosis"><b>Patient Diagnosis / Diagnoses</b><span class="asteriskField">*</span></label>
 
                     <div class="input-group">
                         <input class="form-control" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" required />
@@ -59,7 +59,7 @@
 
                 <div class="form-group">
 
-                    <label class="control-label required field" for="plan"><strong>Management Plan / Advice</strong><span class="asteriskField">*</span></label>
+                    <label class="control-label required field" for="plan"><b>Management Plan / Advice</b><span class="asteriskField">*</span></label>
 
                     <div class="input-group">
                         <textarea class="form-control" cols="40" id="advice" name="mgmt_plan" rows="3" placeholder="Enter Management Plan"  title="Please enter details" required></textarea>
@@ -68,7 +68,7 @@
 
                 <div class="form-group">
                     <label class="control-label" for="radio">
-                        <strong> Changes made to current medication?</strong>
+                        <b> Changes made to current medication?</b>
                     </label>
                     <div class="form-group row">
                         <div class="col-sm-4">
@@ -88,7 +88,7 @@
                 <div class="form-group">
 
                     <label class="control-label" for="waive">
-                        <strong>Waive Fee for this Consultation?</strong>
+                        <b>Waive Fee for this Consultation?</b>
                     </label>
                     <!-- <div class="row"> -->
                     <div class="form-group row">
@@ -120,7 +120,7 @@
 
                 <div class="form-group">
                     <label class="control-label" for="follow_up">
-                        <strong>Next Follow-up?</strong>
+                        <b>Next Follow-up?</b>
                     </label>
 
 
@@ -161,7 +161,7 @@
 
                 <div class="form-group">
                     <label class="control-label" for="suggested_test">
-                        <strong>Suggested Tests</strong>
+                        <b>Suggested Tests</b>
                     </label>
                     <div class="input-group">
                         <select class="test_id col-md-6" multiple="" name="suggested_test[]" id="suggested_test">
@@ -202,7 +202,7 @@
                   <input type="text" name="numbers[1.1]:number"         value="1.1"/>-->
                 <!--      <div class="form-group">
                           <label class="control-label" for="seeker_instructions">
-                              <strong>Suggested Tests</strong>
+                              <b>Suggested Tests</b>
                           </label>
                           <select multiple class="form-control" name="test_name">
                               <option name="instruction_id">Blood Test</option>
@@ -218,7 +218,7 @@
 
            <div class="form-group">
 
-                    <label class="control-label" for="suggested_invest"><strong>Suggested Investigations (Optional)</strong></label>
+                    <label class="control-label" for="suggested_invest"><b>Suggested Investigations (Optional)</b></label>
 
                     <div class="input-group">
                         <textarea class="form-control" cols="40" id="suggested_invest" name="ga_notes" rows="3"></textarea>
@@ -227,7 +227,7 @@
                 <div class="form-group ">
 
                     <label class="control-label " for="refer">
-                        <strong>  Referred to Doctor (Optional)</strong>
+                        <b>  Referred to Doctor (Optional)</b>
                     </label>
                     <div class="input-group">
                         <input class="form-control" id="refer" name="doctor_notes" type="text" />
@@ -251,12 +251,14 @@
 
         </div>
 <div class="summary_show" >
-    <br>
-    <button class="btn-primary btn-lg text-center" type="submit" id="close_consultation">Close Consultation</button>
+    <button class="btn-info btn-sm text-center" type="submit" id="preview_summary">Preview Summary</button>
+    <button class="btn-primary btn-sm text-center" type="submit" id="close_consultation">Close Consultation</button>
     <div class="pdf">
     <button class="btn-success btn-lg text-center" type="submit" id="generate_pdf">Generate PDF</button>
     </div>
-</div>
+        <div class="generate_preview">
+
+        </div>
 </div>
 
     </div>
@@ -273,8 +275,6 @@
         $(".test_id").select2({
             tags: true
         });
-
-
         $("select").on("select2:select", function (evt) {
             var element = evt.params.data.element;
             var $element = $(element);
@@ -284,6 +284,14 @@
             $(this).trigger("change");
         });
 
+        $("#preview_summary").on("click", function () {
+            $("#form4").hide();
+            getData.previewConsultationSummary(appointment_id).then(function (res) {
+                $(".generate_preview").html(res);
+
+            });
+
+        });
 
        $("#generate_pdf").hide();
         var showSummary = function(data){
@@ -309,7 +317,6 @@
                 //  else {
                 data[feild.name] = feild.value;
             });
-            debugger;
             if(consultation_id)
             {
                 data.consultation_id=consultation_id;
@@ -338,18 +345,6 @@
             evt.preventDefault();
         });
 
-        /* $("#close").on("click",function(evt) {
-             getData.closeConsultation(appointment_id);
-             evt.preventDefault();
-         });*/
-
-        /* var showSummary = function(res){
-             var source   = $("#summarytable").html();
-             var template = Handlebars.compile(source);
-             var html = template(res.summary)
-             $('#summary_show').html(html);
-
-         }; */
         $('#follow_up').change(function(){
             var followup_days = $('#follow_up').val();
             if(followup_days=="After 2 Days")
@@ -407,6 +402,7 @@
                 $("#ifPartial").hide();
             }
         });
+
 
         /*
                 $("#After_1_Week").click(function(){

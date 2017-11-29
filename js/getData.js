@@ -64,37 +64,39 @@ var getData = {
         });
         return call;
     },
-    doDoctorLogin: function(data){
+    doDoctorLogin: function(username,password){
         var url = "/wapi/doDoctorLogin.php";
         var doctor_info = {
-            "doctor_email" : "bala621986@gmail.com",
-            "doctor_pwd" : "f8574e9cf2c845ac37f74c634ca80f3dff6e62bec58b4b4f35f20f8e910d81ba",
-            "hcc_id" : "1",
-            "location" : {
-                "latitude" : "-12.54896",
-                "longitude" : "50.54896"
-            },
-            "device_id" : "125894785"
+            "doctor_email": username,
+            "doctor_pwd": password,
         };
+           // "hcc_id" : "1"
+           // "location" : {
+            //    "latitude" : "-12.54896",
+             //   "longitude" : "50.54896"
+          //  },
+          //  "device_id" : "125894785"
+      // };
         var data = {
             doctor_info: doctor_info,
             session_info: session_info
         };
+        debugger;
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
+                alert("success in login");
                 return res;
             },
             error: function(err,status){
+                alert("error in login");
                 console.error(err, status);
             }
         }).then(function(res){
             return res;
-        }).catch(function(res){
-            console.log("caught error in response"+ res);
         });
         return call;
     },
@@ -226,6 +228,39 @@ var getData = {
         }).then(function(res){
             return res;
         }).catch(function(res){
+        });
+        return call;
+    },
+    previewConsultationSummary: function(id){
+        var url = "/wapi/previewConsultationSummary.php";
+        var doctorId = "1";
+        var apmt_input = {
+            apmt_id: id,
+            doctor_id: doctorId,
+            hcc_id: "",
+            date: ""
+        };
+        var data = {
+            apmt_input: apmt_input,
+            session_info: session_info
+        };
+        debugger;
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data: JSON.stringify(data),
+           // dataType: 'json',
+            success: function (res,status) {
+                alert("success in preview summary");
+
+                return res;
+            },
+            error: function(err,status){
+                alert("error in preview summary");
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
         });
         return call;
     },
