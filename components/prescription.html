@@ -180,7 +180,7 @@
             $('.form').show(1000);
             ev.stopPropagation();
         });
-        $("#close-button").on('click', function () {
+        $("#close-button").on('click', function (ev) {
 			$('.form').hide(1000);
 			ev.stopPropagation();
         })
