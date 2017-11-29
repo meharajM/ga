@@ -69,30 +69,24 @@ var getData = {
         var doctor_info = {
             "doctor_email": username,
             "doctor_pwd": password,
+            "location": {
+                "latitude": "",
+                "langitude": ""
+            },
+            "device_id": ""
         };
-           // "hcc_id" : "1"
-           // "location" : {
-            //    "latitude" : "-12.54896",
-             //   "longitude" : "50.54896"
-          //  },
-          //  "device_id" : "125894785"
-      // };
         var data = {
-            doctor_info: doctor_info,
-            session_info: session_info
+            doctor_info: doctor_info
         };
-        debugger;
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-                alert("success in login");
                 return res;
             },
             error: function(err,status){
-                alert("error in login");
                 console.error(err, status);
             }
         }).then(function(res){
