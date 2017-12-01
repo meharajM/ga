@@ -119,7 +119,8 @@ $(document).ready(function(){
                     subscriber = session.subscribe(event.stream, 'subscriber', {
                         width: '100%',
                         height: '100%',
-                        showControls: false
+                        showControls: false,
+                        fitMode: 'contain',
                     }, handleSubscriberError);
                     subscriber.on('connected', function (event) {
                     });
@@ -157,7 +158,9 @@ $(document).ready(function(){
                 insertMode: 'append',
                 width: '100%',
                 height: '100%',
-                showControls: false
+                showControls: false,
+                resolution: '1920x1280',
+				fitMode: 'contain',
             }, handleInitiatePublisherError);
             $('#publisher').draggable();
             // Connect to the session
@@ -171,6 +174,8 @@ $(document).ready(function(){
             });
             $('.appointment-list-container').addClass('hidden-xs-up');
             $('.video-container').removeClass('hidden-xs-up');
+            $('.left-container').removeClass('col-3').addClass('col-5');
+            $('.appointment-content').removeClass('col-9').addClass('col-7');
             $($('.video-container')[0]).scrollTop(200);
             $('#start-vedio-consultation').addClass('hidden-xs-up')
             $('#close-vedio-consultation').removeClass('hidden-xs-up')
@@ -191,9 +196,9 @@ $(document).ready(function(){
 		if(vedioSession){
 			vedioSession.session.disconnect()
             $('.video-container').addClass('hidden-xs-up');
-			$('.left-container').removeClass('col-12').addClass('col-3');
+			$('.left-container').removeClass('col-12').removeClass('col-5').addClass('col-3');
             $('.appointment-list-container').removeClass('hidden-xs-up');
-            $('.appointment-content').removeClass('hidden-xs-up');
+            $('.appointment-content').removeClass('hidden-xs-up').removeClass('col-7').addClass('col-9');
             $('#start-vedio-consultation').removeClass('hidden-xs-up')
 	 		$('#close-vedio-consultation').addClass('hidden-xs-up')
 	 		$('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');
