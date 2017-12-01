@@ -1,30 +1,30 @@
-var appointment_id, hs_id,hcc_id,sessionId,token,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, appointment,apmt_type,consultation_id,record_id;
+var appointment_id, hs_id,hcc_id,appointment_list,sessionId,token,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, appointment,apmt_type,consultation_id,record_id;
 var showToaster;
 var apiKey = "45638452";
 function showMessage(message) {
     $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
 }
 $(document).ready(function(){
-	$('#filter').load('./components/filter.html');
+
 	var actualDate=new Date();
     var date=moment(actualDate).format("YYYYMMDD");
     getData.getDashboardData(date).then(function(res){
-		showDashboardDetails(res);
+        $('#filter').load('./components/filter.html');
+        appointment_list=res.appointments_details.appointment;
+    	showDashboardDetails(res);
 	});
-    //getData.getDoctorProfile(2);
 
 	/*getting appointment details*/
-
 	var getAppointmentDetails = function(ev){
 		appointment_id = ev.currentTarget.id;
 		getData.getAppointmentDetails(appointment_id).then(function(res){
-		    $('.no-appointment-selected').addClass('d-none')
-		    $('.appointment-info').removeClass('d-none')
+		    $('.no-appointment-selected').addClass('d-none');
+		    $('.appointment-info').removeClass('d-none');
 		    var source = $('#detailsTemplate').html();
             var template = Handlebars.compile(source);
             var html = template(res.appointments_details);
-            $('#details').html(html)
-            $('#prescription').load('./components/prescription.html')
+            $('#details').html(html);
+            $('#prescription').load('./components/prescription.html');
 			if(res.appointments_details.appointment_det.apmt_type != "VC"){
 				$('#start-vedio-consultation').hide();
 			}else{
@@ -32,9 +32,7 @@ $(document).ready(function(){
 			}
             hs_id = res.appointments_details.health_seeker_profile.hs_id;
 			$("#start-vedio-consultation").on("click",function (vid) {
-
 				getData.startVideoConsultation(appointment_id,hs_id).then(function (res) {
-
 					sessionId=res.video_session_det.session;
 					token=res.video_session_det.token;
 					startVedio();
@@ -42,40 +40,52 @@ $(document).ready(function(){
 				vid.preventDefault();
 
             });
+            $(".health_record").on("click", function (evt) {
+                getData.getDocumentBlobData(hs_id).then(function (res) {
+                	var data=res.document.doc_data;
+					debugger;
+                    objbuilder = '';
+                    objbuilder += ('<object data="data:application/pdf;base64,'+data+'" class="pdfcontent">');
+                    objbuilder += ('<embed width=200% height=200% src="data:application/pdf;base64,'+data+' class="pdfdata" />');
+                    objbuilder += ('</object>');
+                    $('#record_preview').html(objbuilder);
 
-           // getData.getDocumentBlobData(hs_id);
-			apmt_status=res.appointments_details.appointment_det.apmt_status;
+
+                //	$("#record_preview").html('<iframe src="data:application/pdf;base64," height="100%" width="100%"></iframe>');
+                	//debugger;
+
+                });
+			evt.preventDefault();
+            });
+
+
+            apmt_status=res.appointments_details.appointment_det.apmt_status;
 			prescriptions_list=res.appointments_details.consultation_details.prescription_details;
 			//summary_details=res.appointments_details.consultation_details.consultation_summary;
 			appointment=res.appointments_details;
-			//alert(summary_list);
             $('#prescription').load('./components/prescription.html');
             $('#summary').load('./components/summary.html');
 
-          if(apmt_status=="closed")
-			{
-				$("#badge-button").html('<span class="badge badge-pill badge-success">Closed</span>');
-			}
-			else if(apmt_status=="booked")
-			{
-                $("#badge-button").html('<span class="badge badge-pill badge-warning">Pending</span>');
-            }
 
         }).catch(function(a,b){
 		})
 	};
 	showDashboardDetails=function(res){
-        $('#total').text(res.appointments_details.appointment_summary.total);
-        $('#pending').text(res.appointments_details.appointment_summary.pending);
-        $('#missed').text(res.appointments_details.appointment_summary.missed);
+		if(res.appointments_details.appointment_summary)
+		{
+            $('#all_button').text(res.appointments_details.appointment_summary.total);
+            $('#pending_button').text(res.appointments_details.appointment_summary.pending);
+            $('#closed_button').text(res.appointments_details.appointment_summary.missed);
+        }
        // $('#shcedule-date').text(res.appointments_details.appointment[0].appointment_date);
         var source   = $("#appointmentTemplate").html();
         var template = Handlebars.compile(source);
+
         var html = template(res.appointments_details);
 
         if($(window).width() < 500){
-            $('#appointment-list-phone').html(html)
-            $('#appointment-list-phone').removeClass('list-group').addClass('list-inline')
+            $('#appointment-list-phone').html(html);
+            $('#appointment-list-phone').removeClass('list-group').addClass('list-inline');
             $('#appointment-list-phone .list-group-item').removeClass('list-group-item').addClass('list-inline-item')
         }else{
             $('#appointment-list').html(html)
@@ -83,7 +93,9 @@ $(document).ready(function(){
         next_apmt_date=res.appointments_details.next_appointment_date;
         prev_apmt_date=res.appointments_details.prev_appointment_date;
       //  hcc_id=res.appointment_details.appointments[0].hcc_det.hcc_id;
-	};
+		$(".PC").html('<i class="fa fa-user"></i>');
+        $(".VC").html('<i class="fa fa-caret-square-o-right"></i>');
+    };
 	var addPrescription = function(ev){
 
 	};
@@ -236,9 +248,12 @@ $(document).ready(function(){
         // After 3 seconds, remove the show class from DIV
         setTimeout(function(){ x.removeClass("show"); x.html('')}, 1000);
     }
-    function getDocument() {
-		getData.getDocumentBlobData()
-    }
+    //function getDocument() {
+	//	debugger;
+
+
+
+
     $("#appointment-list").on("click", function (evt) {
         var next = $('#mytabs li.active').next();
         next.length?
@@ -246,13 +261,13 @@ $(document).ready(function(){
             $('#mytabs li a')[0].click();
 
     });
-	$('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails)
-	$('.appointment-details #prescription').on('submit', addPrescription)
+	$('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails);
+	$('.appointment-details #prescription').on('submit', addPrescription);
 	//$('#start-vedio-consultation').on('click', startVedio)
-	$('#close-vedio-consultation').on('click', stopVideo)
-	$('#toggleLocalAudio').on('click', muteAudio)
-	$('#toggleLocalVideo').on('click', muteVideo)
-	$('.full-screen').on('click', showFullScreen)
-	$('.App-control-container').on('click', '.full-screen-off', removeFullScreen)
-	$('.embedURL').on('click', getDocument);
-})
+	$('#close-vedio-consultation').on('click', stopVideo);
+	$('#toggleLocalAudio').on('click', muteAudio);
+	$('#toggleLocalVideo').on('click', muteVideo);
+	$('.full-screen').on('click', showFullScreen);
+	$('.App-control-container').on('click', '.full-screen-off', removeFullScreen);
+	//$('.health_record').on('click', getDocument);
+});

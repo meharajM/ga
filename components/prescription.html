@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/css/select2.min.css" />
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/js/select2.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
 <script  type="text/x-handlebars-template" id="prescriptiontable">
 	{{#prescription}}
@@ -20,6 +23,7 @@
 	<div class="form">
 		<form id="form3" method="post">
 			<div class="form-group">
+
 				<div class="col-2 pull-right">
 					<button type="button" class="close" id="pres_close" aria-label="Close">
 						<span id="close-button" aria-hidden="true"><h3>&times;</h3></span>
@@ -27,14 +31,18 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="text" placeholder="Medicine name" id="med_name" name="med_name" class="form-control" autofocus="autofocus" title="Please enter a medicine name"  required/>
-				<div id="suggesstion-box"></div><p id="demo"></p>
+				<!--<input type="text" placeholder="Medicine name" id="med_name" name="med_name" class="form-control" autofocus="autofocus" title="Please enter a medicine name" required/>
+				<div id="suggesstion-box"></div><p id="demo"></p>-->
+				<select class="med_search form-control" name="med_search" id="med_search">
+					<option>Medicine name</option>
+				</select>
+				<input type="text" class="hidden-xs-up" name="med_name" id="med_name">
 			</div>
 			<div class="form-group row">
-				<label for="type" class="col-sm-2 col-form-label"><strong>Type</strong></label>
-				<div class="col-sm-10 med_type_div">
-					<select class="custom-select form-control" name="med_type" pattern="Select the medicine type" required>
-						<option value="" selected><strong>Select medicine type</strong></option>
+				<label for="type" class="col-sm-2 col-form-label"><b>Type</b></label>
+				<div class="col-sm-10">
+					<select class="custom-select form-control" name="med_type" required>
+						<option value="" selected><b>Select medicine type</b></option>
 						<option value="Pills">Pills</option>
 						<option value="Injection">Injection</option>
 						<option value="Syrup">Syrup</option>
@@ -65,7 +73,7 @@
 				</div>
 			</div>
 			<div class="form-group row timings">
-				<label for="type" class="col-sm-2 col-form-label"><strong>When</strong></label>
+				<label for="type" class="col-sm-2 col-form-label"><b>When</b></label>
 				<div class="col-sm-10">
 					<div class="btn-group" data-toggle="buttons">
 						<label class="btn btn-lg morning active">
@@ -80,13 +88,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="text-center form-group"><strong>or</strong></div>
+			<div class="text-center form-group"><b>or</b></div>
 			<div class="form-group">
 				<input type="text" name="med_dosage_text" placeholder="specify" class="form-control">
 			</div>
 			<div class="form-group row">
 
-				<label for="type" class="col-form-label col-sm-2"><strong>Duration</strong></label>
+				<label for="type" class="col-form-label col-sm-2"><b>Duration</b></label>
 				<div class="col-sm-2">
 					<input type="text" name="course" class="form-control">
 				</div>
@@ -106,7 +114,7 @@
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-2">
-					<label for="type" class="col-form-label"><strong>Food</strong></label>
+					<label for="type" class="col-form-label"><b>Food</b></label>
 				</div>
 				<div class="col-sm-10">
 					<div class="btn-group food" data-toggle="buttons">
@@ -132,10 +140,13 @@
 	<hr/>
 	<div>
 		<div class="row">
-			<div class="col-10">
-				<strong>Prescribed Medications</strong>
+			<div class="col-7">
+				<b>Prescribed Medications</b>
 			</div>
-			<div class="col-2">
+			<div class="col-3 pull-right">
+				<select class="template_name form-control" name="template_name" id="template_name">	</select>
+			</div>
+			<div class="col-1">
 				<div id="add" class="btn btn-default fa fa-plus float-right btn-primary btn-sm"></div>
 			</div>
 		</div>
@@ -169,33 +180,114 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        var prescription_data=[];
-        if(prescriptions_list)
-        {
-            prescription_data=prescriptions_list;
+    $(document).ready(function() {
+        var prescription_data = [];
+        $("#template_name").select2({
+            width: '200px',
+            tags: true,
+            placeholder: "Search for a template",
+            allowClear: true,
+            ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+                type: "post",
+                url: "http://52.66.157.195/growayu/ganewdesign/wapi/getPrescriptionTemplateList.php",
+                dataType: 'json',
+           //     contentType: 'application/json; charset=UTF-8',
+                quietMillis: 250,
+                data: function (term) {
+                    return {
+                        template_id: term
+                      }
+                },
+                processResults: function (data) { // parse the results into the format expected by Select2.
+                    // since we are using custom formatting functions we do not need to alter the remote JSON data
+
+                    return {
+                        results: $.map(data.template_det, function (smthg) {
+                            return {id: smthg.template_id, text: smthg.template_name}
+                        })
+                    };
+                }
+            },
+            cache: true
+
+
+
+
+		});
+
+        $("#med_search").select2({
+            width: '300px',
+            tags: true,
+            minimumInputLength: 3,
+            placeholder: "Select a medicine",
+            allowClear: true,
+            ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+                type: "post",
+                url: "http://52.66.157.195/growayu/ganewdesign/wapi/getMymedicineList.php",
+                dataType: 'json',
+             //   contentType: 'application/json; charset=UTF-8',
+                quietMillis: 250,
+                data: function (term) {
+                    return {
+                        doctor_id: 1,
+                        med_name: term
+                    }
+                },
+                processResults: function (data) { // parse the results into the format expected by Select2.
+                    // since we are using custom formatting functions we do not need to alter the remote JSON data
+
+                    return {
+                        results: $.map(data.medicine_list, function (smthg) {
+                            return {id: smthg.med_id, text: smthg.med_brand_name}
+                        })
+                    };
+                }
+            },
+            cache: true
+            // formatSelection: formatSelection
+        });
+
+        $("select").on("select2:select", function (evt) {
+            var element = evt.params.data.element;
+            var $element = $(element);
+
+            $element.detach();
+            $(this).append($element);
+            $(this).trigger("change");
+        });
+        $('#med_search').change(function(){
+            var med_name = $('#med_search').val();
+            $("#med_name").val=med_name;
+            alert("med name:"+med_name);
+        });
+
+        if (prescriptions_list) {
+            prescription_data = prescriptions_list;
         }
         $('.form').hide();
-        $('#add').on('click', function(ev){
+        $('#add').on('click', function (ev) {
+            $("#form3").get(0).reset();
             $('.form').show(1000);
             ev.stopPropagation();
         });
         $("#close-button").on('click', function (ev) {
             $('.form').hide(1000);
+            $("#form3").get(0).reset();
+            $("#med_name").select2("val", "");
             ev.stopPropagation();
         })
-        var showPrescriptions = function(prescriptions_list){
-            var source   = $("#prescriptiontable").html();
+        var showPrescriptions = function (prescriptions_list) {
+            var source = $("#prescriptiontable").html();
             var template = Handlebars.compile(source);
             var rows = prescriptions_list.map(function (data) {
-                if(!data.delete_flag || data.delete_flag != 'Y'){
+                if (!data.delete_flag || data.delete_flag != 'Y') {
                     return template({prescription: data});
                 }
                 //alert(({prescription:data}));
             });
             $('#tab1').html(rows.join(''));
         };
-        if(apmt_status=="closed") {
+        if (apmt_status == "closed") {
             $("#add").hide();
             $("#save_continue").hide();
             $("#strong").hide();
@@ -204,23 +296,22 @@
         }
         //  $("#form4").hide()
         showPrescriptions(prescription_data);
-        $("#add-prescription").click(function(evt){
-            var formData=$("#form3").serializeArray();
+        $("#add-prescription").click(function (evt) {
+            var formData = $("#form3").serializeArray();
             evt.preventDefault();
 
-            var data={};
-            formData.map(function(feild){
-                data[feild.name]=feild.value;
+            var data = {};
+            formData.map(function (feild) {
+                data[feild.name] = feild.value;
             });
-            debugger
 
-            data.dosage=data.dosage+' '+data.dosage_uom;
-            data.frequency=Number(!!data.timings_morning)+'-'+Number(!!data.timings_afternoon)+'-'+Number(!!data.timings_night);
-            var duration=data.days || data.weeks ||  data.months;
-            data.course=data.course+' '+duration;
-            if($('.form').attr('data-id')){
+            data.dosage = data.dosage + ' ' + data.dosage_uom;
+            data.frequency = Number(!!data.timings_morning) + '-' + Number(!!data.timings_afternoon) + '-' + Number(!!data.timings_night);
+            var duration = data.days || data.weeks || data.months;
+            data.course = data.course + ' ' + duration;
+            if ($('.form').attr('data-id')) {
                 data.prescription_id = $('.form').attr('data-id')
-                prescription_data = prescription_data.filter(function(p){
+                prescription_data = prescription_data.filter(function (p) {
                     return p.prescription_id != data.prescription_id;
                 })
             }
@@ -229,71 +320,69 @@
             $('.form').hide(1000);
             //$("#form3").get(0).reset();
         });
-        $("#save_continue").on("click",function(evt) {
-            getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then (function (res) {
+        $("#save_continue").on("click", function (evt) {
+            getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
                 showPrescriptions(res.prescription_details);
                 var next = $('#mytabs li.active').next();
-                next.length?
-                    next.find('a').click():
+                next.length ?
+                    next.find('a').click() :
                     $('#mytabs li a')[2].click();
             });
             evt.preventDefault();
         });
-        $('#tab1').on('click', '.edit' ,function (ev) {
-            debugger
+        $('#tab1').on('click', '.edit', function (ev) {
             var id = ev.currentTarget.id.split('_')[1];
             var prescription = prescription_data.filter(function (p) {
                 return p.prescription_id == id
             });
-            if(prescription.length){
+            if (prescription.length) {
                 prescription = prescription[0];
             }
             $('.form').attr('data-id', prescription.prescription_id);
             $('#med_name').val(prescription.med_name);
-            $('.med_type_div option[value="'+prescription.med_type+'"]').attr('selected', true);
-            $('.dosage-div option[value="'+prescription.dosage.split(' ')[0]+'"]').attr('selected', true);
+            $('.med_type_div option[value="' + prescription.med_type + '"]').attr('selected', true);
+            $('.dosage-div option[value="' + prescription.dosage.split(' ')[0] + '"]').attr('selected', true);
             $('.medicin-unit .dosage-mg').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'mg' ? 'active' : '');
-            $('.medicin-unit .dosage-ml').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'ml' ?'active' : '');
+            $('.medicin-unit .dosage-ml').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'ml' ? 'active' : '');
             $('.timings #mrng').removeAttr('checked').attr('checked', prescription.frequency.split('-')[0] == 1);
             $('.timings #noon').removeAttr('checked').attr('checked', prescription.frequency.split('-')[1] == 1);
             $('.timings #night').removeAttr('checked').attr('checked', prescription.frequency.split('-')[2] == 1);
-            $('.timings .morning').removeClass('active').addClass( prescription.frequency.split('-')[0] == 1 ? 'active' : '');
-            $('.timings .noon').removeClass('active').addClass( prescription.frequency.split('-')[1] == 1 ? 'active' : '');
+            $('.timings .morning').removeClass('active').addClass(prescription.frequency.split('-')[0] == 1 ? 'active' : '');
+            $('.timings .noon').removeClass('active').addClass(prescription.frequency.split('-')[1] == 1 ? 'active' : '');
             $('.timings .night').removeClass('active').addClass(prescription.frequency.split('-')[2] == 1 ? 'active' : '');
             $('input[name="med_dosage_text"]').val(prescription.med_dosage_text ? prescription.med_dosage_text : '');
             $('input[name="course"]').val(prescription.course.split(' ')[0]);
-            $('input[name="'+prescription.course.split(' ')[1]+'"]').attr('checked', true);
+            $('input[name="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
             $('.food .food_timings_before').removeClass('active').addClass(prescription.med_intake == 'Before Food' ? 'active' : '');
             $('.food .food_timings_after').removeClass('active').addClass(prescription.med_intake == 'After Food' ? 'active' : '');
             $('textarea[name="remarks"]').text(prescription.remarks);
             $('.form').show(1000);
         });
-        $('#tab1').on('click', '.delete',  function (ev) {
+        $('#tab1').on('click', '.delete', function (ev) {
             var id = ev.currentTarget.id.split('_')[1];
             prescription_data = prescription_data.map(function (p) {
-                if(p.prescription_id == id){
+                if (p.prescription_id == id) {
                     p.delete_flag = 'Y';
                 }
                 return p;
             });
             showPrescriptions(prescription_data);
         });
+    })
         /*	$("#autocomplete").autocomplete(function (evt) {
                 getData.getMymedicineList(med);
                 evt.preventDefault();
             });
     */
-        /*$("#autocomplete").autocomplete(function(evt){
-            debugger
-            var formData=$("#autocomplete").serializeArray();
-            var data={};
-            formData.map(function(feild){
-                data[feild.name]=feild.value;
-            });
-            medicine_data.push(data);
-            getData.getMymedicineList(medicine_data);
-            evt.preventDefault();
-        });*/
-
-    });
+            /*$("#autocomplete").autocomplete(function(evt){
+                debugger
+                var formData=$("#autocomplete").serializeArray();
+                var data={};
+                formData.map(function(feild){
+                    data[feild.name]=feild.value;
+                });
+                medicine_data.push(data);
+                getData.getMymedicineList(medicine_data);
+                evt.preventDefault();
+            });*/
 </script>
