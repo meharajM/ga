@@ -133,7 +133,7 @@ $(document).ready(function(){
             session.on('sessionDisconnected', function (event) {
                if (event.reason === 'networkDisconnected') {
                     event.preventDefault();
-                    var subscribers = session.getSubscribersForStream(event.stream);
+                   // var subscribers = session.getSubscribersForStream(event.stream);
                     // if (subscribers.length > 0) {
                     //     var subscriber = document.getElementById(subscribers[0].id);
                     //     // Display error message inside the Subscriber
