@@ -94,24 +94,23 @@ $(document).ready(function(){
 	    alert(error.message);
 	  }
 	}
-	var publisher, subscriber;
+	var publisher, subscriber, session;
 	function initializeSession(apiKey, sessionId, token) {
 		showMessage("Checking for the Support ans system requirements")
         OT.addEventListener("exception", exceptionHandler);
 		if(OT.checkSystemRequirements()){
-			var session = OT.initSession(apiKey, sessionId);
-
-            // Subscribe to a newly created stream
+			session = OT.initSession(apiKey, sessionId);
             session.on('streamCreated', function(event) {
                 if(!publisherError){
-                    subscriber = session.subscribe(event.stream, 'subscriber', {
+                    $('#subscriber').html("<div id='subscriber-container'></div>");
+                    subscriber = session.subscribe(event.stream, 'subscriber-container', {
                         width: '100%',
                         height: '100%',
                         showControls: false,
-                        fitMode: 'contain',
                     }, handleSubscriberError);
                     subscriber.on('connected', function (event) {
                     });
+                    subscriber.on('streamDestroyed', subscriberStreamDestroyed);
                 }else{
                     showMessage("<span>"+current_appointment_details.health_seeker_profile.hs_name+" has joined the call but, App does not have access to Camera and Microphone. Please allow access to Camera ans Microphone.</span><br/>" +
                         "Fix : <a href='https://support.google.com/chrome/answer/2693767?hl=en'>Google chrome</a>, <a href='https://www.google.co.in/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiovJWr-tnXAhVIpZQKHSD8CPIQFggnMAE&url=https%3A%2F%2Fhelp.seesaw.me%2Fhc%2Fen-us%2Farticles%2F207891173-How-to-give-camera-mic-and-push-notifications-permissions-to-Seesaw&usg=AOvVaw2gUF7tM_fORFNgkbFoQkBv'>Firefox</a> " +
@@ -119,37 +118,32 @@ $(document).ready(function(){
                 }
 
             });
-            session.on({
-                streamDestroyed: function (event) {
-                	if (event.reason === 'networkDisconnected') {
-                        event.preventDefault();
-                        var subscribers = session.getSubscribersForStream(event.stream);
-                        // if (subscribers.length > 0) {
-                        //     var subscriber = document.getElementById(subscribers[0].id);
-                        //     // Display error message inside the Subscriber
-                        //     subscriber.innerHTML = 'Lost connection. This could be due to your internet connection '
-                        //         + 'or because the other party lost their connection.';
-                        //     event.preventDefault();   // Prevent the Subscriber from being removed
-                        // }
-						showMessage('Lost connection. This could be due to your internet connection '
-                            + 'or because the other party lost their connection.');
-						event.preventDefault();
-                    }
+            session.on('sessionDisconnected', function (event) {
+               if (event.reason === 'networkDisconnected') {
+                    event.preventDefault();
+                    var subscribers = session.getSubscribersForStream(event.stream);
+                    // if (subscribers.length > 0) {
+                    //     var subscriber = document.getElementById(subscribers[0].id);
+                    //     // Display error message inside the Subscriber
+                    //     subscriber.innerHTML = 'Lost connection. This could be due to your internet connection '
+                    //         + 'or because the other party lost their connection.';
+                    //     event.preventDefault();   // Prevent the Subscriber from being removed
+                    // }
+                    showMessage('Lost connection. This could be due to your internet connection '
+                        + 'or because the other party lost their connection.');
+                    event.preventDefault();
                 }
             });
-            session.on("sessionDisconnected", function(event) {
-                //on stop consultation
-            });
-
+            session.on("streamDestroyed", sessionStreamDestroyed);
             // Create a publisher
-            publisher = OT.initPublisher('publisher', {
+            $('#publisher').html("<div id='publisher-container'></div>");
+            publisher = OT.initPublisher('publisher-container', {
                 insertMode: 'append',
                 width: '100%',
                 height: '100%',
                 showControls: false,
-                resolution: '1920x1280',
-				fitMode: 'contain',
             }, handleInitiatePublisherError);
+            publisher.on('streamDestroyed', publisherStreamDestroyed);
             $('#publisher').draggable();
             // Connect to the session
             session.connect(token, function(error) {
@@ -181,8 +175,9 @@ $(document).ready(function(){
 		vedioSession = initializeSession(apiKey, sessionId, token);
 	};
 	var stopVideo = function(){
-		if(vedioSession){
-			vedioSession.session.disconnect()
+		if(session){
+		    
+		    session.disconnect()
             $('.video-container').addClass('hidden-xs-up');
 			$('.left-container').removeClass('col-12').removeClass('col-5').addClass('col-3');
             $('.appointment-list-container').removeClass('hidden-xs-up');
