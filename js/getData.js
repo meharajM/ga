@@ -29,8 +29,6 @@ var getData = {
             }
         }).then(function(res){
             return res;
-        }).catch(function(res){
-            console.log("caught error in response"+ res);
         });
         return call;
     },
@@ -59,8 +57,6 @@ var getData = {
             }
         }).then(function(res){
             return res;
-        }).catch(function(a,b){
-            console.log("caught error in response"+a,b);
         });
         return call;
     },
@@ -120,8 +116,6 @@ var getData = {
             }
         }).then(function(res){
             return res;
-        }).catch(function(res){
-            console.log("caught error in response"+ res);
         });
         return call;
     },
@@ -257,20 +251,51 @@ var getData = {
         });
         return call;
     },
-    getMymedicineList: function(med){
-        var url = "/getMymedicineList.php";
-        var doctorId = 10;
+    getMymedicineList: function(){
+        var url = "/wapi/getMymedicineList.php";
+        var doctorId = 1;
         var medicine_list = {
             doctor_id: doctorId,
-            med_name: med,
-            med_id:"2",
-            med_chemical_name: med,
-            dosage: "200",
-            dosage_uom: "mg"
+            med_name: "C"
+ //           med_id:"2",
+   //         med_chemical_name: "",
+     //       dosage: "200",
+       //     dosage_uom: "mg"
 
         };
         var data = {
             medicine_list: medicine_list,
+            session_info: session_info
+        };
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res,status) {
+                alert("success in med");
+                return res;
+            },
+            error: function(err,status){
+                alert("error in med");
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        });
+        return call;
+    },
+    getPrescriptionTemplateList: function(id){
+        var url = "/wapi/getPrescriptionTemplateList.php";
+        var doctorId = 1;
+        var template_input = {
+            doctor_id: doctorId,
+            template_id: id,
+            template_name:"",
+            speciality: ""
+        };
+        var data = {
+            template_input: template_input,
             session_info: session_info
         }
         var call = $.ajax({
@@ -286,11 +311,37 @@ var getData = {
             }
         }).then(function(res){
             return res;
-        }).catch(function(res){
-
         });
         return call;
     },
+    getMyprescriptionTemplateDetails: function(id){
+        var url = "/wapi/getMyprescriptionTemplateDetails.php";
+        var doctorId = 1;
+        var template_input = {
+            doctor_id: doctorId,
+            template_id: id,
+        };
+        var data = {
+            template_input: template_input,
+            session_info: session_info
+        }
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res,status) {
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        });
+        return call;
+    },
+
    /* getDoctorProfile: function(id){
         var url = "/wapi/getDoctorProfile.php";
         var doctorId = id;
@@ -316,8 +367,6 @@ var getData = {
             }
         }).then(function(res){
             return res;
-        }).catch(function(res){
-
         });
         return call;
     }, */
@@ -348,7 +397,6 @@ var getData = {
         });
         return call;
     },
-
     getDocumentBlobData: function (id) {
         var url = "/wapi/getDocumentBlobData.php";
         var hs_id = id;

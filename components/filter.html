@@ -9,12 +9,12 @@
         </div>
         <div class="col-sm-2 p-0">
             <div class="btn-group">
-                <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle" id="f" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-filter pull-right" aria-hidden="true"></i>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Total <span id="total"></span></a>
-                    <a class="dropdown-item" href="#">Pending <span id="pending"></span></a>
+                    <a class="dropdown-item" href="#">Total </a>
+                    <a class="pending dropdown-item" href="#">Pending <span id="pending!"></span></a>
                     <a class="dropdown-item" href="#">Missed <span id="missed"></span></a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Video</a>
@@ -24,6 +24,31 @@
             </div>
         </div>
     </div>
+        <div class="row	mt-2 mb-2 pt-2 pb-1">
+            <div class="col-sm-12">
+                <div class="filter_1 btn-group" data-toggle="buttons" id="filter_1">
+                    <label class="total_filter btn btn-primary btn-sm active">
+                        <input type="radio" name="filter_1" id="all" value="All" autocomplete="off" checked>All<sup><span id="all_button"></span></sup>
+                    </label>
+                    <label class="booked_filter btn btn-primary btn-sm">
+                        <input type="radio" name="filter_1" id="pending" value="Pending" autocomplete="off">Pending<sup><span id="pending_button"></span></sup>
+                    </label>
+                    <label class="closed_filter btn btn-primary btn-sm">
+                        <input type="radio" name="filter_1" id="closed" value="Closed" autocomplete="off">Closed<sup><span id="closed_button"></span></sup>
+                    </label>
+                </div>
+                <div class="filter_2 btn-group" data-toggle="buttons" id="filter_2">
+                    <label class="video btn btn-primary btn-sm">
+                        <input type="radio" name="filter_2" id="video" value="video" autocomplete="off"><i class="fa fa-caret-square-o-right"></i>
+                    </label>
+                    <label class="physical btn btn-primary btn-sm">
+                        <input type="radio" name="filter_2" id="physical" value="physical" autocomplete="off"><i class="fa fa-user"></i>
+                    </label>
+
+                </div>
+            </div>
+        </div>
+
 </div>
 
 <script>
@@ -34,14 +59,98 @@
             changeYear: true,
             minDate: 0,
             todayHighlight: true,
-            autoclose: true,
+            autoclose: true
         }).on('changeDate', function(e){
                 var actualDate= e.date;
                 var date=moment(actualDate).format("YYYYMMDD");
                 getData.getDashboardData(date).then(function(res){
+                    appointment_list=res.appointments_details.appointment;
                     showDashboardDetails(res);
                 })
             });
+
+        $("input[name='filter_1']").change(function(){
+            if($(this).val()=="Pending")
+            {
+                var filteredAppointments = appointment_list.filter(function(val) {
+                    return val.appointment_status == 'booked';
+                });
+                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
+            }
+            else if($(this).val()=="Closed")
+            {
+                var filteredAppointments = appointment_list.filter(function(val) {
+                    return val.appointment_status == 'closed';
+                });
+                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
+            }
+            else
+            {
+                var filteredAppointments = appointment_list.filter(function(val) {
+                    return val;
+                });
+                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
+
+            }
+        });
+
+        $("input[name='filter_2']").change(function(){
+            if($(this).val()=="video")
+            {
+                var filteredAppointments = appointment_list.filter(function(val) {
+                    return val.appointment_type == 'VC';
+                });
+                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
+            }
+            else if($(this).val()=="physical")
+            {
+                var filteredAppointments = appointment_list.filter(function(val) {
+                    return val.appointment_type == 'PC';
+                });
+                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
+            }
+
+            else
+            {
+                var filteredAppointments = appointment_list.filter(function(val) {
+                    return val;
+                });
+                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
+
+            }
+        });
+/*
+       $("#f").on('click', function () {
+            getData.getPrescriptionTemplateList(1);
+            getData.getMyprescriptionTemplateDetails(1);
+            getData.getMymedicineList();
+        });
+        */
+
+
+
+
+
+
+/*
+            $("#booked").on("click", function (evt) {
+                var filteredAppointments = appointment_list.filter(function(val) {
+                    return val.appointment_status == 'booked';
+                });
+                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
+                evt.preventDefault();
+            });
+
+        $("#closed").on("click", function (evt) {
+            var filteredAppointments = appointment_list.filter(function(val) {
+                return val.appointment_status == 'closed';
+            });
+            showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
+            evt.preventDefault();
+        });
+*/
+
+
          var current_date = new Date();
          var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
          $(function () {
@@ -56,6 +165,7 @@
                 var actualDate = new Date(current_date); // convert to actual date;
                 var date=moment(actualDate).format("YYYYMMDD");
                 getData.getDashboardData(date).then(function(res){
+                    appointment_list=res.appointments_details.appointment;
                     showDashboardDetails(res);
                 }).catch(function(error){
                     console.error(error);
@@ -70,6 +180,7 @@
                 var actualDate = new Date(current_date); // convert to actual date;
                 var date=moment(actualDate).format("YYYYMMDD");
                 getData.getDashboardData(date).then(function(res){
+                    appointment_list=res.appointments_details.appointment;
                     showDashboardDetails(res);
                 }).catch(function(error){
                     console.error(error);

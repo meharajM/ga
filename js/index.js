@@ -1,12 +1,11 @@
 $(document).ready(function(){
-    var isLoggedIn = true;
+    var isLoggedIn = false;
     function showDashboard() {
         if(checkLogin()){
 
-            $('#body').load('../components/dashboard.html');
+            $('#body').load('./components/dashboard.html');
         }else{
-            debugger
-            $('#body').load('../components/login.html');
+            $('#body').load('./components/login.html');
         }
     }
     function checkLogin() {
@@ -17,8 +16,7 @@ $(document).ready(function(){
         var user = $('#username').val();
         var pass = $('#password').val();
         getData.doDoctorLogin(user,pass).then(function (res) {
-            debugger
-            isLoggedIn = true
+            isLoggedIn = true;
             showDashboard();
         });
     })
