@@ -95,7 +95,7 @@ body{
 }
 .appointment-details{
     padding: 25px;
-    font-size: 14px;
+    font-size: 15px;
     font-family: 'Roboto', serif;
 }
 .appointment-details b{
@@ -516,5 +516,65 @@ width:35%;
     border-top-right-radius: 3px;
 }
 
+.panel-body{
+    padding-top:10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#loginbox{
+    margin-top: 100px;
+}
 
 
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 0 0;
+    min-height: 45px;
+    color: #fff;
+    background-color: #4682b4;
+    font-family: Lato, sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+#footer-text{
+    color: #fff;
+}
+/*
+
+.filter-area{
+    padding-left: 10px;
+} */
+.filter-area label{
+    border: 0.5px solid #00b050;
+    font-size: 12px;
+}
+
+.filter-area .active{
+    background-color:  #1f7bf3;
+    font-size: 13px;
+    color: white;
+}
+/*
+.closed-button.active{
+    background-color: #00b050;
+    font-size: 12px;
+}
+ .pending-button.active{
+     background-color:  #bf800c;
+     font-size: 12px;
+}*/
+
+
+.modal-body{
+    height:500px;
+}
+
+.modal-header{
+    padding:10px;
+}

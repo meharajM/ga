@@ -319,7 +319,7 @@ var getData = {
         var doctorId = 1;
         var template_input = {
             doctor_id: doctorId,
-            template_id: id,
+            template_id: id
         };
         var data = {
             template_input: template_input,
@@ -414,11 +414,9 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res, status){
-                alert("success in blob");
                 return res;
             },
             error: function (err, status) {
-                alert("error in blob");
                 console.error(err, status);
             }
         });

@@ -194,9 +194,14 @@
            //     contentType: 'application/json; charset=UTF-8',
                 quietMillis: 250,
                 data: function (term) {
-                    return {
-                        template_id: term
-                      }
+                    return JSON.stringify({
+                        template_input : {
+                            doctor_id: 1,
+                            template_id: 1,
+                            template_name:term.term,
+                            speciality: ""
+                        }
+                    })
                 },
                 processResults: function (data) { // parse the results into the format expected by Select2.
                     // since we are using custom formatting functions we do not need to alter the remote JSON data
@@ -209,11 +214,13 @@
                 }
             },
             cache: true
-
-
-
-
 		});
+
+        $('#template_name').on('select2:select', function (e) {
+            getData.getMyprescriptionTemplateDetails(1).then(function (res) {
+                showPrescriptions(res.prescription_details);
+            });
+        });
 
         $("#med_search").select2({
             width: '300px',
@@ -228,10 +235,12 @@
              //   contentType: 'application/json; charset=UTF-8',
                 quietMillis: 250,
                 data: function (term) {
-                    return {
-                        doctor_id: 1,
-                        med_name: term
-                    }
+					return JSON.stringify({
+					    medicine_list: {
+                            doctor_id: 1,
+                            med_name: term.term
+                        }
+                    })
                 },
                 processResults: function (data) { // parse the results into the format expected by Select2.
                     // since we are using custom formatting functions we do not need to alter the remote JSON data

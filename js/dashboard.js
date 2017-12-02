@@ -43,17 +43,25 @@ $(document).ready(function(){
             $(".health_record").on("click", function (evt) {
                 getData.getDocumentBlobData(hs_id).then(function (res) {
                 	var data=res.document.doc_data;
-					debugger;
-                    objbuilder = '';
-                    objbuilder += ('<object data="data:application/pdf;base64,'+data+'" class="pdfcontent">');
-                    objbuilder += ('<embed width=200% height=200% src="data:application/pdf;base64,'+data+' class="pdfdata" />');
+                    var objbuilder = '';
+                    objbuilder += ('<object width="100%" height="100%" data="data:application/pdf;base64,');
+                    objbuilder += (data);
+                    objbuilder += ('" type="application/pdf" class="internal">');
+                    objbuilder += ('<embed src="data:application/pdf;base64,');
+                    objbuilder += (data);
+                    objbuilder += ('" type="application/pdf"  />');
                     objbuilder += ('</object>');
-                    $('#record_preview').html(objbuilder);
+                    $('.modal-body').html(objbuilder);
+                    $(".document-title").html(res.document.doc_desc);
 
 
-                //	$("#record_preview").html('<iframe src="data:application/pdf;base64," height="100%" width="100%"></iframe>');
-                	//debugger;
-
+                    //to open pdf in new tab
+                   /* var win = window.open("#","_blank");
+                    var title = "my tab title";
+                    win.document.write('<html><title>'+ title +'</title><body style="margin-top:0px; margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">');
+                    win.document.write(objbuilder);
+                    win.document.write('</body></html>');
+                    layer = jQuery(win.document);*/
                 });
 			evt.preventDefault();
             });
@@ -67,8 +75,7 @@ $(document).ready(function(){
             $('#summary').load('./components/summary.html');
 
 
-        }).catch(function(a,b){
-		})
+        });
 	};
 	showDashboardDetails=function(res){
 		if(res.appointments_details.appointment_summary)
@@ -94,7 +101,7 @@ $(document).ready(function(){
         prev_apmt_date=res.appointments_details.prev_appointment_date;
       //  hcc_id=res.appointment_details.appointments[0].hcc_det.hcc_id;
 		$(".PC").html('<i class="fa fa-user"></i>');
-        $(".VC").html('<i class="fa fa-caret-square-o-right"></i>');
+        $(".VC").html('<i class="fa fa-video-camera"></i>');
     };
 	var addPrescription = function(ev){
 
