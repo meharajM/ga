@@ -16,6 +16,7 @@ var getData = {
             appntment_input: apmt_input,
             session_info: session_info
         };
+        showLoader();
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
@@ -28,6 +29,7 @@ var getData = {
                 console.error(err, status);
             }
         }).then(function(res){
+            hideLoader();
             return res;
         });
         return call;
@@ -44,6 +46,7 @@ var getData = {
             apmt_input: apmt_input,
             session_info: session_info
         };
+        showLoader();
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
@@ -56,6 +59,7 @@ var getData = {
                 console.error(err, status);
             }
         }).then(function(res){
+            hideLoader();
             return res;
         });
         return call;
@@ -103,6 +107,7 @@ var getData = {
             apmt_info: apmt_info,
             session_info: session_info
         };
+        showLoader();
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
@@ -115,6 +120,7 @@ var getData = {
                 console.error(err, status);
             }
         }).then(function(res){
+            hideLoader();
             return res;
         });
         return call;
@@ -136,7 +142,7 @@ var getData = {
             session_info: session_info
         };
 
-
+        showLoader();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -151,6 +157,7 @@ var getData = {
                 console.error(err);
             }
         }).then(function(res){
+            hideLoader();
             return res;
         });
 
@@ -199,7 +206,7 @@ var getData = {
             summary:summary,
             session_info: session_info
         };
-        debugger;
+        showLoader();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -214,6 +221,7 @@ var getData = {
                 console.error(err, status);
             }
         }).then(function(res){
+            hideLoader();
             return res;
         });
         return call;
@@ -231,7 +239,7 @@ var getData = {
             apmt_input: apmt_input,
             session_info: session_info
         };
-        debugger;
+        showLoader();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -247,6 +255,7 @@ var getData = {
                 console.error(err, status);
             }
         }).then(function(res){
+            hideLoader();
             return res;
         });
         return call;
@@ -383,12 +392,14 @@ var getData = {
             apmt_input: apmt_input,
             session_info: session_info
         };
+        showLoader();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res, status){
+                hideLoader();
                 return res;
             },
             error: function (err, status) {

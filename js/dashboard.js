@@ -4,6 +4,12 @@ var apiKey = "45638452";
 function showMessage(message) {
     $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
 }
+function showLoader() {
+    $('.loading').removeClass('hidden-xs-up');
+}
+function hideLoader() {
+    $('.loading').addClass('hidden-xs-up');
+}
 $(document).ready(function(){
 
 	var actualDate=new Date();
