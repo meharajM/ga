@@ -1,19 +1,4 @@
-<!--
-<link href="../css/font-awesome.min.css" rel="stylesheet">
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/bootstrap-iso.css" rel="stylesheet">
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="../js/tether.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-</head>
-<body>--><div>
+><div>
     <!-- add fixed-top for fix nav -->
     <nav class="navbar navbar-toggleable-sm navbar-light">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +23,7 @@
                  <br> Doctor Sign In
              </div>-->
              <div class="panel-body" >
+                 <div class="error-message"></div>
                  <div style="margin-bottom: 25px" class="input-group">
                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
                      <input id="username" type="text" class="form-control" name="username" value="" placeholder="username or email">
@@ -61,36 +47,15 @@
 <footer>
     <p style="text-align: center">© 2017    <a id="footer-text" href="#">GrowAyu Technologies Pvt. Ltd</a></p>
 </footer>
-
+<script>
+    $(document).ready(function(){
+        $('#password, #username').on('keypress', function () {
+            $('.error-message').html("");
+        })
+    })
+</script>
 
 
 
 
         
-
-	<!--
-	 <script src="../js/getData.js"></script>
-</body>
-</html>
-<script src="../js/jquery-min.js"></script>-->
-<!--
-<script type="text/javascript">
-	var doctor_profile={};
-    $(document).ready(function() {
-
-        $("#btn-login").on("click", function (evt) {
-            var email=$("#login-username").val();
-            var password=$("#login-password").val();
-            getData.doDoctorLogin(email,password).then(function (res) {
-             //   doctor_profile.name=res.doctor.doctor_name;
-               // doctor_profile.id=res.doctor.doctor_id;
-				//doctor_profile.access_token=res.doctor.security_token;
-				doctor_profile=res.doctor;
-
-            });
-           // window.location.href = "index.html";
-			evt.preventDefault();
-        });
-    })
-
-</script>-->

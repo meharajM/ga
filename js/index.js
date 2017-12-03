@@ -16,8 +16,13 @@ $(document).ready(function(){
         var user = $('#username').val();
         var pass = $('#password').val();
         getData.doDoctorLogin(user,pass).then(function (res) {
-            isLoggedIn = true;
-            showDashboard();
+            if(res.error.error_message == "Invalid Data : Email and password mismatch"){
+                $('.error-message').html(res.error.error_message)
+            }else{
+                isLoggedIn = true;
+                showDashboard();
+            }
+
         });
     })
 });
