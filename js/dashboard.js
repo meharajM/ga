@@ -1,6 +1,6 @@
 var appointment_id, hs_id,hcc_id,appointment_list,sessionId,token,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, appointment,apmt_type,consultation_id,record_id;
 var showToaster;
-var apiKey = "45638452";
+var apiKey = "45638452", session;
 function showMessage(message) {
     $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
 }
@@ -119,7 +119,7 @@ $(document).ready(function(){
 	    alert(error.message);
 	  }
 	}
-	var publisher, subscriber, session;
+	var publisher, subscriber;
 	function initializeSession(apiKey, sessionId, token) {
 		showMessage("Checking for the Support ans system requirements")
         OT.addEventListener("exception", exceptionHandler);

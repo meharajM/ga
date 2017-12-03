@@ -1,8 +1,9 @@
 var publisherError, subscriberAvailable;
 function exceptionHandler(error){
-    
+    showMessage(error);
 }
 function sessionStreamDestroyed(event) {
+    session.off();
     if(event.reason === "clientDisconnected"){
         showToaster(appointment.health_seeker_profile.hs_name+ "has disconnected.")
     }
@@ -16,7 +17,7 @@ function publisherStreamDestroyed(event) {
 function subscriberStreamDestroyed(event) {
 
     
-    event.preventDefault();
+   // event.preventDefault();
     console.log("Publisher stopped streaming.");
 }
 function handleInitiatePublisherError(error){// The method succeeds when the user grants access to the camera and microphone. The method fails if the user denies access to the camera and microphone
