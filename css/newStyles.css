@@ -110,7 +110,7 @@ body{
   border: 0.5px solid #00b050;
     font-size: 12px;
 }
-.medicin-unit .active, .food .active, .duration .active{
+.medicin-unit .active, .food .active, .duration .active, .waiver .active{
   background-color:  #00b050;
     font-size: 12px;
 }

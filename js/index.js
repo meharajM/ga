@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var isLoggedIn = true;
+    var isLoggedIn = false;
     function showDashboard() {
         if(checkLogin()){
 
@@ -21,6 +21,10 @@ $(document).ready(function(){
             }else{
                 isLoggedIn = true;
                 showDashboard();
+                doctor_id=res.doctor.doctor_id;
+                doctor_name=res.doctor.doctor_name;
+                login_token=res.doctor.token;
+
             }
 
         });

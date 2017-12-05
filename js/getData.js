@@ -3,7 +3,8 @@ var session_info = {
     "access_token": "aeuhsy78989ljjsj",
     "device_id": "1"
 };
-var base_url = "https://52.66.157.195/growayu/ganewdesign";
+//var base_url = "https://52.66.157.195/growayu/ganewdesign/"           //Test Server
+var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
 var getData = {
     getDashboardData: function(date){
         var url = "/api/getDocAppointmentDashboard.php";
@@ -36,7 +37,7 @@ var getData = {
     },
     getAppointmentDetails: function(id){
         var url = "/api/getAppointmentDetails.php";
-        var doctorId = 1;
+        var doctorId = "1";
         var apmt_input= {
             apmt_id : id,
             doctor_id :doctorId,
@@ -65,7 +66,7 @@ var getData = {
         return call;
     },
     doDoctorLogin: function(username,password){
-        var url = "/wapi/doDoctorLogin.php";
+        var url = "/api/doDoctorLogin.php";
         var doctor_info = {
             "doctor_email": username,
             "doctor_pwd": password,
@@ -77,6 +78,34 @@ var getData = {
         };
         var data = {
             doctor_info: doctor_info
+        };
+        var call = $.ajax({
+            type: "POST",
+            url: base_url+url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res,status) {
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        });
+        return call;
+    },
+    doDoctorLogout: function(){
+        var url = "/api/doDoctorLogout.php";
+        var login_info = {
+            "session_token" : login_token,
+            "sessionId" : "",
+            "doctor_id" : doctor_id,
+            "device_id": ""
+        };
+        var data = {
+            login_info : login_info,
+            session_info: session_info
         };
         var call = $.ajax({
             type: "POST",
@@ -127,7 +156,7 @@ var getData = {
     },
     UpdatePrescriptionDetails: function (id,prescriptions) {
         var url = "/api/UpdatePrescriptionDetails.php";
-        var doctorId = 1;
+        var doctorId = "1";
 
         var apmt_input = {
             apmt_id: id,
@@ -149,7 +178,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res, status){
-                alert("success update pres");
+               // alert("success update pres");
                 return res;
 
             },
@@ -165,7 +194,7 @@ var getData = {
     },
     UpdateConsultationSummary: function(id,summary){
         var url = "/api/UpdateConsultationSummary.php";
-        var doctorId = 1;
+        var doctorId = "1";
         var apmt_input = {
             apmt_id: id,
             doctor_id: doctorId,
@@ -213,11 +242,11 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-                alert("success in update summary");
+                //alert("success in update summary");
                 return res;
             },
             error: function(err,status){
-                alert("error in update summary");
+                //alert("error in update summary");
                 console.error(err, status);
             }
         }).then(function(res){
@@ -227,7 +256,7 @@ var getData = {
         return call;
     },
     previewConsultationSummary: function(id){
-        var url = "/wapi/previewConsultationSummary.php";
+        var url = "/api/previewConsultationSummary.php";
         var doctorId = "1";
         var apmt_input = {
             apmt_id: id,
@@ -246,12 +275,12 @@ var getData = {
             data: JSON.stringify(data),
            // dataType: 'json',
             success: function (res,status) {
-                alert("success in preview summary");
+              //  alert("success in preview summary");
 
                 return res;
             },
             error: function(err,status){
-                alert("error in preview summary");
+               // alert("error in preview summary");
                 console.error(err, status);
             }
         }).then(function(res){
@@ -261,8 +290,8 @@ var getData = {
         return call;
     },
     getMymedicineList: function(){
-        var url = "/wapi/getMymedicineList.php";
-        var doctorId = 1;
+        var url = "/api/getMymedicineList.php";
+        var doctorId = doctor_id;
         var medicine_list = {
             doctor_id: doctorId,
             med_name: "C"
@@ -282,11 +311,11 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-                alert("success in med");
+             //   alert("success in med");
                 return res;
             },
             error: function(err,status){
-                alert("error in med");
+              //  alert("error in med");
                 console.error(err, status);
             }
         }).then(function(res){
@@ -295,8 +324,8 @@ var getData = {
         return call;
     },
     getPrescriptionTemplateList: function(id){
-        var url = "/wapi/getPrescriptionTemplateList.php";
-        var doctorId = 1;
+        var url = "/api/getPrescriptionTemplateList.php";
+        var doctorId = doctor_id;
         var template_input = {
             doctor_id: doctorId,
             template_id: id,
@@ -324,11 +353,11 @@ var getData = {
         return call;
     },
     getMyprescriptionTemplateDetails: function(id){
-        var url = "/wapi/getMyprescriptionTemplateDetails.php";
-        var doctorId = 1;
+        var url = "/api/getMyprescriptionTemplateDetails.php";
+        var doctorId = doctor_id;
         var template_input = {
             doctor_id: doctorId,
-            template_id: id
+            template_id: id,
         };
         var data = {
             template_input: template_input,
@@ -380,7 +409,7 @@ var getData = {
         return call;
     }, */
     closeConsultation: function (id) {
-        var url = "/wapi/closeConsultation.php";
+        var url = "/api/closeConsultation.php";
         var doctorId = 1;
         var apmt_input = {
             apmt_id: id,
@@ -409,7 +438,7 @@ var getData = {
         return call;
     },
     getDocumentBlobData: function (id) {
-        var url = "/wapi/getDocumentBlobData.php";
+        var url = "/api/getDocumentBlobData.php";
         var hs_id = id;
         var record_id=441;
         var document = {
@@ -425,9 +454,11 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res, status){
+                alert("success in blob");
                 return res;
             },
             error: function (err, status) {
+                alert("error in blob");
                 console.error(err, status);
             }
         });

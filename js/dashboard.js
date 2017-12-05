@@ -1,6 +1,7 @@
-var appointment_id, hs_id,hcc_id,appointment_list,sessionId,token,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, appointment,apmt_type,consultation_id,record_id;
-var showToaster;
-var apiKey = "45638452", session;
+var appointment_id, hs_id,appointment_list,sessionId,token,apiKey,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, summary_details;
+var appointment,apmt_type,consultation_id,record_id;
+var showToaster, session;
+var doctor_id, doctor_name, hcc_id, template_id, login_token;
 function showMessage(message) {
     $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
 }
@@ -41,6 +42,7 @@ $(document).ready(function(){
 				getData.startVideoConsultation(appointment_id,hs_id).then(function (res) {
 					sessionId=res.video_session_det.session;
 					token=res.video_session_det.token;
+					apiKey=res.video_session_det.apiKey;
 					startVedio();
                 });
 				vid.preventDefault();
@@ -59,8 +61,14 @@ $(document).ready(function(){
                     objbuilder += ('</object>');
                     $('.modal-body').html(objbuilder);
                     $(".document-title").html(res.document.doc_desc);
+                    /*
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> beabe7f718d41f15711ceaa0b37c4f1859f7f947*/
                     //to open pdf in new tab
                    /* var win = window.open("#","_blank");
                     var title = "my tab title";
@@ -75,8 +83,9 @@ $(document).ready(function(){
 
             apmt_status=res.appointments_details.appointment_det.apmt_status;
 			prescriptions_list=res.appointments_details.consultation_details.prescription_details;
-			//summary_details=res.appointments_details.consultation_details.consultation_summary;
+			summary_details=res.appointments_details.consultation_details.consultation_summary;
 			appointment=res.appointments_details;
+			consultation_id=summary_details.consultation_id;
             $('#prescription').load('./components/prescription.html');
             $('#summary').load('./components/summary.html');
 
@@ -99,7 +108,7 @@ $(document).ready(function(){
         if($(window).width() < 500){
             $('#appointment-list-phone').html(html);
             $('#appointment-list-phone').removeClass('list-group').addClass('list-inline');
-            $('#appointment-list-phone .list-group-item').removeClass('list-group-item').addClass('list-inline-item')
+            $('#appointment-list-phone .list-group-item').removeClass('list-group-item').addClass('list-inline-item');
         }else{
             $('#appointment-list').html(html)
         }
@@ -121,7 +130,7 @@ $(document).ready(function(){
 	}
 	var publisher, subscriber;
 	function initializeSession(apiKey, sessionId, token) {
-		showMessage("Checking for the Support ans system requirements")
+		showMessage("Checking for the Support ans system requirements");
         OT.addEventListener("exception", exceptionHandler);
 		if(OT.checkSystemRequirements()){
 			session = OT.initSession(apiKey, sessionId);
@@ -184,8 +193,8 @@ $(document).ready(function(){
             $('.left-container').removeClass('col-3').addClass('col-5');
             $('.appointment-content').removeClass('col-9').addClass('col-7');
             $($('.video-container')[0]).scrollTop(200);
-            $('#start-vedio-consultation').addClass('hidden-xs-up')
-            $('#close-vedio-consultation').removeClass('hidden-xs-up')
+            $('#start-vedio-consultation').addClass('hidden-xs-up');
+            $('#close-vedio-consultation').removeClass('hidden-xs-up');
             return {session: session, stream: publisher.stream};
 		}else{
 			showMessage("your browser does not support webRTC please upgrade your browser");
@@ -207,14 +216,14 @@ $(document).ready(function(){
 			$('.left-container').removeClass('col-12').removeClass('col-5').addClass('col-3');
             $('.appointment-list-container').removeClass('hidden-xs-up');
             $('.appointment-content').removeClass('hidden-xs-up').removeClass('col-7').addClass('col-9');
-            $('#start-vedio-consultation').removeClass('hidden-xs-up')
-	 		$('#close-vedio-consultation').addClass('hidden-xs-up')
+            $('#start-vedio-consultation').removeClass('hidden-xs-up');
+	 		$('#close-vedio-consultation').addClass('hidden-xs-up');
 	 		$('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');
 		}
-	}
+	};
 	var muteAudio = function(ev){
 		if($(this).hasClass('muted')){
-			publisher.publishAudio(true)
+			publisher.publishAudio(true);
 			$(this).removeClass('muted');
 		}else{
 			publisher.publishAudio(false);
@@ -286,4 +295,10 @@ $(document).ready(function(){
 	$('.App-control-container').on('click', '.full-screen-off', removeFullScreen);
 	$('#appointment-list').on('click', '.heath-seeker-profile', showProfile);
 	//$('.health_record').on('click', getDocument);
+    $('#logout').on('click', function (evt) {
+       // getData.doDoctorLogin("bala621986@gmail.com", "growayu");
+        getData.doDoctorLogout().then(function (res) {
+            $('#body').load('index.html');
+        });
+    })
 });
