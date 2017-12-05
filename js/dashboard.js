@@ -266,7 +266,9 @@ $(document).ready(function(){
 
 
 
-
+    function showProfile() {
+        
+    }
     $("#appointment-list").on("click", function (evt) {
         var next = $('#mytabs li.active').next();
         next.length?
@@ -282,5 +284,6 @@ $(document).ready(function(){
 	$('#toggleLocalVideo').on('click', muteVideo);
 	$('.full-screen').on('click', showFullScreen);
 	$('.App-control-container').on('click', '.full-screen-off', removeFullScreen);
+	$('#appointment-list').on('click', '.heath-seeker-profile', showProfile)''
 	//$('.health_record').on('click', getDocument);
 });

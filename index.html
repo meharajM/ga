@@ -32,7 +32,18 @@
         <li id={{appointment_id}} class="appointment list-group-item bg-light">
             <div class="col-8 ">
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-12 no-padding">
+                        <div class="row">
+                            <div class="col-3"><img src="img/user.jpg" alt="profile" class="rounded-circle mr-2 heath-seeker-profile"/></div>
+                            <div class="col-9">
+                                <div id="name">{{health_seeker.health_seeker_name}}</div>
+                                <div class="font-12">age: <b>23</b> Gender: <b>Male</b></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5 no-padding">
                         {{appointment_time}}
                     </div>
                     <div class="col-2 appointment-type no-padding offset-md-1">
@@ -40,14 +51,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                    <span id="name">{{health_seeker.health_seeker_name}}</span>
-                    </div>
-                </div>
             </div>
-            <div class="col-4">
-                <sup><span class="{{appointment_status}} badge badge-primary">{{appointment_status}}</span></sup>
+            <div class="col-4 no-padding">
+                <span class="{{appointment_status}} badge badge-primary float-right">{{appointment_status}}</span>
             </div>
 
         </li>
