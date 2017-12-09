@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var isLoggedIn = false;
+    var isLoggedIn = true;
     function showDashboard() {
         if(checkLogin()){
 

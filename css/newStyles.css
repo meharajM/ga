@@ -83,14 +83,14 @@ body{
 	background-color: white;
 }
 
-.tab-content{
+.appointment-details-tab-content{
     background-color: white;
     border: 1px solid transparent;
     border-color: #ddd #ddd #fff;
     height: 75vh;
     overflow-y: scroll;
 }
-.tab-content{
+.appointment-details-tab-content{
     border-top: none;
 }
 .appointment-details{
@@ -696,4 +696,28 @@ footer {
         -o-transform: rotate(360deg);
         transform: rotate(360deg);
     }
+}
+.timings{
+    padding: 8px;
+    border: 0.5px solid #cccccc;
+    border-radius: 4px;
+}
+.timings .selected{
+
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-color: rgb(0, 75, 145);
+    color: rgb(0, 75, 145);
+}
+.timings .nav{
+    border: none;
+}
+.timings .nav li{
+    margin-right: 8px;
+}
+.timings #timings-text{
+    width: 100%;
+}
+.duration{
+    border-right: 0.5px solid #cccccc;
 }

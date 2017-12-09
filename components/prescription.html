@@ -30,103 +30,119 @@
 					</button>
 				</div>
 			</div>
-			<div class="form-group">
-				<!--<input type="text" placeholder="Medicine name" id="med_name" name="med_name" class="form-control" autofocus="autofocus" title="Please enter a medicine name" required/>
-				<div id="suggesstion-box"></div><p id="demo"></p>-->
-				<select class="med_search form-control" name="med_search" id="med_search">
-					<option>Medicine name</option>
-				</select>
-				<input type="text" class="hidden-xs-up" name="med_name" id="med_name">
-			</div>
-			<div class="form-group row">
-				<label for="type" class="col-sm-2 col-form-label"><b>Type</b></label>
-				<div class="col-sm-10">
-					<select class="custom-select form-control" name="med_type" required>
-						<option value="" selected><b>Select medicine type</b></option>
+			<div class="row">
+				<div class="col-2">
+					<select class="custom-select form-control form-control-sm" id="med_type" name="med_type" required>
 						<option value="Pills">Pills</option>
 						<option value="Injection">Injection</option>
 						<option value="Syrup">Syrup</option>
 					</select>
 				</div>
-
-			</div>
-			<div class="form-group row">
-				<label for="type" class="col-sm-2 col-form-label"><strong>Dosages</strong></label>
-				<div class="col-sm-6 dosage-div">
-					<select class="custom-select form-control" name="dosage">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
+				<div class="col-6">
+					<select class="med_search form-control" name="med_search" id="med_search">
+						<option>Medicine name</option>
 					</select>
+					<input type="text" class="hidden-xs-up" name="med_name" id="med_name">
 				</div>
-				<div class="col-sm-4 medicin-unit">
-					<div class="btn-group" data-toggle="buttons">
-						<label class="btn btn-light active dosage-mg">
-							<input type="radio" name="dosage_uom" value="mg" id="option1" autocomplete="off" checked> MG
-						</label>
-						<label class="btn btn-light dosage-ml">
-							<input type="radio" name="dosage_uom" value="ml" id="option2" autocomplete="off"> ML
-						</label>
+				<div class="col-4 dosage">
+					<div class="row">
+						<select class="custom-select col-6 form-control-sm" name="dosage">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+						<div class="medicin-unit col-6">
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn btn-light btn-sm active dosage-mg">
+									<input type="radio" name="dosage_uom" value="mg" id="option1" autocomplete="off" checked> MG
+								</label>
+								<label class="btn btn-light btn-sm dosage-ml">
+									<input type="radio" name="dosage_uom" value="ml" id="option2" autocomplete="off"> ML
+								</label>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="form-group row timings">
-				<label for="type" class="col-sm-2 col-form-label"><b>When</b></label>
-				<div class="col-sm-10">
-					<div class="btn-group" data-toggle="buttons">
-						<label class="btn btn-lg morning active">
-							<input type="checkbox" name="timings_morning" id="mrng" checked autocomplete="off">
-						</label>
-						<label class="btn btn-lg noon">
-							<input type="checkbox" name="timings_afternoon" id="noon" autocomplete="off">
-						</label>
-						<label class="btn btn-lg night">
-							<input type="checkbox" name="timings_night" id="night" autocomplete="off">
-						</label>
-					</div>
-				</div>
-			</div>
-			<div class="text-center form-group"><b>or</b></div>
-			<div class="form-group">
-				<input type="text" name="med_dosage_text" placeholder="specify" class="form-control">
-			</div>
-			<div class="form-group row">
 
-				<label for="type" class="col-form-label col-sm-2"><b>Duration</b></label>
-				<div class="col-sm-2">
-					<input type="text" name="course" class="form-control">
-				</div>
-				<div class="col-sm-5">
-					<div class="btn-group duration" data-toggle="buttons">
-						<label class="btn btn-sm active duration-days">
-							<input type="radio" name="days" value="Days" checked autocomplete="off">Days
-						</label>
-						<label class="btn btn-sm duration-weeks">
-							<input type="radio" name="weeks" value="Weeks" autocomplete="off">Weeks
-						</label>
-						<label class="btn btn-sm duration-months">
-							<input type="radio" name="months" value="Months" autocomplete="off"> Months
-						</label>
+			</div>
+
+
+			<div class="timings mt-3">
+				<ul class="nav nav-tabs">
+					<li><a href="#" id="standard" class="selected">Standard</a></li>
+					<li><a href="#" id="free-text">Free Text</a></li>
+				</ul>
+
+				<div id="standard-tab">
+					<div class="row">
+						<div class="col-4">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+								<input type="number" name="morning" placeholder="Morning">
+							<i class="fa fa-minus" aria-hidden="true"></i>
+							<span class="unit"></span>
+						</div>
+						<div class="col-4">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+							<input type="number" name="afternoon" placeholder="Afternoon">
+							<i class="fa fa-minus" aria-hidden="true"></i>
+							<span class="unit"></span>
+						</div>
+						<div class="col-4">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+							<input type="number" name="night" placeholder="Night">
+							<i class="fa fa-minus" aria-hidden="true"></i>
+							<span class="unit"></span>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-sm-2">
-					<label for="type" class="col-form-label"><b>Food</b></label>
-				</div>
-				<div class="col-sm-10">
-					<div class="btn-group food" data-toggle="buttons">
-						<label class="btn btn-sm btn-light active food_timings_before">
-							<input type="radio" name="med_intake" value="Before Food" autocomplete="off" checked>Before
-						</label>
-						<label class="btn btn-sm btn-light food_timings_after">
-							<input type="radio" name="med_intake" value="After Food" autocomplete="off">After
-						</label>
+				<div id="free-text-tab">
+					<textarea name="timings-text" id="timings-text" rows="3" placeholder="Provide the timings details."/>
+					<div>
+						Suggestions: <a href="#">For Every 3 hours</a>, <a  href="#">7:30 AM - 10:30 AM - 1:30 PM - 4:30 PM</a>
 					</div>
 				</div>
+
+
 			</div>
+
+			<div class="form-group row mt-3">
+
+				<div class="col-sm-3">
+					<input type="number" name="course" placeholder="Duration" class="form-control form-control-sm">
+				</div>
+				<div class="col-sm-4 duration">
+					<label class="custom-control custom-radio">
+						<input id="days" name="duration" type="radio" class="custom-control-input">
+						<span class="custom-control-indicator"></span>
+						<span class="custom-control-description">Days</span>
+					</label>
+					<label class="custom-control custom-radio">
+						<input id="weeks" name="duration" type="radio" class="custom-control-input">
+						<span class="custom-control-indicator"></span>
+						<span class="custom-control-description">Weeks</span>
+					</label>
+					<label class="custom-control custom-radio">
+						<input id="months" name="duration" type="radio" class="custom-control-input">
+						<span class="custom-control-indicator"></span>
+						<span class="custom-control-description">Months</span>
+					</label>
+				</div>
+				<div class="col-sm-4">
+					<label class="custom-control custom-radio">
+						<input id="weeks" name="med_intake" type="radio" value="Before Food"  class="custom-control-input">
+						<span class="custom-control-indicator"></span>
+						<span class="custom-control-description">Before Food</span>
+					</label>
+					<label class="custom-control custom-radio">
+						<input id="months" name="med_intake" type="radio" value="After Food" class="custom-control-input">
+						<span class="custom-control-indicator"></span>
+						<span class="custom-control-description">After Food</span>
+					</label>
+				</div>
+			</div>
+
 			<div class="form-group">
 				<textarea class="form-control" id="exampleTextarea" name="remarks" placeholder="remarks..." rows="3"></textarea>
 			</div>
@@ -182,11 +198,29 @@
 <script type="text/javascript">
     $(document).ready(function() {
         var prescription_data = [];
+        function setUnit() {
+            switch($('#med_type').val().toLowerCase()){
+                case "pills":
+                    $('.unit').html('tabs');
+                    break;
+                case "syrup":
+                    $('.unit').html('ml');
+                    break;
+				default:
+                    $('.unit').html('');
+                    break;
+            }
+        }
+        setUnit();
+		$('#med_type').on('change',function (ev) {
+			setUnit();
+        })
         $("#template_name").select2({
             width: '200px',
             tags: true,
             placeholder: "Search for a template",
             allowClear: true,
+            containerCssClass : "custom-select ",
             ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
                 type: "post",
                 url: base_url+"/wapi/getPrescriptionTemplateList.php",
@@ -215,7 +249,7 @@
                 }
             },
             cache: true
-		});
+		}).addClass('custom-select ');
 
         $('#template_name').on('select2:select', function (e) {
             getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
@@ -380,6 +414,19 @@
             });
             showPrescriptions(prescription_data);
         });
+        $('#free-text-tab').hide();
+        $('#standard').click(function (ev) {
+            $('#standard').addClass('selected');
+            $('#free-text').removeClass('selected');
+			$('#standard-tab').show();
+			$('#free-text-tab').hide();
+        });
+        $('#free-text').click(function (ev) {
+            $('#free-text').addClass('selected');
+            $('#standard').removeClass('selected')
+            $('#standard-tab').hide();
+            $('#free-text-tab').show();
+        })
     })
         /*	$("#autocomplete").autocomplete(function (evt) {
                 getData.getMymedicineList(med);
