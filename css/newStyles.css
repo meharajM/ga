@@ -784,3 +784,6 @@ footer {
     font-size: 12px;
     color: #777777;
 }
+.nav-item{
+    cursor: pointer;
+}

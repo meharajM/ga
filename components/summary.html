@@ -10,7 +10,7 @@
         <b>Next Follow-up in: </b>{{consultation_details.consultation_summary.followup_in}}<br>
         <b>Next Follow-up Consultation: </b>{{consultation_details.consultation_summary.followup_date}}<br>
         <b>Suggested Investigations: </b>{{consultation_details.consultation_summary.ga_notes}}<br>
-        <b>Referred to Doctor: </b>{{consultation_details.consultation_summary.doctor_notes}}<br>
+        <b>Referred to Doctor: </b>{{consultation_details.consultation_summary.reffered_doctor}}<br>
         </p>
         <p>
             Regards,<br>
@@ -30,7 +30,7 @@
     <b>Next Follow-up Consultation: </b>{{followup_date}}<br>
     <b>Suggested Tests: </b>{{suggested_test}}<br>
     <b>Suggested Investigations: </b>{{ga_notes}}<br>
-    <b>Referred to Doctor: </b>{{doctor_notes}}<br>
+    <b>Referred to Doctor: </b>{{reffered_doctor}}<br>
     </p>
     <p>
         Regards,<br>
@@ -47,12 +47,12 @@
         <div class="col-xs-12 col-md-12 font-14" style="display:block;width:100%; padding-bottom:10px">
             <br>
 
-            <form id="form4" data-toggle="validator" role="form" name="summary-form">
+            <form id="form4" method="get" data-toggle="validator" role="form" name="summary-form">
                 <div class="form-group">
                     <label class="control-label required field" for="diagnosis"><b>Patient Diagnosis / Diagnoses</b><span class="asteriskField">*</span></label>
 
                     <div class="input-group">
-                        <input class="form-control" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" required="required" />
+                        <input class="form-control col-md-6" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" />
 
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <label class="control-label required field" for="plan"><b>Management Plan / Advice</b><span class="asteriskField">*</span></label>
 
                     <div class="input-group">
-                        <textarea class="form-control" cols="40" id="mgmt_plan" name="mgmt_plan" rows="3" placeholder="Enter Management Plan"  title="Please enter details" required></textarea>
+                        <textarea class="form-control col-md-6" cols="40" id="mgmt_plan" name="mgmt_plan" rows="3" placeholder="Enter Management Plan"  title="Please enter details"></textarea>
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@
                             <div class="medicin-unit">
                                 <div class="btn-group waiver" data-toggle="buttons">
                                     <label class="btn btn-light active No_fee">
-                                        <input type="radio" name="waiver_status" value="No" id="No_fee" autocomplete="off"> No
+                                        <input type="radio" name="waiver_status" value="No" id="No_fee" autocomplete="off" checked="checked"> No
                                     </label>
                                     <label class="btn btn-light Full_fee">
                                         <input type="radio" name="waiver_status" value="Full" id="Full_fee" autocomplete="off"> Full
@@ -148,7 +148,7 @@
                                   </ul>-->
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-3 col-sm-12">
                             <div class="input-group">
                                 <input class="form-control" type="text" id="followup_date" name="followup_date" />
                                 <div class="input-group-addon" id="cal">
@@ -165,100 +165,46 @@
                         <b>Suggested Tests</b>
                     </label>
                     <div class="input-group">
-                        <select class="test_id col-md-6" multiple="" name="suggested_test[]" id="suggested_test">
-                            <option value="Blood">Blood</option>
-                            <option value="Chemo">Chemo</option>
-                            <option name="test_id">Sonography</option>
-                            <option name="test_id">MRI</option>
-                            <option name="test_id">Diabetes Test</option>
-                        </select>
+                        <select class="test_id col-md-6" multiple="" name="suggested_test" id="suggested_test"></select>
                     </div>
                 </div>
 
-                        <!--  <select multiple class="form-control" name="test_id">
-                               <option name="test_id" value="1" data-test-name="Blood">Blood</option>
-                               <option  name="test_id" value="2" data-test-name="MRI">MRI</option>
-                               <option  name="test_id" value="3" data-test-name="Chemo">Chemo</option>
-                               <option  name="test_id" value="4" data-test-name="Urine">Urine</option>
-                               <option  name="test_id" value="5" data-test-name="Thyro">Thyro</option>
-                           </select>-->
-                   <!-- <label>1</label>
-                    <input type="text" name="suggested_test[0][test_id]">
-                    <input type="text" name="suggested_test[0][test_name]">
-                    <label>2</label>
-                    <input type="text" name="suggested_test[1][test_id]">
-                    <input type="text" name="suggested_test[1][test_name]">-->
-
-                <!--  <div class="form-group">
-                  <input type="text" name="[1]:number"           value="1"/>
-                  <input type="text" name="numbers[1.1]:number"         value="1.1"/>-->
-                <!--      <div class="form-group">
-                          <label class="control-label" for="seeker_instructions">
-                              <b>Suggested Tests</b>
-                          </label>
-                          <select multiple class="form-control" name="test_name">
-                              <option name="instruction_id">Blood Test</option>
-                              <option  name="instruction_id">MRI</option>
-                              <option  name="test_id">Chemo</option>
-                              <option  name="test_id">Urine</option>
-                              <option  name="test_id">Thyro</option>
-                          </select>
-
-                      </div>
-
-
-
-           <div class="form-group">
-
-                    <label class="control-label" for="suggested_invest"><b>Suggested Investigations (Optional)</b></label>
-
-                    <div class="input-group">
-                        <textarea class="form-control" cols="40" id="suggested_invest" name="ga_notes" rows="3"></textarea>
-                    </div>
-                </div> -->
                 <div class="form-group ">
 
                     <label class="control-label " for="refer">
                         <b>  Referred to Doctor (Optional)</b>
                     </label>
                     <div class="input-group">
-                        <input class="form-control" id="doctor_notes" name="doctor_notes" type="text" />
+                        <input class="form-control col-md-6" id="reffered_doctor" name="reffered_doctor" type="text" />
                     </div></div>
 
-                <!-- <div class="form-group">
-                      <input type="text" name="test_id" placeholder="test_id: 5" />
-                      <textarea class="form-control" cols="40" id="test_name" name="test_name" rows="3" placeholder="test_name: blood"></textarea>
-                      <input type="text" name="instruction_id" placeholder="instruction_id: 5" />
-                      <textarea class="form-control" cols="40" id="test_name" name="instruction_text" rows="3" placeholder="instruction_text: test"></textarea>
-                      <input type="text" name="ga_notes" placeholder="ga_notes: test consultation notes to growayu" />
-                      <input type="text" name="consultation_id" placeholder="consultation_id" />
-
-                  </div>-->
-
-                <div class="form-group-inline">
-                    <button class="btn btn-success col-md-1" id="save" type="submit">Save</button>
-
-                    <button class="btn btn-info col-md-1" id="close">Close</button>
-                </div>
             </form>
-            <button class="btn btn-info text-center" id="preview_summary" data-toggle="modal" data-target="#summary-preview">Preview Summary</button>
-
+            <div class="form-group-inline">
+                <button class="btn btn-success col-md-2" id="save" type="submit">Save</button>
+                <button class="btn btn-info col-md-2 text-center" id="preview_summary" data-toggle="modal" data-target="#summary-preview">Preview Summary</button>
+                <button class="btn btn-danger col-md-2" id="close">Close</button>
+            </div>
         </div>
 
 
-  <!--  <button class="btn-primary btn-sm text-center" id="close_consultation">Close Consultation</button>-->
-   <!-- <div class="pdf">
-    <button class="btn-success btn-lg text-center" id="generate_pdf">Generate PDF</button>
-    </div>-->
-        <div class="generate_preview">
+        <!--  <button class="btn-primary btn-sm text-center" id="close_consultation">Close Consultation</button>-->
+        <!-- <div class="pdf">
+         <button class="btn-success btn-lg text-center" id="generate_pdf">Generate PDF</button>
+         </div>-->
+        <div class="generate">
+            <button class="btn btn-danger" id="edit_summary">Edit Summary</button>
+            <div class="generate_preview"></div>
+        </div>
+
+
 
         </div>
-        <div class="modal fade bd-example-modal-lg" id="summary-preview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="summary-prev" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times;</span>
                         </button>
                         <h4 class="modal-title">Consultation Summary</h4>
                     </div>
@@ -266,6 +212,24 @@
 
                     </div>
 
+                </div>
+            </div>
+        </div>
+        <div class="close-consultation modal fade bd-example-modal-lg" id="close-consultation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="close-consult modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Close Consultation</h4>
+                    </div>
+                    <div class="modal-close-consultation">
+                        Do you want to close the current Consultation? You will not be able to edit details after closing the Consulation!!                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-success" id="close-yes" data-dismiss="modal" >Yes</button>
+                        <button type="button" class="btn btn-primary" id="close-no" data-dismiss="modal" >No</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -277,11 +241,40 @@
 </html>
 
 <script type="text/javascript">
-   // var consultation_id;
+    // var consultation_id;
     $(document).ready(function(){
-       // var summary_data=[];
+        $(".generate").addClass('d-none');
+        // var summary_data=[];
         $(".test_id").select2({
-            tags: true
+            tags: true,
+            //minimumInputLength: 3,
+            placeholder: "Select a test",
+            allowClear: true,
+            ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+                type: "post",
+                url: base_url+"/api/labTest.php",
+                dataType: 'json',
+                //   contentType: 'application/json; charset=UTF-8',
+                quietMillis: 250,
+                data: function (term) {
+                    return JSON.stringify({
+                        lab_tests: {
+                            labtest_name: term.term
+                        }
+                    })
+                },
+                processResults: function (data) { // parse the results into the format expected by Select2.
+                    // since we are using custom formatting functions we do not need to alter the remote JSON data
+
+                    return {
+                        results: $.map(data.labTest.tests, function (smthg) {
+                            return {id: smthg.labtest_id, text: smthg.labtest_name}
+                        })
+                    };
+                }
+            },
+            cache: true
+            // formatSelection: formatSelection
         });
         $("select").on("select2:select", function (evt) {
             var element = evt.params.data.element;
@@ -291,89 +284,149 @@
             $(this).append($element);
             $(this).trigger("change");
         });
+        $('.test_id').on('select2:select', function () {
+            var test_id=$(".test_id").val();
+            var test_name=$(".test_id").text();
+            var suggested_test=[
+                {
+                    "test_id": test_id,
+                    "test_name": test_name
+                }
+                        ];
+            var data=JSON.stringify(suggested_test);
+            console.log(data);
+        });
 
         $("#preview_summary").on("click", function () {
             getData.previewConsultationSummary(appointment_id).then(function (res) {
-                $(".modal-body-summary").html(res);
+              //  $(".modal-body-summary").html(res);
+                  //  $(".generate_preview").html(res);
+                $(".generate").removeClass('d-none');
+                $(".generate_preview").html(res);
+                $("#form4").hide();
+                $("#save").hide();
+                $("#preview_summary").hide();
+                $("#close").hide();
 
             });
 
         });
 
-      /* $("#generate_pdf").hide();*/
+        $("#edit_summary").on("click", function (evt) {
+            $(".generate").addClass('d-none');
+            $("#form4").show();
+            $("#save").show();
+            $("#preview_summary").show();
+            $("#close").show();
+
+        })
+
+        /* $("#generate_pdf").hide();*/
         var showSummary = function(data){
             var source   = $("#summarytable").html();
             var template = Handlebars.compile(source);
             $('#summary').html(template(data));
         };
 
-        if(apmt_status=="closed")
+        if(apmt_status=="closed"||apmt_status=="expired")
+        {
+            $("#form4").hide();
+            $("#save").hide();
+            $("#preview_summary").hide();
+            $("#edit_summary").hide();
+            $("#close").hide();
+
+            getData.previewConsultationSummary(appointment_id).then(function (res) {
+                $(".generate").removeClass('d-none');
+                $(".generate_preview").html(res);
+            });
+        }
+        if((summary_details&&apmt_status=="closed")||(summary_details&&apmt_status=="expired"))
         {
             $("#form4").hide();
             getData.previewConsultationSummary(appointment_id).then(function (res) {
                 $(".generate_preview").html(res);
             });
         }
-        if(summary_details&&apmt_status=="closed")
-        {
-            $("#form4").hide();
-            getData.previewConsultationSummary(appointment_id).then(function (res) {
-                $(".generate_preview").html(res);
-            });
-        }
-        if (summary_details&&apmt_status=="booked")
+
+        if ((summary_details && apmt_status=="booked")||(summary_details && apmt_status=="paid")||(summary_details && apmt_status=="released"))
         {
             $("#diagnosis").val(summary_details.Diagnosis);
             $("#mgmt_plan").val(summary_details.mgmt_plan);
             $("#follow_up").val(summary_details.followup_in);
             $("#followup_date").val(summary_details.followup_date);
-            $("#doctor_notes").val(summary_details.doctor_notes);
-            $("input[name='waiver_status']").val(summary_details.waive_fee).attr('selected', true);
-         //   alert($("input[name='waiver_status']").val());
-        //    $('.medicin-unit .dosage-mg').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'No' ? 'active' : '');
-          //  $('.medicin-unit .dosage-ml').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'Full' ? 'active' : '');
-            //$('.medicin-unit .dosage-mg').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'Partial' ? 'active' : '');
+            $("#reffered_doctor").val(summary_details.reffered_doctor);
+           // $('.waiver option[value="' + summary_details.waive_fee + '"]').attr('checked', true);
 
-            $('.waiver .No_fee').removeClass('active').addClass(summary_details.waive_fee == 'No' ? 'active' : '');
-            $('.waiver .Full_fee').removeClass('active').addClass(summary_details.waive_fee == 'Full' ? 'active' : '');
-            $('.waiver .Partial_fee').removeClass('active').addClass(summary_details.waive_fee == 'Partial' ? 'active' : '');
-
-            $("#p_check").val(summary_details.waived_amount);
-            //$('.followup option[value="' + summary_details.followup_in + '"]').attr('selected', true);
-            if($("input[name='waiver_status']").val(summary_details.waive_fee)=="No")
-            {
-
-                $("#ifPartial").hide();
-            }
-            else if($(this).val()=="Full")
-            {
+            if(summary_details.waive_fee == 'Full'){
+                $('.Full_fee').addClass('active');
+                $('.No_fee').removeClass('active');
+                $('.Partial_fee').removeClass('active');
                 $("#p_check")[0].disabled = false;
                 $("#ifPartial").show();
                 $("#p_check").val(summary_details.waived_amount);
                 $('#p_check').attr('readonly', true);
+                $("input[name='waiver_status']:checked").val(summary_details.waive_fee);
+            }else if(summary_details.waive_fee == 'No'){
+                $('.No_fee').addClass('active');
+                $('.Full_fee').removeClass('active');
+                $('.Partial_fee').removeClass('active');
+                $("#ifPartial").hide();
+                $("input[name='waiver_status']:checked").val(summary_details.waive_fee);
 
-            }
-            else
-            {
+            }else {
+                $('.Partial_fee').addClass('active');
+                $('.Full_fee').removeClass('active');
+                $('.No_fee').removeClass('active');
                 $("#p_check")[0].disabled = false;
                 $('#p_check').attr('readonly', false);
                 $("#ifPartial").show();
                 $("#p_check").val(summary_details.waived_amount);
+                $("input[name='waiver_status']:checked").val(summary_details.waive_fee);
+
             }
+
+            // $("input[name='waiver_status']").val(summary_details.waive_fee).attr('selected', true);
+            //$("input[name='waiver_status']").val()==summary_details.waive_fee;
+            //debugger;
+            /*$("input[name='waiver_status']").val(summary_details.waive_fee).attr('selected', true);
+            $('.waiver .No_fee').removeClass('active').addClass(summary_details.waive_fee == 'No' ? 'active' : '');
+            $('.waiver .Full_fee').removeClass('active').addClass(summary_details.waive_fee == 'Full' ? 'active' : '');
+            $('.waiver .Partial_fee').removeClass('active').addClass(summary_details.waive_fee == 'Partial' ? 'active' : '');*/
+          //  $("#ifPartial").show();
+            $("#p_check").val(summary_details.waived_amount);
+            //$('.followup option[value="' + summary_details.followup_in + '"]').attr('selected', true);
+            /*    if($("input[name='waiver_status']").val(summary_details.waive_fee)=="No")
+                {
+
+                    $("#ifPartial").hide();
+                }
+                else if($(this).val()=="Full")
+                {
+                    $("#p_check")[0].disabled = false;
+                    $("#ifPartial").show();
+                    $("#p_check").val(summary_details.waived_amount);
+                    $('#p_check').attr('readonly', true);
+
+                }
+                else
+                {
+                    $("#p_check")[0].disabled = false;
+                    $('#p_check').attr('readonly', false);
+                    $("#ifPartial").show();
+                    $("#p_check").val(summary_details.waived_amount);
+                }*/
         }
 
+
+
         $("#save").on("click",function(evt) {
-            // $('.form').slideToggle();
             var formData = $("#form4").serializeArray();
+            console.log(formData);
             evt.preventDefault();
-          //  var data = {suggested_test: [{'1':"Blood"}, {'2':"Urea"}]};
+            //  var data = {suggested_test: [{'1':"Blood"}, {'2':"Urea"}]};
             var data={};
             formData.map(function (feild) {
-                //  if(feild.name == "test_id"){
-                //        var test = {'test_id': feild.value};
-                //       data['suggested_test'] = data['suggested_test'].push(test)
-                //    }
-                //  else {
                 data[feild.name] = feild.value;
             });
             if(consultation_id)
@@ -381,23 +434,24 @@
                 data.consultation_id=consultation_id;
             }
             getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
-              /*  getData.getAppointmentDetails(appointment_id).then(function(res){
-                    $("#close").on("click",function(evt) {
-                        $("#form4").hide();
-                        $(".summary_show").show();
-                        showSummary(data);
-                        evt.preventDefault();
-                    });
-                });*/
                 return res;
             });
         });
-        $("#close").on("click",function(evt) {
-            alert("Do you want to close this Consultation? You wouldn't be able to edit details after closing the Consulation");
+
+        $("#close-yes").on("click", function (evt) {
             getData.closeConsultation(appointment_id).then(function(res){
                 res.appointment_status=="closed";
-               // $("#generate_pdf").show();
+            });
+            getData.previewConsultationSummary(appointment_id).then(function (res) {
+                $(".generate_preview").html(res);
+            });
+            evt.preventDefault();
+        });
 
+        $("#close").on("click",function(evt) {
+           // alert("Do you want to close this Consultation? You wouldn't be able to edit details after closing the Consulation");
+            $('#close-consultation').modal({
+                show: true
             });
             evt.preventDefault();
         });
@@ -408,11 +462,11 @@
             {
                 $("#followup_date").val(moment().add(2,'days').format("YYYY-MM-DD"));
             }
-          if(followup_days=="After 1 Week")
-          {
-              $("#followup_date").val(moment().add(7,'days').format("YYYY-MM-DD"));
+            if(followup_days=="After 1 Week")
+            {
+                $("#followup_date").val(moment().add(7,'days').format("YYYY-MM-DD"));
 
-          }
+            }
             if(followup_days=="After 10 Days")
             {
                 $("#followup_date").val(moment().add(10,'days').format("YYYY-MM-DD"));
@@ -429,6 +483,8 @@
 
             }
         });
+
+
 
         var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
         var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
@@ -459,74 +515,5 @@
                 $("#ifPartial").hide();
             }
         });
-
-        /*$(function() {
-
-            $("form[name='summary-form']").validate({
-
-                rules: {
-                    mgmt_plan: {
-                        required: true,
-                        number: true,
-                        minlength: 12,
-                        maxlength: 12
-                    }
-                },
-
-                messages: {
-                    mgmt_plan: {
-                        required: "Please enter a valid 12-Digit Registration Number",
-                        minlength: "Registration Number must be 12 characters long"
-                    }
-                },
-                submitHandler: function(form) {
-                    form.submit();
-                }
-            });
-        }); */
-
-         $("#form4").validate({
-             rules: {
-                 diagnosis: {
-                     required: true
-                 },
-                 mgmt_plan: {
-                     required: true
-                 },
-                 doctor_notes: {
-                     required: true
-                 }
-             },
-             submitHandler: function(form) {
-                 form.submit();
-             }
-         });
-
-        /*
-                $("#After_1_Week").click(function(){
-                    // var today=moment().add(7, 'days').format("MMM Do YY");
-                    var today=moment().format("YYYY-MM-DD");
-                    //var day=moment().add(7,'days').format('dddd');
-                    document.getElementById('followup_date').value = today;
-                });
-                $("#After_10_Days").click(function(){
-                    var today=moment().add(10, 'days').format("MMM Do YY");
-                    //today=moment().format("MMM Do YY");
-                    var day=moment().add(10,'days').format('dddd');
-                    document.getElementById('followup_date').value = day+', '+today;
-                });
-                $("#After_2_Weeks").click(function(){
-                    var today=moment().add(14, 'days').format("MMM Do YY");
-                    //today=moment().format("MMM Do YY");
-                    var day=moment().add(14,'days').format('dddd');
-                    document.getElementById('followup_date').value = day+', '+today;
-                });
-                $("#After_1_Month").click(function(){
-                    var today=moment().add(30, 'days').format("MMM Do YY");
-                    //today=moment().format("MMM Do YY");
-                    var day=moment().add(30,'days').format('dddd');
-                    document.getElementById('followup_date').value = day+', '+today;
-                });
-                */
     });
 </script>

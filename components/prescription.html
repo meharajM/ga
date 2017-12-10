@@ -240,6 +240,7 @@
 		}).addClass('custom-select ');
 
         $('#template_name').on('select2:select', function (e) {
+            var template_id = $(this).val();
             getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
                 showPrescriptions(res.prescription_details);
             });
@@ -289,10 +290,15 @@
             ev.stopPropagation();
         })
         var showPrescriptions = function (prescriptions_list) {
+            prescription_data = prescriptions_list;
             var source = $("#prescriptiontable").html();
             var template = Handlebars.compile(source);
             var rows = prescriptions_list.map(function (data) {
+                debugger
                 if (!data.delete_flag || data.delete_flag != 'Y') {
+                    if(!!data.med_id){
+                        data.prescription_id = data.med_id;
+                    }
                     return template({prescription: data});
                 }
                 //alert(({prescription:data}));
