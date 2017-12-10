@@ -7,7 +7,6 @@
 	<tr>
 		<td>{{med_type}}</td>
 		<td>{{med_name}}</td>
-		<td>{{dosage}}</td>
 		<td>{{frequency}}</td>
 		<td>{{course}}</td>
 		<td>{{med_intake}}</td>
@@ -38,33 +37,15 @@
 						<option value="Syrup">Syrup</option>
 					</select>
 				</div>
-				<div class="col-6">
-					<select class="med_search form-control" name="med_search" id="med_search">
-						<option>Medicine name</option>
-					</select>
-					<input type="text" class="hidden-xs-up" name="med_name" id="med_name">
-				</div>
-				<div class="col-4 dosage">
-					<div class="row">
-						<select class="custom-select col-6 form-control-sm" name="dosage">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-						<div class="medicin-unit col-6">
-							<div class="btn-group" data-toggle="buttons">
-								<label class="btn btn-light btn-sm active dosage-mg">
-									<input type="radio" name="dosage_uom" value="mg" id="option1" autocomplete="off" checked> MG
-								</label>
-								<label class="btn btn-light btn-sm dosage-ml">
-									<input type="radio" name="dosage_uom" value="ml" id="option2" autocomplete="off"> ML
-								</label>
-							</div>
-						</div>
+				<div class="col-8">
+					<div class="ui-front">
+						<input class="form-input" name="med_search" id="med_search" placeholder="medecin name">
+
+						</input>
 					</div>
+
 				</div>
+
 
 			</div>
 
@@ -78,29 +59,29 @@
 				<div id="standard-tab">
 					<div class="row">
 						<div class="col-4">
-							<i class="fa fa-plus" aria-hidden="true"></i>
-								<input type="number" name="morning" placeholder="Morning">
-							<i class="fa fa-minus" aria-hidden="true"></i>
+							<i class="fa fa-plus" aria-hidden="true" for="morning"></i>
+								<input type="number" name="morning" id="morning" placeholder="Morning" class="quantity form-input" value="1" min="0.5">
+							<i class="fa fa-minus" aria-hidden="true" for="morning"></i>
 							<span class="unit"></span>
 						</div>
 						<div class="col-4">
-							<i class="fa fa-plus" aria-hidden="true"></i>
-							<input type="number" name="afternoon" placeholder="Afternoon">
-							<i class="fa fa-minus" aria-hidden="true"></i>
+							<i class="fa fa-plus" aria-hidden="true" for="afternoon"></i>
+							<input type="number" name="afternoon" id="afternoon" placeholder="Afternoon" class="quantity form-input" value="1" min="0.5">
+							<i class="fa fa-minus" aria-hidden="true" for="afternoon"></i>
 							<span class="unit"></span>
 						</div>
 						<div class="col-4">
-							<i class="fa fa-plus" aria-hidden="true"></i>
-							<input type="number" name="night" placeholder="Night">
-							<i class="fa fa-minus" aria-hidden="true"></i>
+							<i class="fa fa-plus" aria-hidden="true" for="evening"></i>
+							<input type="number" name="night" id="evening" placeholder="Night" class="quantity form-input" value="1" min="0.5">
+							<i class="fa fa-minus" aria-hidden="true" for="evening"></i>
 							<span class="unit"></span>
 						</div>
 					</div>
 				</div>
 				<div id="free-text-tab">
-					<textarea name="timings-text" id="timings-text" rows="3" placeholder="Provide the timings details."/>
+					<textarea name="med_dosage_text" id="timings-text" rows="3" placeholder="Provide the timings details."/>
 					<div>
-						Suggestions: <a href="#">For Every 3 hours</a>, <a  href="#">7:30 AM - 10:30 AM - 1:30 PM - 4:30 PM</a>
+						Suggestions: <span id="suggestions"><a href="#">For Every 3 hours</a>, <a  href="#">7:30 AM - 10:30 AM - 1:30 PM - 4:30 PM</a></span>
 					</div>
 				</div>
 
@@ -110,33 +91,33 @@
 			<div class="form-group row mt-3">
 
 				<div class="col-sm-3">
-					<input type="number" name="course" placeholder="Duration" class="form-control form-control-sm">
+					<input type="number" name="course" placeholder="Duration" min=0 class="form-input">
 				</div>
 				<div class="col-sm-4 duration">
 					<label class="custom-control custom-radio">
-						<input id="days" name="duration" type="radio" class="custom-control-input">
+						<input id="days" name="duration" type="radio" value="days" class="custom-control-input">
 						<span class="custom-control-indicator"></span>
 						<span class="custom-control-description">Days</span>
 					</label>
 					<label class="custom-control custom-radio">
-						<input id="weeks" name="duration" type="radio" class="custom-control-input">
+						<input id="weeks" name="duration" type="radio" value='weeks' class="custom-control-input">
 						<span class="custom-control-indicator"></span>
 						<span class="custom-control-description">Weeks</span>
 					</label>
 					<label class="custom-control custom-radio">
-						<input id="months" name="duration" type="radio" class="custom-control-input">
+						<input id="months" name="duration" type="radio" value='months' class="custom-control-input">
 						<span class="custom-control-indicator"></span>
 						<span class="custom-control-description">Months</span>
 					</label>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-4 food">
 					<label class="custom-control custom-radio">
-						<input id="weeks" name="med_intake" type="radio" value="Before Food"  class="custom-control-input">
+						<input id="before-food" name="med_intake" type="radio" value="Before Food"  class="custom-control-input">
 						<span class="custom-control-indicator"></span>
 						<span class="custom-control-description">Before Food</span>
 					</label>
 					<label class="custom-control custom-radio">
-						<input id="months" name="med_intake" type="radio" value="After Food" class="custom-control-input">
+						<input id="after-food" name="med_intake" type="radio" value="After Food" class="custom-control-input">
 						<span class="custom-control-indicator"></span>
 						<span class="custom-control-description">After Food</span>
 					</label>
@@ -148,7 +129,7 @@
 			</div>
 
 			<div class="form-group rows">
-				<button class="btn btn-success" id="add-prescription">Add</button>
+				<button class="btn btn-success btn-sm" id="add-prescription">Add</button>
 
 			</div>
 		</form>
@@ -171,10 +152,9 @@
 		<table class="table table-sm">
 			<thead>
 			<tr>
-				<th><b>Type of Medicine</b></th>
-				<th><b>Name of Medicine</b></th>
-				<th><b>Dosage</b></th>
-				<th><b>Timings</b></th>
+				<th><b>Type</b></th>
+				<th><b>Name</b></th>
+				<th><b>Timings/Quantity</b></th>
 				<th><b>Course Duration</b></th>
 				<th><b>Medicine Intake</b></th>
 				<th><b>Instructions</b></th>
@@ -190,23 +170,31 @@
 
 			</tbody>
 		</table>
-		<button class="btn btn-primary" id="save_continue">Save & Continue</button>
+		<button class="btn btn-primary btn-sm" id="save_continue">Save & Continue</button>
 	</div>
 
 </div>
 
 <script type="text/javascript">
+	var prescription = {}
     $(document).ready(function() {
         var prescription_data = [];
         function setUnit() {
             switch($('#med_type').val().toLowerCase()){
                 case "pills":
+                    prescription.unit = 'tabs';
+                    prescription.baseQuantity = 0.5;
                     $('.unit').html('tabs');
+                    $('.quantity').prop("min", 0.5);
                     break;
                 case "syrup":
+                    prescription.unit = 'ml';
+                    prescription.baseQuantity = 1;
                     $('.unit').html('ml');
+                    $('.quantity').prop("min", 1);
                     break;
 				default:
+                    prescription.unit = '';
                     $('.unit').html('');
                     break;
             }
@@ -257,39 +245,18 @@
             });
         });
 
-        $("#med_search").select2({
-            width: '300px',
-            tags: true,
-            minimumInputLength: 3,
-            placeholder: "Select a medicine",
+        $("#med_search").autocomplete({
+            minLength: 3,
+            placeholder: "Search for a template",
             allowClear: true,
-            ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-                type: "post",
-                url: base_url+"/api/getMymedicineList.php",
-                dataType: 'json',
-             //   contentType: 'application/json; charset=UTF-8',
-                quietMillis: 250,
-                data: function (term) {
-					return JSON.stringify({
-					    medicine_list: {
-                            doctor_id: doctor_id,
-                            //doctor_id:1,
-							med_name: term.term
-                        }
-                    })
-                },
-                processResults: function (data) { // parse the results into the format expected by Select2.
-                    // since we are using custom formatting functions we do not need to alter the remote JSON data
-
-                    return {
-                        results: $.map(data.my_medicine, function (smthg) {
-                            return {id: smthg.med_brand_name, text: smthg.med_brand_name}
-                        })
-                    };
-                }
+            classes: {
+                "ui-autocomplete": "menu"
             },
-            cache: true
-            // formatSelection: formatSelection
+            source: function(req, response){
+                getData.getMymedicineList(req.term).then(function(res){
+                    response(res.my_medicine.map(function (t) { return {label:t.med_brand_name, id:t.med_id} }));
+                });;
+            }
         });
 
         $("select").on("select2:select", function (evt) {
@@ -318,7 +285,7 @@
         $("#close-button").on('click', function (ev) {
             $('.form').hide(1000);
             $("#form3").get(0).reset();
-            $("#med_name").select2("val", "");
+            $("#med_name").val("");
             ev.stopPropagation();
         })
         var showPrescriptions = function (prescriptions_list) {
@@ -344,16 +311,15 @@
         $("#add-prescription").click(function (evt) {
             var formData = $("#form3").serializeArray();
             evt.preventDefault();
-
+			debugger
             var data = {};
             formData.map(function (feild) {
                 data[feild.name] = feild.value;
             });
 
             data.dosage = data.dosage + ' ' + data.dosage_uom;
-            data.frequency = Number(!!data.timings_morning) + '-' + Number(!!data.timings_afternoon) + '-' + Number(!!data.timings_night);
-            var duration = data.days || data.weeks || data.months;
-            data.course = data.course + ' ' + duration;
+            data.frequency = Number(!!data.morning) + '-' + Number(!!data.afternoon) + '-' + Number(!!data.night);
+            data.course = data.course + ' ' + data.duration;
             data.med_name=data.med_search;
             if ($('.form').attr('data-id')) {
                 data.prescription_id = $('.form').attr('data-id')
@@ -387,20 +353,13 @@
             $('.form').attr('data-id', prescription.prescription_id);
             $('#med_search').val(prescription.med_name);
             $('.med_type_div option[value="' + prescription.med_type + '"]').attr('selected', true);
-            $('.dosage-div option[value="' + prescription.dosage.split(' ')[0] + '"]').attr('selected', true);
-            $('.medicin-unit .dosage-mg').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'mg' ? 'active' : '');
-            $('.medicin-unit .dosage-ml').removeClass('active').addClass(prescription.dosage.split(' ')[1] == 'ml' ? 'active' : '');
-            $('.timings #mrng').removeAttr('checked').attr('checked', prescription.frequency.split('-')[0] == 1);
-            $('.timings #noon').removeAttr('checked').attr('checked', prescription.frequency.split('-')[1] == 1);
-            $('.timings #night').removeAttr('checked').attr('checked', prescription.frequency.split('-')[2] == 1);
-            $('.timings .morning').removeClass('active').addClass(prescription.frequency.split('-')[0] == 1 ? 'active' : '');
-            $('.timings .noon').removeClass('active').addClass(prescription.frequency.split('-')[1] == 1 ? 'active' : '');
-            $('.timings .night').removeClass('active').addClass(prescription.frequency.split('-')[2] == 1 ? 'active' : '');
+            $('.timings #morning').val(prescription.frequency.split('-')[0]);
+            $('.timings #afternoon').val(prescription.frequency.split('-')[1]);
+            $('.timings #night').val(prescription.frequency.split('-')[2]);
             $('input[name="med_dosage_text"]').val(prescription.med_dosage_text ? prescription.med_dosage_text : '');
             $('input[name="course"]').val(prescription.course.split(' ')[0]);
-            $('input[name="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
-            $('.food .food_timings_before').removeClass('active').addClass(prescription.med_intake == 'Before Food' ? 'active' : '');
-            $('.food .food_timings_after').removeClass('active').addClass(prescription.med_intake == 'After Food' ? 'active' : '');
+            $('.duration input[value="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
+            $('input[value="' + prescription.med_intake + '"]').attr('checked', true);
             $('textarea[name="remarks"]').text(prescription.remarks);
             $('.form').show(1000);
         });
@@ -426,6 +385,34 @@
             $('#standard').removeClass('selected')
             $('#standard-tab').hide();
             $('#free-text-tab').show();
+        });
+        $('.timings .fa-plus').on('click', function (ev) {
+			var target = $(this).attr('for')
+			var currentValue = $('#'+target).val();
+			currentValue = !!currentValue ? Number(currentValue) : undefined;
+			if(currentValue){
+			    currentValue+=prescription.baseQuantity;
+			}else{
+			    currentValue=prescription.baseQuantity;
+			}
+            $('#'+target).val(currentValue);
+			ev.stopPropagation();
+        });
+        $('.timings .fa-minus').on('click', function (ev) {
+            var target = $(this).attr('for')
+            var currentValue = $('#'+target).val();
+            currentValue = !!currentValue ? Number(currentValue) : undefined;
+            if(currentValue){
+                currentValue-=prescription.baseQuantity;
+            }else{
+                currentValue=prescription.baseQuantity;
+            }
+            $('#'+target).val(currentValue);
+            ev.stopPropagation();
+        });
+        $('#suggestions a').on('click', function (ev) {
+            var text = $(this).text();
+			$('#timings-text').text(text);
         })
     })
         /*	$("#autocomplete").autocomplete(function (evt) {

@@ -4,7 +4,7 @@ var session_info = {
     "device_id": "1"
 };
 //var base_url = "https://52.66.157.195/growayu/ganewdesign/"           //Test Server
-var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
+var base_url = "http://52.77.171.116/gadoctor";                        //Stage Server
 var getData = {
     getDashboardData: function(date){
         var url = "/api/getDocAppointmentDashboard.php";
@@ -289,28 +289,22 @@ var getData = {
         });
         return call;
     },
-    getMymedicineList: function(){
+    getMymedicineList: function(term){
         var url = "/api/getMymedicineList.php";
-        var doctorId = doctor_id;
-        var medicine_list = {
-            doctor_id: doctorId,
-            med_name: "C"
- //           med_id:"2",
-   //         med_chemical_name: "",
-     //       dosage: "200",
-       //     dosage_uom: "mg"
+        var doctorId = "1";
 
-        };
-        var data = {
-            medicine_list: medicine_list,
-            session_info: session_info
-        };
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
-            data: JSON.stringify(data),
+            data: JSON.stringify({
+                medicine_list: {
+                    doctor_id: doctorId,
+                    //doctor_id:1,
+                    med_name: term
+                }
+            }),
             dataType: 'json',
-            success: function (res,status) {
+            success: function (res) {
              //   alert("success in med");
                 return res;
             },
@@ -318,28 +312,25 @@ var getData = {
               //  alert("error in med");
                 console.error(err, status);
             }
-        }).then(function(res){
-            return res;
         });
         return call;
     },
-    getPrescriptionTemplateList: function(id){
+    getPrescriptionTemplateList: function(term){
         var url = "/api/getPrescriptionTemplateList.php";
         var doctorId = doctor_id;
-        var template_input = {
-            doctor_id: doctorId,
-            template_id: id,
-            template_name:"",
-            speciality: ""
-        };
-        var data = {
-            template_input: template_input,
-            session_info: session_info
-        }
-        var call = $.ajax({
+
+       call = $.ajax({
             type: "POST",
             url: base_url + url,
-            data: JSON.stringify(data),
+            data:JSON.stringify({
+                template_input : {
+                    doctor_id: doctorId,
+                    //doctor_id: 1,
+                    template_id: 1,
+                    template_name:term,
+                    speciality: ""
+                }
+            }),
             dataType: 'json',
             success: function (res,status) {
                 return res;

@@ -31,7 +31,6 @@ $(document).ready(function(){
             var template = Handlebars.compile(source);
             var html = template(res.appointments_details);
             $('#details').html(html);
-            $('#prescription').load('./components/prescription.html');
 			if(res.appointments_details.appointment_det.apmt_type != "VC"){
 				$('#start-vedio-consultation').hide();
 			}else{
