@@ -294,7 +294,6 @@
             var source = $("#prescriptiontable").html();
             var template = Handlebars.compile(source);
             var rows = prescriptions_list.map(function (data) {
-                debugger
                 if (!data.delete_flag || data.delete_flag != 'Y') {
                     if(!!data.med_id){
                         data.prescription_id = data.med_id;

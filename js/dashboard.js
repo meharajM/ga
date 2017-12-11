@@ -86,7 +86,7 @@ $(document).ready(function(){
             summary_details=res.appointments_details.consultation_details.consultation_summary;
             appointment=res.appointments_details;
             consultation_id=summary_details.consultation_id;
-            //$('#prescription').load('./components/prescription.html');
+            $('#prescription').load('./components/prescription.html');
           //  $('#newprescription').load('./components/newprescription.html');
             $('#summary').load('./components/summary.html');
 
@@ -132,6 +132,8 @@ $(document).ready(function(){
     var publisher, subscriber;
     function initializeSession(apiKey, sessionId, token) {
         showMessage("Checking for the Support ans system requirements");
+        try{
+
         OT.addEventListener("exception", exceptionHandler);
         if(OT.checkSystemRequirements()){
             session = OT.initSession(apiKey, sessionId);
@@ -199,6 +201,9 @@ $(document).ready(function(){
             return {session: session, stream: publisher.stream};
         }else{
             showMessage("your browser does not support webRTC please upgrade your browser");
+        }}catch (e){
+            debugger
+            console.error(e)
         }
     }
     var vedioSession;
