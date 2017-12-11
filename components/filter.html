@@ -1,4 +1,4 @@
-<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="./js/bootstrap-datepicker.min.js"></script>
 <div class="bg-light border">
     <div class="text-center pt-2 pb-1 mt-2 mb-2">
                     <div class="fa fa-angle-left prev"  id="previous_day"></div>
@@ -69,151 +69,97 @@
             showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
         });
             $("#date").datepicker({
-            format: 'DD, dd-M-yy',
+            format: 'DD, M d, yyyy',
 	        changeMonth: true,
             changeYear: true,
             minDate: 0,
             todayHighlight: true,
             autoclose: true
-        }).on('changeDate', function(e){
-                var actualDate= e.date;
-                var date=moment(actualDate).format("YYYYMMDD");
-                getData.getDashboardData(date).then(function(res){
-                    appointment_list=res.appointments_details.appointment;
+        }).on('changeDate', function(e) {
+                var actualDate = e.date;
+                //  var new_date=moment(actualDate).format("dddd MMM Do YY");
+                // alert(new_date);
+                $("#date").val(moment(actualDate).format("dddd, ll"));
+           //     appointment_date= document.getElementById("date").html=moment(date).format("DD-MM-YYYY");
+                // alert($("#date").val(new_date));
+                var date = moment(actualDate).format("YYYYMMDD");
+                getData.getDashboardData(date).then(function (res) {
+                    appointment_list = res.appointments_details.appointment;
                     showDashboardDetails(res);
+                    appointment_date=moment(actualDate).format("YYYY-MM-DD");
+                   // alert(appointment_date);
+
                 });
-               /* $("#all:input").prop("checked", true);
-                debugger;
-                $("#all_filter_2:input").prop("checked", true);*/
-
-              /*  $('input[type=radio]').prop('checked', function () {
-                    return this.getAttribute('checked') == 'checked';
-                }); */
-              //  $("input:checked").removeAttr("checked");
             });
 
-
-       /*     $("#next_day").on("click", function(){
-                $('input[type=radio]').prop('checked', function () {
-                    return this.getAttribute('checked') == 'checked';
-                });*/
-
-//        $("input[name='filter_1']").change(function(){
-//            if($(this).val()=="Pending")
-//            {
-//                var filteredAppointments = appointment_list.filter(function(val) {
-//                    return val.appointment_status == 'booked';
-//                });
-//                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
-//            }
-//            else if($(this).val()=="Closed")
-//            {
-//                var filteredAppointments = appointment_list.filter(function(val) {
-//                    return val.appointment_status == 'closed';
-//                });
-//                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
-//            }
-//            else
-//            {
-//                var filteredAppointments = appointment_list.filter(function(val) {
-//                    return val;
-//                });
-//                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
-//
-//            }
-//        });
-//
-//        $("input[name='filter_2']").change(function(){
-//            if($(this).val()=="video")
-//            {
-//                var filteredAppointments = appointment_list.filter(function(val) {
-//                    return val.appointment_type == 'VC';
-//                });
-//                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
-//            }
-//            else if($(this).val()=="physical")
-//            {
-//                var filteredAppointments = appointment_list.filter(function(val) {
-//                    return val.appointment_type == 'PC';
-//                });
-//                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
-//            }
-//
-//            else
-//            {
-//                var filteredAppointments = appointment_list.filter(function(val) {
-//                    return val;
-//                });
-//                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
-//
-//            }
-//        });
-/*
-       $("#f").on('click', function () {
-            getData.getPrescriptionTemplateList(1);
-            getData.getMyprescriptionTemplateDetails(1);
-            getData.getMymedicineList();
-        });
-        */
-
-
-
-
-
-
-/*
-            $("#booked").on("click", function (evt) {
-                var filteredAppointments = appointment_list.filter(function(val) {
-                    return val.appointment_status == 'booked';
-                });
-                showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
-                evt.preventDefault();
-            });
-
-        $("#closed").on("click", function (evt) {
-            var filteredAppointments = appointment_list.filter(function(val) {
-                return val.appointment_status == 'closed';
-            });
-            showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
-            evt.preventDefault();
-        });
-*/
-
-
-         var current_date = new Date();
-         var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
          $(function () {
             // This writes out the current date to the text field as starter
-            $('#date').val(current_date.toLocaleDateString('en-US', options));
+            $('#date').val(moment().format("dddd, ll"));
+//             appointment_date= document.getElementById("date").html=moment(date).format("DD-MM-YYYY");
+  //           $(".filter-area").hide();
+
             // Hook up previous button event
             $('#previous_day').click(function () {
                 // Set our current date to 1 day earlier
-                current_date.setDate(current_date.getDate() - 1);
+               // current_date.setDate(current_date.getDate() - 1);
                 // Write the result to our text input
-                $('#date').val(current_date.toLocaleDateString('en-US', options));
-                var actualDate = new Date(current_date); // convert to actual date;
-                var date=moment(actualDate).format("YYYYMMDD");
-                getData.getDashboardData(date).then(function(res){
-                    appointment_list=res.appointments_details.appointment;
-                    showDashboardDetails(res);
-                }).catch(function(error){
-                    console.error(error);
-                })
+              //  $('#date').val(current_date.toLocaleDateString('en-US', options));
+             //   var actualDate = new Date(current_date); // convert to actual date;
+                if(prev_apmt_date) {
+                    var date = prev_apmt_date;
+                    getData.getDashboardData(date).then(function (res) {
+                        appointment_list = res.appointments_details.appointment;
+                        appointment_date=moment(prev_apmt_date).format("YYYY-MM-DD");
+                      //  alert(appointment_date);
+                        showDashboardDetails(res);
+                        $("#date").val(moment(date).format("dddd, ll"));
+                        $(".filter-area").show();
+                        $('.appointment-info').removeClass('d-none');
+                        $('#appointment-list').removeClass('d-none');
+                        $('.no-appointment-selected').addClass('d-none');
+                    }).catch(function (error) {
+                        console.error(error);
+                    })
+                }else{
+                    $("#date").val("No Previous Appointments");
+                    $('.appointment-info').addClass('d-none');
+                    $('#appointment-list').addClass('d-none');
+                    $('.no-appointment-selected').removeClass('d-none');
+                    $(".filter-area").addClass('d-none');
+                }
             });
             // Hook up next button event
             $('#next_day').click(function () {
                 // Set our current date to 1 day later
-                current_date.setDate(current_date.getDate() + 1);
+               // current_date.setDate(current_date.getDate() + 1);
                 // Write the result to our text input
-                $('#date').val(current_date.toLocaleDateString('en-US', options));
-                var actualDate = new Date(current_date); // convert to actual date;
-                var date=moment(actualDate).format("YYYYMMDD");
-                getData.getDashboardData(date).then(function(res){
-                    appointment_list=res.appointments_details.appointment;
-                    showDashboardDetails(res);
-                }).catch(function(error){
-                    console.error(error);
-                })
+               // $('#date').val(current_date.toLocaleDateString('en-US', options));
+             //   var actualDate = new Date(current_date); // convert to actual date;
+                if(next_apmt_date) {
+                    var date = next_apmt_date;
+                    getData.getDashboardData(date).then(function (res) {
+                        appointment_list = res.appointments_details.appointment;
+                        appointment_date=moment(next_apmt_date).format("YYYY-MM-DD");
+                       // alert(appointment_date);
+
+                        showDashboardDetails(res);
+                        $("#date").val(moment(date).format("dddd, ll"));
+                        $(".filter-area").show();
+                        $('.appointment-info').removeClass('d-none');
+                        $('#appointment-list').removeClass('d-none');
+                        $('.no-appointment-selected').addClass('d-none');
+                    }).catch(function (error) {
+                        console.error(error);
+                    })
+                }else
+                {
+                    $("#date").val("No Next Appointments");
+                    $('.appointment-info').addClass('d-none');
+                    $('#appointment-list').addClass('d-none');
+                    $('.no-appointment-selected').removeClass('d-none');
+                    $(".filter-area").hide();
+
+                }
             });
         });
     })

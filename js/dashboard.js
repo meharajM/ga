@@ -1,7 +1,8 @@
 var appointment_id, hs_id,appointment_list,sessionId,token,apiKey,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, summary_details;
 var appointment,apmt_type,consultation_id,record_id;
 var showToaster, session;
-var doctor_id, doctor_name, hcc_id, template_id, login_token;
+var doctor_id, doctor_name,doc_photo, hcc_id, template_id, login_token, appointment_date;
+//var apiKey = "45638452";
 function showMessage(message) {
     $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
 }
@@ -12,13 +13,15 @@ function hideLoader() {
     $('.loading').addClass('hidden-xs-up');
 }
 $(document).ready(function(){
-
 	var actualDate=new Date();
     var date=moment(actualDate).format("YYYYMMDD");
     getData.getDashboardData(date).then(function(res){
         $('#filter').load('./components/filter.html');
         appointment_list=res.appointments_details.appointment;
+
     	showDashboardDetails(res);
+    	appointment_date=moment(actualDate).format("YYYY-MM-DD");
+
 	});
 
 	/*getting appointment details*/
@@ -26,11 +29,15 @@ $(document).ready(function(){
 		appointment_id = ev.currentTarget.id;
 		getData.getAppointmentDetails(appointment_id).then(function(res){
 		    $('.no-appointment-selected').addClass('d-none');
+
 		    $('.appointment-info').removeClass('d-none');
 		    var source = $('#detailsTemplate').html();
             var template = Handlebars.compile(source);
             var html = template(res.appointments_details);
             $('#details').html(html);
+            $('#prescription').load('./components/prescription.html');
+          //  $('#newprescription').load('./components/newprescription.html');
+
 			if(res.appointments_details.appointment_det.apmt_type != "VC"){
 				$('#start-vedio-consultation').hide();
 			}else{
@@ -39,10 +46,10 @@ $(document).ready(function(){
             hs_id = res.appointments_details.health_seeker_profile.hs_id;
 			$("#start-vedio-consultation").on("click",function (vid) {
 				getData.startVideoConsultation(appointment_id,hs_id).then(function (res) {
-					sessionId=res.video_session_det.session;
-					token=res.video_session_det.token;
-					apiKey=res.video_session_det.apiKey;
-					startVedio();
+                    sessionId=res.video_session_det.session;
+                    token=res.video_session_det.token;
+                    apiKey=res.video_session_det.apiKey;
+                    startVedio();
                 });
 				vid.preventDefault();
 
@@ -60,14 +67,8 @@ $(document).ready(function(){
                     objbuilder += ('</object>');
                     $('.modal-body').html(objbuilder);
                     $(".document-title").html(res.document.doc_desc);
-                    /*
-<<<<<<< HEAD
 
 
-=======
-
-
->>>>>>> beabe7f718d41f15711ceaa0b37c4f1859f7f947*/
                     //to open pdf in new tab
                    /* var win = window.open("#","_blank");
                     var title = "my tab title";
@@ -81,11 +82,12 @@ $(document).ready(function(){
 
 
             apmt_status=res.appointments_details.appointment_det.apmt_status;
-			prescriptions_list=res.appointments_details.consultation_details.prescription_details;
-			summary_details=res.appointments_details.consultation_details.consultation_summary;
-			appointment=res.appointments_details;
-			consultation_id=summary_details.consultation_id;
-            $('#prescription').load('./components/prescription.html');
+            prescriptions_list=res.appointments_details.consultation_details.prescription_details;
+            summary_details=res.appointments_details.consultation_details.consultation_summary;
+            appointment=res.appointments_details;
+            consultation_id=summary_details.consultation_id;
+            //$('#prescription').load('./components/prescription.html');
+          //  $('#newprescription').load('./components/newprescription.html');
             $('#summary').load('./components/summary.html');
 
 
@@ -107,7 +109,7 @@ $(document).ready(function(){
         if($(window).width() < 500){
             $('#appointment-list-phone').html(html);
             $('#appointment-list-phone').removeClass('list-group').addClass('list-inline');
-            $('#appointment-list-phone .list-group-item').removeClass('list-group-item').addClass('list-inline-item');
+            $('#appointment-list-phone .list-group-item').removeClass('list-group-item').addClass('list-inline-item')
         }else{
             $('#appointment-list').html(html)
         }
@@ -127,12 +129,12 @@ $(document).ready(function(){
 	    alert(error.message);
 	  }
 	}
-	var publisher, subscriber;
-	function initializeSession(apiKey, sessionId, token) {
-		showMessage("Checking for the Support ans system requirements");
+    var publisher, subscriber;
+    function initializeSession(apiKey, sessionId, token) {
+        showMessage("Checking for the Support ans system requirements");
         OT.addEventListener("exception", exceptionHandler);
-		if(OT.checkSystemRequirements()){
-			session = OT.initSession(apiKey, sessionId);
+        if(OT.checkSystemRequirements()){
+            session = OT.initSession(apiKey, sessionId);
             session.on('streamCreated', function(event) {
                 if(!publisherError){
                     $('#subscriber').html("<div id='subscriber-container'></div>");
@@ -152,9 +154,9 @@ $(document).ready(function(){
 
             });
             session.on('sessionDisconnected', function (event) {
-               if (event.reason === 'networkDisconnected') {
+                if (event.reason === 'networkDisconnected') {
                     event.preventDefault();
-                   // var subscribers = session.getSubscribersForStream(event.stream);
+                    // var subscribers = session.getSubscribersForStream(event.stream);
                     // if (subscribers.length > 0) {
                     //     var subscriber = document.getElementById(subscribers[0].id);
                     //     // Display error message inside the Subscriber
@@ -195,68 +197,68 @@ $(document).ready(function(){
             $('#start-vedio-consultation').addClass('hidden-xs-up');
             $('#close-vedio-consultation').removeClass('hidden-xs-up');
             return {session: session, stream: publisher.stream};
-		}else{
-			showMessage("your browser does not support webRTC please upgrade your browser");
-		}
-	}
-	var vedioSession;
-	var startVedio = function(){
-		apiKey = apiKey,
-        sessionId = sessionId,
-        token = token,
-			// (optional) add server code here
-		vedioSession = initializeSession(apiKey, sessionId, token);
-	};
-	var stopVideo = function(){
-		if(session){
-		    
-		    session.disconnect()
+        }else{
+            showMessage("your browser does not support webRTC please upgrade your browser");
+        }
+    }
+    var vedioSession;
+    var startVedio = function(){
+        apiKey = apiKey,
+            sessionId = sessionId,
+            token = token,
+            // (optional) add server code here
+            vedioSession = initializeSession(apiKey, sessionId, token);
+    };
+    var stopVideo = function(){
+        if(session){
+
+            session.disconnect()
             $('.video-container').addClass('hidden-xs-up');
-			$('.left-container').removeClass('col-12').removeClass('col-5').addClass('col-3');
+            $('.left-container').removeClass('col-12').removeClass('col-5').addClass('col-3');
             $('.appointment-list-container').removeClass('hidden-xs-up');
             $('.appointment-content').removeClass('hidden-xs-up').removeClass('col-7').addClass('col-9');
             $('#start-vedio-consultation').removeClass('hidden-xs-up');
-	 		$('#close-vedio-consultation').addClass('hidden-xs-up');
-	 		$('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');
-		}
-	};
-	var muteAudio = function(ev){
-		if($(this).hasClass('muted')){
-			publisher.publishAudio(true);
-			$(this).removeClass('muted');
-		}else{
-			publisher.publishAudio(false);
-			$(this).addClass('muted');	
-		}		
-	}
-	var muteVideo = function(ev){
-		if($(this).hasClass('muted')){
-			publisher.publishVideo(true);
-			$(this).removeClass('muted');
-		}else{
-			publisher.publishVideo(false);
-			$(this).addClass('muted');
-		}
-	}
-	var showFullScreen = function(ev){
-		if(!$('#publisher').hasClass('hidden-xs-up')){
+            $('#close-vedio-consultation').addClass('hidden-xs-up');
+            $('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');
+        }
+    };
+    var muteAudio = function(ev){
+        if($(this).hasClass('muted')){
+            publisher.publishAudio(true);
+            $(this).removeClass('muted');
+        }else{
+            publisher.publishAudio(false);
+            $(this).addClass('muted');
+        }
+    }
+    var muteVideo = function(ev){
+        if($(this).hasClass('muted')){
+            publisher.publishVideo(true);
+            $(this).removeClass('muted');
+        }else{
+            publisher.publishVideo(false);
+            $(this).addClass('muted');
+        }
+    }
+    var showFullScreen = function(ev){
+        if(!$('#publisher').hasClass('hidden-xs-up')){
             $('.appointment-content').addClass('hidden-xs-up');
             $('.left-container').addClass('col-12').removeClass('col-3');
-		}else if(!$('#subscriber').hasClass('hidden-xs-up')){
-			$('#subscriber').addClass('show-full-screen');
-		}
-		$('.full-screen-off').removeClass('hidden-xs-up')
-		$('.full-screen').addClass('hidden-xs-up')
-	}
-	var removeFullScreen = function (ev) {
+        }else if(!$('#subscriber').hasClass('hidden-xs-up')){
+            $('#subscriber').addClass('show-full-screen');
+        }
+        $('.full-screen-off').removeClass('hidden-xs-up')
+        $('.full-screen').addClass('hidden-xs-up')
+    }
+    var removeFullScreen = function (ev) {
         if(!$('#publisher').hasClass('hidden-xs-up')){
-        	$('.appointment-content').removeClass('hidden-xs-up');
+            $('.appointment-content').removeClass('hidden-xs-up');
             $('.left-container').addClass('col-3').removeClass('col-12');
         }else if(!$('#subscriber').hasClass('hidden-xs-up')){
             $('#subscriber').removeClass('show-full-screen');
         }
         $('.full-screen').removeClass('hidden-xs-up')
-		$('.full-screen-off').addClass('hidden-xs-up')
+        $('.full-screen-off').addClass('hidden-xs-up')
     }
     showToaster = function (message) {
         var x = $('#toaster');
@@ -270,7 +272,7 @@ $(document).ready(function(){
         setTimeout(function(){ x.removeClass("show"); x.html('')}, 1000);
     }
     //function getDocument() {
-	//	debugger;
+    //	debugger;
 
 
 
@@ -284,20 +286,36 @@ $(document).ready(function(){
             $('#mytabs li a')[0].click();
 
     });
-	$('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails);
-	$('.appointment-details #prescription').on('submit', addPrescription);
-	//$('#start-vedio-consultation').on('click', startVedio)
-	$('#close-vedio-consultation').on('click', stopVideo);
-	$('#toggleLocalAudio').on('click', muteAudio);
-	$('#toggleLocalVideo').on('click', muteVideo);
-	$('.full-screen').on('click', showFullScreen);
-	$('.App-control-container').on('click', '.full-screen-off', removeFullScreen);
-	$('#appointment-list').on('click', '.heath-seeker-profile', showProfile);
-	//$('.health_record').on('click', getDocument);
+    $('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails);
+    $('.appointment-details #prescription').on('submit', addPrescription);
+    //$('#start-vedio-consultation').on('click', startVedio)
+    $('#close-vedio-consultation').on('click', stopVideo);
+    $('#toggleLocalAudio').on('click', muteAudio);
+    $('#toggleLocalVideo').on('click', muteVideo);
+    $('.full-screen').on('click', showFullScreen);
+    $('.App-control-container').on('click', '.full-screen-off', removeFullScreen);
+    $('#appointment-list').on('click', '.heath-seeker-profile', showProfile);
+    //$('.health_record').on('click', getDocument);
+
     $('#logout').on('click', function (evt) {
-       // getData.doDoctorLogin("bala621986@gmail.com", "growayu");
+        // getData.doDoctorLogin("bala621986@gmail.com", "growayu");
         getData.doDoctorLogout().then(function (res) {
-            $('#body').load('index.html');
+            isLoggedIn = false;
+            $('#body').load('./components/logout.html');
+            $(".logout-text").show();
+            $(".login-panel").toggle();
+
+
+            sessionStorage.removeItem("id");
+            sessionStorage.removeItem("name");
+            sessionStorage.removeItem("token");
+            sessionStorage.removeItem("photo");
+
+            doctor_id=sessionStorage.getItem("id");
+            doctor_name=sessionStorage.getItem("name");
+            login_token=sessionStorage.getItem("token");
+            doc_photo=sessionStorage.getItem("photo");
+            //  console.log(doctor_id+" "+doctor_name+" "+login_token);
         });
-    })
+    });
 });

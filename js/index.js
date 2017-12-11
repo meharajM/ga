@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    //   var isLoggedIn = false;
+ //   var isLoggedIn = false;
     function showDashboard() {
         doctor_id = sessionStorage.getItem("id");
         doctor_name = sessionStorage.getItem("name");
@@ -39,7 +39,7 @@ $(document).ready(function(){
             }else{
                 isLoggedIn = checkLogin();
                 showDashboard();
-            }
+                }
         });
     })
 });

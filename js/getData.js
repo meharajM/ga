@@ -3,8 +3,8 @@ var session_info = {
     "access_token": "aeuhsy78989ljjsj",
     "device_id": "1"
 };
-var base_url = "https://52.66.157.195/growayu/ganewdesign";           //Test Server
-//var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
+//var base_url = "https://52.66.157.195/growayu/ganewdesign";           //Test Server
+var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
 var getData = {
     getDashboardData: function(date){
         var url = "/api/getDocAppointmentDashboard.php";
@@ -143,7 +143,7 @@ var getData = {
             type: "POST",
             url: base_url+url,
             data: JSON.stringify(data),
-            dataType: 'json',
+           dataType: 'json',
             success: function (res,status) {
                 return res;
             },
@@ -180,7 +180,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res, status){
-                //  alert("success update pres");
+              //  alert("success update pres");
                 return res;
 
             },
@@ -203,33 +203,33 @@ var getData = {
             hs_id: hs_id,
             hcc_id: "1"
         };
-        /* var summary={
-             consultation_id: "",
-             diagnosis:"pain in chest",
-             mgmt_plan:"hello",
-             followup_date:"20-12-2017",
-             followup_in: "2 days",
-             waiver_status: "Partial",
-             waived_amount: "1000",
-             ga_notes: "bye",
-             doctor_notes: "hi there",
-             suggested_test: [
-                 {
-                     test_id: "1",
-                     test_name: "Blood"
-                 },
-                 {
-                     test_id: "2",
-                     test_name: "Chemo"
-                 }
-             ],
-             seeker_instructions: [
-                 {
-                     instruction_id: "",
-                     instruction_text: ""
-                 }
-             ]
-         };*/
+       /* var summary={
+            consultation_id: "",
+            diagnosis:"pain in chest",
+            mgmt_plan:"hello",
+            followup_date:"20-12-2017",
+            followup_in: "2 days",
+            waiver_status: "Partial",
+            waived_amount: "1000",
+            ga_notes: "bye",
+            doctor_notes: "hi there",
+            suggested_test: [
+                {
+                    test_id: "1",
+                    test_name: "Blood"
+                },
+                {
+                    test_id: "2",
+                    test_name: "Chemo"
+                }
+            ],
+            seeker_instructions: [
+                {
+                    instruction_id: "",
+                    instruction_text: ""
+                }
+            ]
+        };*/
 
 
         var data = {
@@ -245,11 +245,11 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-                //    alert("success in update summary");
+            //    alert("success in update summary");
                 return res;
             },
             error: function(err,status){
-                //  alert("error in update summary");
+              //  alert("error in update summary");
                 console.error(err, status);
             }
         }).then(function(res){
@@ -276,14 +276,14 @@ var getData = {
             type: "POST",
             url: base_url + url,
             data: JSON.stringify(data),
-            // dataType: 'json',
+           // dataType: 'json',
             success: function (res,status) {
-                //  alert("success in preview summary");
+              //  alert("success in preview summary");
 
                 return res;
             },
             error: function(err,status){
-                //  alert("error in preview summary");
+              //  alert("error in preview summary");
                 console.error(err, status);
             }
         }).then(function(res){
@@ -298,10 +298,10 @@ var getData = {
         var medicine_list = {
             doctor_id: doctorId,
             med_name: "C"
-            //           med_id:"2",
-            //         med_chemical_name: "",
-            //       dosage: "200",
-            //     dosage_uom: "mg"
+ //           med_id:"2",
+   //         med_chemical_name: "",
+     //       dosage: "200",
+       //     dosage_uom: "mg"
 
         };
         var data = {
@@ -314,11 +314,11 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-                //  alert("success in med");
+              //  alert("success in med");
                 return res;
             },
             error: function(err,status){
-                //   alert("error in med");
+             //   alert("error in med");
                 console.error(err, status);
             }
         }).then(function(res){
@@ -383,34 +383,34 @@ var getData = {
         return call;
     },
 
-    /* getDoctorProfile: function(id){
-         var url = "/api/getDoctorProfile.php";
-         var doctorId = id;
-         var hcc_id="1";
-         var doctor_info = {
-             doctor_id: doctorId,
-             hcc_id: hcc_id
-         };
-         var data = {
-             doctor_info: doctor_info,
-             session_info: session_info
-         }
-         var call = $.ajax({
-             type: "POST",
-             url: base_url + url,
-             data: JSON.stringify(data),
-             dataType: 'json',
-             success: function (res,status) {
-                 return res;
-             },
-             error: function(err,status){
-                 console.error(err, status);
-             }
-         }).then(function(res){
-             return res;
-         });
-         return call;
-     }, */
+   /* getDoctorProfile: function(id){
+        var url = "/api/getDoctorProfile.php";
+        var doctorId = id;
+        var hcc_id="1";
+        var doctor_info = {
+            doctor_id: doctorId,
+            hcc_id: hcc_id
+        };
+        var data = {
+            doctor_info: doctor_info,
+            session_info: session_info
+        }
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res,status) {
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        });
+        return call;
+    }, */
     closeConsultation: function (id) {
         var url = "/api/closeConsultation.php";
         var doctorId = doctor_id;

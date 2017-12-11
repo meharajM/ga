@@ -16,10 +16,10 @@
 
 
 .navbar-container{
-	margin-right: 25px;
+    margin-right: 25px;
 }
 .navbar{
-	background-color: white;
+    background-color: white;
     border-bottom: 1px solid #88da34;
 }
 
@@ -38,7 +38,7 @@
 }
 
 body{
-	background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 ::-webkit-scrollbar-track
@@ -61,36 +61,36 @@ body{
 
 
 .border-right-green{
-	border-right: 2px solid green;
+    border-right: 2px solid green;
 }
 .border{
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
 }
 #search::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: white;
+    color: white;
 }
 #search::-moz-placeholder { /* Firefox 19+ */
-  color: white;
+    color: white;
 }
 #search:-ms-input-placeholder { /* IE 10+ */
-  color: white;
+    color: white;
 }
 #search:-moz-placeholder { /* Firefox 18- */
-  color: white;
+    color: white;
 }
 .bg-light{
-	background-color: white;
+    background-color: white;
 }
 
-.appointment-details-tab-content{
+.tab-content{
     background-color: white;
     border: 1px solid transparent;
     border-color: #ddd #ddd #fff;
     height: 75vh;
     overflow-y: scroll;
 }
-.appointment-details-tab-content{
+.tab-content{
     border-top: none;
 }
 .appointment-details{
@@ -103,43 +103,43 @@ body{
 }
 
 .list-inline {
-  white-space:nowrap;
-  overflow: scroll;
+    white-space:nowrap;
+    overflow: scroll;
 }
 .medicin-unit label{
-  border: 0.5px solid #00b050;
+    border: 0.5px solid #00b050;
     font-size: 12px;
 }
 .medicin-unit .active, .food .active, .duration .active, .waiver .active{
-  background-color:  #00b050;
+    background-color:  #00b050;
     font-size: 12px;
 }
 
 .timings .morning{
-  background-image:  url('../img/mor.png');
+    background-image:  url('../img/mor.png');
 }
 .timings .morning.active{
-  background-image:  url('../img/morG.png');
+    background-image:  url('../img/morG.png');
 }
 .timings .noon{
-  background-image:  url('../img/noon.png');
+    background-image:  url('../img/noon.png');
 }
 .timings .noon.active{
-  background-image:  url('../img/noonG.png');
+    background-image:  url('../img/noonG.png');
 }
 .timings .night{
-  background-image:  url('../img/nigh.png');
+    background-image:  url('../img/nigh.png');
 }
 .timings .night.active{
-  background-image:  url('../img/nighG.png');
+    background-image:  url('../img/nighG.png');
 }
 .timings .btn-group{
-  height: 50px;
-  width: 50px;
+    height: 50px;
+    width: 50px;
 }
 #publisher, #subscriber{
-	height: 100%;
-	width: 100%;
+    height: 100%;
+    width: 100%;
 }
 #publisher #publisher-container, #subscriber #subscriber-container{
     width: 100%;
@@ -188,7 +188,7 @@ body{
     width: 50px;
     height: 50px;
     margin: 20px 0 !important;
-    border: 2px solid white;    
+    border: 2px solid white;
     background-position: center;
     background-color: rgba(27, 134, 144, 0.4);
     background-color: rgba(211, 211, 211, 0.32);
@@ -197,7 +197,7 @@ body{
     z-index: 50;
 }
 .circle{
-  border-radius: 50%;
+    border-radius: 50%;
 }
 .App-control-container .ots-video-control.audio {
     background-image: url(https://assets.tokbox.com/solutions/images/icon-mic.png);
@@ -211,7 +211,7 @@ body{
     background-image: url(https://assets.tokbox.com/solutions/images/icon-video.png);
 }
 
-.App-control-container .ots-video-control.video.muted, 
+.App-control-container .ots-video-control.video.muted,
 .App-control-container .ots-video-control.video:hover {
     background-image: url(https://assets.tokbox.com/solutions/images/icon-no-video.png);
 }
@@ -227,11 +227,11 @@ body{
 }
 
 .appointment-info.show-full-screen{
-  height: 80vh;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+    height: 80vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .controls-group{
     position: absolute;
@@ -245,7 +245,7 @@ body{
     color: #1f7bf3;
     cursor: pointer;
     font-size: 18px;
- /*   background-image: url(../img/vidiCon.png); */
+    /*   background-image: url(../img/vidiCon.png); */
 }
 
 .appointment-type .PC{
@@ -286,7 +286,7 @@ body{
 }
 
 #p_check{
-width:35%;
+    width:35%;
 }
 
 .closed{
@@ -311,6 +311,12 @@ width:35%;
     width:50px;
     font-size: 12px;
 }
+
+.expired{
+    background-color: #840755;
+    width:50px;
+    font-size: 12px;
+}
 .apmt_time{
     font-size: 14px;
 }
@@ -320,7 +326,7 @@ width:35%;
 }
 
 .test_id{
-    width:525px;
+    width:474.25px;
     position: relative;
     display: block;
     padding: .5rem .75rem;
@@ -560,24 +566,14 @@ footer {
     font-size: 13px;
     color: white;
 }
-/*
-.closed-button.active{
-    background-color: #00b050;
-    font-size: 12px;
+.modal-header {
+    padding: 10px;
 }
- .pending-button.active{
-     background-color:  #bf800c;
-     font-size: 12px;
-}*/
-
-
+/*======= */
 .modal-body{
     height:500px;
 }
 
-.modal-header{
-    padding:10px;
-}
 /* loader*/
 /* Absolute Center Spinner */
 .loading {
@@ -696,6 +692,28 @@ footer {
         -o-transform: rotate(360deg);
         transform: rotate(360deg);
     }
+}
+
+.mr-1{
+    height: 35px;
+    width: 35px;
+}
+
+.modal-close-consultation{
+    padding: 8px;
+}
+
+.close-consult{
+    max-width: 448px;
+    padding-top: 50px;
+}
+
+.template-msg{
+    max-width: 448px;
+    padding-top: 50px;
+}
+.modal-body-template{
+    padding: 8px;
 }
 .timings{
     padding: 8px;

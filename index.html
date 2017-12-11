@@ -34,10 +34,10 @@
                 <div class="row">
                     <div class="col-12 no-padding">
                         <div class="row">
-                            <div class="col-3"><img src="img/user.jpg" alt="profile" class="rounded-circle mr-2 heath-seeker-profile"/></div>
+                            <div class="col-3"><img src="{{health_seeker.photo_url}}" alt="profile" height="40px" width="40px" class="rounded-circle mr-2 heath-seeker-profile"/></div>
                             <div class="col-9">
                                 <div id="name">{{health_seeker.health_seeker_name}}</div>
-                                <div class="font-12">age: <b>23</b> Gender: <b>Male</b></div>
+                                <div class="font-12">age: <b>{{health_seeker.age}}</b> Gender: <b>{{health_seeker.gender}}</b></div>
                             </div>
                         </div>
                     </div>
@@ -62,24 +62,24 @@
     <script type="text/x-handlebars-template" id="detailsTemplate">
         <div class="appointment-details">
 
-        <p>
-        <b>General</b><br>
-        Appointment ID: {{appointment_det.apmt_id}}<br>
-        Patient Name: {{health_seeker_profile.hs_name}}<br>
-        Contact No: {{health_seeker_profile.hs_phone}}<br>
-        Schedule: {{appointment_det.apmt_date}} | {{appointment_det.apmt_time}}<br>
-        Age:	{{health_seeker_profile.age}}<br>
-        Blood Group:	{{health_seeker_profile.blood_group}}<br>
-        Sex:	{{health_seeker_profile.gender}}<br>
-        Reason:	{{case_sheet.consultation_reason}}<br>
-        Habbits:	{{health_seeker_profile.habbits}}<br>
-        Weight:	{{health_seeker_profile.weight}}<br>
-        Height:	{{health_seeker_profile.height}}<br>
-        Ailments: {{health_seeker_profile.ailments}}<br>
-        Allergies: {{health_seeker_profile.allergies}}<br>
-        Consultation Type:	{{appointment_det.apmt_type}}<br>
-        Address:	{{health_seeker_profile.address}}
-        </p>
+            <p>
+                <b>General</b><br>
+                Appointment ID: {{appointment_det.apmt_id}}<br>
+                Patient Name: {{health_seeker_profile.hs_name}}<br>
+                Contact No: {{health_seeker_profile.hs_phone}}<br>
+                Schedule: {{appointment_det.apmt_date}} | {{appointment_det.apmt_time}}<br>
+                Age:	{{health_seeker_profile.age}}<br>
+                Blood Group:	{{health_seeker_profile.blood_group}}<br>
+                Sex:	{{health_seeker_profile.gender}}<br>
+                Reason:	{{case_sheet.consultation_reason}}<br>
+                Habbits:	{{health_seeker_profile.habbits}}<br>
+                Weight:	{{health_seeker_profile.weight}}<br>
+                Height:	{{health_seeker_profile.height}}<br>
+                Ailments: {{health_seeker_profile.ailments}}<br>
+                Allergies: {{health_seeker_profile.allergies}}<br>
+                Consultation Type:	{{appointment_det.apmt_type}}<br>
+                Address:	{{health_seeker_profile.address}}
+            </p>
 
         <p>
         <b>Medical Details</b><br>

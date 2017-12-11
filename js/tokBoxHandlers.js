@@ -10,14 +10,14 @@ function sessionStreamDestroyed(event) {
 }
 function publisherStreamDestroyed(event) {
 
-        
-       // event.preventDefault();
-        console.log("Publisher stopped streaming.");
+
+    // event.preventDefault();
+    console.log("Publisher stopped streaming.");
 }
 function subscriberStreamDestroyed(event) {
 
-    
-   // event.preventDefault();
+
+    // event.preventDefault();
     console.log("Publisher stopped streaming.");
 }
 function handleInitiatePublisherError(error){// The method succeeds when the user grants access to the camera and microphone. The method fails if the user denies access to the camera and microphone
