@@ -1,7 +1,4 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/css/select2.min.css" />
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/js/select2.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
 <script  type="text/x-handlebars-template" id="prescriptiontable">
 	{{#prescription}}
 	<tr>
@@ -280,11 +277,11 @@
         $('.form').hide();
         $('#add').on('click', function (ev) {
             $("#form3").get(0).reset();
-            $('.form').show(1000);
+            $('.form').show();
             ev.stopPropagation();
         });
         $("#close-button").on('click', function (ev) {
-            $('.form').hide(1000);
+            $('.form').hide();
             $("#form3").get(0).reset();
             $("#med_name").val("");
             ev.stopPropagation();
@@ -334,7 +331,7 @@
             }
             prescription_data.push(data);
             showPrescriptions(prescription_data);
-            $('.form').hide(1000);
+            $('.form').hide();
             //$("#form3").get(0).reset();
         });
         $("#save_continue").on("click", function (evt) {
@@ -366,7 +363,7 @@
             $('.duration input[value="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
             $('input[value="' + prescription.med_intake + '"]').attr('checked', true);
             $('textarea[name="remarks"]').text(prescription.remarks);
-            $('.form').show(1000);
+            $('.form').show();
         });
         $('#tab1').on('click', '.delete', function (ev) {
             var id = ev.currentTarget.id.split('_')[1];

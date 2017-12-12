@@ -1,10 +1,11 @@
 var session_info = {
-    "user_id": "test@test.com",
-    "access_token": "aeuhsy78989ljjsj",
-    "device_id": "1"
+    "user_id": sessionStorage.getItem("userId"),
+    "access_token": sessionStorage.getItem("token"),
+    "device_id": "web"
 };
-//var base_url = "https://52.66.157.195/growayu/ganewdesign/"           //Test Server
-var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
+var doctor_id = sessionStorage.getItem("doctorId");
+var base_url = "https://52.66.157.195/growayu/ganewdesign/"           //Test Server
+//var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
 var getData = {
     getDashboardData: function(date){
         var url = "/api/getDocAppointmentDashboard.php";
@@ -24,6 +25,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
+                showApiError(res.error);
                 return res;
             },
             error: function(err,status){
@@ -74,7 +76,7 @@ var getData = {
                 "latitude": "",
                 "langitude": ""
             },
-            "device_id": ""
+            "device_id": "web",
         };
         var data = {
             doctor_info: doctor_info

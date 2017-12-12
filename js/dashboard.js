@@ -302,9 +302,11 @@ $(document).ready(function(){
     $('#appointment-list').on('click', '.heath-seeker-profile', showProfile);
     //$('.health_record').on('click', getDocument);
 
-    $('#logout').on('click', function (evt) {
-        // getData.doDoctorLogin("bala621986@gmail.com", "growayu");
-        getData.doDoctorLogout().then(function (res) {
+    $('#logout').on('click', logout);
+});
+function logout() {
+
+       getData.doDoctorLogout().then(function (res) {
             isLoggedIn = false;
             $('#body').load('./components/logout.html');
             $(".logout-text").show();
@@ -322,5 +324,5 @@ $(document).ready(function(){
             doc_photo=sessionStorage.getItem("photo");
             //  console.log(doctor_id+" "+doctor_name+" "+login_token);
         });
-    });
-});
+
+}

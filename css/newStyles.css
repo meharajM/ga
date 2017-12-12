@@ -805,3 +805,8 @@ footer {
 .nav-item{
     cursor: pointer;
 }
+#api-error{
+    padding-left: 10px;
+    color: red;
+    padding-top: 8px;
+}
