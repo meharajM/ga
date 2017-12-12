@@ -56,6 +56,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
+                showApiError(res.error);
                 return res;
             },
             error: function(err,status){
@@ -87,6 +88,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
+                showApiError(res.error);
                 return res;
             },
             error: function(err,status){
@@ -116,6 +118,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
+                 showApiError(res.error);
                 return res;
             },
             error: function(err,status){
@@ -147,6 +150,7 @@ var getData = {
             data: JSON.stringify(data),
            dataType: 'json',
             success: function (res,status) {
+                 showApiError(res.error);
                 return res;
             },
             error: function(err,status){
@@ -181,6 +185,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res, status){
+                 showApiError(res.error);
                 // alert("success update pres");
                 return res;
 
@@ -247,6 +252,7 @@ var getData = {
             dataType: 'json',
             success: function (res,status) {
                 //alert("success in update summary");
+                 showApiError(res.error);
                 return res;
             },
             error: function(err,status){
@@ -279,6 +285,7 @@ var getData = {
             data: JSON.stringify(data),
             // dataType: 'json',
             success: function (res,status) {
+                 showApiError(res.error);
                 //  alert("success in preview summary");
 
                 return res;
@@ -309,6 +316,7 @@ var getData = {
             }),
             dataType: 'json',
             success: function (res) {
+                showApiError(res.error);
                 //   alert("success in med");
                 return res;
             },
@@ -337,6 +345,7 @@ var getData = {
             }),
             dataType: 'json',
             success: function (res,status) {
+                 showApiError(res.error);
                 return res;
             },
             error: function(err,status){
@@ -364,6 +373,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
+                 showApiError(res.error);
                 return res;
             },
             error: function(err,status){
@@ -424,6 +434,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
+                 showApiError(res.error);
                 return res;
             },
             error: function(err,status){
@@ -449,7 +460,8 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res, status){
-                alert("success in blob");
+               // alert("success in blob");
+                showApiError(res.error);
                 return res;
             },
             error: function (err, status) {
