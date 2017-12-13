@@ -99,9 +99,6 @@ body{
     padding: 25px;
     font-size: 15px;
 }
-.appointment-details b{
-    font-size: 16px;
-}
 
 .list-inline {
     white-space:nowrap;
@@ -726,9 +723,7 @@ footer {
 .timings #timings-text{
     width: 100%;
 }
-.duration{
-    border-right: 0.5px solid #cccccc;
-}
+
 .ui-autocomplete {
     position: absolute;
     top: 100%;
@@ -784,6 +779,11 @@ footer {
 .form-input{
     border: 1px solid rgba(0,0,0,.15);
     border-radius: .2rem;
+    height: 32px;
+    padding: 8px;
+}
+#med_type{
+    height: 32px;
 }
 #med_search{
     width: 100%;
@@ -802,4 +802,10 @@ footer {
 }
 .appointment-details span{
 
+}
+.quantity{
+    width: 50px;
+}
+.prescriptions-table{
+    font-size: 12px;
 }
