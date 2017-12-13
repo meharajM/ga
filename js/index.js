@@ -34,7 +34,7 @@ $(document).ready(function(){
                 sessionStorage.setItem("name", res.doctor.doctor_name);
                 sessionStorage.setItem("token", res.doctor.token);
                 sessionStorage.setItem("photo", res.doctor.photo);
-                sessionStorage.setItem("hccId", res.doctor.hcc_id);
+                //sessionStorage.setItem("hccId", res.doctor.hcc_id);
             }
             if(res.error.error_message == "Invalid Data : Email and password mismatch"){
                 $('.error-message').html(res.error.error_message)
