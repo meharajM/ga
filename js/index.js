@@ -13,7 +13,7 @@ $(document).ready(function(){
         }
     }
     function checkLogin() {
-
+        doctor_id = sessionStorage.getItem("doctorId");
         if(doctor_id)
         {
             isLoggedIn=true;
@@ -28,7 +28,6 @@ $(document).ready(function(){
         var user = $('#username').val();
         var pass = $('#password').val();
         getData.doDoctorLogin(user,pass).then(function (res) {
-            debugger
             if (typeof(Storage) !== "undefined") {
                 sessionStorage.setItem("userId", res.doctor.user_id);
                 sessionStorage.setItem("doctorId", res.doctor.doctor_id);
@@ -40,7 +39,7 @@ $(document).ready(function(){
             if(res.error.error_message == "Invalid Data : Email and password mismatch"){
                 $('.error-message').html(res.error.error_message)
             }else{
-                isLoggedIn = checkLogin();
+                isLoggedIn = true; //checkLogin();
                 showDashboard();
                 }
         });
