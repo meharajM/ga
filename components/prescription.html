@@ -4,7 +4,7 @@
 	<tr>
 		<td>{{med_type}}</td>
 		<td>{{med_name}}</td>
-		<td>{{frequency}}</td>
+		<td>{{frequency_string}}</td>
 		<td>{{course}}</td>
 		<td>{{med_intake}}</td>
 		<td>{{remarks}}</td>
@@ -171,7 +171,27 @@
 	</div>
 
 </div>
+<div class="template modal fade bd-example-modal-lg" id="template-alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="template-msg modal-dialog modal-sm" role="document">
+            <div class=" modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Template</h4>
+                </div>
+                <div class="modal-body-template">
+                Do you want to replace the existing medicines or append it?
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-info btn-sm" id="replace" data-dismiss="modal" >Replace</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="append" data-dismiss="modal" >Append</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+</div>
 <script type="text/javascript">
 	var prescription = {}
     $(document).ready(function() {
@@ -228,7 +248,7 @@
 
                     return {
                         results: $.map(data.template_det, function (smthg) {
-                            return {id: smthg.template_id, text: smthg.template_name}
+                           return {id: smthg.template_id, text: smthg.template_name}
                         })
                     };
                 }
@@ -238,11 +258,48 @@
 
         $('#template_name').on('select2:select', function (e) {
             var template_id = $(this).val();
+              var template_name=$("#template_name").text();
+            //getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
+            $(".modal-header").html(template_name);
+              $('#template-alert').modal({
+                show: true
+                });
+          /*  getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
+                showPrescriptions(res.prescription_details);
+            });*/
+        });
+
+/*  Code start for append and replace  */
+
+ $("#replace").on("click", function (evt) {
             getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
                 showPrescriptions(res.prescription_details);
             });
+            evt.preventDefault();
         });
 
+        $("#append").on("click", function (evt) {
+            getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
+
+                $.map(res.prescription_details, function (smthg){
+                var prescription_id=smthg.med_id;
+                var med_name = smthg.med_name;
+                var med_type = smthg.med_type;
+                var dosage = smthg.dosage;
+                var course = smthg.course;
+                var frequency = smthg.frequency;
+                var med_intake = smthg.med_intake;
+                var remarks = smthg.remarks;
+                var markup = "<tr><td>" + med_type + "</td><td>" + med_name + "</td><td>" + dosage + "</td><td>" + frequency + "</td><td>" + course + "</td><td>" + med_intake + "</td><td>" + remarks + "</td><td><span class='edit' id='e_"+prescription_id+"'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></span><span class='delete' id='d_"+prescription_id+"'><i class='fa fa-trash-o fa-fw' aria-hidden='true'></i></span></td></tr>";
+                $("#tab1").append(markup);
+                });
+            });
+                    evt.preventDefault();
+        });
+
+
+
+/*  code end here for append and replace  */
         $("#med_search").autocomplete({
             minLength: 3,
             placeholder: "Search for a template",
@@ -314,14 +371,23 @@
         $("#add-prescription").click(function (evt) {
             var formData = $("#form3").serializeArray();
             evt.preventDefault();
-			debugger
+			//debugger
             var data = {};
             formData.map(function (feild) {
                 data[feild.name] = feild.value;
             });
 
             data.dosage = data.dosage + ' ' + data.dosage_uom;
-            data.frequency = Number(!!data.morning) + '-' + Number(!!data.afternoon) + '-' + Number(!!data.night);
+             //debugger
+            if(!data.med_dosage_text){
+
+                data.frequency_string = Number(!!data.morning) + '-' + Number(!!data.afternoon) + '-' + Number(!!data.night);
+                data.frequency_type= "std_MAE";
+            }else{
+                data.frequency_string = data.med_dosage_text;
+                data.frequency_type = "Others";
+            }
+          // data.frequency = Number(!!data.morning) + '-' + Number(!!data.afternoon) + '-' + Number(!!data.night);
             data.course = data.course + ' ' + data.duration;
             data.med_name=data.med_search;
             if ($('.form').attr('data-id')) {
@@ -368,6 +434,7 @@
         });
         $('#tab1').on('click', '.delete', function (ev) {
             var id = ev.currentTarget.id.split('_')[1];
+             if (confirm('Are you sure want to delete this medicine?')) {
             prescription_data = prescription_data.map(function (p) {
                 if (p.prescription_id == id) {
                     p.delete_flag = 'Y';
@@ -375,6 +442,7 @@
                 return p;
             });
             showPrescriptions(prescription_data);
+        }
         });
         $('#free-text-tab').hide();
         $('#standard').click(function (ev) {

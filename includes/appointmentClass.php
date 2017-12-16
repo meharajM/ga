@@ -214,13 +214,13 @@ class Appointment extends myDBC{
 
 	#function to update prescription details
 	
-	public function update_prescription_details($apmt_id,$doctor_id,$prescription_id,$med_name,$med_type,$med_dosage,$med_timings,$med_duration,$food_timings,$instructions,$delete_flag,$template_id){	
+	public function update_prescription_details($apmt_id,$doctor_id,$prescription_id,$med_name,$med_type,$med_dosage,$frequency_type,$frequency_string,$med_duration,$food_timings,$instructions,$delete_flag,$template_id){	
 		
 		if($prescription_id == "" && $delete_flag != "Y"){
 			$db = $this->mysqli;
-			$query = "INSERT INTO prescription(  appointment_id,doctor_id,med_type,med_name,dosage,frequency_string,course,med_intake,remarks) VALUES (?,?,?,?,?,?,?,?,?)";
+			echo $query = "INSERT INTO prescription(  appointment_id,doctor_id,med_type,med_name,dosage,frequency_type ,frequency_string,course,med_intake,remarks) VALUES (?,?,?,?,?,?,?,?,?,?)";
 			$stmt =$db->prepare($query);
-			$stmt->bind_param('sssssssss',$apmt_id,$doctor_id,$med_type,$med_name,$med_dosage,$med_timings,$med_duration,$food_timings,$instructions);
+			$stmt->bind_param('ssssssssss',$apmt_id,$doctor_id,$med_type,$med_name,$med_dosage,$frequency_type,$frequency_string,$med_duration,$food_timings,$instructions);
 				if($stmt->execute()){
 					$res =  $stmt->insert_id;
 				}else{
@@ -228,7 +228,7 @@ class Appointment extends myDBC{
 				}						
 		}else if($prescription_id != ""  && $delete_flag != "Y"){
 			
-			$sql ="UPDATE prescription SET med_type='$med_type',med_name='$med_name',dosage='$med_dosage',frequency_string='$med_timings',course='$med_duration',med_intake='$food_timings',remarks='$instructions',template_id='$template_id' WHERE prescription_id=$prescription_id";
+			$sql ="UPDATE prescription SET med_type='$med_type',med_name='$med_name',dosage='$med_dosage',frequency_type='$frequency_type',frequency_string='$med_timings',course='$med_duration',med_intake='$food_timings',remarks='$instructions',template_id='$template_id' WHERE prescription_id=$prescription_id";
 			$res = $this->runQuery($sql);
 		}else{
 
@@ -237,6 +237,7 @@ class Appointment extends myDBC{
 		}
 		return $res;
  	}
+
 
  	#function to validate prescription id is already exist or not
 

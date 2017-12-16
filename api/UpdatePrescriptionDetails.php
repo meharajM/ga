@@ -10,6 +10,7 @@ $doctor_id	=	$prescription->apmt_input->doctor_id;
 $hs_id		=	$prescription->apmt_input->hs_id;
 $hcc_id		=	$prescription->apmt_input->hcc_id;
 $prescriptionData = $prescription->prescription;
+
 $device_id 		= $prescription->session_info->device_id;
 $sess_token 	= $prescription->session_info->access_token;
 
@@ -51,7 +52,7 @@ if($validate_session != ""){
 						$response['error']['error_code']="";    
 						$response['error']['error_type']="";
 						$response['error']['error_message']= "Medicine dosage cannot be null";
- 					}else if($val->frequency== ""){
+ 					}else if($val->frequency_string == ""){
  						  $response['error']['result']="0";
 						  $response['error']['error_code']="";    
 						  $response['error']['error_type']="";
@@ -70,13 +71,14 @@ if($validate_session != ""){
  						$med_name		 = $val->med_name;
  						$med_type		 = $val->med_type;
  						$med_dosage      = $val->dosage;
- 						$med_timings 	 = $val->frequency;
+ 						$frequency_type  = $val->frequency_type;
+ 						$frequency_string= $val->frequency_string;
  						$med_duration 	 = $val->course;
  						$food_timings 	 = $val->med_intake;
  						$instructions 	 = $val->remarks;
  						$delete_flag     = $val->delete_flag;	
  						$template_id     = $val->template_id; 					
-						$res = $appointmentObj->update_prescription_details($apmt_id,$doctor_id,$prescription_id,$med_name,$med_type,$med_dosage,$med_timings,$med_duration,$food_timings,$instructions,$delete_flag,$template_id);
+						$res = $appointmentObj->update_prescription_details($apmt_id,$doctor_id,$prescription_id,$med_name,$med_type,$med_dosage,$frequency_type,$frequency_string,$med_duration,$food_timings,$instructions,$delete_flag,$template_id);
 						if(isset($res)){
 							$rslt = $appointmentObj->get_prescription_details($apmt_id);
 							$response['prescription_details']=array();						
@@ -86,8 +88,8 @@ if($validate_session != ""){
 									$medicine['med_name']= (isset($value['med_name']))?$value['med_name'] : '';
 									$medicine['med_type']=(isset($value['med_type']))?$value['med_type'] : '';
 									$medicine['dosage']=(isset($value['dosage']))?$value['dosage'] : '';
-									$medicine['frequency']=(isset($value['frequency_string']))?$value['frequency_string'] : '';
-									$medicine['frequency']=(isset($value['frequency_type']))?$value['frequency_type'] : '';
+									$medicine['frequency_string']=(isset($value['frequency_string']))?$value['frequency_string'] : '';
+									$medicine['frequency_type']=(isset($value['frequency_type']))?$value['frequency_type'] : '';
 									$medicine['course']=(isset($value['course'])) ? $value['course'] : '';
 									$medicine['med_intake']	=(isset($value['med_intake'])) ? $value['med_intake'] : '';
 									$medicine['remarks']	=(isset($value['remarks'])) ? $value['remarks'] : '';
