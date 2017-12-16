@@ -118,7 +118,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-                 showApiError(res.error);
+                 //showApiError(res.error);
                 return res;
             },
             error: function(err,status){

@@ -312,16 +312,16 @@ function logout() {
             $(".logout-text").show();
             $(".login-panel").toggle();
 
-
-            sessionStorage.removeItem("id");
-            sessionStorage.removeItem("name");
-            sessionStorage.removeItem("token");
-            sessionStorage.removeItem("photo");
-
-            doctor_id=sessionStorage.getItem("id");
-            doctor_name=sessionStorage.getItem("name");
-            login_token=sessionStorage.getItem("token");
-            doc_photo=sessionStorage.getItem("photo");
+            delete sessionStorage;
+            // sessionStorage.removeItem("id");
+            // sessionStorage.removeItem("name");
+            // sessionStorage.removeItem("token");
+            // sessionStorage.removeItem("photo");
+            //
+            // doctor_id=sessionStorage.getItem("id");
+            // doctor_name=sessionStorage.getItem("name");
+            // login_token=sessionStorage.getItem("token");
+            // doc_photo=sessionStorage.getItem("photo");
             //  console.log(doctor_id+" "+doctor_name+" "+login_token);
         });
 
