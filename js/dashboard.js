@@ -37,6 +37,9 @@ $(document).ready(function(){
             $('#details').html(html);
             $('#prescription').load('./components/prescription.html');
           //  $('#newprescription').load('./components/newprescription.html');
+          if(res.appointments_details.appointment_det.health_record.length == 0){
+                $('.attach-docs').hide();
+          }
 
 			if(res.appointments_details.appointment_det.apmt_type != "VC"){
 				$('#start-vedio-consultation').hide();

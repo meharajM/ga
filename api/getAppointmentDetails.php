@@ -13,11 +13,17 @@ while($row = mysqli_fetch_assoc($inputData)){
 	$input_hcc    = $row['hcc_id'];
 	if($doctor_id!="" )	{
 		if(	$input_doctor != $doctor_id ){
+			$response['error']['result']="0";
+			$response['error']['error_code']="";
+			$response['error']['error_type']="";
 			$response['error']['error_message']='Invalid data : Doctor id did not match with appointment id';
 		}
 	}
 	if($hcc_id!="" )	{	
 		if($input_hcc !=$hcc_id){
+			$response['error']['result']="0";
+			$response['error']['error_code']="";
+			$response['error']['error_type']="";
 			$response['error']['error_message']='Invalid data : HCC id did not match with appointment id';
 		}
 	}
@@ -27,10 +33,13 @@ while($row = mysqli_fetch_assoc($inputData)){
 
 $apmt_type="";
 if($apmt_id == ""){
+	$response['error']['result']="0";
+	$response['error']['error_code']="";
+	$response['error']['error_type']="";
 	$message="Appointment ID cannot be null";
 }else {
 
-	$response['error']['result']="0";
+	$response['error']['result']="1";
 	$response['error']['error_code']="";
 	$response['error']['error_message']="";
 	$response['error']['error_type']="";
