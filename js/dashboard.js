@@ -215,6 +215,7 @@ $(document).ready(function(){
             vedioSession = initializeSession(apiKey, sessionId, token);
     };
     var stopVideo = function(){
+
         if(session){
 
             session.disconnect()
