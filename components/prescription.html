@@ -58,21 +58,21 @@
 						<div class="col-2">
 							<div class="font-12">Morning</div>
 							<i class="fa fa-plus" aria-hidden="true" for="morning"></i>
-								<input type="number" name="morning" id="morning"  class="quantity form-input" value="1" min="0.5">
+								<input type="number" name="morning" id="morning"  class="quantity form-input" value="0" min="0">
 							<i class="fa fa-minus" aria-hidden="true" for="morning"></i>
 							<span class="unit"></span>
 						</div>
 						<div class="col-2">
 							<div class="font-12">Afternoon</div>
 							<i class="fa fa-plus" aria-hidden="true" for="afternoon"></i>
-							<input type="number" name="afternoon" id="afternoon" placeholder="Afternoon" class="quantity form-input" value="1" min="0.5">
+							<input type="number" name="afternoon" id="afternoon" placeholder="Afternoon" class="quantity form-input" value="0" min="0">
 							<i class="fa fa-minus" aria-hidden="true" for="afternoon"></i>
 							<span class="unit"></span>
 						</div>
 						<div class="col-2">
 							<div class="font-12">Night</div>
 							<i class="fa fa-plus" aria-hidden="true" for="evening"></i>
-							<input type="number" name="night" id="evening" placeholder="Night" class="quantity form-input" value="1" min="0.5">
+							<input type="number" name="night" id="evening" placeholder="Night" class="quantity form-input" value="0" min="0">
 							<i class="fa fa-minus" aria-hidden="true" for="evening"></i>
 							<span class="unit"></span>
 						</div>
@@ -130,7 +130,7 @@
 			</div>
 
 			<div class="form-group rows">
-				<button class="btn btn-success btn-sm" id="add-prescription">Add</button>
+				<button class="btn btn-success btn-sm" id="add-prescription">Add</button> <span class="form-error hidden-xs-up">Please add all mandatory fields</span>
 
 			</div>
 		</form>
@@ -372,6 +372,35 @@
         }
         //  $("#form4").hide()
         showPrescriptions(prescription_data);
+        function validateForm(formData){
+            var isValid = true;
+            $('.form-error').addClass('hidden-xs-up')
+            $('#med_search').removeClass('error');
+           if(formData['med_name'] == ""){
+               $('#med_search').addClass('error');
+               isValid =false;
+           }
+           $('#med_type').removeClass('error');
+            $('.quantity').removeClass('error');
+            $('#timings-text').removeClass('error');
+
+            if(formData['frequency_type'] == "std_MAE" && formData['frequency_string'] == "0-0-0"){
+                $('.quantity').addClass('error');
+                isValid = false;
+           }else if(formData['frequency_type'] == "Others" && formData['frequency_string'].trim() == ""){
+                isValid = false
+                $('#timings-text').addClass('error');
+            }
+            $('input[name="course"]').removeClass('error');
+    		if($('input[name="course"]').val() == ""){
+                $('input[name="course"]').addClass('error');
+                isValid = false;
+            }
+            if(!isValid){
+    		    $('.form-error').removeClass('hidden-xs-up');
+			}
+            return isValid;
+        }
         $("#add-prescription").click(function (evt) {
             var formData = $("#form3").serializeArray();
             evt.preventDefault();
@@ -380,12 +409,11 @@
             formData.map(function (feild) {
                 data[feild.name] = feild.value;
             });
-
             data.dosage = data.dosage + ' ' + data.dosage_uom;
              //debugger
             if(!data.med_dosage_text){
 
-                data.frequency_string = Number(!!data.morning) + '-' + Number(!!data.afternoon) + '-' + Number(!!data.night);
+                data.frequency_string = data.morning + '-' + data.afternoon + '-' + data.night;
                 data.frequency_type= "std_MAE";
             }else{
                 data.frequency_string = data.med_dosage_text;
@@ -394,15 +422,17 @@
           // data.frequency = Number(!!data.morning) + '-' + Number(!!data.afternoon) + '-' + Number(!!data.night);
             data.course = data.course + ' ' + data.duration;
             data.med_name=data.med_search;
-            if ($('.form').attr('data-id')) {
-                data.prescription_id = $('.form').attr('data-id')
-                prescription_data = prescription_data.filter(function (p) {
-                    return p.prescription_id != data.prescription_id;
-                })
-            }
-            prescription_data.push(data);
-            showPrescriptions(prescription_data);
-            $('.form').hide();
+            if(validateForm(data)){
+                if ($('.form').attr('data-id')) {
+                    data.prescription_id = $('.form').attr('data-id')
+                    prescription_data = prescription_data.filter(function (p) {
+                        return p.prescription_id != data.prescription_id;
+                    })
+                }
+                prescription_data.push(data);
+                showPrescriptions(prescription_data);
+                $('.form').hide();
+			}
             //$("#form3").get(0).reset();
         });
         $("#save_continue").on("click", function (evt) {
