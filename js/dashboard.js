@@ -218,17 +218,18 @@ $(document).ready(function(){
             vedioSession = initializeSession(apiKey, sessionId, token);
     };
     var stopVideo = function(){
+        if(confirm("Do You really want to close the session ? ")){
+            if(session){
 
-        if(session){
-
-            session.disconnect()
-            $('.video-container').addClass('hidden-xs-up');
-            $('.left-container').removeClass('col-12').removeClass('col-5').addClass('col-3');
-            $('.appointment-list-container').removeClass('hidden-xs-up');
-            $('.appointment-content').removeClass('hidden-xs-up').removeClass('col-7').addClass('col-9');
-            $('#start-vedio-consultation').removeClass('hidden-xs-up');
-            $('#close-vedio-consultation').addClass('hidden-xs-up');
-            $('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');
+                session.disconnect()
+                $('.video-container').addClass('hidden-xs-up');
+                $('.left-container').removeClass('col-12').removeClass('col-5').addClass('col-3');
+                $('.appointment-list-container').removeClass('hidden-xs-up');
+                $('.appointment-content').removeClass('hidden-xs-up').removeClass('col-7').addClass('col-9');
+                $('#start-vedio-consultation').removeClass('hidden-xs-up');
+                $('#close-vedio-consultation').addClass('hidden-xs-up');
+                $('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');
+            }
         }
     };
     var muteAudio = function(ev){

@@ -81,7 +81,7 @@ if($apmt_id  == ""){
     <div style="text-align:right" class="col-md-12 no-padding pull-right">
     <span>' . $date . '</span>
     </div>
-    <div class="col-md-6 no-padding text-right">
+    <div class="col-md-12 no-padding text-center">
     <span>Patient Name: </span>
     <span>' . $patient_name . '</span>
     </div>

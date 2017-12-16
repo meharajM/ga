@@ -290,7 +290,7 @@ var getData = {
             type: "POST",
             url: base_url + url,
             data: JSON.stringify(data),
-            // dataType: 'json',
+            dataType: 'json',
             success: function (res,status) {
                  showApiError(res.error);
                 //  alert("success in preview summary");

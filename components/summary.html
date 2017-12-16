@@ -332,7 +332,7 @@ function validateForm(formData){
               //  $(".modal-body-summary").html(res);
                   //  $(".generate_preview").html(res);
                 $(".generate").removeClass('d-none');
-                $(".generate_preview").html(res);
+                $(".generate_preview").html(res.document.body);
                 $("#form4").hide();
                 $("#save").hide();
                 $("#preview_summary").hide();
@@ -368,14 +368,14 @@ function validateForm(formData){
 
             getData.previewConsultationSummary(appointment_id).then(function (res) {
                 $(".generate").removeClass('d-none');
-                $(".generate_preview").html(res);
+                $(".generate_preview").html(res.document.body);
             });
         }
         if((summary_details&&apmt_status=="closed")||(summary_details&&apmt_status=="expired"))
         {
             $("#form4").hide();
             getData.previewConsultationSummary(appointment_id).then(function (res) {
-                $(".generate_preview").html(res);
+                $(".generate_preview").html(res.document.body);
             });
         }
 
@@ -473,7 +473,7 @@ function validateForm(formData){
                 res.appointment_status=="closed";
             });
             getData.previewConsultationSummary(appointment_id).then(function (res) {
-                $(".generate_preview").html(res);
+                $(".generate_preview").html(res.document.body);
             });
             evt.preventDefault();
         });
