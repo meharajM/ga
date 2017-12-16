@@ -262,44 +262,35 @@
 
         $('#template_name').on('select2:select', function (e) {
             var template_id = $(this).val();
-              var template_name=$("#template_name").text();
-            //getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
-            $(".modal-header").html(template_name);
-              $('#template-alert').modal({
-                show: true
+              var template_name=$("#template_name").text();         
+            
+            getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
+             
+                $(".modal-header").html(template_name);
+                $('#template-alert').modal({
+                    show: true
                 });
-          /*  getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
-                showPrescriptions(res.prescription_details);
-            });*/
+                $("#replace").on("click", function (evt) {
+                    showPrescriptions(res.prescription_details);
+                    evt.preventDefault();
+                });
+                $("#append").on("click", function (evt) {
+                    //  var prev_data = showPrescriptions(res.prescription_details);
+                    getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
+                    debugger
+                    prescription_data =prescription_data.concat(res.prescription_details);
+                    showPrescriptions(prescription_data);
+                });
+                evt.preventDefault();
+                });
+
+            });
         });
 
 /*  Code start for append and replace  */
 
- $("#replace").on("click", function (evt) {
-            getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
-                showPrescriptions(res.prescription_details);
-            });
-            evt.preventDefault();
-        });
-
-        $("#append").on("click", function (evt) {
-            getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
-
-                $.map(res.prescription_details, function (smthg){
-                var prescription_id=smthg.med_id;
-                var med_name = smthg.med_name;
-                var med_type = smthg.med_type;
-                var dosage = smthg.dosage;
-                var course = smthg.course;
-                var frequency = smthg.frequency;
-                var med_intake = smthg.med_intake;
-                var remarks = smthg.remarks;
-                var markup = "<tr><td>" + med_type + "</td><td>" + med_name + "</td><td>" + dosage + "</td><td>" + frequency + "</td><td>" + course + "</td><td>" + med_intake + "</td><td>" + remarks + "</td><td><span class='edit' id='e_"+prescription_id+"'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></span><span class='delete' id='d_"+prescription_id+"'><i class='fa fa-trash-o fa-fw' aria-hidden='true'></i></span></td></tr>";
-                $("#tab1").append(markup);
-                });
-            });
-                    evt.preventDefault();
-        });
+        
+    
 
 
 
@@ -438,15 +429,15 @@
         });
         $('#tab1').on('click', '.delete', function (ev) {
             var id = ev.currentTarget.id.split('_')[1];
-             if (confirm('Are you sure want to delete this medicine?')) {
-            prescription_data = prescription_data.map(function (p) {
-                if (p.prescription_id == id) {
-                    p.delete_flag = 'Y';
-                }
-                return p;
-            });
-            showPrescriptions(prescription_data);
-        }
+            if (confirm('Are you sure want to delete this medicine?')) {
+                prescription_data = prescription_data.map(function (p) {
+                    if (p.prescription_id == id) {
+                        p.delete_flag = 'Y';
+                    }
+                    return p;
+                });
+                showPrescriptions(prescription_data);
+            }
         });
         $('#free-text-tab').hide();
         $('#standard').click(function (ev) {
