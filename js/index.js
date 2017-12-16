@@ -49,11 +49,14 @@ function showApiError(error){
     if(error.result != 0){
         $('#api-error').removeClass('hidden-xs-up');
         $('#api-error-message').html("['"+error.error_code + "']: "+ error.error_message);
-        return false;
     }
     switch (error.result){
         case "-999":
             logout();
+            return false;
+        case "0":
+            return true;
+        default:
             return false;
     }
     return true;
