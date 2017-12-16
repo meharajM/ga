@@ -14,7 +14,7 @@
     --font_20: 20px;
 }
 body{
-    font-family: Roboto,sans-serif;
+    font-family: Verdana,sans-serif;;
 }
 
 .navbar-container{
@@ -98,10 +98,6 @@ body{
 .appointment-details{
     padding: 25px;
     font-size: 15px;
-    font-family: 'Roboto', serif;
-}
-.appointment-details b{
-    font-size: 16px;
 }
 
 .list-inline {
@@ -247,6 +243,7 @@ body{
     color: #1f7bf3;
     cursor: pointer;
     font-size: 18px;
+    text-align: right;
     /*   background-image: url(../img/vidiCon.png); */
 }
 
@@ -254,6 +251,7 @@ body{
     color: #1f7bf3;
     cursor: pointer;
     font-size: 18px;
+    text-align: right;
 
     /* background-image: url(../img/pc.png); */
 }
@@ -266,7 +264,6 @@ body{
 }
 #filter{
     font-size: 14px;
-    font-family: sans-serif;
 }
 #filter input{
     line-height: 16px;
@@ -293,30 +290,25 @@ body{
 
 .closed{
     background-color: #00b050;
-    width:50px;
     font-size: 12px;
 }
 .booked{
     background-color: #bf800c;
-    width:50px;
     font-size: 12px;
 
 }
 .inprogress{
     background-color: #0275d8;
-    width:50px;
     font-size: 12px;
 }
 
 .pending{
     background-color: #843534;
-    width:50px;
     font-size: 12px;
 }
 
 .expired{
     background-color: #840755;
-    width:50px;
     font-size: 12px;
 }
 .apmt_time{
@@ -395,7 +387,6 @@ body{
     height: 75vh;
     overflow: auto;
     cursor: pointer;
-    font-family: 'Roboto', serif;
 }
 
 .appointment:hover {
@@ -440,21 +431,17 @@ body{
 
 .font-12{
     font-size: 12px;
-    font-family: 'Roboto', serif;
 }
 
 .font-14{
     font-size: 14px;
-    font-family: 'Roboto', serif;
 }
 
 .font-16{
     font-size: 16px;
-    font-family: 'Roboto', serif;
 }
 .font-20{
     font-size: 20px;
-    font-family: 'Roboto', serif;
 }
 
 .badge{
@@ -507,7 +494,6 @@ body{
 }
 .panel .panel-heading {
     font-size: 14px;
-    font-family: "Source Sans Pro", sans-serif;
     text-transform: uppercase;
 }
 
@@ -545,7 +531,6 @@ footer {
     min-height: 45px;
     color: #fff;
     background-color: #4682b4;
-    font-family: Lato, sans-serif;
     font-weight: 300;
     font-size: 12px;
 }
@@ -738,9 +723,7 @@ footer {
 .timings #timings-text{
     width: 100%;
 }
-.duration{
-    border-right: 0.5px solid #cccccc;
-}
+
 .ui-autocomplete {
     position: absolute;
     top: 100%;
@@ -796,6 +779,11 @@ footer {
 .form-input{
     border: 1px solid rgba(0,0,0,.15);
     border-radius: .2rem;
+    height: 32px;
+    padding: 8px;
+}
+#med_type{
+    height: 32px;
 }
 #med_search{
     width: 100%;
@@ -811,4 +799,13 @@ footer {
     padding-left: 10px;
     color: red;
     padding-top: 8px;
+}
+.appointment-details span{
+
+}
+.quantity{
+    width: 50px;
+}
+.prescriptions-table{
+    font-size: 12px;
 }

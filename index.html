@@ -41,97 +41,107 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-5 no-padding">
-                        {{appointment_time}}
+                <div class="row font-12">
+                    <div class="offset-3 no-padding">
+                        <span class="float-right"><span class="fa fa-clock-o mr-2"></span>{{appointment_time}}</span>
                     </div>
-                    <div class="col-2 appointment-type no-padding offset-md-1">
-                        <div class={{appointment_type}}>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="col-4 no-padding">
-                <span class="{{appointment_status}} badge badge-primary float-right">{{appointment_status}}</span>
+                <div class="appointment-type no-padding offset-md-1">
+                    <div class={{appointment_type}}>
+                    </div>
+                </div>
+                <div class="{{appointment_status}} badge badge-primary float-right">{{appointment_status}}</div>
             </div>
 
         </li>
         {{/appointment}}
     </script>
     <script type="text/x-handlebars-template" id="detailsTemplate">
-        <div class="appointment-details">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-5">
+                    <div class="appointment-details">
+                        <b class="mt-2">General</b>
+                        <p>
+                            <table>
+                                <tr><td>Appointment ID: </td><td>{{appointment_det.apmt_id}}</td></tr>
+                                <tr><td>Patient Name:</td><td> {{health_seeker_profile.hs_name}} </td></tr>
+                                <tr><td> Contact No:</td><td>{{health_seeker_profile.hs_phone}}</td></tr>
+                                <tr><td>Schedule:</td><td> {{appointment_det.apmt_date}} | {{appointment_det.apmt_time}}</td></tr>
+                                <tr><td>Age:	</td><td>{{health_seeker_profile.age}}</td></tr>
+                                <tr><td>lood Group:</td><td>	{{health_seeker_profile.blood_group}}</td></tr>
+                                <tr><td>Sex:</td><td>	{{health_seeker_profile.gender}}</td></tr>
+                                <tr><td>Reason:</td><td>	{{case_sheet.consultation_reason}}</td></tr>
+                                <tr><td>Habbits:</td><td>	{{health_seeker_profile.habbits}}</td></tr>
+                                <tr><td>Weight:</td><td>	{{health_seeker_profile.weight}}</td></tr>
+                                <tr><td>Height:	</td><td>{{health_seeker_profile.height}}</td></tr>
+                                <tr><td>Ailments:</td><td> {{health_seeker_profile.ailments}}</td></tr>
+                                <tr><td>Allergies:</td><td> {{health_seeker_profile.allergies}}</td></tr>
+                                <tr><td>Consultation Type:</td>	<td>{{appointment_det.apmt_type}}</td></tr>
+                                <tr><td>Address:</td><td>	{{health_seeker_profile.address}}</td></tr>
+                        </table>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div class="appointment-details">
+                        <p>
+                            <!--<b>Medical Details</b><br>-->
+                            <!--BP:	120/80<br>-->
+                            <!--Pulse Rate:	60 to 100 beats a minute<br>-->
+                            <!--Weight:	500<br>-->
+                            <!--Blood Pressure:	120/98<br>-->
+                            <!--BMI:	18.5<br>-->
+                            <!--Temperature:	98.6-->
+                            <!--</p>-->
 
-            <p>
-                <b>General</b><br>
-                Appointment ID: {{appointment_det.apmt_id}}<br>
-                Patient Name: {{health_seeker_profile.hs_name}}<br>
-                Contact No: {{health_seeker_profile.hs_phone}}<br>
-                Schedule: {{appointment_det.apmt_date}} | {{appointment_det.apmt_time}}<br>
-                Age:	{{health_seeker_profile.age}}<br>
-                Blood Group:	{{health_seeker_profile.blood_group}}<br>
-                Sex:	{{health_seeker_profile.gender}}<br>
-                Reason:	{{case_sheet.consultation_reason}}<br>
-                Habbits:	{{health_seeker_profile.habbits}}<br>
-                Weight:	{{health_seeker_profile.weight}}<br>
-                Height:	{{health_seeker_profile.height}}<br>
-                Ailments: {{health_seeker_profile.ailments}}<br>
-                Allergies: {{health_seeker_profile.allergies}}<br>
-                Consultation Type:	{{appointment_det.apmt_type}}<br>
-                Address:	{{health_seeker_profile.address}}
-            </p>
-
-        <p>
-        <b>Medical Details</b><br>
-        BP:	120/80<br>
-        Pulse Rate:	60 to 100 beats a minute<br>
-        Weight:	500<br>
-        Blood Pressure:	120/98<br>
-        BMI:	18.5<br>
-        Temperature:	98.6
-        </p>
-
-        <b>Attached Documents</b><br>
+                            <b class="mt-2">Attached Documents</b>
 
 
-            <p>
-            {{#appointment_det.health_record}}
-            <a href="#" id="{{id}}" class="health_record" data-toggle="modal" data-target="#myModal"> {{description}}</a>
-            {{/appointment_det.health_record}}
-        </p>
+                        <p>
+                            {{#appointment_det.health_record}}
+                        <a href="#" id="{{id}}" class="health_record" data-toggle="modal" data-target="#myModal"> <span class="fa fa-file-text-o m-1"></span>{{description}}</a>
+                            {{/appointment_det.health_record}}
+                        </p>
 
 
 
-            <!-- Modal -->
-            <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                           <span class="document-title"></span>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <!-- Modal -->
+                        <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="document-title"></span>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-body">
+
+
+
+
+
+                        <div id="record_preview">
 
                         </div>
 
+
+                        <div id="loaData">
+                            <a href="#" class="loadData">Previous Conversation History</a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-
-
-
-            <div id="record_preview">
-
-            </div>
-
-
-        <div id="loaData">
-            <a href="#" class="loadData">Previous Conversation History</a>
-        </div>
-
         </div>
     </script>
     <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
