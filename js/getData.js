@@ -310,7 +310,7 @@ var getData = {
     getMymedicineList: function(term){
         var url = "/api/getMymedicineList.php";
         var doctorId = "1";
-
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -325,6 +325,7 @@ var getData = {
             dataType: 'json',
             success: function (res) {
                 //   alert("success in med");
+                showApiError(res.error)
                 return res;
             },
             error: function(err,status){
