@@ -1,0 +1,248 @@
+diff --git a/api/UpdatePrescriptionDetails.php b/api/UpdatePrescriptionDetails.php
+index a4b80da..4b9152e 100644
+--- a/api/UpdatePrescriptionDetails.php
++++ b/api/UpdatePrescriptionDetails.php
+@@ -51,7 +51,7 @@ if($validate_session != ""){
+ 						$response['error']['error_code']="";    
+ 						$response['error']['error_type']="";
+ 						$response['error']['error_message']= "Medicine dosage cannot be null";
+- 					}else if($val->frequency== ""){
++ 					}else if($val->frequency_string== ""){
+  						  $response['error']['result']="0";
+ 						  $response['error']['error_code']="";    
+ 						  $response['error']['error_type']="";
+@@ -70,13 +70,14 @@ if($validate_session != ""){
+  						$med_name		 = $val->med_name;
+  						$med_type		 = $val->med_type;
+  						$med_dosage      = $val->dosage;
+- 						$med_timings 	 = $val->frequency;
++ 						$frequency_type  = $val->frequency_type;
++ 						$frequency_string= $val->frequency_string;
+  						$med_duration 	 = $val->course;
+  						$food_timings 	 = $val->med_intake;
+  						$instructions 	 = $val->remarks;
+  						$delete_flag     = $val->delete_flag;	
+  						$template_id     = $val->template_id; 					
+-						$res = $appointmentObj->update_prescription_details($apmt_id,$doctor_id,$prescription_id,$med_name,$med_type,$med_dosage,$med_timings,$med_duration,$food_timings,$instructions,$delete_flag,$template_id);
++						$res = $appointmentObj->update_prescription_details($apmt_id,$doctor_id,$prescription_id,$med_name,$med_type,$med_dosage,$frequency_type,$frequency_string,$med_duration,$food_timings,$instructions,$delete_flag,$template_id);
+ 						if(isset($res)){
+ 							$rslt = $appointmentObj->get_prescription_details($apmt_id);
+ 							$response['prescription_details']=array();						
+diff --git a/api/doDoctorLogin.php b/api/doDoctorLogin.php
+index b563b4a..73b5379 100644
+--- a/api/doDoctorLogin.php
++++ b/api/doDoctorLogin.php
+@@ -43,7 +43,9 @@ if($doctor_email !="" && $doctor_pwd !=""){
+     $doctor_id = $doc_details['doctor_id'];
+ 
+             	$validate = $appointmentObj->validate_session_info($doctor_id,$device_id);
++            
+             	if(isset($validate)){
++            		$id    			= $validate['id'];
+             		$session_token 	= $validate['token'];
+             		$exp_date 		= $validate['expiry_time'];
+             		$device_name	= $validate['device_name'];
+@@ -59,7 +61,7 @@ if($doctor_email !="" && $doctor_pwd !=""){
+                     	$response['doctor']['token']=$token;
+                     }else{
+ 
+-                    	$id    = $validate['id'];
++                    	
+                     	$res   = $appointmentObj->archive_doctor_login_info($id,$doctor_id,$device_id,$session_token,$exp_date,$device_name,$device_type,$device_version,$lattitude,$longitude,$created_time);
+                         $updateDoctor = $appointmentObj->save_access_token($doctor_id,$device_id,$lattitude,$longitude);  
+ 
+diff --git a/api/getAppointmentDetails.php b/api/getAppointmentDetails.php
+index 76d44d4..3f20cb3 100644
+--- a/api/getAppointmentDetails.php
++++ b/api/getAppointmentDetails.php
+@@ -110,8 +110,8 @@ if($apmt_id == ""){
+ 		$prescription['med_name']	= (isset($row['med_name'])) ? $row['med_name'] : '';
+ 		$prescription['med_type']	=(isset($row['med_type'])) ? $row['med_type'] : ''; 
+ 		$prescription['dosage']		= (isset($row['dosage'])) ? $row['dosage'] : '';
+-		$prescription['frequency']	= (isset($row['frequency_string']))?$row['frequency_string'] : '';
+-		$prescription['frequency_type']	= (isset($row['frequency_type']))? $row['frequency_type'] : '';
++		$prescription['frequency_string']= (isset($row['frequency_string'])) ? $row['frequency_string'] : '';
++		$prescription['frequency_type']	= (isset($row['frequency_type'])) ? $row['frequency_type'] : '';
+ 		$prescription['course']		= (isset($row['course'])) ? $row['course'] : '';
+ 		$prescription['med_intake']	= (isset($row['med_intake'])) ? $row['med_intake'] : '';
+ 		$prescription['remarks']	= (isset($row['remarks'])) ? $row['remarks'] : '';
+diff --git a/api/getDocAppointmentDashboard.php b/api/getDocAppointmentDashboard.php
+index 90fce60..6d3c5d3 100644
+--- a/api/getDocAppointmentDashboard.php
++++ b/api/getDocAppointmentDashboard.php
+@@ -15,9 +15,9 @@ $sess_token = $apmt->session_info->access_token;
+ 
+ //session info - validate token
+ $response = array();
+-/*$validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id,$sess_token);
++$validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id,$sess_token);
+ 
+-if($validate_session != ""){*/
++if($validate_session != ""){
+ 		if($doctor_id == ""){
+ 			$response['error']['result']="0";
+ 			$response['error']['error_code']="";
+@@ -80,12 +80,12 @@ if($validate_session != ""){*/
+ 				$response['appointments_details']['next_appointment_date']=$next['booking_date'];
+ 				$response['appointments_details']['prev_appointment_date']=$previous['booking_date'];
+ 		}
+-/*}else{
++}else{
+ 	$response['error']['result']="0";
+ 	$response['error']['error_code']="";	
+ 	$response['error']['error_type']="";
+ 	$response['error']['error_message']="Doctor id and token Mismatch";
+-}*/
++}
+ 	echo json_encode($response);
+ 
+ ?>
+diff --git a/api/getPrescriptionTemplateList.php b/api/getPrescriptionTemplateList.php
+index 33f3123..8d4dbf2 100644
+--- a/api/getPrescriptionTemplateList.php
++++ b/api/getPrescriptionTemplateList.php
+@@ -13,8 +13,8 @@ $sess_token 	= $template->session_info->access_token;
+ 
+ $response= array();
+ 
+-$validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id,$sess_token);
+-if($validate_session != ""){
++/*$validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id,$sess_token);
++if($validate_session != ""){*/
+ 		if($doctor_id ==""){
+ 			$response['error']['result']="0";
+ 		    $response['error']['error_code']="";    
+@@ -45,12 +45,12 @@ if($validate_session != ""){
+ 				$response['error']['error_message']='Templates Not found';	
+ 			}	
+ 		}
+-}else{
++/*}else{
+     $response['error']['result']="0";
+     $response['error']['error_code']="";    
+     $response['error']['error_type']="";
+     $response['error']['error_message']="Doctor id and token Mismatch";
+-}
++}*/
+ echo json_encode($response);
+ 
+ ?>
+\ No newline at end of file
+diff --git a/components/prescription.html b/components/prescription.html
+index 9c63917..0b15dc3 100644
+--- a/components/prescription.html
++++ b/components/prescription.html
+@@ -175,6 +175,27 @@
+ 	</div>
+ 
+ </div>
++<div class="template modal fade bd-example-modal-lg" id="template-alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
++        <div class="template-msg modal-dialog modal-sm" role="document">
++            <div class=" modal-content">
++                <div class="modal-header">
++                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
++                        <span aria-hidden="true">&times;</span>
++                    </button>
++                    <h4 class="modal-title">Template</h4>
++                </div>
++                <div class="modal-body-template">
++                Do you want to replace the existing medicines or append it?
++                </div>
++                <div class="modal-footer text-center">
++                    <button type="button" class="btn btn-info btn-sm" id="replace" data-dismiss="modal" >Replace</button>
++                    <button type="button" class="btn btn-primary btn-sm" id="append" data-dismiss="modal" >Append</button>
++                </div>
++            </div>
++        </div>
++    </div>
++
++</div>
+ 
+ <script type="text/javascript">
+ 	var prescription = {}
+@@ -212,7 +233,7 @@
+             containerCssClass : "custom-select ",
+             ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+                 type: "post",
+-                url: base_url+"/wapi/getPrescriptionTemplateList.php",
++                url: base_url+"/api/getPrescriptionTemplateList.php",
+                 dataType: 'json',
+            //     contentType: 'application/json; charset=UTF-8',
+                 quietMillis: 250,
+@@ -242,9 +263,15 @@
+ 
+         $('#template_name').on('select2:select', function (e) {
+             var template_id = $(this).val();
+-            getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
++             var template_name=$("#template_name").text();
++            //getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
++            $(".modal-header").html(template_name);
++              $('#template-alert').modal({
++                show: true
++                });
++          /*  getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
+                 showPrescriptions(res.prescription_details);
+-            });
++            });*/
+         });
+ 
+         $("#med_search").autocomplete({
+@@ -372,6 +399,7 @@
+         });
+         $('#tab1').on('click', '.delete', function (ev) {
+             var id = ev.currentTarget.id.split('_')[1];
++              if (confirm('Are you sure want to delete this medicine?')) {
+             prescription_data = prescription_data.map(function (p) {
+                 if (p.prescription_id == id) {
+                     p.delete_flag = 'Y';
+@@ -379,6 +407,7 @@
+                 return p;
+             });
+             showPrescriptions(prescription_data);
++        }
+         });
+         $('#free-text-tab').hide();
+         $('#standard').click(function (ev) {
+diff --git a/includes/appointmentClass.php b/includes/appointmentClass.php
+index 4818f56..51b5d90 100644
+--- a/includes/appointmentClass.php
++++ b/includes/appointmentClass.php
+@@ -214,13 +214,13 @@ class Appointment extends myDBC{
+ 
+ 	#function to update prescription details
+ 	
+-	public function update_prescription_details($apmt_id,$doctor_id,$prescription_id,$med_name,$med_type,$med_dosage,$med_timings,$med_duration,$food_timings,$instructions,$delete_flag,$template_id){	
++	public function update_prescription_details($apmt_id,$doctor_id,$prescription_id,$med_name,$med_type,$med_dosage,$frequency_type,$frequency_string,$med_duration,$food_timings,$instructions,$delete_flag,$template_id){	
+ 		
+ 		if($prescription_id == "" && $delete_flag != "Y"){
+ 			$db = $this->mysqli;
+-			$query = "INSERT INTO prescription(  appointment_id,doctor_id,med_type,med_name,dosage,frequency_string,course,med_intake,remarks) VALUES (?,?,?,?,?,?,?,?,?)";
++			echo $query = "INSERT INTO prescription(  appointment_id,doctor_id,med_type,med_name,dosage,frequency_type ,frequency_string,course,med_intake,remarks) VALUES (?,?,?,?,?,?,?,?,?,?)";
+ 			$stmt =$db->prepare($query);
+-			$stmt->bind_param('sssssssss',$apmt_id,$doctor_id,$med_type,$med_name,$med_dosage,$med_timings,$med_duration,$food_timings,$instructions);
++			$stmt->bind_param('ssssssssss',$apmt_id,$doctor_id,$med_type,$med_name,$med_dosage,$frequency_type,$frequency_string,$med_duration,$food_timings,$instructions);
+ 				if($stmt->execute()){
+ 					$res =  $stmt->insert_id;
+ 				}else{
+@@ -228,7 +228,7 @@ class Appointment extends myDBC{
+ 				}						
+ 		}else if($prescription_id != ""  && $delete_flag != "Y"){
+ 			
+-			$sql ="UPDATE prescription SET med_type='$med_type',med_name='$med_name',dosage='$med_dosage',frequency_string='$med_timings',course='$med_duration',med_intake='$food_timings',remarks='$instructions',template_id='$template_id' WHERE prescription_id=$prescription_id";
++			$sql ="UPDATE prescription SET med_type='$med_type',med_name='$med_name',dosage='$med_dosage',frequency_type='$frequency_type',frequency_string='$med_timings',course='$med_duration',med_intake='$food_timings',remarks='$instructions',template_id='$template_id' WHERE prescription_id=$prescription_id";
+ 			$res = $this->runQuery($sql);
+ 		}else{
+ 
+diff --git a/js/getData.js b/js/getData.js
+index 62336f4..eb71bb3 100644
+--- a/js/getData.js
++++ b/js/getData.js
+@@ -303,7 +303,7 @@ var getData = {
+     getMymedicineList: function(){
+         var url = "/api/getMymedicineList.php";
+         var doctorId = doctor_id;
+-
++        var term = $('#med_search').val();
+         var call = $.ajax({
+             type: "POST",
+             url: base_url + url,

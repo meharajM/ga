@@ -10,7 +10,6 @@ $doctor_id	=	$prescription->apmt_input->doctor_id;
 $hs_id		=	$prescription->apmt_input->hs_id;
 $hcc_id		=	$prescription->apmt_input->hcc_id;
 $prescriptionData = $prescription->prescription;
-
 $device_id 		= $prescription->session_info->device_id;
 $sess_token 	= $prescription->session_info->access_token;
 
@@ -52,7 +51,7 @@ if($validate_session != ""){
 						$response['error']['error_code']="";    
 						$response['error']['error_type']="";
 						$response['error']['error_message']= "Medicine dosage cannot be null";
- 					}else if($val->frequency_string == ""){
+ 					}else if($val->frequency_string== ""){
  						  $response['error']['result']="0";
 						  $response['error']['error_code']="";    
 						  $response['error']['error_type']="";
@@ -88,8 +87,8 @@ if($validate_session != ""){
 									$medicine['med_name']= (isset($value['med_name']))?$value['med_name'] : '';
 									$medicine['med_type']=(isset($value['med_type']))?$value['med_type'] : '';
 									$medicine['dosage']=(isset($value['dosage']))?$value['dosage'] : '';
-									$medicine['frequency_string']=(isset($value['frequency_string']))?$value['frequency_string'] : '';
-									$medicine['frequency_type']=(isset($value['frequency_type']))?$value['frequency_type'] : '';
+									$medicine['frequency']=(isset($value['frequency_string']))?$value['frequency_string'] : '';
+									$medicine['frequency']=(isset($value['frequency_type']))?$value['frequency_type'] : '';
 									$medicine['course']=(isset($value['course'])) ? $value['course'] : '';
 									$medicine['med_intake']	=(isset($value['med_intake'])) ? $value['med_intake'] : '';
 									$medicine['remarks']	=(isset($value['remarks'])) ? $value['remarks'] : '';

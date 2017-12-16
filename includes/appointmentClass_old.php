@@ -238,6 +238,7 @@ class Appointment extends myDBC{
 		return $res;
  	}
 
+
  	#function to validate prescription id is already exist or not
 
 	public function validate_prescription($prescription_id){

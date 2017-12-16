@@ -42,8 +42,10 @@ if($doctor_email !="" && $doctor_pwd !=""){
     $doc_details = mysqli_fetch_assoc($doctorLogin);
     $doctor_id = $doc_details['doctor_id'];
 
-            /*	$validate = $appointmentObj->validate_session_info($doctor_id,$device_id);
-            	if(isset($validate)){*/
+            	$validate = $appointmentObj->validate_session_info($doctor_id,$device_id);
+            
+            	if(isset($validate)){
+            		$id    			= $validate['id'];
             		$session_token 	= $validate['token'];
             		$exp_date 		= $validate['expiry_time'];
             		$device_name	= $validate['device_name'];
@@ -59,7 +61,7 @@ if($doctor_email !="" && $doctor_pwd !=""){
                     	$response['doctor']['token']=$token;
                     }else{
 
-                    	$id    = $validate['id'];
+                    	
                     	$res   = $appointmentObj->archive_doctor_login_info($id,$doctor_id,$device_id,$session_token,$exp_date,$device_name,$device_type,$device_version,$lattitude,$longitude,$created_time);
                         $updateDoctor = $appointmentObj->save_access_token($doctor_id,$device_id,$lattitude,$longitude);  
 
@@ -93,12 +95,12 @@ if($doctor_email !="" && $doctor_pwd !=""){
 						$hcc['hcc_name'] = $row['hcc_name'];
 						array_push( $response['doctor']['hcc_id'],$hcc);   
 					}       		         
-		/*}else{
+		}else{
 			$response['error']['result']="1";
 			$response['error']['error_code']="";	
 			$response['error']['error_type']="";	
 			$response['error']['error_message']='Invalid Data : Email and password mismatch';	
-	}*/
+	}
 } 
 
  echo json_encode($response);
