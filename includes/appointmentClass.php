@@ -62,7 +62,7 @@ class Appointment extends myDBC{
 
 	public function get_date_based_appointment_data($doctor_id,$date){
 
-		$sql = "SELECT a.*,b.name,b.age,b.photo_url,b.gender,b.height_feet,b.weight,b.blood_group,b.allergies,b.ailments, b.habits,b.address1 FROM appointments a,health_seeker b where a.doctor_id=$doctor_id and a.health_seeker_id=b.health_seeker_id and a.status in ('booked','paid','inprogress','expired','closed')  AND a.booking_date ='$date' order by booking_date,booking_time";
+		$sql = "SELECT a.*,b.name,b.age,b.photo_url,b.gender,b.height_feet,b.weight,b.blood_group,b.allergies,b.ailments, b.habits,b.address1,FLOOR(DATEDIFF(CURRENT_DATE, STR_TO_DATE(b.dob, '%Y-%m-%d'))/365) as age1 FROM appointments a,health_seeker b where a.doctor_id=$doctor_id and a.health_seeker_id=b.health_seeker_id and a.status in ('booked','paid','inprogress','expired','closed')  AND a.booking_date ='$date' order by booking_date,booking_time";
 		$res = $this->runQuery($sql);
 		return $res;     
 	}
