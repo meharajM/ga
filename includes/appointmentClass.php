@@ -333,7 +333,7 @@ class Appointment extends myDBC{
  		if($consultation_id !=""){
 			 $sql= "UPDATE consultation_summary SET diagnosis='$diagnosis',details_diagnosis='$mgmt_plan',next_followup='$followup_in',next_followup_date='$followup_date',waiver_status='$waiver_status',waived_amt='$waived_amount',test_ids='$test_ids',seeker_instruction_id='$seeker_instruction_id', reffered_doctor='$referedDoctor' WHERE consultation_id='$consultation_id'";
  				$res = $this->runQuery($sql);
- 				return $res;
+ 				//return $res;
   		}else{
 		
 			$db = $this->mysqli;
@@ -345,9 +345,9 @@ class Appointment extends myDBC{
 			}else{
 				$res =$stmt->error;
 			}
-				return $res;	
+				//return $res;	
 		}
-		//return $res;				
+		return $res;				
  	}	
 
  	#function to get the health seeker consultation summary based on appointment id

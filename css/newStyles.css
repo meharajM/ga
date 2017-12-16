@@ -812,6 +812,6 @@ footer {
 .error{
     border: 0.5px solid red;
 }
-.form-error{
+.form-error, .summary-form-error{
     color: red;
 }
