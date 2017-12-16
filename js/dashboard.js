@@ -308,11 +308,11 @@ function logout() {
 
        getData.doDoctorLogout().then(function (res) {
             isLoggedIn = false;
-            $('#body').load('./components/logout.html');
-            $(".logout-text").show();
-            $(".login-panel").toggle();
+            window.location = '/';
 
-            delete sessionStorage;
+            delete sessionStorage.userId;
+            delete sessionStorage.doctorId;
+            location.reload();
             // sessionStorage.removeItem("id");
             // sessionStorage.removeItem("name");
             // sessionStorage.removeItem("token");
