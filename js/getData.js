@@ -1,7 +1,8 @@
 var session_info = {
     "user_id": sessionStorage.getItem("userId"),
     "access_token": sessionStorage.getItem("token"),
-    "device_id": "web"
+    "device_id": "web",
+    "doctor_id": sessionStorage.getItem("doctorId")
 };
 var doctor_id = sessionStorage.getItem("doctorId");
 var base_url = "https://52.66.157.195/growayu/ganewdesign/"           //Test Server
@@ -19,6 +20,7 @@ var getData = {
             session_info: session_info
         };
         showLoader();
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
@@ -50,6 +52,7 @@ var getData = {
             session_info: session_info
         };
         showLoader();
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
@@ -82,6 +85,7 @@ var getData = {
         var data = {
             doctor_info: doctor_info
         };
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
@@ -144,6 +148,7 @@ var getData = {
             session_info: session_info
         };
         showLoader();
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
@@ -179,6 +184,7 @@ var getData = {
             session_info: session_info
         };
         showLoader();
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -244,7 +250,7 @@ var getData = {
             session_info: session_info
         };
         showLoader();
-
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -279,6 +285,7 @@ var getData = {
             session_info: session_info
         };
         showLoader();
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -330,7 +337,7 @@ var getData = {
     getPrescriptionTemplateList: function(term){
         var url = "/api/getPrescriptionTemplateList.php";
         var doctorId = doctor_id;
-
+        hideApiError();
         call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -367,6 +374,7 @@ var getData = {
             template_input: template_input,
             session_info: session_info
         }
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -428,6 +436,7 @@ var getData = {
             session_info: session_info
         };
         showLoader();
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -452,8 +461,10 @@ var getData = {
             record_id:record_id
         };
         var data = {
-            document: document
+            document: document,
+            session_info: session_info
         };
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,

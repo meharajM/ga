@@ -306,16 +306,19 @@ $(document).ready(function(){
     //$('.health_record').on('click', getDocument);
 
     $('#logout').on('click', logout);
+    $('#api-error').on("click", '.fa-times', function (ev) {
+        hideApiError();
+    });
 });
 function logout() {
 
        getData.doDoctorLogout().then(function (res) {
             isLoggedIn = false;
-            $('#body').load('./components/logout.html');
-            $(".logout-text").show();
-            $(".login-panel").toggle();
+            window.location = '/';
 
-            delete sessionStorage;
+            delete sessionStorage.userId;
+            delete sessionStorage.doctorId;
+            location.reload();
             // sessionStorage.removeItem("id");
             // sessionStorage.removeItem("name");
             // sessionStorage.removeItem("token");
