@@ -241,6 +241,36 @@
 </html>
 
 <script type="text/javascript">
+
+function validateForm(formData){
+        var isValid = true;
+        $('.form-error').addClass('hidden-xs-up');
+        $('#diagnosis').removeClass('error');
+        $('#mgmt_plan').removeClass('error');
+        $('#followup_in').removeClass('error');
+        $('.form-error').text('');
+
+        if($('#diagnosis').val() == ''){
+            $('#diagnosis').addClass('error'); 
+            isValid =false;             
+        }
+
+        if($('#mgmt_plan').val() == ''){
+            $('#mgmt_plan').addClass('error');
+            isValid =false;
+        }
+
+        if($('#followup_in').val() == ''){
+            $('#followup_in').addClass('error');
+            isValid =false;
+        }
+
+        if(isValid == false){
+            $('.form-error').text('Please fuill the mandatory column');
+        }     
+}
+
+
     // var consultation_id;
     $(document).ready(function(){
         $(".generate").addClass('d-none');

@@ -255,7 +255,7 @@ if($validate_session != ""){
 
 	}
 }else{
-    $response['error']['result']="0";
+    $response['error']['result']="-999";
     $response['error']['error_code']="";    
     $response['error']['error_type']="";
     $response['error']['error_message']="Doctor id and token Mismatch";

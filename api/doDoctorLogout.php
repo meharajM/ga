@@ -9,12 +9,18 @@ $sessionToken 	= $logout->login_info->session_token;
 
 $response= array();
 
-if($doctor_id ==""){			
+if($doctor_id ==""){
+	$response['error']['result']="0";
+	$response['error']['error_code']="";
+	$response['error']['error_type']="";			
 	$response['error']['error_message']='doctorid cannot be null';		
 
 }
 
-if($sessionToken ==""){			
+if($sessionToken ==""){	
+    $response['error']['result']="0";
+	$response['error']['error_code']="";
+	$response['error']['error_type']="";		
 	$response['error']['error_message']='Sessiontoken cannot be null';		
 
 }else{
@@ -25,9 +31,15 @@ if($sessionToken ==""){
 	if($res !=""){
 		$res= $appointmentObj->update_login_session_info($doctor_id,$sessionToken);
 		if($res)
-		$response['error']['error_message']='success';	
+			$response['error']['result']="1";
+			$response['error']['error_code']="";
+			$response['error']['error_type']="";
+			$response['error']['error_message']='success';	
 	}else{
-		$response['error']['error_message']='DoctorID and token mismatch';	
+			$response['error']['result']="-999";
+			$response['error']['error_code']="";
+			$response['error']['error_type']="";
+			$response['error']['error_message']='DoctorID and token mismatch';	
 	}
 }
 
