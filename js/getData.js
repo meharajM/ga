@@ -300,9 +300,9 @@ var getData = {
         });
         return call;
     },
-    getMymedicineList: function(){
+    getMymedicineList: function(term){
         var url = "/api/getMymedicineList.php";
-        var doctorId = doctor_id;
+        var doctorId = "1";
 
         var call = $.ajax({
             type: "POST",
@@ -312,11 +312,11 @@ var getData = {
                     doctor_id: doctorId,
                     //doctor_id:1,
                     med_name: term
-                }
+                },
+                session_info: session_info
             }),
             dataType: 'json',
             success: function (res) {
-                showApiError(res.error);
                 //   alert("success in med");
                 return res;
             },
