@@ -303,6 +303,9 @@ $(document).ready(function(){
     //$('.health_record').on('click', getDocument);
 
     $('#logout').on('click', logout);
+    $('#api-error').on("click", '.fa-times', function (ev) {
+        hideApiError();
+    });
 });
 function logout() {
 

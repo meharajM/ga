@@ -58,3 +58,7 @@ function showApiError(error){
     }
     return true;
 }
+function hideApiError(){
+    $('#api-error').addClass('hidden-xs-up');
+    $('#api-error-message').html("");
+}
