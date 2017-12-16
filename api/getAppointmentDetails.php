@@ -110,8 +110,8 @@ if($apmt_id == ""){
 		$prescription['med_name']	= (isset($row['med_name'])) ? $row['med_name'] : '';
 		$prescription['med_type']	=(isset($row['med_type'])) ? $row['med_type'] : ''; 
 		$prescription['dosage']		= (isset($row['dosage'])) ? $row['dosage'] : '';
-		$prescription['frequency']	= (isset($row['frequency_string']))?$row['frequency_string'] : '';
-		$prescription['frequency_type']	= (isset($row['frequency_type']))? $row['frequency_type'] : '';
+		$prescription['frequency_string']= (isset($row['frequency_string'])) ? $row['frequency_string'] : '';
+		$prescription['frequency_type']	= (isset($row['frequency_type'])) ? $row['frequency_type'] : '';
 		$prescription['course']		= (isset($row['course'])) ? $row['course'] : '';
 		$prescription['med_intake']	= (isset($row['med_intake'])) ? $row['med_intake'] : '';
 		$prescription['remarks']	= (isset($row['remarks'])) ? $row['remarks'] : '';

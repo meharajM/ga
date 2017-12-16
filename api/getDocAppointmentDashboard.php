@@ -15,9 +15,9 @@ $sess_token = $apmt->session_info->access_token;
 
 //session info - validate token
 $response = array();
-/*$validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id,$sess_token);
+$validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id,$sess_token);
 
-if($validate_session != ""){*/
+if($validate_session != ""){
 		if($doctor_id == ""){
 			$response['error']['result']="0";
 			$response['error']['error_code']="";
@@ -80,12 +80,12 @@ if($validate_session != ""){*/
 				$response['appointments_details']['next_appointment_date']=$next['booking_date'];
 				$response['appointments_details']['prev_appointment_date']=$previous['booking_date'];
 		}
-/*}else{
+}else{
 	$response['error']['result']="0";
 	$response['error']['error_code']="";	
 	$response['error']['error_type']="";
 	$response['error']['error_message']="Doctor id and token Mismatch";
-}*/
+}
 	echo json_encode($response);
 
 ?>

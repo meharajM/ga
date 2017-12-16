@@ -13,8 +13,8 @@ $sess_token 	= $template->session_info->access_token;
 
 $response= array();
 
-$validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id,$sess_token);
-if($validate_session != ""){
+/*$validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id,$sess_token);
+if($validate_session != ""){*/
 		if($doctor_id ==""){
 			$response['error']['result']="0";
 		    $response['error']['error_code']="";    
@@ -45,12 +45,12 @@ if($validate_session != ""){
 				$response['error']['error_message']='Templates Not found';	
 			}	
 		}
-}else{
+/*}else{
     $response['error']['result']="0";
     $response['error']['error_code']="";    
     $response['error']['error_type']="";
     $response['error']['error_message']="Doctor id and token Mismatch";
-}
+}*/
 echo json_encode($response);
 
 ?>
