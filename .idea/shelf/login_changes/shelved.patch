@@ -1,0 +1,819 @@
+Index: js/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>var appointment_id, hs_id,hcc_id,sessionId,token,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, appointment,apmt_type,consultation_id,record_id;\nvar showToaster;\nvar apiKey = \"45638452\";\nfunction showMessage(message) {\n    $('#subscriber').html(\"<div class='message'><div class='text'>\"+ message +\"</div></div>\");\n}\n$(document).ready(function(){\n\t$('#filter').load('./components/filter.html');\n\tvar actualDate=new Date();\n    var date=moment(actualDate).format(\"YYYYMMDD\");\n    getData.getDashboardData(date).then(function(res){\n\t\tshowDashboardDetails(res);\n\t});\n    //getData.getDoctorProfile(2);\n\n\t/*getting appointment details*/\n\n\tvar getAppointmentDetails = function(ev){\n\t\tappointment_id = ev.currentTarget.id;\n\t\tgetData.getAppointmentDetails(appointment_id).then(function(res){\n\t\t    $('.no-appointment-selected').addClass('d-none')\n\t\t    $('.appointment-info').removeClass('d-none')\n\t\t    var source = $('#detailsTemplate').html();\n            var template = Handlebars.compile(source);\n            var html = template(res.appointments_details);\n            $('#details').html(html)\n            $('#prescription').load('./components/prescription.html')\n\t\t\tif(res.appointments_details.appointment_det.apmt_type != \"VC\"){\n\t\t\t\t$('#start-vedio-consultation').hide();\n\t\t\t}else{\n                $('#start-vedio-consultation').show();\n\t\t\t}\n            hs_id = res.appointments_details.health_seeker_profile.hs_id;\n\t\t\t$(\"#start-vedio-consultation\").on(\"click\",function (vid) {\n\n\t\t\t\tgetData.startVideoConsultation(appointment_id,hs_id).then(function (res) {\n\n\t\t\t\t\tsessionId=res.video_session_det.session;\n\t\t\t\t\ttoken=res.video_session_det.token;\n\t\t\t\t\tstartVedio();\n                });\n\t\t\t\tvid.preventDefault();\n\n            });\n\n           // getData.getDocumentBlobData(hs_id);\n\t\t\tapmt_status=res.appointments_details.appointment_det.apmt_status;\n\t\t\tprescriptions_list=res.appointments_details.consultation_details.prescription_details;\n\t\t\t//summary_details=res.appointments_details.consultation_details.consultation_summary;\n\t\t\tappointment=res.appointments_details;\n\t\t\t//alert(summary_list);\n            $('#prescription').load('./components/prescription.html');\n            $('#summary').load('./components/summary.html');\n\n          if(apmt_status==\"closed\")\n\t\t\t{\n\t\t\t\t$(\"#badge-button\").html('<span class=\"badge badge-pill badge-success\">Closed</span>');\n\t\t\t}\n\t\t\telse if(apmt_status==\"booked\")\n\t\t\t{\n                $(\"#badge-button\").html('<span class=\"badge badge-pill badge-warning\">Pending</span>');\n            }\n\n        }).catch(function(a,b){\n\t\t})\n\t};\n\tshowDashboardDetails=function(res){\n        $('#total').text(res.appointments_details.appointment_summary.total);\n        $('#pending').text(res.appointments_details.appointment_summary.pending);\n        $('#missed').text(res.appointments_details.appointment_summary.missed);\n       // $('#shcedule-date').text(res.appointments_details.appointment[0].appointment_date);\n        var source   = $(\"#appointmentTemplate\").html();\n        var template = Handlebars.compile(source);\n        var html = template(res.appointments_details);\n\n        if($(window).width() < 500){\n            $('#appointment-list-phone').html(html)\n            $('#appointment-list-phone').removeClass('list-group').addClass('list-inline')\n            $('#appointment-list-phone .list-group-item').removeClass('list-group-item').addClass('list-inline-item')\n        }else{\n            $('#appointment-list').html(html)\n        }\n        next_apmt_date=res.appointments_details.next_appointment_date;\n        prev_apmt_date=res.appointments_details.prev_appointment_date;\n      //  hcc_id=res.appointment_details.appointments[0].hcc_det.hcc_id;\n\t};\n\tvar addPrescription = function(ev){\n\n\t};\n\n\t// Handling all of our errors here by alerting them\n\tfunction handleError(error) {\n\t  if (error) {\n\t    alert(error.message);\n\t  }\n\t}\n\tvar publisher, subscriber;\n\tfunction initializeSession(apiKey, sessionId, token) {\n\t\tshowMessage(\"Checking for the Support ans system requirements\")\n        OT.addEventListener(\"exception\", exceptionHandler);\n\t\tif(OT.checkSystemRequirements()){\n\t\t\tvar session = OT.initSession(apiKey, sessionId);\n\n            // Subscribe to a newly created stream\n            session.on('streamCreated', function(event) {\n                if(!publisherError){\n                    subscriber = session.subscribe(event.stream, 'subscriber', {\n                        width: '100%',\n                        height: '100%',\n                        showControls: false\n                    }, handleSubscriberError);\n                    subscriber.on('connected', function (event) {\n                    });\n                }else{\n                    showMessage(\"<span>\"+current_appointment_details.health_seeker_profile.hs_name+\" has joined the call but, App does not have access to Camera and Microphone. Please allow access to Camera ans Microphone.</span><br/>\" +\n                        \"Fix : <a href='https://support.google.com/chrome/answer/2693767?hl=en'>Google chrome</a>, <a href='https://www.google.co.in/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiovJWr-tnXAhVIpZQKHSD8CPIQFggnMAE&url=https%3A%2F%2Fhelp.seesaw.me%2Fhc%2Fen-us%2Farticles%2F207891173-How-to-give-camera-mic-and-push-notifications-permissions-to-Seesaw&usg=AOvVaw2gUF7tM_fORFNgkbFoQkBv'>Firefox</a> \" +\n                        \"<br/>>Please reload the app after access us given.\");\n                }\n\n            });\n            session.on({\n                streamDestroyed: function (event) {\n                \tif (event.reason === 'networkDisconnected') {\n                        event.preventDefault();\n                        var subscribers = session.getSubscribersForStream(event.stream);\n                        // if (subscribers.length > 0) {\n                        //     var subscriber = document.getElementById(subscribers[0].id);\n                        //     // Display error message inside the Subscriber\n                        //     subscriber.innerHTML = 'Lost connection. This could be due to your internet connection '\n                        //         + 'or because the other party lost their connection.';\n                        //     event.preventDefault();   // Prevent the Subscriber from being removed\n                        // }\n\t\t\t\t\t\tshowMessage('Lost connection. This could be due to your internet connection '\n                            + 'or because the other party lost their connection.');\n\t\t\t\t\t\tevent.preventDefault();\n                    }\n                }\n            });\n            session.on(\"sessionDisconnected\", function(event) {\n                //on stop consultation\n            });\n\n            // Create a publisher\n            publisher = OT.initPublisher('publisher', {\n                insertMode: 'append',\n                width: '100%',\n                height: '100%',\n                showControls: false\n            }, handleInitiatePublisherError);\n            $('#publisher').draggable();\n            // Connect to the session\n            session.connect(token, function(error) {\n                // If the connection is successful, publish to the session\n                if (error) {\n                    handleConnectionError(error);\n                } else if(!publisherError){\n                    session.publish(publisher, handlePublishComplete);\n                }\n            });\n            $('.appointment-list-container').addClass('hidden-xs-up');\n            $('.video-container').removeClass('hidden-xs-up');\n            $($('.video-container')[0]).scrollTop(200);\n            $('#start-vedio-consultation').addClass('hidden-xs-up')\n            $('#close-vedio-consultation').removeClass('hidden-xs-up')\n            return {session: session, stream: publisher.stream};\n\t\t}else{\n\t\t\tshowMessage(\"your browser does not support webRTC please upgrade your browser\");\n\t\t}\n\t}\n\tvar vedioSession;\n\tvar startVedio = function(){\n\t\tapiKey = apiKey,\n        sessionId = sessionId,\n        token = token,\n\t\t\t// (optional) add server code here\n\t\tvedioSession = initializeSession(apiKey, sessionId, token);\n\t};\n\tvar stopVideo = function(){\n\t\tif(vedioSession){\n\t\t\tvedioSession.session.disconnect()\n            $('.video-container').addClass('hidden-xs-up');\n\t\t\t$('.left-container').removeClass('col-12').addClass('col-3');\n            $('.appointment-list-container').removeClass('hidden-xs-up');\n            $('.appointment-content').removeClass('hidden-xs-up');\n            $('#start-vedio-consultation').removeClass('hidden-xs-up')\n\t \t\t$('#close-vedio-consultation').addClass('hidden-xs-up')\n\t \t\t$('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');\n\t\t}\n\t}\n\tvar muteAudio = function(ev){\n\t\tif($(this).hasClass('muted')){\n\t\t\tpublisher.publishAudio(true)\n\t\t\t$(this).removeClass('muted');\n\t\t}else{\n\t\t\tpublisher.publishAudio(false);\n\t\t\t$(this).addClass('muted');\t\n\t\t}\t\t\n\t}\n\tvar muteVideo = function(ev){\n\t\tif($(this).hasClass('muted')){\n\t\t\tpublisher.publishVideo(true);\n\t\t\t$(this).removeClass('muted');\n\t\t}else{\n\t\t\tpublisher.publishVideo(false);\n\t\t\t$(this).addClass('muted');\n\t\t}\n\t}\n\tvar showFullScreen = function(ev){\n\t\tif(!$('#publisher').hasClass('hidden-xs-up')){\n            $('.appointment-content').addClass('hidden-xs-up');\n            $('.left-container').addClass('col-12').removeClass('col-3');\n\t\t}else if(!$('#subscriber').hasClass('hidden-xs-up')){\n\t\t\t$('#subscriber').addClass('show-full-screen');\n\t\t}\n\t\t$('.full-screen-off').removeClass('hidden-xs-up')\n\t\t$('.full-screen').addClass('hidden-xs-up')\n\t}\n\tvar removeFullScreen = function (ev) {\n        if(!$('#publisher').hasClass('hidden-xs-up')){\n        \t$('.appointment-content').removeClass('hidden-xs-up');\n            $('.left-container').addClass('col-3').removeClass('col-12');\n        }else if(!$('#subscriber').hasClass('hidden-xs-up')){\n            $('#subscriber').removeClass('show-full-screen');\n        }\n        $('.full-screen').removeClass('hidden-xs-up')\n\t\t$('.full-screen-off').addClass('hidden-xs-up')\n    }\n    showToaster = function (message) {\n        var x = $('#toaster');\n\n        // Add the \"show\" class to DIV\n        x.html(message);\n        x.addClass(\"show\");\n\n\n        // After 3 seconds, remove the show class from DIV\n        setTimeout(function(){ x.removeClass(\"show\"); x.html('')}, 1000);\n    }\n\t$('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails)\n\t$('.appointment-details #prescription').on('submit', addPrescription)\n\t//$('#start-vedio-consultation').on('click', startVedio)\n\t$('#close-vedio-consultation').on('click', stopVideo)\n\t$('#toggleLocalAudio').on('click', muteAudio)\n\t$('#toggleLocalVideo').on('click', muteVideo)\n\t$('.full-screen').on('click', showFullScreen)\n\t$('.App-control-container').on('click', '.full-screen-off', removeFullScreen)\n})\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- js/index.js	(revision f4011adf4b2daff2bb32bbe0f262a071b68c4432)
++++ js/index.js	(revision )
+@@ -1,247 +1,13 @@
+-var appointment_id, hs_id,hcc_id,sessionId,token,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, appointment,apmt_type,consultation_id,record_id;
+-var showToaster;
+-var apiKey = "45638452";
+-function showMessage(message) {
+-    $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
+-}
+ $(document).ready(function(){
+-	$('#filter').load('./components/filter.html');
+-	var actualDate=new Date();
+-    var date=moment(actualDate).format("YYYYMMDD");
+-    getData.getDashboardData(date).then(function(res){
+-		showDashboardDetails(res);
+-	});
+-    //getData.getDoctorProfile(2);
++    var isLoggedIn = true;
++    function showDashboard() {
++        if(checkLogin()){
+ 
+-	/*getting appointment details*/
+-
+-	var getAppointmentDetails = function(ev){
+-		appointment_id = ev.currentTarget.id;
+-		getData.getAppointmentDetails(appointment_id).then(function(res){
+-		    $('.no-appointment-selected').addClass('d-none')
+-		    $('.appointment-info').removeClass('d-none')
+-		    var source = $('#detailsTemplate').html();
+-            var template = Handlebars.compile(source);
+-            var html = template(res.appointments_details);
+-            $('#details').html(html)
+-            $('#prescription').load('./components/prescription.html')
+-			if(res.appointments_details.appointment_det.apmt_type != "VC"){
+-				$('#start-vedio-consultation').hide();
+-			}else{
+-                $('#start-vedio-consultation').show();
+-			}
+-            hs_id = res.appointments_details.health_seeker_profile.hs_id;
+-			$("#start-vedio-consultation").on("click",function (vid) {
+-
+-				getData.startVideoConsultation(appointment_id,hs_id).then(function (res) {
+-
+-					sessionId=res.video_session_det.session;
+-					token=res.video_session_det.token;
+-					startVedio();
+-                });
+-				vid.preventDefault();
+-
+-            });
+-
+-           // getData.getDocumentBlobData(hs_id);
+-			apmt_status=res.appointments_details.appointment_det.apmt_status;
+-			prescriptions_list=res.appointments_details.consultation_details.prescription_details;
+-			//summary_details=res.appointments_details.consultation_details.consultation_summary;
+-			appointment=res.appointments_details;
+-			//alert(summary_list);
+-            $('#prescription').load('./components/prescription.html');
+-            $('#summary').load('./components/summary.html');
+-
+-          if(apmt_status=="closed")
+-			{
+-				$("#badge-button").html('<span class="badge badge-pill badge-success">Closed</span>');
+-			}
+-			else if(apmt_status=="booked")
+-			{
+-                $("#badge-button").html('<span class="badge badge-pill badge-warning">Pending</span>');
+-            }
+-
+-        }).catch(function(a,b){
+-		})
+-	};
+-	showDashboardDetails=function(res){
+-        $('#total').text(res.appointments_details.appointment_summary.total);
+-        $('#pending').text(res.appointments_details.appointment_summary.pending);
+-        $('#missed').text(res.appointments_details.appointment_summary.missed);
+-       // $('#shcedule-date').text(res.appointments_details.appointment[0].appointment_date);
+-        var source   = $("#appointmentTemplate").html();
+-        var template = Handlebars.compile(source);
+-        var html = template(res.appointments_details);
+-
+-        if($(window).width() < 500){
+-            $('#appointment-list-phone').html(html)
+-            $('#appointment-list-phone').removeClass('list-group').addClass('list-inline')
+-            $('#appointment-list-phone .list-group-item').removeClass('list-group-item').addClass('list-inline-item')
+-        }else{
+-            $('#appointment-list').html(html)
+-        }
+-        next_apmt_date=res.appointments_details.next_appointment_date;
+-        prev_apmt_date=res.appointments_details.prev_appointment_date;
+-      //  hcc_id=res.appointment_details.appointments[0].hcc_det.hcc_id;
+-	};
+-	var addPrescription = function(ev){
+-
+-	};
+-
+-	// Handling all of our errors here by alerting them
+-	function handleError(error) {
+-	  if (error) {
+-	    alert(error.message);
+-	  }
+-	}
+-	var publisher, subscriber;
+-	function initializeSession(apiKey, sessionId, token) {
+-		showMessage("Checking for the Support ans system requirements")
+-        OT.addEventListener("exception", exceptionHandler);
+-		if(OT.checkSystemRequirements()){
+-			var session = OT.initSession(apiKey, sessionId);
+-
+-            // Subscribe to a newly created stream
+-            session.on('streamCreated', function(event) {
+-                if(!publisherError){
+-                    subscriber = session.subscribe(event.stream, 'subscriber', {
+-                        width: '100%',
+-                        height: '100%',
+-                        showControls: false
+-                    }, handleSubscriberError);
+-                    subscriber.on('connected', function (event) {
+-                    });
+-                }else{
+-                    showMessage("<span>"+current_appointment_details.health_seeker_profile.hs_name+" has joined the call but, App does not have access to Camera and Microphone. Please allow access to Camera ans Microphone.</span><br/>" +
+-                        "Fix : <a href='https://support.google.com/chrome/answer/2693767?hl=en'>Google chrome</a>, <a href='https://www.google.co.in/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiovJWr-tnXAhVIpZQKHSD8CPIQFggnMAE&url=https%3A%2F%2Fhelp.seesaw.me%2Fhc%2Fen-us%2Farticles%2F207891173-How-to-give-camera-mic-and-push-notifications-permissions-to-Seesaw&usg=AOvVaw2gUF7tM_fORFNgkbFoQkBv'>Firefox</a> " +
+-                        "<br/>>Please reload the app after access us given.");
+-                }
+-
+-            });
+-            session.on({
+-                streamDestroyed: function (event) {
+-                	if (event.reason === 'networkDisconnected') {
+-                        event.preventDefault();
+-                        var subscribers = session.getSubscribersForStream(event.stream);
+-                        // if (subscribers.length > 0) {
+-                        //     var subscriber = document.getElementById(subscribers[0].id);
+-                        //     // Display error message inside the Subscriber
+-                        //     subscriber.innerHTML = 'Lost connection. This could be due to your internet connection '
+-                        //         + 'or because the other party lost their connection.';
+-                        //     event.preventDefault();   // Prevent the Subscriber from being removed
+-                        // }
+-						showMessage('Lost connection. This could be due to your internet connection '
+-                            + 'or because the other party lost their connection.');
+-						event.preventDefault();
+-                    }
+-                }
+-            });
+-            session.on("sessionDisconnected", function(event) {
+-                //on stop consultation
+-            });
+-
+-            // Create a publisher
+-            publisher = OT.initPublisher('publisher', {
+-                insertMode: 'append',
+-                width: '100%',
+-                height: '100%',
+-                showControls: false
+-            }, handleInitiatePublisherError);
+-            $('#publisher').draggable();
+-            // Connect to the session
+-            session.connect(token, function(error) {
+-                // If the connection is successful, publish to the session
+-                if (error) {
+-                    handleConnectionError(error);
+-                } else if(!publisherError){
+-                    session.publish(publisher, handlePublishComplete);
+-                }
+-            });
+-            $('.appointment-list-container').addClass('hidden-xs-up');
+-            $('.video-container').removeClass('hidden-xs-up');
+-            $($('.video-container')[0]).scrollTop(200);
+-            $('#start-vedio-consultation').addClass('hidden-xs-up')
+-            $('#close-vedio-consultation').removeClass('hidden-xs-up')
+-            return {session: session, stream: publisher.stream};
+-		}else{
+-			showMessage("your browser does not support webRTC please upgrade your browser");
+-		}
+-	}
+-	var vedioSession;
+-	var startVedio = function(){
+-		apiKey = apiKey,
+-        sessionId = sessionId,
+-        token = token,
+-			// (optional) add server code here
+-		vedioSession = initializeSession(apiKey, sessionId, token);
+-	};
+-	var stopVideo = function(){
+-		if(vedioSession){
+-			vedioSession.session.disconnect()
+-            $('.video-container').addClass('hidden-xs-up');
+-			$('.left-container').removeClass('col-12').addClass('col-3');
+-            $('.appointment-list-container').removeClass('hidden-xs-up');
+-            $('.appointment-content').removeClass('hidden-xs-up');
+-            $('#start-vedio-consultation').removeClass('hidden-xs-up')
+-	 		$('#close-vedio-consultation').addClass('hidden-xs-up')
+-	 		$('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');
+-		}
+-	}
+-	var muteAudio = function(ev){
+-		if($(this).hasClass('muted')){
+-			publisher.publishAudio(true)
+-			$(this).removeClass('muted');
+-		}else{
+-			publisher.publishAudio(false);
+-			$(this).addClass('muted');	
+-		}		
+-	}
+-	var muteVideo = function(ev){
+-		if($(this).hasClass('muted')){
+-			publisher.publishVideo(true);
+-			$(this).removeClass('muted');
+-		}else{
+-			publisher.publishVideo(false);
+-			$(this).addClass('muted');
+-		}
+-	}
+-	var showFullScreen = function(ev){
+-		if(!$('#publisher').hasClass('hidden-xs-up')){
+-            $('.appointment-content').addClass('hidden-xs-up');
+-            $('.left-container').addClass('col-12').removeClass('col-3');
+-		}else if(!$('#subscriber').hasClass('hidden-xs-up')){
+-			$('#subscriber').addClass('show-full-screen');
+-		}
+-		$('.full-screen-off').removeClass('hidden-xs-up')
+-		$('.full-screen').addClass('hidden-xs-up')
+-	}
+-	var removeFullScreen = function (ev) {
+-        if(!$('#publisher').hasClass('hidden-xs-up')){
+-        	$('.appointment-content').removeClass('hidden-xs-up');
+-            $('.left-container').addClass('col-3').removeClass('col-12');
+-        }else if(!$('#subscriber').hasClass('hidden-xs-up')){
+-            $('#subscriber').removeClass('show-full-screen');
+-        }
+-        $('.full-screen').removeClass('hidden-xs-up')
+-		$('.full-screen-off').addClass('hidden-xs-up')
+-    }
+-    showToaster = function (message) {
+-        var x = $('#toaster');
+-
+-        // Add the "show" class to DIV
+-        x.html(message);
+-        x.addClass("show");
+-
+-
+-        // After 3 seconds, remove the show class from DIV
+-        setTimeout(function(){ x.removeClass("show"); x.html('')}, 1000);
+-    }
+-	$('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails)
+-	$('.appointment-details #prescription').on('submit', addPrescription)
+-	//$('#start-vedio-consultation').on('click', startVedio)
+-	$('#close-vedio-consultation').on('click', stopVideo)
+-	$('#toggleLocalAudio').on('click', muteAudio)
+-	$('#toggleLocalVideo').on('click', muteVideo)
+-	$('.full-screen').on('click', showFullScreen)
+-	$('.App-control-container').on('click', '.full-screen-off', removeFullScreen)
+-})
++            $('#body').load('../components/dashboard.html');
++        }
++    }
++    function checkLogin() {
++        return isLoggedIn;
++    }
++    showDashboard();
++});
+\ No newline at end of file
+Index: components/dashboard.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- components/dashboard.html	(revision )
++++ components/dashboard.html	(revision )
+@@ -0,0 +1,110 @@
++<div>
++    <!-- add fixed-top for fix nav -->
++    <nav class="navbar navbar-toggleable-sm navbar-light">
++        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
++            <span class="navbar-toggler-icon"></span>
++        </button>
++        <div class="navbar-brand"> <img src="img/logo.png"></div>
++
++        <div class="collapse navbar-collapse" id="navbarNav">
++            <ul class="navbar-nav mr-auto">
++                <!--<li class="nav-item">-->
++                <!--<a href="#" class="nav-link">lorem ipsum</a>-->
++                <!--</li>-->
++                <!--<li class="nav-item">-->
++                <!--<a href="#" class="nav-link">lorem ipsum</a>-->
++                <!--</li>-->
++                <!--<li class="nav-item">-->
++                <!--<a href="#" class="nav-link">lorem ipsum</a>-->
++                <!--</li>-->
++            </ul>
++            <div>
++                <img class="mr-1" src="img/notify.png">
++                <img class="mr-1" src="img/mails.png">
++                <img class="mr-1" src="img/user.jpg">
++            </div>
++        </div>
++    </nav>
++</div>
++<div class="content-container container bg-faded pt-2">
++
++
++    <div class="row mt-3 content">
++        <!-- hiding for small screen -->
++        <div class="col-3 hidden-sm-down left-container">
++            <div class="appointment-list-container">
++                <div id="filter"></div>
++                <div id="appointment-list">
++                    <ul  class="list-group"></ul>
++                </div>
++            </div>
++            <div class="col-sm-12 appointment-info video-container d-none hidden-xs-up show-full-screen">
++                <div id="hs-name-container"></div>
++                <div id="timer"><span id="minutes"></span>:<span id="seconds"></span></div>
++                <div class="row controls-group">
++                    <div class="text-center">
++                        <div id="videos" class="App-control-container">
++                            <div class="btn-danger hidden-xs-up ots-video-control circle " id="close-vedio-consultation"></div>
++                            <!-- <div id="controls" class='App-control-container hidden'> -->
++                            <div class="ots-video-control circle audio hidden-xs-up" id="toggleLocalAudio"></div>
++                            <div class="ots-video-control circle video hidden-xs-up" id="toggleLocalVideo"></div>
++                            <div class="ots-video-control circle full-screen hidden-xs-up" id="showFullScreen"></div>
++                            <div class="ots-video-control circle full-screen-off hidden-xs-up" ></div>
++                            <!-- </div> -->
++                        </div>
++                    </div>
++                </div>
++                <div id="subscriber">
++
++                </div>
++                <div id="publisher" class="hidden-xs-up"></div>
++            </div>
++        </div>
++        <!-- showing for small screen -->
++        <div class="col-12 hidden-sm-up">
++            <div id="filter"></div>
++            <ul id="appointment-list-phone" class="list-inline"></ul>
++        </div>
++        <div class="col-9 appointment-content">
++            <div class="row">
++                <div class="col-sm-12 appointment-info details d-none">
++                    <!-- Nav tabs -->
++                    <ul class="nav nav-tabs" role="tablist" id="mytabs">
++                        <li class="nav-item">
++                            <a class="nav-link active" data-toggle="tab" href="#details" role="tab"><span class="fa fa-info-circle"> </span> Details</a>
++                        </li>
++                        <li class="nav-item">
++                            <a class="nav-link" data-toggle="tab" href="#prescription" role="tab"><span class="fa fa-plus-circle"> </span> Prescription</a>
++                        </li>
++                        <li class="nav-item">
++                            <a class="nav-link" data-toggle="tab" href="#summary" role="tab"><span class="fa fa-list-alt"> </span> Summary</a>
++                        </li>
++                        <li class="nav-item">
++                            <div class="btn-success btn btn-default" id="start-vedio-consultation"><span class="fa fa-video-camera"> </span></div>
++                        </li>
++                    </ul>
++
++                    <!-- Tab panes -->
++                    <div class="tab-content">
++                        <div class="tab-pane active" id="details" role="tabpanel">
++
++
++                        </div>
++                        <div class="tab-pane" id="prescription" role="tabpanel">...</div>
++                        <div class="tab-pane" id="summary" role="tabpanel">...</div>
++                    </div>
++                </div>
++                <div class="no-appointment-selected col-9 text-center">
++                    <img src="img/no_time.png" />
++                    <p>You don't have any scheduled appointments</p>
++                </div>
++            </div>
++        </div>
++
++    </div>
++</div>
++<div id="toaster">Some text some message..</div>
++<!--end of body-->
++<script src="../js/tokBoxHandlers.js"></script>
++<script src="../js/getData.js"></script>
++<script type="text/javascript" src="../js/dashboard.js"></script>
+\ No newline at end of file
+Index: index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <!-- Required meta tags -->\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n\n\n    <!-- added by Nishant -->\n    <link href=\"css/font-awesome.min.css\" rel=\"stylesheet\">\n    <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n    <link href=\"css/bootstrap-iso.css\" rel=\"stylesheet\">\n    <link href=\"css/bootstrap-datepicker3.css\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" href=\"css/font-awesome.min.css\">\n    <link href=\"css/styles.css\" type=\"text/css\" rel=\"stylesheet\">\n    <link href=\"css/jquery-ui.css\" type=\"text/css\" rel=\"stylesheet\">\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/css/select2.min.css\" />\n\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/js/select2.min.js\"></script>\n   <script src=\"https://code.jquery.com/jquery-3.2.1.min.js\"\n            integrity=\"sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=\"\n            crossorigin=\"anonymous\">\n    </script>\n <link rel=\"stylesheet\" type=\"text/css\" href=\"css/newStyles.css\">\n <script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js\"></script>\n\n\n    <!--added by Nishant -->\n    <script src=\"js/tether.min.js\"></script>\n    <script src=\"js/bootstrap.min.js\"></script>\n    <script src=\"js/bootstrap-datepicker.min.js\"></script>\n<!--    <script src=\"js/bootstrap-select.js\"></script>-->\n    <script type=\"text/javascript\" src=\"js/moment.min.js\"></script>\n    <script src=\"js/jquery-ui.min.js\"></script>\n\n    <script type=\"text/x-handlebars-template\" id=\"appointmentTemplate\">\n        {{#appointment}}\n        <li id={{appointment_id}} class=\"appointment list-group-item bg-light\">\n            <div class=\"col-8 \">\n                <div class=\"row\">\n                    <div class=\"col-5\">\n                        <h5>{{appointment_time}}</h5>\n                    </div>\n                    <div class=\"col-2 appointment-type no-padding\">\n                        <div class={{appointment_type}}>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"col-12\">\n                    <span id=\"name\">{{health_seeker.health_seeker_name}}</span>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-4\">\n                <sup><span class=\"{{appointment_status}} badge badge-primary\">{{appointment_status}}</span></sup>\n            </div>\n\n        </li>\n        {{/appointment}}\n    </script>\n    <script type=\"text/x-handlebars-template\" id=\"detailsTemplate\">\n        <div class=\"appointment-details\">\n\n        <p>\n        <b>General</b><br>\n        Appointment ID: {{appointment_det.apmt_id}}<br>\n        Patient Name: {{health_seeker_profile.hs_name}}<br>\n        Contact No: {{health_seeker_profile.hs_phone}}<br>\n        Schedule: {{appointment_det.apmt_date}} | {{appointment_det.apmt_time}}<br>\n        Age:\t{{health_seeker_profile.age}}<br>\n        Blood Group:\t{{health_seeker_profile.blood_group}}<br>\n        Sex:\t{{health_seeker_profile.gender}}<br>\n        Reason:\t{{case_sheet.consultation_reason}}<br>\n        Consultation Type:\t{{appointment_det.apmt_type}}<br>\n        Address:\t{{address.health_seeker_profile}}\n        </p>\n\n\n        not there in response\n        <p>\n        <b>Medical Details</b><br>\n        BP:\t120/80<br>\n        Pulse Rate:\t60 to 100 beats a minute<br>\n        Weight:\t500<br>\n        Blood Pressure:\t120/98<br>\n        BMI:\t18.5<br>\n        Temperature:\t98.6\n        </p>\n\n        <p>\n        <b>Attached Documents</b><br>\n        <a href=\"http://52.66.157.195/growayu/ganewdesign/pdfs/{{health_record.[name]}}\" target=\"_blank\" class=\"embedURL\">Sugar Test</a><br>\n        <a href=\"reports/blood_test.pdf\" target=\"_blank\" class=\"embedURL\">Blood Test</a><br>\n        <a href=\"reports/urine_test.pdf\" target=\"_blank\" class=\"embedURL\">Urine Culture Test</a>\n        </p>\n\n        <div id=\"loaData\">\n            <a href=\"#\" class=\"loadData\">Previous Conversation History</a>\n        </div>\n\n        </div>\n    </script>\n    <script src=\"https://static.opentok.com/v2/js/opentok.min.js\"></script>\n    <link rel=\"stylesheet\" href=\"css/fa/css/font-awesome.min.css\">\n</head>\n<body>\n    <div>\n        <!-- add fixed-top for fix nav -->\n        <nav class=\"navbar navbar-toggleable-sm navbar-light\">\n            <button class=\"navbar-toggler navbar-toggler-right\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                <span class=\"navbar-toggler-icon\"></span>\n            </button>\n            <div class=\"navbar-brand\"> <img src=\"img/logo.png\"></div>\n\n            <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n                <ul class=\"navbar-nav mr-auto\">\n                    <!--<li class=\"nav-item\">-->\n                        <!--<a href=\"#\" class=\"nav-link\">lorem ipsum</a>-->\n                    <!--</li>-->\n                    <!--<li class=\"nav-item\">-->\n                        <!--<a href=\"#\" class=\"nav-link\">lorem ipsum</a>-->\n                    <!--</li>-->\n                    <!--<li class=\"nav-item\">-->\n                        <!--<a href=\"#\" class=\"nav-link\">lorem ipsum</a>-->\n                    <!--</li>-->\n                </ul>\n                <div>\n                    <img class=\"mr-1\" src=\"img/notify.png\">\n                    <img class=\"mr-1\" src=\"img/mails.png\">\n                    <img class=\"mr-1\" src=\"img/user.jpg\">\n                </div>\n            </div>\n        </nav>\n    </div>\n    <!--<div class=\"row bg-success\">-->\n\n        <!--<div class=\"col-2 \">-->\n\n        <!--</div>-->\n        <!--<div class=\"col-8 \">-->\n            <!--<form class=\"form-inline\">-->\n                <!--<input id=\"search\" class=\" form-control col-10 bg-success \" type=\"text\" placeholder=\"Search\" />-->\n                <!--<span class=\" col-2 p-0 \"><img src=\"img/search.png\"></span>-->\n            <!--</form>-->\n\n\n        <!--</div>-->\n        <!--<div class=\"col-2 \"></div>-->\n    <!--</div>-->\n    <div class=\"content-container container bg-faded pt-2\">\n\n\n        <div class=\"row mt-3 content\">\n        <!-- hiding for small screen -->\n        <div class=\"col-3 hidden-sm-down left-container\">\n            <div class=\"appointment-list-container\">\n                <div id=\"filter\"></div>\n                <div id=\"appointment-list\">\n                    <ul  class=\"list-group\"></ul>\n                </div>\n            </div>\n            <div class=\"col-sm-12 appointment-info video-container d-none hidden-xs-up show-full-screen\">\n                <div id=\"hs-name-container\"></div>\n                <div id=\"timer\"><span id=\"minutes\"></span>:<span id=\"seconds\"></span></div>\n                <div class=\"row controls-group\">\n                    <div class=\"text-center\">\n                        <div id=\"videos\" class=\"App-control-container\">\n                            <div class=\"btn-danger hidden-xs-up ots-video-control circle \" id=\"close-vedio-consultation\"></div>\n                            <!-- <div id=\"controls\" class='App-control-container hidden'> -->\n                            <div class=\"ots-video-control circle audio hidden-xs-up\" id=\"toggleLocalAudio\"></div>\n                            <div class=\"ots-video-control circle video hidden-xs-up\" id=\"toggleLocalVideo\"></div>\n                            <div class=\"ots-video-control circle full-screen hidden-xs-up\" id=\"showFullScreen\"></div>\n                            <div class=\"ots-video-control circle full-screen-off hidden-xs-up\" ></div>\n                            <!-- </div> -->\n                        </div>\n                    </div>\n                </div>\n                <div id=\"subscriber\">\n\n                </div>\n                <div id=\"publisher\" class=\"hidden-xs-up\"></div>\n            </div>\n        </div>\n        <!-- showing for small screen -->\n        <div class=\"col-12 hidden-sm-up\">\n            <div id=\"filter\"></div>\n            <ul id=\"appointment-list-phone\" class=\"list-inline\"></ul>\n        </div>\n        <div class=\"col-9 appointment-content\">\n            <div class=\"row\">\n                <div class=\"col-sm-12 appointment-info details d-none\">\n                    <!-- Nav tabs -->\n                    <ul class=\"nav nav-tabs\" role=\"tablist\" id=\"mytabs\">\n                        <li class=\"nav-item\">\n                            <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#details\" role=\"tab\"><span class=\"fa fa-info-circle\"> </span> Details</a>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a class=\"nav-link\" data-toggle=\"tab\" href=\"#prescription\" role=\"tab\"><span class=\"fa fa-plus-circle\"> </span> Prescription</a>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a class=\"nav-link\" data-toggle=\"tab\" href=\"#summary\" role=\"tab\"><span class=\"fa fa-list-alt\"> </span> Summary</a>\n                        </li>\n                        <li class=\"nav-item\">\n                            <div class=\"btn-success btn btn-default\" id=\"start-vedio-consultation\"><span class=\"fa fa-video-camera\"> </span></div>\n                        </li>\n                    </ul>\n\n                    <!-- Tab panes -->\n                    <div class=\"tab-content\">\n                        <div class=\"tab-pane active\" id=\"details\" role=\"tabpanel\">\n\n\n                        </div>\n                        <div class=\"tab-pane\" id=\"prescription\" role=\"tabpanel\">...</div>\n                        <div class=\"tab-pane\" id=\"summary\" role=\"tabpanel\">...</div>\n                    </div>\n                </div>\n                <div class=\"no-appointment-selected col-9 text-center\">\n                    <img src=\"img/no_time.png\" />\n                    <p>You don't have any scheduled appointments</p>\n                </div>\n            </div>\n        </div>\n\n    </div>\n    </div>\n    <div id=\"toaster\">Some text some message..</div>\n<!--end of body-->\n    <script src=\"./js/tokBoxHandlers.js\"></script>\n    <script src=\"./js/getData.js\"></script>\n    <script type=\"text/javascript\" src=\"./js/index.js\"></script>\n</body>\n</html>\n<script>\n    $(document).ready(function(){\n        $(\"#appointment-list\").on(\"click\", function (evt) {\n            var next = $('#mytabs li.active').next();\n            next.length?\n                next.find('a').click():\n                $('#mytabs li a')[0].click();\n\n        })\n    })\n\n</script>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- index.html	(revision f4011adf4b2daff2bb32bbe0f262a071b68c4432)
++++ index.html	(revision )
+@@ -91,7 +91,7 @@
+ 
+         <p>
+         <b>Attached Documents</b><br>
+-        <a href="http://52.66.157.195/growayu/ganewdesign/pdfs/{{health_record.[name]}}" target="_blank" class="embedURL">Sugar Test</a><br>
++        <a href="#" target="_blank" class="embedURL">Sugar Test</a><br>
+         <a href="reports/blood_test.pdf" target="_blank" class="embedURL">Blood Test</a><br>
+         <a href="reports/urine_test.pdf" target="_blank" class="embedURL">Urine Culture Test</a>
+         </p>
+@@ -106,142 +106,9 @@
+     <link rel="stylesheet" href="css/fa/css/font-awesome.min.css">
+ </head>
+ <body>
+-    <div>
+-        <!-- add fixed-top for fix nav -->
+-        <nav class="navbar navbar-toggleable-sm navbar-light">
+-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+-                <span class="navbar-toggler-icon"></span>
+-            </button>
+-            <div class="navbar-brand"> <img src="img/logo.png"></div>
++<div id="body">
+ 
+-            <div class="collapse navbar-collapse" id="navbarNav">
+-                <ul class="navbar-nav mr-auto">
+-                    <!--<li class="nav-item">-->
+-                        <!--<a href="#" class="nav-link">lorem ipsum</a>-->
+-                    <!--</li>-->
+-                    <!--<li class="nav-item">-->
+-                        <!--<a href="#" class="nav-link">lorem ipsum</a>-->
+-                    <!--</li>-->
+-                    <!--<li class="nav-item">-->
+-                        <!--<a href="#" class="nav-link">lorem ipsum</a>-->
+-                    <!--</li>-->
+-                </ul>
+-                <div>
+-                    <img class="mr-1" src="img/notify.png">
+-                    <img class="mr-1" src="img/mails.png">
+-                    <img class="mr-1" src="img/user.jpg">
+-                </div>
+-            </div>
+-        </nav>
+-    </div>
+-    <!--<div class="row bg-success">-->
+-
+-        <!--<div class="col-2 ">-->
+-
+-        <!--</div>-->
+-        <!--<div class="col-8 ">-->
+-            <!--<form class="form-inline">-->
+-                <!--<input id="search" class=" form-control col-10 bg-success " type="text" placeholder="Search" />-->
+-                <!--<span class=" col-2 p-0 "><img src="img/search.png"></span>-->
+-            <!--</form>-->
+-
+-
+-        <!--</div>-->
+-        <!--<div class="col-2 "></div>-->
+-    <!--</div>-->
+-    <div class="content-container container bg-faded pt-2">
+-
+-
+-        <div class="row mt-3 content">
+-        <!-- hiding for small screen -->
+-        <div class="col-3 hidden-sm-down left-container">
+-            <div class="appointment-list-container">
+-                <div id="filter"></div>
+-                <div id="appointment-list">
+-                    <ul  class="list-group"></ul>
+-                </div>
+-            </div>
+-            <div class="col-sm-12 appointment-info video-container d-none hidden-xs-up show-full-screen">
+-                <div id="hs-name-container"></div>
+-                <div id="timer"><span id="minutes"></span>:<span id="seconds"></span></div>
+-                <div class="row controls-group">
+-                    <div class="text-center">
+-                        <div id="videos" class="App-control-container">
+-                            <div class="btn-danger hidden-xs-up ots-video-control circle " id="close-vedio-consultation"></div>
+-                            <!-- <div id="controls" class='App-control-container hidden'> -->
+-                            <div class="ots-video-control circle audio hidden-xs-up" id="toggleLocalAudio"></div>
+-                            <div class="ots-video-control circle video hidden-xs-up" id="toggleLocalVideo"></div>
+-                            <div class="ots-video-control circle full-screen hidden-xs-up" id="showFullScreen"></div>
+-                            <div class="ots-video-control circle full-screen-off hidden-xs-up" ></div>
+-                            <!-- </div> -->
+-                        </div>
+-                    </div>
+-                </div>
+-                <div id="subscriber">
+-
+-                </div>
+-                <div id="publisher" class="hidden-xs-up"></div>
+-            </div>
+-        </div>
+-        <!-- showing for small screen -->
+-        <div class="col-12 hidden-sm-up">
+-            <div id="filter"></div>
+-            <ul id="appointment-list-phone" class="list-inline"></ul>
+-        </div>
+-        <div class="col-9 appointment-content">
+-            <div class="row">
+-                <div class="col-sm-12 appointment-info details d-none">
+-                    <!-- Nav tabs -->
+-                    <ul class="nav nav-tabs" role="tablist" id="mytabs">
+-                        <li class="nav-item">
+-                            <a class="nav-link active" data-toggle="tab" href="#details" role="tab"><span class="fa fa-info-circle"> </span> Details</a>
+-                        </li>
+-                        <li class="nav-item">
+-                            <a class="nav-link" data-toggle="tab" href="#prescription" role="tab"><span class="fa fa-plus-circle"> </span> Prescription</a>
+-                        </li>
+-                        <li class="nav-item">
+-                            <a class="nav-link" data-toggle="tab" href="#summary" role="tab"><span class="fa fa-list-alt"> </span> Summary</a>
+-                        </li>
+-                        <li class="nav-item">
+-                            <div class="btn-success btn btn-default" id="start-vedio-consultation"><span class="fa fa-video-camera"> </span></div>
+-                        </li>
+-                    </ul>
+-
+-                    <!-- Tab panes -->
+-                    <div class="tab-content">
+-                        <div class="tab-pane active" id="details" role="tabpanel">
+-
+-
+-                        </div>
+-                        <div class="tab-pane" id="prescription" role="tabpanel">...</div>
+-                        <div class="tab-pane" id="summary" role="tabpanel">...</div>
+-                    </div>
+-                </div>
+-                <div class="no-appointment-selected col-9 text-center">
+-                    <img src="img/no_time.png" />
+-                    <p>You don't have any scheduled appointments</p>
+-                </div>
+-            </div>
+-        </div>
+-
+-    </div>
+-    </div>
+-    <div id="toaster">Some text some message..</div>
+-<!--end of body-->
+-    <script src="./js/tokBoxHandlers.js"></script>
+-    <script src="./js/getData.js"></script>
+-    <script type="text/javascript" src="./js/index.js"></script>
++</div>
++<script src="./js/index.js"></script>
+ </body>
+ </html>
+-<script>
+-    $(document).ready(function(){
+-        $("#appointment-list").on("click", function (evt) {
+-            var next = $('#mytabs li.active').next();
+-            next.length?
+-                next.find('a').click():
+-                $('#mytabs li a')[0].click();
+-
+-        })
+-    })
+-
+-</script>
+Index: js/dashboard.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- js/dashboard.js	(revision )
++++ js/dashboard.js	(revision )
+@@ -0,0 +1,251 @@
++var appointment_id, hs_id,hcc_id,sessionId,token,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, appointment,apmt_type,consultation_id,record_id;
++var showToaster;
++var apiKey = "45638452";
++function showMessage(message) {
++    $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
++}
++$(document).ready(function(){
++	$('#filter').load('./components/filter.html');
++	var actualDate=new Date();
++    var date=moment(actualDate).format("YYYYMMDD");
++    getData.getDashboardData(date).then(function(res){
++		showDashboardDetails(res);
++	});
++    //getData.getDoctorProfile(2);
++
++	/*getting appointment details*/
++
++	var getAppointmentDetails = function(ev){
++		appointment_id = ev.currentTarget.id;
++		getData.getAppointmentDetails(appointment_id).then(function(res){
++		    $('.no-appointment-selected').addClass('d-none')
++		    $('.appointment-info').removeClass('d-none')
++		    var source = $('#detailsTemplate').html();
++            var template = Handlebars.compile(source);
++            var html = template(res.appointments_details);
++            $('#details').html(html)
++            $('#prescription').load('./components/prescription.html')
++			if(res.appointments_details.appointment_det.apmt_type != "VC"){
++				$('#start-vedio-consultation').hide();
++			}else{
++                $('#start-vedio-consultation').show();
++			}
++            hs_id = res.appointments_details.health_seeker_profile.hs_id;
++			$("#start-vedio-consultation").on("click",function (vid) {
++
++				getData.startVideoConsultation(appointment_id,hs_id).then(function (res) {
++
++					sessionId=res.video_session_det.session;
++					token=res.video_session_det.token;
++					startVedio();
++                });
++				vid.preventDefault();
++
++            });
++
++           // getData.getDocumentBlobData(hs_id);
++			apmt_status=res.appointments_details.appointment_det.apmt_status;
++			prescriptions_list=res.appointments_details.consultation_details.prescription_details;
++			//summary_details=res.appointments_details.consultation_details.consultation_summary;
++			appointment=res.appointments_details;
++			//alert(summary_list);
++            $('#prescription').load('./components/prescription.html');
++            $('#summary').load('./components/summary.html');
++
++          if(apmt_status=="closed")
++			{
++				$("#badge-button").html('<span class="badge badge-pill badge-success">Closed</span>');
++			}
++			else if(apmt_status=="booked")
++			{
++                $("#badge-button").html('<span class="badge badge-pill badge-warning">Pending</span>');
++            }
++
++        }).catch(function(a,b){
++		})
++	};
++	showDashboardDetails=function(res){
++        $('#total').text(res.appointments_details.appointment_summary.total);
++        $('#pending').text(res.appointments_details.appointment_summary.pending);
++        $('#missed').text(res.appointments_details.appointment_summary.missed);
++       // $('#shcedule-date').text(res.appointments_details.appointment[0].appointment_date);
++        var source   = $("#appointmentTemplate").html();
++        var template = Handlebars.compile(source);
++        var html = template(res.appointments_details);
++
++        if($(window).width() < 500){
++            $('#appointment-list-phone').html(html)
++            $('#appointment-list-phone').removeClass('list-group').addClass('list-inline')
++            $('#appointment-list-phone .list-group-item').removeClass('list-group-item').addClass('list-inline-item')
++        }else{
++            $('#appointment-list').html(html)
++        }
++        next_apmt_date=res.appointments_details.next_appointment_date;
++        prev_apmt_date=res.appointments_details.prev_appointment_date;
++      //  hcc_id=res.appointment_details.appointments[0].hcc_det.hcc_id;
++	};
++	var addPrescription = function(ev){
++
++	};
++
++	// Handling all of our errors here by alerting them
++	function handleError(error) {
++	  if (error) {
++	    alert(error.message);
++	  }
++	}
++	var publisher, subscriber;
++	function initializeSession(apiKey, sessionId, token) {
++		showMessage("Checking for the Support ans system requirements")
++        OT.addEventListener("exception", exceptionHandler);
++		if(OT.checkSystemRequirements()){
++			var session = OT.initSession(apiKey, sessionId);
++
++            // Subscribe to a newly created stream
++            session.on('streamCreated', function(event) {
++                if(!publisherError){
++                    subscriber = session.subscribe(event.stream, 'subscriber', {
++                        width: '100%',
++                        height: '100%',
++                        showControls: false
++                    }, handleSubscriberError);
++                    subscriber.on('connected', function (event) {
++                    });
++                }else{
++                    showMessage("<span>"+current_appointment_details.health_seeker_profile.hs_name+" has joined the call but, App does not have access to Camera and Microphone. Please allow access to Camera ans Microphone.</span><br/>" +
++                        "Fix : <a href='https://support.google.com/chrome/answer/2693767?hl=en'>Google chrome</a>, <a href='https://www.google.co.in/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiovJWr-tnXAhVIpZQKHSD8CPIQFggnMAE&url=https%3A%2F%2Fhelp.seesaw.me%2Fhc%2Fen-us%2Farticles%2F207891173-How-to-give-camera-mic-and-push-notifications-permissions-to-Seesaw&usg=AOvVaw2gUF7tM_fORFNgkbFoQkBv'>Firefox</a> " +
++                        "<br/>>Please reload the app after access us given.");
++                }
++
++            });
++            session.on({
++                streamDestroyed: function (event) {
++                	if (event.reason === 'networkDisconnected') {
++                        event.preventDefault();
++                        var subscribers = session.getSubscribersForStream(event.stream);
++                        // if (subscribers.length > 0) {
++                        //     var subscriber = document.getElementById(subscribers[0].id);
++                        //     // Display error message inside the Subscriber
++                        //     subscriber.innerHTML = 'Lost connection. This could be due to your internet connection '
++                        //         + 'or because the other party lost their connection.';
++                        //     event.preventDefault();   // Prevent the Subscriber from being removed
++                        // }
++						showMessage('Lost connection. This could be due to your internet connection '
++                            + 'or because the other party lost their connection.');
++						event.preventDefault();
++                    }
++                }
++            });
++            session.on("sessionDisconnected", function(event) {
++                //on stop consultation
++            });
++
++            // Create a publisher
++            publisher = OT.initPublisher('publisher', {
++                insertMode: 'append',
++                width: '100%',
++                height: '100%',
++                showControls: false
++            }, handleInitiatePublisherError);
++            $('#publisher').draggable();
++            // Connect to the session
++            session.connect(token, function(error) {
++                // If the connection is successful, publish to the session
++                if (error) {
++                    handleConnectionError(error);
++                } else if(!publisherError){
++                    session.publish(publisher, handlePublishComplete);
++                }
++            });
++            $('.appointment-list-container').addClass('hidden-xs-up');
++            $('.video-container').removeClass('hidden-xs-up');
++            $($('.video-container')[0]).scrollTop(200);
++            $('#start-vedio-consultation').addClass('hidden-xs-up')
++            $('#close-vedio-consultation').removeClass('hidden-xs-up')
++            return {session: session, stream: publisher.stream};
++		}else{
++			showMessage("your browser does not support webRTC please upgrade your browser");
++		}
++	}
++	var vedioSession;
++	var startVedio = function(){
++		apiKey = apiKey,
++        sessionId = sessionId,
++        token = token,
++			// (optional) add server code here
++		vedioSession = initializeSession(apiKey, sessionId, token);
++	};
++	var stopVideo = function(){
++		if(vedioSession){
++			vedioSession.session.disconnect()
++            $('.video-container').addClass('hidden-xs-up');
++			$('.left-container').removeClass('col-12').addClass('col-3');
++            $('.appointment-list-container').removeClass('hidden-xs-up');
++            $('.appointment-content').removeClass('hidden-xs-up');
++            $('#start-vedio-consultation').removeClass('hidden-xs-up')
++	 		$('#close-vedio-consultation').addClass('hidden-xs-up')
++	 		$('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');
++		}
++	}
++	var muteAudio = function(ev){
++		if($(this).hasClass('muted')){
++			publisher.publishAudio(true)
++			$(this).removeClass('muted');
++		}else{
++			publisher.publishAudio(false);
++			$(this).addClass('muted');	
++		}		
++	}
++	var muteVideo = function(ev){
++		if($(this).hasClass('muted')){
++			publisher.publishVideo(true);
++			$(this).removeClass('muted');
++		}else{
++			publisher.publishVideo(false);
++			$(this).addClass('muted');
++		}
++	}
++	var showFullScreen = function(ev){
++		if(!$('#publisher').hasClass('hidden-xs-up')){
++            $('.appointment-content').addClass('hidden-xs-up');
++            $('.left-container').addClass('col-12').removeClass('col-3');
++		}else if(!$('#subscriber').hasClass('hidden-xs-up')){
++			$('#subscriber').addClass('show-full-screen');
++		}
++		$('.full-screen-off').removeClass('hidden-xs-up')
++		$('.full-screen').addClass('hidden-xs-up')
++	}
++	var removeFullScreen = function (ev) {
++        if(!$('#publisher').hasClass('hidden-xs-up')){
++        	$('.appointment-content').removeClass('hidden-xs-up');
++            $('.left-container').addClass('col-3').removeClass('col-12');
++        }else if(!$('#subscriber').hasClass('hidden-xs-up')){
++            $('#subscriber').removeClass('show-full-screen');
++        }
++        $('.full-screen').removeClass('hidden-xs-up')
++		$('.full-screen-off').addClass('hidden-xs-up')
++    }
++    showToaster = function (message) {
++        var x = $('#toaster');
++
++        // Add the "show" class to DIV
++        x.html(message);
++        x.addClass("show");
++
++
++        // After 3 seconds, remove the show class from DIV
++        setTimeout(function(){ x.removeClass("show"); x.html('')}, 1000);
++    }
++    function getDocument() {
++		getData.getDocumentBlobData()
++    }
++	$('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails)
++	$('.appointment-details #prescription').on('submit', addPrescription)
++	//$('#start-vedio-consultation').on('click', startVedio)
++	$('#close-vedio-consultation').on('click', stopVideo)
++	$('#toggleLocalAudio').on('click', muteAudio)
++	$('#toggleLocalVideo').on('click', muteVideo)
++	$('.full-screen').on('click', showFullScreen)
++	$('.App-control-container').on('click', '.full-screen-off', removeFullScreen)
++	$('.embedURL').on('click', getDocument);
++})
+Index: js/login.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- js/login.html	(revision )
++++ js/login.html	(revision )
+@@ -0,0 +1,0 @@
