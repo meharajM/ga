@@ -2,7 +2,7 @@
 require_once("../includes/appointmentClass.php");
 $medicine = json_decode(file_get_contents("php://input"));
 
- $doctor_id = $medicine->medicine_list->doctor_id;
+ echo $doctor_id = $medicine->medicine_list->doctor_id;
  $med_name  = $medicine->medicine_list->med_name;
  $device_id     = $medicine->session_info->device_id;
  $sess_token    = $medicine->session_info->access_token;
@@ -16,12 +16,12 @@ $validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id
 
 if($validate_session != ""){
     if($doctor_id == ""){
-        $response['error']['result']="0";
+        $response['error']['result']="1";
         $response['error']['error_code']="";    
         $response['error']['error_type']="";
         $response['error']['error_message']="Doctor id cannot be null";
     }else if($med_name == ""){
-        $response['error']['result']="0";
+        $response['error']['result']="1";
         $response['error']['error_code']="";    
         $response['error']['error_type']="";
         $response['error']['error_message']="Medicine name cannot be null";

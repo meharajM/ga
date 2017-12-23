@@ -18,16 +18,12 @@ $validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id
 if($validate_session != ""){
 
    if($apmt_id =="" ){
-		$response['error']['result']="0";
+		$response['error']['result']="1";
 		$response['error']['error_code']="";    
 		$response['error']['error_type']="";			
 		$response['error']['error_message']='Appointmentid cannot be null';		
 	}else{		
-		$response['error']['result'] ="0";
-		$response['error']['error_code']="";
-		$response['error']['error_message']="";
-		$response['error']['error_type']="";
-
+		
 		$apmtData = $appointmentObj->validate_doctor($apmt_id);
 
 		$apmt 	  =  mysqli_fetch_assoc($apmtData);
@@ -37,30 +33,33 @@ if($validate_session != ""){
 			foreach($prescriptionData as  $val){			
 				
  					if($val->med_type == ""){
-						$response['error']['result']="0";
+						$response['error']['result']="1";
 						$response['error']['error_code']="";    
 						$response['error']['error_type']="";
 						$response['error']['error_message']= "Medicine type cannot be null";
  					}else if($val->med_name == ""){
-						$response['error']['result']="0";
+						$response['error']['result']="1";
 						$response['error']['error_code']="";    
 						$response['error']['error_type']="";
 						$response['error']['error_message']= "Medicine name cannot be null";
 					}else if($val->dosage == ""){
-						$response['error']['result']="0";
+						$response['error']['result']="1";
 						$response['error']['error_code']="";    
 						$response['error']['error_type']="";
 						$response['error']['error_message']= "Medicine dosage cannot be null";
  					}else if($val->frequency_string== ""){
- 						  $response['error']['result']="0";
+ 						  $response['error']['result']="1";
 						  $response['error']['error_code']="";    
 						  $response['error']['error_type']="";
  						  $response['error']['error_message']= "Medicine timings cannot be null";
  					}else{	
+ 						 $response['error']['result']="0";
+								  $response['error']['error_code']="";    
+								  $response['error']['error_type']="";
  						if($val->prescription_id != ""){
  							$recordCount = $appointmentObj->validate_prescription($val->prescription_id);
  							if($recordCount['cnt'] == 0){
- 								  $response['error']['result']="0";
+ 								  $response['error']['result']="1";
 								  $response['error']['error_code']="";    
 								  $response['error']['error_type']="";
  								  $response['error']['error_message']= "Prescription id mismatch";
@@ -87,8 +86,8 @@ if($validate_session != ""){
 									$medicine['med_name']= (isset($value['med_name']))?$value['med_name'] : '';
 									$medicine['med_type']=(isset($value['med_type']))?$value['med_type'] : '';
 									$medicine['dosage']=(isset($value['dosage']))?$value['dosage'] : '';
-									$medicine['frequency']=(isset($value['frequency_string']))?$value['frequency_string'] : '';
-									$medicine['frequency']=(isset($value['frequency_type']))?$value['frequency_type'] : '';
+									$medicine['frequency_string']=(isset($value['frequency_string']))?$value['frequency_string'] : '';
+									$medicine['frequency_type']=(isset($value['frequency_type']))?$value['frequency_type'] : '';
 									$medicine['course']=(isset($value['course'])) ? $value['course'] : '';
 									$medicine['med_intake']	=(isset($value['med_intake'])) ? $value['med_intake'] : '';
 									$medicine['remarks']	=(isset($value['remarks'])) ? $value['remarks'] : '';

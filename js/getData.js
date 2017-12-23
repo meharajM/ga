@@ -290,7 +290,7 @@ var getData = {
             type: "POST",
             url: base_url + url,
             data: JSON.stringify(data),
-            // dataType: 'json',
+            dataType: 'json',
             success: function (res,status) {
                  showApiError(res.error);
                 //  alert("success in preview summary");
@@ -309,8 +309,8 @@ var getData = {
     },
     getMymedicineList: function(term){
         var url = "/api/getMymedicineList.php";
-        var doctorId = "1";
-
+        var doctorId = doctor_id;
+        hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
@@ -325,6 +325,7 @@ var getData = {
             dataType: 'json',
             success: function (res) {
                 //   alert("success in med");
+                showApiError(res.error)
                 return res;
             },
             error: function(err,status){
@@ -392,30 +393,26 @@ var getData = {
         });
         return call;
     },
-/* Bala Code Starts Here*/
 
     getLabTest: function(term){
         var url = "/api/labTest.php";
-        //var doctorId = "1";
-
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
             data: JSON.stringify({
                 suggested_test: {
-                   // doctor_id: doctorId,
-                    //doctor_id:1,
                     labtest_name:  term
                 },
                 session_info: session_info
             }),
             dataType: 'json',
-            success: function (res) {
-                alert("success in labtest");
+
+            success: function (res,status) {
+
+                //showApiError(res.error);
                 return res;
             },
             error: function(err,status){
-                //  alert("error in labtest");
                 console.error(err, status);
             }
         });
@@ -424,34 +421,7 @@ var getData = {
 
 /* Bala Code Ends Here*/
 
-    /* getDoctorProfile: function(id){
-         var url = "/wapi/getDoctorProfile.php";
-         var doctorId = id;
-         var hcc_id="1";
-         var doctor_info = {
-             doctor_id: doctorId,
-             hcc_id: hcc_id
-         };
-         var data = {
-             doctor_info: doctor_info,
-             session_info: session_info
-         }
-         var call = $.ajax({
-             type: "POST",
-             url: base_url + url,
-             data: JSON.stringify(data),
-             dataType: 'json',
-             success: function (res,status) {
-                 return res;
-             },
-             error: function(err,status){
-                 console.error(err, status);
-             }
-         }).then(function(res){
-             return res;
-         });
-         return call;
-     }, */
+
     closeConsultation: function (id) {
         var url = "/api/closeConsultation.php";
         var doctorId = doctor_id;
