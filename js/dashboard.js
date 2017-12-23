@@ -26,7 +26,10 @@ $(document).ready(function(){
 	});
 
 	/*getting appointment details*/
+
 	var getAppointmentDetails = function(ev){
+        $('.appointment').removeClass('selected');
+	    $(this).addClass('selected');
 		appointment_id = ev.currentTarget.id;
 		getData.getAppointmentDetails(appointment_id).then(function(res){
 		    $('.no-appointment-selected').addClass('d-none');

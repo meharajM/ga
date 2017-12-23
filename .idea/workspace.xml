@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6384090e-9da9-4965-b996-9196bb8b45a3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/api/UpdateConsultationSummary.php" afterPath="$PROJECT_DIR$/api/UpdateConsultationSummary.php" />
+      <change beforePath="$PROJECT_DIR$/api/UpdatePrescriptionDetails.php" afterPath="$PROJECT_DIR$/api/UpdatePrescriptionDetails.php" />
+      <change beforePath="$PROJECT_DIR$/api/getAppointmentDetails.php" afterPath="$PROJECT_DIR$/api/getAppointmentDetails.php" />
+      <change beforePath="$PROJECT_DIR$/api/getMymedicineList.php" afterPath="$PROJECT_DIR$/api/getMymedicineList.php" />
+      <change beforePath="$PROJECT_DIR$/api/labTest.php" afterPath="$PROJECT_DIR$/api/labTest.php" />
+      <change beforePath="$PROJECT_DIR$/api/previewConsultationSummary.php" afterPath="$PROJECT_DIR$/api/previewConsultationSummary.php" />
+      <change beforePath="$PROJECT_DIR$/components/prescription.html" afterPath="$PROJECT_DIR$/components/prescription.html" />
       <change beforePath="$PROJECT_DIR$/components/summary.html" afterPath="$PROJECT_DIR$/components/summary.html" />
-      <change beforePath="$PROJECT_DIR$/includes/appointmentClass.php" afterPath="$PROJECT_DIR$/includes/appointmentClass.php" />
+      <change beforePath="$PROJECT_DIR$/css/newStyles.css" afterPath="$PROJECT_DIR$/css/newStyles.css" />
+      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change beforePath="$PROJECT_DIR$/js/dashboard.js" afterPath="$PROJECT_DIR$/js/dashboard.js" />
       <change beforePath="$PROJECT_DIR$/js/getData.js" afterPath="$PROJECT_DIR$/js/getData.js" />
+      <change beforePath="$PROJECT_DIR$/js/index.js" afterPath="$PROJECT_DIR$/js/index.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +29,28 @@
       <file leaf-file-name="getData.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/getData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="418" column="24" lean-forward="false" selection-start-line="418" selection-start-column="24" selection-end-line="418" selection-end-column="24" />
+            <state relative-caret-position="17">
+              <caret line="424" column="24" lean-forward="false" selection-start-line="424" selection-start-column="24" selection-end-line="424" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newStyles.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/css/newStyles.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="391" column="41" lean-forward="false" selection-start-line="391" selection-start-column="41" selection-end-line="391" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/dashboard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="30" column="50" lean-forward="false" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -30,9 +59,12 @@
       <file leaf-file-name="UpdateConsultationSummary.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/UpdateConsultationSummary.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="11" column="12" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-              <folding />
+            <state relative-caret-position="204">
+              <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+              <folding>
+                <marker date="1514021453903" expanded="true" signature="3453:3454" ph="..." />
+                <marker date="1514021453903" expanded="true" signature="3453:3503" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,18 +72,18 @@
       <file leaf-file-name="prescription.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/prescription.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="306" column="44" lean-forward="false" selection-start-line="306" selection-start-column="33" selection-end-line="306" selection-end-column="44" />
+            <state relative-caret-position="5236">
+              <caret line="308" column="44" lean-forward="false" selection-start-line="308" selection-start-column="44" selection-end-line="308" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="summary.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="summary.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/summary.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="299" column="31" lean-forward="true" selection-start-line="299" selection-start-column="31" selection-end-line="299" selection-end-column="31" />
+            <state relative-caret-position="-193">
+              <caret line="283" column="34" lean-forward="false" selection-start-line="283" selection-start-column="34" selection-end-line="283" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -70,6 +102,9 @@
       <find>test_id</find>
       <find>tests</find>
       <find>my_medicine</find>
+      <find>hover</find>
+      <find>getAppointmentDetails</find>
+      <find>appointment</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -78,10 +113,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/dashboard.js" />
-        <option value="$PROJECT_DIR$/js/getData.js" />
         <option value="$PROJECT_DIR$/api/UpdateConsultationSummary.php" />
         <option value="$PROJECT_DIR$/components/summary.html" />
+        <option value="$PROJECT_DIR$/js/getData.js" />
+        <option value="$PROJECT_DIR$/js/dashboard.js" />
+        <option value="$PROJECT_DIR$/css/newStyles.css" />
       </list>
     </option>
   </component>
@@ -113,8 +149,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -125,7 +159,7 @@
             <path>
               <item name="ga" type="b2602c69:ProjectViewProjectNode" />
               <item name="ga" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="api" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="ga" type="b2602c69:ProjectViewProjectNode" />
@@ -136,6 +170,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -185,22 +221,23 @@
       <workItem from="1513602289526" duration="62000" />
       <workItem from="1513657621500" duration="725000" />
       <workItem from="1513745829150" duration="9750000" />
+      <workItem from="1514021218199" duration="776000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10537000" />
+    <option name="totallyTimeSpent" value="11313000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -226,10 +263,37 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/doDoctorLogin.php">
+    <entry file="file://$PROJECT_DIR$/js/getData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="7106">
+          <caret line="418" column="24" lean-forward="false" selection-start-line="418" selection-start-column="24" selection-end-line="418" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/UpdateConsultationSummary.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="12" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+          <folding>
+            <marker date="1514021453903" expanded="true" signature="3453:3454" ph="..." />
+            <marker date="1514021453903" expanded="true" signature="3453:3503" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/prescription.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5202">
+          <caret line="306" column="44" lean-forward="false" selection-start-line="306" selection-start-column="33" selection-end-line="306" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/summary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5083">
+          <caret line="299" column="31" lean-forward="true" selection-start-line="299" selection-start-column="31" selection-end-line="299" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -238,7 +302,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/doDoctorLogin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -261,7 +331,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="95" column="63" lean-forward="false" selection-start-line="95" selection-start-column="57" selection-end-line="95" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -273,27 +342,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/getData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="418" column="24" lean-forward="false" selection-start-line="418" selection-start-column="24" selection-end-line="418" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/labTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="42" lean-forward="false" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="68" column="58" lean-forward="false" selection-start-line="68" selection-start-column="58" selection-end-line="68" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -353,24 +405,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/UpdateConsultationSummary.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="11" column="12" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-          <folding />
+        <state relative-caret-position="204">
+          <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding>
+            <marker date="1514021453903" expanded="true" signature="3453:3454" ph="..." />
+            <marker date="1514021453903" expanded="true" signature="3453:3503" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/prescription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="306" column="44" lean-forward="false" selection-start-line="306" selection-start-column="33" selection-end-line="306" selection-end-column="44" />
+        <state relative-caret-position="5236">
+          <caret line="308" column="44" lean-forward="false" selection-start-line="308" selection-start-column="44" selection-end-line="308" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/summary.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="299" column="31" lean-forward="true" selection-start-line="299" selection-start-column="31" selection-end-line="299" selection-end-column="31" />
+        <state relative-caret-position="-193">
+          <caret line="283" column="34" lean-forward="false" selection-start-line="283" selection-start-column="34" selection-end-line="283" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/getData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="424" column="24" lean-forward="false" selection-start-line="424" selection-start-column="24" selection-end-line="424" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="30" column="50" lean-forward="false" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/newStyles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="391" column="41" lean-forward="false" selection-start-line="391" selection-start-column="41" selection-end-line="391" selection-end-column="41" />
           <folding />
         </state>
       </provider>

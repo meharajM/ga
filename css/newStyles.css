@@ -389,7 +389,7 @@ body{
     cursor: pointer;
 }
 
-.appointment:hover {
+.appointment:hover, .appointment.selected {
     background: #e9ffe0;
 }
 #hs-name-container{
