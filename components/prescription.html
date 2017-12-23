@@ -441,7 +441,7 @@
             });
             $('#tab1').html(rows.join(''));
         };
-        if (apmt_status == "closed") {
+        if (apmt_status == "closed" || apmt_status == "expired") {
             $("#add").hide();
             $("#save_continue").hide();
             $("#strong").hide();
