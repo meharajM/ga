@@ -425,6 +425,10 @@
           // data.frequency = Number(!!data.morning) + '-' + Number(!!data.afternoon) + '-' + Number(!!data.night);
             data.course = data.course + ' ' + data.duration;
             data.med_name=data.med_search;
+            if(!data.prescription_id){
+				data.prescription_id = "temp"+prescription_data.length;
+            }
+
             if(validateForm(data)){
                 if ($('.form').attr('data-id')) {
                     data.prescription_id = $('.form').attr('data-id')
