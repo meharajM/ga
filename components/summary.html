@@ -49,17 +49,17 @@
 
             <form id="form4" method="get" data-toggle="validator" role="form" name="summary-form">
                 <div class="form-group">
-                    <label class="control-label required field" for="diagnosis"><b>Patient Diagnosis / Diagnoses</b><span class="asteriskField">*</span></label>
+                    <label class="font-12 control-label required field" for="diagnosis"><b>Patient Diagnosis / Diagnoses</b><span class="asteriskField">*</span></label>
 
                     <div class="input-group">
-                        <input class="form-control col-md-6" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" />
+                        <input class="form-control col-md-6 form-input" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" />
 
                     </div>
                 </div>
 
                 <div class="form-group">
 
-                    <label class="control-label required field" for="plan"><b>Management Plan / Advice</b><span class="asteriskField">*</span></label>
+                    <label class="control-label required field font-12" for="plan"><b>Management Plan / Advice</b><span class="asteriskField">*</span></label>
 
                     <div class="input-group">
                         <textarea class="form-control col-md-6" cols="40" id="mgmt_plan" name="mgmt_plan" rows="3" placeholder="Enter Management Plan"  title="Please enter details"></textarea>
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="radio">
+                    <label class="control-label font-12" for="radio">
                         <b> Changes made to current medication?</b>
                     </label>
                     <div class="form-group row">
@@ -87,7 +87,7 @@
                 </div>
                 <div class="form-group">
 
-                    <label class="control-label" for="waive">
+                    <label class="control-label font-12" for="waive">
                         <b>Waive Fee for this Consultation?</b>
                     </label>
                     <!-- <div class="row"> -->
@@ -109,7 +109,7 @@
                         </div>
                         <div class="col-sm-4 col-md-4 input-control" id="ifPartial" style="display: none">
                             <label class="control-label">
-                                <input class="form-control" type="text" name="waived_amount" id="p_check" autocomplete="off">
+                                <input class="form-control form-input" type="text" name="waived_amount" id="p_check" autocomplete="off">
                             </label>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
 
 
                 <div class="form-group">
-                    <label class="control-label" for="follow_up">
+                    <label class="control-label font-12" for="follow_up">
                         <b>Next Follow-up?</b>
                     </label>
 
@@ -150,8 +150,8 @@
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <div class="input-group">
-                                <input class="form-control" type="text" id="followup_date" name="followup_date" />
-                                <div class="input-group-addon" id="cal">
+                                <input class="form-control form-input" type="text" id="followup_date" name="followup_date" />
+                                <div class="input-group-addon form-input" id="cal">
                                     <i class="fa fa-calendar-times-o"></i>
                                 </div>
                             </div>
@@ -161,22 +161,22 @@
 
 
                 <div class="form-group">
-                    <label class="control-label" for="suggested_test">
+                    <label class="control-label font-12" for="suggested_test">
                         <b>Suggested Tests</b>
                     </label>
                     <div class="input-group">
-                        <input class="form-input" name="suggested_test" id="suggested_test" placeholder="Suggested Test">
+                        <input class="form-input form-input" name="suggested_test" id="suggested_test" placeholder="Suggested Test">
                      <!--   <select class="test_id col-md-6" multiple="" name="suggested_test" id="suggested_test"></select>-->
                     </div>
                 </div>
 
                 <div class="form-group ">
 
-                    <label class="control-label " for="refer">
+                    <label class="control-label font-12" for="refer">
                         <b>  Referred to Doctor (Optional)</b>
                     </label>
                     <div class="input-group">
-                        <input class="form-control col-md-6" id="reffered_doctor" name="reffered_doctor" type="text" />
+                        <input class="form-control col-md-6 form-input" id="reffered_doctor" name="reffered_doctor" type="text" />
                     </div></div>
 
             </form>

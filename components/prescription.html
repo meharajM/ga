@@ -27,113 +27,124 @@
 					</button>
 				</div>
 			</div>
+			<div class="font-12"><b>Medicine</b></div>
 			<div class="row">
 				<div class="col-4">
 					<select class="custom-select form-control form-control-sm" id="med_type" name="med_type" required>
-						<option value="tablet">Tablet</option>
-						<option value="syrup">Syrup</option>
-						<option value="drops">drops</option>
-						<option value="suppositorie">Suppositorie</option>
-						<option value="inhaler">Inhalers</option>
-						<option value="injection">Injections</option>
-						<option value="ointment">Ointment/Cream/Lotion</option>
-						<option value="implants">Implants or patches</option>
+						<option value="" disabled selected>Medicine Type</option>
+						<option value="Tablet">Tablet</option>
+						<option value="Syrup">Syrup</option>
+						<option value="Drops">Drops</option>
+						<option value="Suppositorie">Suppositorie</option>
+						<option value="Inhaler">Inhalers</option>
+						<option value="Injection">Injections</option>
+						<option value="Ointment">Ointment/Cream/Lotion</option>
+						<option value="Implants">Implants or patches</option>
 					</select>
 				</div>
-				<div class="col-8">
+				<div class="col-6">
 					<div class="ui-front">
-						<input class="form-input" name="med_search" id="med_search" placeholder="medecin name *" required>
+						<input class="form-input" name="med_search" id="med_search" placeholder="Medicine Name *" required>
 
 						</input>
 					</div>
 
 				</div>
+				<div class="col-2">
+					<input type="text" class="form-input" name="dosage" id="dosage" placeholder="Dosage"/>
+				</div>
 
 
 			</div>
+			<div class="mt-3">
+				<div class="font-12"><b>Timings/Quantity</b></div>
+				<div class="timings">
+					<ul class="nav nav-tabs">
+						<li><a href="#" id="standard" class="selected">Standard</a></li>
+						<li><a href="#" id="free-text">Free Text</a></li>
+					</ul>
 
+					<div id="standard-tab">
+						<div class="row">
+							<div class="col-3">
+								<div class="font-12">Morning *</div>
+								<i class="fa fa-minus" aria-hidden="true" for="morning"></i>
+								<input type="number" name="morning" id="morning"  class="quantity form-input" value="0" min="0">
+								<i class="fa fa-plus" aria-hidden="true" for="morning"></i>
 
-			<div class="timings mt-3">
-				<ul class="nav nav-tabs">
-					<li><a href="#" id="standard" class="selected">Standard</a></li>
-					<li><a href="#" id="free-text">Free Text</a></li>
-				</ul>
-
-				<div id="standard-tab">
-					<div class="row">
-						<div class="col-3">
-							<div class="font-12">Morning *</div>
-							<i class="fa fa-minus" aria-hidden="true" for="morning"></i>
-							<input type="number" name="morning" id="morning"  class="quantity form-input" value="0" min="0">
-							<i class="fa fa-plus" aria-hidden="true" for="morning"></i>
-
-							<span class="unit"></span>
-						</div>
-						<div class="col-3">
-							<div class="font-12">Afternoon *</div>
-							<i class="fa fa-minus" aria-hidden="true" for="afternoon"></i>
-							<input type="number" name="afternoon" id="afternoon" placeholder="Afternoon" class="quantity form-input" value="0" min="0">
-							<i class="fa fa-plus" aria-hidden="true" for="afternoon"></i>
-							<span class="unit"></span>
-						</div>
-						<div class="col-3">
-							<div class="font-12">Night *</div>
-							<i class="fa fa-minus" aria-hidden="true" for="evening"></i>
-							<input type="number" name="night" id="evening" placeholder="Night" class="quantity form-input" value="0" min="0">
-							<i class="fa fa-plus" aria-hidden="true" for="evening"></i>
-							<span class="unit"></span>
-						</div>
-						<div class="col-sm-3 food">
-							<label class="custom-control custom-radio">
-								<input id="before-food" name="med_intake" type="radio" value="Before Food"  class="custom-control-input">
-								<span class="custom-control-indicator"></span>
-								<span class="custom-control-description">Before Food</span>
-							</label>
-							<label class="custom-control custom-radio">
-								<input id="after-food" name="med_intake" type="radio" value="After Food" class="custom-control-input">
-								<span class="custom-control-indicator"></span>
-								<span class="custom-control-description">After Food</span>
-							</label>
+								<span class="unit"></span>
+							</div>
+							<div class="col-3">
+								<div class="font-12">Afternoon *</div>
+								<i class="fa fa-minus" aria-hidden="true" for="afternoon"></i>
+								<input type="number" name="afternoon" id="afternoon" placeholder="Afternoon" class="quantity form-input" value="0" min="0">
+								<i class="fa fa-plus" aria-hidden="true" for="afternoon"></i>
+								<span class="unit"></span>
+							</div>
+							<div class="col-3">
+								<div class="font-12">Night *</div>
+								<i class="fa fa-minus" aria-hidden="true" for="evening"></i>
+								<input type="number" name="night" id="evening" placeholder="Night" class="quantity form-input" value="0" min="0">
+								<i class="fa fa-plus" aria-hidden="true" for="evening"></i>
+								<span class="unit"></span>
+							</div>
+							<div class="col-sm-3 food">
+								<label class="custom-control custom-radio">
+									<input id="before-food" name="med_intake" type="radio" value="Before Food"  class="custom-control-input">
+									<span class="custom-control-indicator"></span>
+									<span class="custom-control-description">Before Food</span>
+								</label>
+								<label class="custom-control custom-radio">
+									<input id="after-food" name="med_intake" type="radio" value="After Food" class="custom-control-input">
+									<span class="custom-control-indicator"></span>
+									<span class="custom-control-description">After Food</span>
+								</label>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div id="free-text-tab">
-					<textarea name="med_dosage_text" id="timings-text" rows="3" placeholder="Provide the timings details."/>
-					<div>
-						Suggestions: <span id="suggestions"><a href="#">For Every 3 hours</a>, <a  href="#">7:30 AM - 10:30 AM - 1:30 PM - 4:30 PM</a></span>
+					<div id="free-text-tab">
+						<textarea name="med_dosage_text" id="timings-text" rows="3" placeholder="Provide the timings details."/>
+						<div>
+							Suggestions: <span id="suggestions"><a href="#">Every 3 hours</a>, <a  href="#">7:30 AM - 10:30 AM - 1:30 PM - 4:30 PM</a></span>
+						</div>
 					</div>
+
+
 				</div>
-
-
 			</div>
 
-			<div class="form-group row mt-3">
 
-				<div class="col-sm-3">
-					<input type="number" name="course" placeholder="Duration *" min=0 class="form-input">
-				</div>
-				<div class="col-sm-4 duration">
-					<label class="custom-control custom-radio">
-						<input id="days" name="duration" type="radio" value="days" class="custom-control-input">
-						<span class="custom-control-indicator"></span>
-						<span class="custom-control-description">Days</span>
-					</label>
-					<label class="custom-control custom-radio">
-						<input id="weeks" name="duration" type="radio" value='weeks' class="custom-control-input">
-						<span class="custom-control-indicator"></span>
-						<span class="custom-control-description">Weeks</span>
-					</label>
-					<label class="custom-control custom-radio">
-						<input id="months" name="duration" type="radio" value='months' class="custom-control-input">
-						<span class="custom-control-indicator"></span>
-						<span class="custom-control-description">Months</span>
-					</label>
-				</div>
+			<div class="mt-3">
+				<div class="font-12"><b>Course Duration</b></div>
+				<div class="form-group row ">
 
+					<div class="col-sm-3">
+						<input type="number" name="course" placeholder="Duration *" min=0 class="form-input">
+					</div>
+					<div class="col-sm-4 duration">
+						<label class="custom-control custom-radio">
+							<input id="days" name="duration" type="radio" value="days" class="custom-control-input">
+							<span class="custom-control-indicator"></span>
+							<span class="custom-control-description">Days</span>
+						</label>
+						<label class="custom-control custom-radio">
+							<input id="weeks" name="duration" type="radio" value='weeks' class="custom-control-input">
+							<span class="custom-control-indicator"></span>
+							<span class="custom-control-description">Weeks</span>
+						</label>
+						<label class="custom-control custom-radio">
+							<input id="months" name="duration" type="radio" value='months' class="custom-control-input">
+							<span class="custom-control-indicator"></span>
+							<span class="custom-control-description">Months</span>
+						</label>
+					</div>
+
+				</div>
 			</div>
 
+			<div class="font-12"><b>Instructions</b></div>
 			<div class="form-group">
-				<textarea class="form-control" id="exampleTextarea" name="remarks" placeholder="remarks..." rows="3"></textarea>
+				<textarea class="form-control" id="exampleTextarea" name="remarks" placeholder="Remarks..." rows="3"></textarea>
 			</div>
 
 			<div class="form-group rows">
@@ -206,7 +217,7 @@
 </div>
 <script type="text/javascript">
 	var prescriptionDetais = {
-	    tablet: {
+	    Tablet: {
 	        unit: "No",
             baseQuantity: 0.5,
 			min: 0,
@@ -214,7 +225,7 @@
 			element: 'standerd',
 			suggestions: ["Every 3 hours", "3 times a day"]
 		},
-        capsule: {
+        Capsule: {
             unit: "No",
             baseQuantity: 1,
             min: 0,
@@ -222,7 +233,7 @@
             element: 'standerd',
             suggestions: ["Every 3 hours", "3 times a day"]
         },
-        syrup: {
+        Syrup: {
             unit: "Ml",
             baseQuantity: 2.5,
             min: 0,
@@ -230,7 +241,7 @@
             element: 'standerd',
             suggestions: ["Every 3 hours", "3 times a day"]
         },
-        drops: {
+        Drops: {
             unit: "Drops",
             baseQuantity: 1,
             min: 0,
@@ -238,7 +249,7 @@
             element: 'freetext',
             suggestions: ["Every 3 hours", "3 times a day"]
         },
-        suppositorie: {
+        Suppositorie: {
             unit: "No",
             baseQuantity: 0.5,
             min: 0,
@@ -246,21 +257,21 @@
             element: 'standerd',
             suggestions: ["Every 3 hours", "3 times a day"]
         },
-        inhaler: {
+        Inhaler: {
             unit: "Ml",
             element: 'freetext',
             suggestions: ["Every 3 hours", "3 times a day"]
         },
-        injection: {
+        Injection: {
             unit: "No",
             element: 'freetext',
             suggestions: ["Every 3 hours", "3 times a day"]
         },
-		ointment: {
+		Ointment: {
 			element: "freetext",
             suggestions: ["Every 3 hours", "3 times a day"]
         },
-		implants: {
+		Implants: {
 	        element: "freetext"
 		}
 	}
@@ -289,8 +300,7 @@
                 $('#standard').click();
             }
         }
-        setUnit();
-		$('#med_type').on('change',function (ev) {
+        	$('#med_type').on('change',function (ev) {
 			setUnit();
         })
         $("#template_name").select2({
@@ -388,8 +398,11 @@
             },
             source: function(req, response){
                 getData.getMymedicineList(req.term).then(function(res){
-                    response(res.my_medicine.map(function (t) { return {label:t.med_brand_name, id:t.med_id} }));
+                    response(res.my_medicine.map(function (t) { return {label:t.med_brand_name, id:t.med_id, dosage: t.dosage } }));
                 });;
+            },
+            select: function (ev, ui) {
+                $('#dosage').val(ui.item.dosage);
             }
         });
 
@@ -489,7 +502,6 @@
             formData.map(function (feild) {
                 data[feild.name] = feild.value;
             });
-            data.dosage = "" ;//not using it any but keeping it, because back might be expecting it.
              //debugger
             if(!data.med_dosage_text){
                 frequency_string = data.morning + '-' + data.afternoon + '-' + data.night;
@@ -542,16 +554,17 @@
             }
             $('.form').attr('data-id', prescription.prescription_id);
             $('#med_search').val(prescription.med_name);
-            $('.med_type_div option[value="' + prescription.med_type + '"]').attr('selected', true);
+            $('#med_type option[value="' + prescription.med_type + '"]').attr('selected', true);
             if(prescription.frequency_type === "std_MAE"){
                 $('.timings #morning').val(prescription.frequency_string.split('-')[0]);
                 $('.timings #afternoon').val(prescription.frequency_string.split('-')[1]);
                 $('.timings #night').val(prescription.frequency_string.split('-')[2]);
                 $('#standard').click();
             }else{
-                $('input[name="med_dosage_text"]').val(prescription.frequency_string);
+                $('#timings-text').val(prescription.frequency_string);
 				$('#free-text').click();
             }
+            $('#dosage').val(prescription.dosage);
             $('input[name="course"]').val(prescription.course.split(' ')[0]);
             $('.duration input[value="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
             $('input[value="' + prescription.med_intake + '"]').attr('checked', true);
@@ -611,7 +624,7 @@
             $('#'+target).val(currentValue);
             ev.stopPropagation();
         });
-        $('#suggestions a').on('click', function (ev) {
+        $('#suggestions').on('click', 'a', function (ev) {
             var text = $(this).text();
 			$('#timings-text').text(text);
         })
