@@ -61,10 +61,10 @@ if($validate_session != ""){
 					}
 					$data['hcc_det']['hcc_id']    = $locHccId;
 					$data['hcc_det']['hcc_name']  = $locHccName;
-					if( $row['age'] == ""){
-						$age = $row['age1'];
+					if( $row['age1'] == ""){
+						$age = $row['age'];
 					}else{
-						$age =$row['age'];
+						$age =$row['age1'];
 					}
 					$data['health_seeker']['health_seeker_id']   = $row['health_seeker_id'];
 					$data['health_seeker']['health_seeker_name'] = $row['name'];		

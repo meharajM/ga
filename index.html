@@ -68,19 +68,30 @@
                         <p>
                             <table>
                                 <tr><td>Appointment ID: </td><td>{{appointment_det.apmt_id}}</td></tr>
+
                                 <tr><td>Patient Name:</td><td> {{health_seeker_profile.hs_name}} </td></tr>
+
                                 <tr><td> Contact No:</td><td>{{health_seeker_profile.hs_phone}}</td></tr>
+
                                 <tr><td>Schedule:</td><td> {{appointment_det.apmt_date}} | {{appointment_det.apmt_time}}</td></tr>
-                                <tr><td>Age:	</td><td>{{health_seeker_profile.age}}</td></tr>
-                                <tr><td>lood Group:</td><td>	{{health_seeker_profile.blood_group}}</td></tr>
-                                <tr><td>Sex:</td><td>	{{health_seeker_profile.gender}}</td></tr>
-                                <tr><td>Reason:</td><td>	{{case_sheet.consultation_reason}}</td></tr>
-                                <tr><td>Habbits:</td><td>	{{health_seeker_profile.habbits}}</td></tr>
-                                <tr><td>Weight:</td><td>	{{health_seeker_profile.weight}}</td></tr>
+                               
+                                <tr><td>Blood Group:</td><td>	{{health_seeker_profile.blood_group}}</td></tr>
+                               
+                                <tr><td>Reason:</td><td>{{case_sheet.consultation_reason}}</td></tr>
+
+                                <tr><td>Habbits:</td><td>{{health_seeker_profile.habbits}}
+                                </td></tr>
+
+                                <tr><td>Weight:</td><td>{{health_seeker_profile.weight}}</td></tr>
+
                                 <tr><td>Height:	</td><td>{{health_seeker_profile.height}}</td></tr>
+
                                 <tr><td>Ailments:</td><td> {{health_seeker_profile.ailments}}</td></tr>
+
                                 <tr><td>Allergies:</td><td> {{health_seeker_profile.allergies}}</td></tr>
+
                                 <tr><td>Consultation Type:</td>	<td>{{appointment_det.apmt_type}}</td></tr>
+                                
                                 <tr><td>Address:</td><td>	{{health_seeker_profile.address}}</td></tr>
                         </table>
                         </p>

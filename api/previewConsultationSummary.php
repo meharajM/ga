@@ -30,6 +30,9 @@ if($apmt_id  == ""){
     $response['error']['error_message']="Doctor id cannot be null"; 
 
 }else{
+      $response['error']['result']="0";
+    $response['error']['error_code']="";
+    $response['error']['error_type']="";
 
    # $res =  $appointmentObj->update_consultation_status($apmt_id);
 
@@ -212,8 +215,11 @@ if($apmt_id  == ""){
             </div>
         </form>   ';
         $end ='';
-      echo   $res1 =   $top . "<br>" . $prescription_details . "<br>" . "<br>" . $end; 
+     
+         $body =   $top . "<br>" . $prescription_details . "<br>" . "<br>" . $end; 
+
+         $response['document']['body']= $body;
 
 }
-//echo json_encode($response);
+echo json_encode($response);
 ?>
