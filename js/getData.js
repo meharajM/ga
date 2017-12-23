@@ -351,7 +351,8 @@ var getData = {
                     template_id: 1,
                     template_name:term,
                     speciality: ""
-                }
+                },
+                session_info: session_info
             }),
             dataType: 'json',
             success: function (res,status) {
