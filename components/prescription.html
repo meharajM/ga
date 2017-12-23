@@ -443,6 +443,12 @@
             //$("#form3").get(0).reset();
         });
         $("#save_continue").on("click", function (evt) {
+            prescription_data = prescription_data.map(function (value) {
+                if(value.prescription_id.indexOf('temp') > -1){
+                    value.prescription_id = undefined;
+				}
+				return value;
+            });
             getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
                 showPrescriptions(res.prescription_details);
                 var next = $('#mytabs li.active').next();
