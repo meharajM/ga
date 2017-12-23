@@ -194,7 +194,7 @@
          <button class="btn-success btn-lg text-center" id="generate_pdf">Generate PDF</button>
          </div>-->
         <div class="generate">
-            <button class="btn btn-danger" id="edit_summary">Edit Summary</button>
+            <button class="btn btn-info btn-sm" id="edit_summary">Edit Summary</button>
             <div class="generate_preview"></div>
         </div>
 
@@ -256,15 +256,15 @@ var fdate = $('#followup_date').val();
 
         if($('#diagnosis').val() == ''){
             $('#diagnosis').addClass('error'); 
-            isValid =false;                 
+            isValid =false;
         }
         if($('#mgmt_plan').val() == ''){
             $('#mgmt_plan').addClass('error');
-            isValid =false;           
-        }     
+            isValid =false;
+        }
         if(fdate  == ''){
             $('#followup_date').addClass('error');
-            isValid =false;          
+            isValid =false;
         }
 
         if(isValid == false){
@@ -278,7 +278,7 @@ var fdate = $('#followup_date').val();
 
 
     // var consultation_id;
-  
+
          $("#suggested_test").autocomplete({
             minLength: 3,
             placeholder: "Search for a template",
@@ -287,7 +287,7 @@ var fdate = $('#followup_date').val();
                 "ui-autocomplete": "test"
             },
             source: function(req, response){
-               
+
                 getData.getLabTest(req.term).then(function(res){
                     response(res.labTest.tests.map(function (t) { return {label:t.labtest_name, id:t.labtest_id} }));
                 });;
@@ -296,7 +296,7 @@ var fdate = $('#followup_date').val();
 
 
 
-     
+
         $("select").on("select2:select", function (evt) {
             var element = evt.params.data.element;
             var $element = $(element);
@@ -320,7 +320,7 @@ var fdate = $('#followup_date').val();
         $("#preview_summary").on("click", function () {
             getData.previewConsultationSummary(appointment_id).then(function (res) {
                 $(".generate").removeClass('d-none');
-                $(".generate_preview").html(res);
+                $(".generate_preview").html(res.document.body);
                 $("#form4").hide();
                 $("#save").hide();
                 $("#preview_summary").hide();
