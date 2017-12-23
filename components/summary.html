@@ -165,7 +165,8 @@
                         <b>Suggested Tests</b>
                     </label>
                     <div class="input-group">
-                        <select class="test_id col-md-6" multiple="" name="suggested_test" id="suggested_test"></select>
+                        <input class="form-input" name="suggested_test" id="suggested_test" placeholder="Suggested Test">
+                     <!--   <select class="test_id col-md-6" multiple="" name="suggested_test" id="suggested_test"></select>-->
                     </div>
                 </div>
 
@@ -244,74 +245,58 @@
 <script type="text/javascript">
 
 function validateForm(formData){
+//console.log($('#followup_date').val());
+var fdate = $('#followup_date').val();
         var isValid = true;
         $('.form-error').addClass('hidden-xs-up');
         $('#diagnosis').removeClass('error');
         $('#mgmt_plan').removeClass('error');
-        $('#followup_in').removeClass('error');
+        $('#followup_date').removeClass('error');
         $('.form-error').text('');
 
         if($('#diagnosis').val() == ''){
             $('#diagnosis').addClass('error'); 
-            isValid =false;  
-                   
+            isValid =false;                 
         }
-
         if($('#mgmt_plan').val() == ''){
             $('#mgmt_plan').addClass('error');
-            isValid =false;
-           
-        }
-
-        if($('#followup_date').val() == ''){
+            isValid =false;           
+        }     
+        if(fdate  == ''){
             $('#followup_date').addClass('error');
-            isValid =false;
-           
+            isValid =false;          
         }
 
         if(isValid == false){
-            $('.summary-form-error').text('Please fuill the mandatory column');
-        } 
+            $('.summary-form-error').text('Please fill the mandatory column');
+        } else{
+            $('.summary-form-error').text('');
+        }
 
         return isValid;    
 }
 
 
     // var consultation_id;
-    $(document).ready(function(){
-        $(".generate").addClass('d-none');
-        // var summary_data=[];
-        $(".test_id").select2({
-            tags: true,
-            //minimumInputLength: 3,
-            placeholder: "Select a test",
+  
+         $("#suggested_test").autocomplete({
+            minLength: 3,
+            placeholder: "Search for a template",
             allowClear: true,
-            ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-                type: "post",
-                url: base_url+"/api/labTest.php",
-                dataType: 'json',
-                //   contentType: 'application/json; charset=UTF-8',
-                quietMillis: 250,
-                data: function (term) {
-                    return JSON.stringify({
-                        lab_tests: {
-                            labtest_name: term.term
-                        }
-                    })
-                },
-                processResults: function (data) { // parse the results into the format expected by Select2.
-                    // since we are using custom formatting functions we do not need to alter the remote JSON data
-
-                    return {
-                        results: $.map(data.labTest.tests, function (smthg) {
-                            return {id: smthg.labtest_id, text: smthg.labtest_name}
-                        })
-                    };
-                }
+            classes: {
+                "ui-autocomplete": "test"
             },
-            cache: true
-            // formatSelection: formatSelection
+            source: function(req, response){
+               
+                getData.getLabTest(req.term).then(function(res){
+                    response(res.labTest.tests.map(function (t) { return {label:t.labtest_name, id:t.labtest_id} }));
+                });;
+            }
         });
+
+
+
+     
         $("select").on("select2:select", function (evt) {
             var element = evt.params.data.element;
             var $element = $(element);
@@ -327,23 +312,19 @@ function validateForm(formData){
                 {
                     "test_id": test_id,
                     "test_name": test_name
-                }
-                        ];
+                }];
             var data=JSON.stringify(suggested_test);
             console.log(data);
         });
 
         $("#preview_summary").on("click", function () {
             getData.previewConsultationSummary(appointment_id).then(function (res) {
-              //  $(".modal-body-summary").html(res);
-                  //  $(".generate_preview").html(res);
                 $(".generate").removeClass('d-none');
-                $(".generate_preview").html(res.document.body);
+                $(".generate_preview").html(res);
                 $("#form4").hide();
                 $("#save").hide();
                 $("#preview_summary").hide();
                 $("#close").hide();
-
             });
 
         });
@@ -374,14 +355,14 @@ function validateForm(formData){
 
             getData.previewConsultationSummary(appointment_id).then(function (res) {
                 $(".generate").removeClass('d-none');
-                $(".generate_preview").html(res.document.body);
+                $(".generate_preview").html(res);
             });
         }
         if((summary_details&&apmt_status=="closed")||(summary_details&&apmt_status=="expired"))
         {
             $("#form4").hide();
             getData.previewConsultationSummary(appointment_id).then(function (res) {
-                $(".generate_preview").html(res.document.body);
+                $(".generate_preview").html(res);
             });
         }
 
@@ -419,39 +400,8 @@ function validateForm(formData){
                 $("#ifPartial").show();
                 $("#p_check").val(summary_details.waived_amount);
                 $("input[name='waiver_status']:checked").val(summary_details.waive_fee);
-
             }
-
-            // $("input[name='waiver_status']").val(summary_details.waive_fee).attr('selected', true);
-            //$("input[name='waiver_status']").val()==summary_details.waive_fee;
-            //debugger;
-            /*$("input[name='waiver_status']").val(summary_details.waive_fee).attr('selected', true);
-            $('.waiver .No_fee').removeClass('active').addClass(summary_details.waive_fee == 'No' ? 'active' : '');
-            $('.waiver .Full_fee').removeClass('active').addClass(summary_details.waive_fee == 'Full' ? 'active' : '');
-            $('.waiver .Partial_fee').removeClass('active').addClass(summary_details.waive_fee == 'Partial' ? 'active' : '');*/
-          //  $("#ifPartial").show();
             $("#p_check").val(summary_details.waived_amount);
-            //$('.followup option[value="' + summary_details.followup_in + '"]').attr('selected', true);
-            /*    if($("input[name='waiver_status']").val(summary_details.waive_fee)=="No")
-                {
-
-                    $("#ifPartial").hide();
-                }
-                else if($(this).val()=="Full")
-                {
-                    $("#p_check")[0].disabled = false;
-                    $("#ifPartial").show();
-                    $("#p_check").val(summary_details.waived_amount);
-                    $('#p_check').attr('readonly', true);
-
-                }
-                else
-                {
-                    $("#p_check")[0].disabled = false;
-                    $('#p_check').attr('readonly', false);
-                    $("#ifPartial").show();
-                    $("#p_check").val(summary_details.waived_amount);
-                }*/
         }
 
 
@@ -496,33 +446,22 @@ function validateForm(formData){
 
         $('#follow_up').change(function(){
             var followup_days = $('#follow_up').val();
-            if(followup_days=="After 2 Days")
-            {
+            if(followup_days=="After 2 Days"){
                 $("#followup_date").val(moment().add(2,'days').format("YYYY-MM-DD"));
             }
-            if(followup_days=="After 1 Week")
-            {
+            if(followup_days=="After 1 Week"){
                 $("#followup_date").val(moment().add(7,'days').format("YYYY-MM-DD"));
-
             }
-            if(followup_days=="After 10 Days")
-            {
+            if(followup_days=="After 10 Days"){
                 $("#followup_date").val(moment().add(10,'days').format("YYYY-MM-DD"));
-
             }
-            if(followup_days=="After 2 Weeks")
-            {
+            if(followup_days=="After 2 Weeks"){
                 $("#followup_date").val(moment().add(14,'days').format("YYYY-MM-DD"));
-
             }
-            if(followup_days=="After 1 Month")
-            {
+            if(followup_days=="After 1 Month"){
                 $("#followup_date").val(moment().add(30,'days').format("YYYY-MM-DD"));
-
             }
         });
-
-
 
         var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
         var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
@@ -533,25 +472,19 @@ function validateForm(formData){
             autoclose: true
         });
         $("input[name='waiver_status']").change(function(){
-            if($(this).val()=="Partial")
-            {
+            if($(this).val()=="Partial"){
                 $("#p_check")[0].disabled = false;
                 $('#p_check').attr('readonly', false);
                 $("#ifPartial").show();
                 $("#p_check").val("");
-            }
-            else if($(this).val()=="Full")
-            {
+            }else if($(this).val()=="Full"){
                 $("#p_check")[0].disabled = false;
                 $("#ifPartial").show();
                 $("#p_check").val("1000");
                 $('#p_check').attr('readonly', true);
-
-            }
-            else
-            {
+            }else{
                 $("#ifPartial").hide();
             }
         });
-    });
+    //});
 </script>

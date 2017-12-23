@@ -46,6 +46,8 @@ $(document).ready(function(){
     })
 });
 function showApiError(error){
+    //debugger
+
     if(error.result != 0){
         $('#api-error').removeClass('hidden-xs-up');
         $('#api-error-message').html("['"+error.error_code + "']: "+ error.error_message);

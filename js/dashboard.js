@@ -205,7 +205,7 @@ $(document).ready(function(){
         }else{
             showMessage("your browser does not support webRTC please upgrade your browser");
         }}catch (e){
-            debugger
+           // debugger
             console.error(e)
         }
     }

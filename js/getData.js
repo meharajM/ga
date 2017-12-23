@@ -292,6 +292,8 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
+               // console.log(res);
+            
                  showApiError(res.error);
                 //  alert("success in preview summary");
 
@@ -309,7 +311,7 @@ var getData = {
     },
     getMymedicineList: function(term){
         var url = "/api/getMymedicineList.php";
-        var doctorId = "1";
+        var doctorId = doctor_id;
         hideApiError();
         var call = $.ajax({
             type: "POST",
@@ -393,35 +395,36 @@ var getData = {
         });
         return call;
     },
+/* Bala Code Starts Here*/
 
-    /* getDoctorProfile: function(id){
-         var url = "/wapi/getDoctorProfile.php";
-         var doctorId = id;
-         var hcc_id="1";
-         var doctor_info = {
-             doctor_id: doctorId,
-             hcc_id: hcc_id
-         };
-         var data = {
-             doctor_info: doctor_info,
-             session_info: session_info
-         }
-         var call = $.ajax({
-             type: "POST",
-             url: base_url + url,
-             data: JSON.stringify(data),
-             dataType: 'json',
-             success: function (res,status) {
-                 return res;
-             },
-             error: function(err,status){
-                 console.error(err, status);
-             }
-         }).then(function(res){
-             return res;
-         });
-         return call;
-     }, */
+    getLabTest: function(term){
+        var url = "/api/labTest.php";
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data: JSON.stringify({
+                suggested_test: {
+                    labtest_name:  term
+                },
+                session_info: session_info
+            }),
+            dataType: 'json',
+
+            success: function (res,status) {
+             
+                //showApiError(res.error);
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        });
+        return call;
+    },
+
+/* Bala Code Ends Here*/
+
+    
     closeConsultation: function (id) {
         var url = "/api/closeConsultation.php";
         var doctorId = doctor_id;

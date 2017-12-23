@@ -18,23 +18,23 @@ $doctor_id ='1';*/
 $response = array();
 
 if($apmt_id  == ""){
-    $response['error']['result']="0";
+    $response['error']['result']="1";
     $response['error']['error_code']="";
     $response['error']['error_type']="";
     $response['error']['error_message']="Appointment id cannot be null"; 
 
 }else if($doctor_id == ""){
-    $response['error']['result']="0";
+    $response['error']['result']="1";
     $response['error']['error_code']="";
     $response['error']['error_type']="";
     $response['error']['error_message']="Doctor id cannot be null"; 
 
 }else{
-      $response['error']['result']="0";
+    $response['error']['result']="0";
     $response['error']['error_code']="";
     $response['error']['error_type']="";
 
-   # $res =  $appointmentObj->update_consultation_status($apmt_id);
+    #$res =  $appointmentObj->update_consultation_status($apmt_id);
 
     #function to get the Doctor details based on doctor id
 	$doctor = $appointmentObj->get_doctor_profile($doctor_id);
@@ -216,9 +216,9 @@ if($apmt_id  == ""){
         </form>   ';
         $end ='';
      
-         $body =   $top . "<br>" . $prescription_details . "<br>" . "<br>" . $end; 
+        $body =   $top . "<br>" . $prescription_details . "<br>" . "<br>" . $end; 
 
-         $response['document']['body']= $body;
+        $response['document']['body']= $body;
 
 }
 echo json_encode($response);

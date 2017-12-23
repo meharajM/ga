@@ -4,6 +4,7 @@
 	<tr>
 		<td>{{med_type}}</td>
 		<td>{{med_name}}</td>
+     
 		<td>{{frequency_string}}</td>
 		<td>{{course}}</td>
 		<td>{{med_intake}}</td>
@@ -155,7 +156,7 @@
 			<tr>
 				<th><b>Type</b></th>
 				<th><b>Name</b></th>
-				<th><b>Timings/Quantity</b></th>
+           		<th><b>Timings/Quantity</b></th>
 				<th><b>Course Duration</b></th>
 				<th><b>Medicine Intake</b></th>
 				<th><b>Instructions</b></th>
@@ -199,6 +200,7 @@
 <script type="text/javascript">
 	var prescription = {}
     $(document).ready(function() {
+
         var prescription_data = [];
         function setUnit() {
             switch($('#med_type').val().toLowerCase()){
@@ -277,7 +279,7 @@
                 $("#append").on("click", function (evt) {
                     //  var prev_data = showPrescriptions(res.prescription_details);
                     getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
-                    debugger
+                    //debugger
                     prescription_data =prescription_data.concat(res.prescription_details);
                     showPrescriptions(prescription_data);
                 });
@@ -327,12 +329,15 @@
             prescription_data = prescriptions_list;
         }
         $('.form').hide();
+        
         $('#add').on('click', function (ev) {
+            $(this).hide();
             $("#form3").get(0).reset();
             $('.form').show();
             ev.stopPropagation();
         });
         $("#close-button").on('click', function (ev) {
+             $('#add').show();
             $('.form').hide();
             $("#form3").get(0).reset();
             $("#med_name").val("");
@@ -393,6 +398,7 @@
             return isValid;
         }
         $("#add-prescription").click(function (evt) {
+              $('#add').show();
             var formData = $("#form3").serializeArray();
             evt.preventDefault();
 			//debugger
@@ -403,13 +409,19 @@
             data.dosage = data.dosage + ' ' + data.dosage_uom;
              //debugger
             if(!data.med_dosage_text){
-
-                data.frequency_string = data.morning + '-' + data.afternoon + '-' + data.night;
-                data.frequency_type= "std_MAE";
+                frequency_string = data.morning + '-' + data.afternoon + '-' + data.night;
+                frequency_type= "std_MAE";
+                /*data.frequency_string = data.morning + '-' + data.afternoon + '-' + data.night;
+                data.frequency_type= "std_MAE";*/
             }else{
-                data.frequency_string = data.med_dosage_text;
-                data.frequency_type = "Others";
+                frequency_string = data.med_dosage_text;
+                frequency_type = "Others";
+               /* data.frequency_string = data.med_dosage_text;
+                data.frequency_type = "Others";*/
             }
+                data.frequency_string =  frequency_string;
+                data.frequency_type = frequency_type;
+
           // data.frequency = Number(!!data.morning) + '-' + Number(!!data.afternoon) + '-' + Number(!!data.night);
             data.course = data.course + ' ' + data.duration;
             data.med_name=data.med_search;
@@ -447,9 +459,9 @@
             $('.form').attr('data-id', prescription.prescription_id);
             $('#med_search').val(prescription.med_name);
             $('.med_type_div option[value="' + prescription.med_type + '"]').attr('selected', true);
-            $('.timings #morning').val(prescription.frequency.split('-')[0]);
-            $('.timings #afternoon').val(prescription.frequency.split('-')[1]);
-            $('.timings #night').val(prescription.frequency.split('-')[2]);
+            $('.timings #morning').val(prescription.frequency_string.split('-')[0]);
+            $('.timings #afternoon').val(prescription.frequency_string.split('-')[1]);
+            $('.timings #night').val(prescription.frequency_string.split('-')[2]);
             $('input[name="med_dosage_text"]').val(prescription.med_dosage_text ? prescription.med_dosage_text : '');
             $('input[name="course"]').val(prescription.course.split(' ')[0]);
             $('.duration input[value="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
