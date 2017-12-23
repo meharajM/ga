@@ -1,4 +1,4 @@
-var publisherError, subscriberAvailable;
+var publisherError, subscriberAvailable, videoTimer;
 function exceptionHandler(error){
     showMessage(error);
 }
@@ -40,7 +40,7 @@ function handleSubscriberError(error){
         $('#hs-name-container').html('consulting <strong>'+appointment.health_seeker_profile.hs_name+'</strong>')
         var sec = 0;
         function pad ( val ) { return val > 9 ? val : "0" + val; }
-        setInterval( function(){
+        videoTimer = setInterval( function(){
             $("#seconds").html(pad(++sec%60));
             $("#minutes").html(pad(parseInt(sec/60,10)));
         }, 1000);

@@ -238,7 +238,7 @@ $(document).ready(function(){
     var stopVideo = function(){
         if(confirm("Do You really want to close the session ? ")){
             if(session){
-
+                clearInterval(videoTimer);
                 session.disconnect()
                 $('.video-container').addClass('hidden-xs-up');
                 $('.left-container').removeClass('col-12').removeClass('col-5').addClass('col-3');
