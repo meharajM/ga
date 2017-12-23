@@ -9,9 +9,9 @@
     </div>
         <div class="row	mt-2 mb-2 pt-2 pb-1">
             <div class="col-sm-12 text-center">
-                <div class="filter-area">
+                <div class="filter-area hidden-xs-up">
                     <div class="btn-group btn-group-sm" data-toggle="buttons">
-                        <label class="all-button btn btn-light active">
+                        <label class="all-button btn btn-light active all-btn">
                             <input class='filter-btn' type="radio" name="filter_1" value="all" id="all" autocomplete="off" checked="checked">All<sup><span id="all_button"></span></sup>
                         </label>
                         <label class="pending-button btn btn-light">
@@ -57,8 +57,16 @@
             }
             var filteredAppointments = appointment_list.filter(function(val) {
                 if(filter1 && filter2){
+                    if(filter1 === "booked"){
+                        return val.appointment_status == "booked" || val.appointment_status == "inprogress" || val.appointment_status == "paid" && val.appointment_type == filter2;
+                    }
                     return val.appointment_status == filter1 && val.appointment_type == filter2;
                 }else if(filter1){
+                    if(filter1 === "booked"){
+                        return val.appointment_status == "booked" || val.appointment_status == "inprogress" || val.appointment_status == "paid";
+                    }else if(filter1 === "closed"){
+                        return val.appointment_status == "closed" || val.appointment_status == "expired";
+                    }
                     return val.appointment_status == filter1;
                 }else if(filter2){
                     return val.appointment_type == filter2;
@@ -66,7 +74,7 @@
                     return true;
                 }
             });
-            showDashboardDetails({appointments_details: {appointment: filteredAppointments}}    );
+            showDashboardDetails({appointments_details: {appointment: filteredAppointments}}, true);
         });
             $("#date").datepicker({
             format: 'DD, M d, yyyy',
@@ -100,6 +108,7 @@
 
             // Hook up previous button event
             $('#previous_day').click(function () {
+
                 // Set our current date to 1 day earlier
                // current_date.setDate(current_date.getDate() - 1);
                 // Write the result to our text input
@@ -112,18 +121,18 @@
                         appointment_date=moment(prev_apmt_date).format("YYYY-MM-DD");
                       //  alert(appointment_date);
                         showDashboardDetails(res);
-                        $("#date").val(moment(date).format("dddd, ll"));
+                        // $("#date").val(moment(date).format("dddd, ll"));
                         $(".filter-area").show();
-                        $('.appointment-info').removeClass('d-none');
-                        $('#appointment-list').removeClass('d-none');
-                        $('.no-appointment-selected').addClass('d-none');
+                        // $('.appointment-info').removeClass('d-none');
+                        // $('#appointment-list').removeClass('d-none');
+                        // $('.no-appointment-selected').addClass('d-none');
                     })
                 }else{
-                    $("#date").val("No Previous Appointments");
-                    $('.appointment-info').addClass('d-none');
-                    $('#appointment-list').addClass('d-none');
-                    $('.no-appointment-selected').removeClass('d-none');
-                    $(".filter-area").addClass('d-none');
+                    // $("#date").val("No Previous Appointments");
+                    // $('.appointment-info').addClass('d-none');
+                    // $('#appointment-list').addClass('d-none');
+                    // $('.no-appointment-selected').removeClass('d-none');
+                    // $(".filter-area").addClass('d-none');
                 }
             });
             // Hook up next button event
@@ -141,19 +150,19 @@
                        // alert(appointment_date);
 
                         showDashboardDetails(res);
-                        $("#date").val(moment(date).format("dddd, ll"));
-                        $(".filter-area").show();
-                        $('.appointment-info').removeClass('d-none');
-                        $('#appointment-list').removeClass('d-none');
-                        $('.no-appointment-selected').addClass('d-none');
+                        // $("#date").val(moment(date).format("dddd, ll"));
+                        // $(".filter-area").show();
+                        // $('.appointment-info').removeClass('d-none');
+                        // $('#appointment-list').removeClass('d-none');
+                        // $('.no-appointment-selected').addClass('d-none');
                     })
                 }else
                 {
-                    $("#date").val("No Next Appointments");
-                    $('.appointment-info').addClass('d-none');
-                    $('#appointment-list').addClass('d-none');
-                    $('.no-appointment-selected').removeClass('d-none');
-                    $(".filter-area").hide();
+                    // $("#date").val("No Next Appointments");
+                    // $('.appointment-info').addClass('d-none');
+                    // $('#appointment-list').addClass('d-none');
+                    // $('.no-appointment-selected').removeClass('d-none');
+                    // $(".filter-area").hide();
 
                 }
             });

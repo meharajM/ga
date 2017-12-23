@@ -96,12 +96,20 @@ $(document).ready(function(){
 
         });
 	};
-	showDashboardDetails=function(res){
-		if(res.appointments_details.appointment_summary)
+	showDashboardDetails=function(res, fromFilter){
+	    $('.appointment-info.details').addClass('d-none');
+        $('.no-appointment-selected').removeClass('d-none');
+        $("#no-appointment-selected-message").html("Please select an appointment");
+        $(".filter-area").removeClass("hidden-xs-up");
+        if(res.appointments_details.appointment.length === 0 && !fromFilter){
+            $(".filter-area").addClass("hidden-xs-up");
+            $("#no-appointment-selected-message").html("You don't have any scheduled appointments");
+        }
+        if(res.appointments_details.appointment_summary)
 		{
-            $('#all_button').text(res.appointments_details.appointment_summary.total);
-            $('#pending_button').text(res.appointments_details.appointment_summary.pending);
-            $('#closed_button').text(res.appointments_details.appointment_summary.missed);
+            $('#all_button').text(res.appointments_details.appointment.length);
+            $('#pending_button').text(res.appointments_details.appointment.filter(function(ap){ return ap.appointment_status === "inprogress" || ap.appointment_status === "booked" || ap.appointment_status === "paid"}).length);
+            $('#closed_button').text(res.appointments_details.appointment.filter(function(ap){ return ap.appointment_status === "closed" || ap.appointment_status === "expired"}).length);
         }
        // $('#shcedule-date').text(res.appointments_details.appointment[0].appointment_date);
         var source   = $("#appointmentTemplate").html();
@@ -116,8 +124,18 @@ $(document).ready(function(){
         }else{
             $('#appointment-list').html(html)
         }
-        next_apmt_date=res.appointments_details.next_appointment_date;
-        prev_apmt_date=res.appointments_details.prev_appointment_date;
+        if(!fromFilter){
+            $('#next_day').show();
+            $('#previous_day').show();
+            next_apmt_date=res.appointments_details.next_appointment_date;
+            prev_apmt_date=res.appointments_details.prev_appointment_date;
+            if(!next_apmt_date){
+                $('#next_day').hide();
+            }
+            if(!prev_apmt_date){
+                $('#prev_apmt_date').hide();
+            }
+        }
       //  hcc_id=res.appointment_details.appointments[0].hcc_det.hcc_id;
 		$(".PC").html('<i class="fa fa-user"></i>');
         $(".VC").html('<i class="fa fa-video-camera"></i>');
