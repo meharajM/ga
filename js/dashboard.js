@@ -1,6 +1,7 @@
 var appointment_id, hs_id,appointment_list,sessionId,token,apiKey,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, summary_details;
 var appointment,apmt_type,consultation_id,record_id;
 var showToaster, session;
+var appointmentObject = {};
 var doctor_id, doctor_name,doc_photo, hcc_id, template_id, login_token, appointment_date;
 //var apiKey = "45638452";
 function showMessage(message) {
@@ -34,6 +35,7 @@ $(document).ready(function(){
 		    var source = $('#detailsTemplate').html();
             var template = Handlebars.compile(source);
             var html = template(res.appointments_details);
+           // appointmentObject.hcc_id =
             $('#details').html(html);
             $('#prescription').load('./components/prescription.html');
           //  $('#newprescription').load('./components/newprescription.html');

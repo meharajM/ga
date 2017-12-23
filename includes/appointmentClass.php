@@ -44,7 +44,7 @@ class Appointment extends myDBC{
  	}
 
 
- 		#function to fetch the hcc name based on the doctor_id
+ 	#function to fetch the hcc name based on the doctor_id
 
  	public function get_doctor_hcc($doctor_id){
 
@@ -71,7 +71,7 @@ class Appointment extends myDBC{
 
 	public function get_appointment_data($apmt_id){
 
-		 $sql= "SELECT a.*,b.name,b.age,b.gender,b.height_feet,b.weight,b.blood_group,b.allergies,b.ailments,b.mobile, b.habits,b.address1,b.health_seeker_id FROM appointments a,health_seeker b where a.health_seeker_id=b.health_seeker_id and a.appointment_id=$apmt_id";
+		$sql= "SELECT a.*,b.name,b.age,b.gender,b.height_feet,b.weight,b.blood_group,b.allergies,b.ailments,b.mobile, b.habits,b.address1,b.health_seeker_id FROM appointments a,health_seeker b where a.health_seeker_id=b.health_seeker_id and a.appointment_id=$apmt_id";
 		$res = $this->runQuery($sql);
 		return $res; 
 	}
@@ -252,7 +252,7 @@ class Appointment extends myDBC{
 
  	public function get_my_medicine_list($doctor_id,$med_name){
 
- 		  $sql= "SELECT * FROM my_medicine_list WHERE doctor_id='$doctor_id' AND med_brand_name   LIKE '$med_name%' OR med_generic_name LIKE '$med_name%'";
+ 		$sql= "SELECT * FROM my_medicine_list WHERE doctor_id='$doctor_id' AND med_brand_name   LIKE '$med_name%' OR med_generic_name LIKE '$med_name%'";
  		$res = $this->runQuery($sql);
  		return $res;
  	}
@@ -266,7 +266,7 @@ class Appointment extends myDBC{
 		}else{
 			$hcc = "";
 		}
-         
+
 	    if($template_name !=""){
 	    	$template = "AND  template_name LIKE '$template_name%'";
 	    }else {
@@ -306,6 +306,7 @@ class Appointment extends myDBC{
   	#function to get the  previous prescribtion details
 
 	public function get_previous_prescription($doctor_id,$healthSeeker,$apmt_id){
+
 	    $sql="select * from prescription where  appointment_id='$apmt_id'";
 		$res = $this->runQuery($sql);
 		return $res; 
@@ -398,6 +399,7 @@ class Appointment extends myDBC{
 	}
 
 	#function to update the health record id and details into health record table
+	
 	public function update_health_record($hid,$health_seeker_id,$appointment_id,$description){
 
 		$sql = "INSERT INTO health_record(health_record_id,health_seeker_id,appointment_id,description,document) VALUES ('$hid','$health_seeker_id','$appointment_id','$description','G')";

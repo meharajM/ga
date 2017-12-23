@@ -392,6 +392,37 @@ var getData = {
         });
         return call;
     },
+/* Bala Code Starts Here*/
+
+    getLabTest: function(term){
+        var url = "/api/labTest.php";
+        //var doctorId = "1";
+
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data: JSON.stringify({
+                suggested_test: {
+                   // doctor_id: doctorId,
+                    //doctor_id:1,
+                    labtest_name:  term
+                },
+                session_info: session_info
+            }),
+            dataType: 'json',
+            success: function (res) {
+                alert("success in labtest");
+                return res;
+            },
+            error: function(err,status){
+                //  alert("error in labtest");
+                console.error(err, status);
+            }
+        });
+        return call;
+    },
+
+/* Bala Code Ends Here*/
 
     /* getDoctorProfile: function(id){
          var url = "/wapi/getDoctorProfile.php";

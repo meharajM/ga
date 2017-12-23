@@ -165,7 +165,8 @@
                         <b>Suggested Tests</b>
                     </label>
                     <div class="input-group">
-                        <select class="test_id col-md-6" multiple="" name="suggested_test" id="suggested_test"></select>
+                        <input class="form-input" name="suggested_test" id="suggested_test" placeholder="Suggested Test">
+                     <!--   <select class="test_id col-md-6" multiple="" name="suggested_test" id="suggested_test"></select>-->
                     </div>
                 </div>
 
@@ -263,14 +264,14 @@ function validateForm(formData){
            
         }
 
-        if($('#followup_date').val() == ''){
+        if(($('#followup_date').val() == '')  && ($('#follow_up').val() == 'undefined')){
             $('#followup_date').addClass('error');
             isValid =false;
            
         }
 
         if(isValid == false){
-            $('.summary-form-error').text('Please fuill the mandatory column');
+            $('.summary-form-error').text('Please fill the mandatory column');
         } 
 
         return isValid;    
@@ -279,7 +280,23 @@ function validateForm(formData){
 
     // var consultation_id;
     $(document).ready(function(){
-        $(".generate").addClass('d-none');
+
+     $("#suggested_test").autocomplete({
+            minLength: 3,
+            placeholder: "Search for a Suggested Test",
+            allowClear: true,
+            classes: {
+                "ui-autocomplete": "menu"
+            },
+            source: function(req, response){
+                getData.getLabTest(req.term).then(function(res){
+                    response(res.tests.map(function (t) { return {label:t.labtest_name, id:t.labtest_id} }));
+                });;
+            }
+        });
+
+
+       /* $(".generate").addClass('d-none');
         // var summary_data=[];
         $(".test_id").select2({
             tags: true,
@@ -311,7 +328,7 @@ function validateForm(formData){
             },
             cache: true
             // formatSelection: formatSelection
-        });
+        });*/
         $("select").on("select2:select", function (evt) {
             var element = evt.params.data.element;
             var $element = $(element);

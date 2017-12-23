@@ -7,9 +7,9 @@ $response= array();
 $apmt_id	= $consultation->apmt_input->apmt_id;
 $doctor_id 	= $consultation->apmt_input->doctor_id;
 $hs_id 		= $consultation->apmt_input->hs_id;
-$hcc_id = $consultation->apmt_input->hcc_id;
- $device_id     = $medicine->session_info->device_id;
- $sess_token    = $medicine->session_info->access_token;
+$hcc_id     = $consultation->apmt_input->hcc_id;
+$device_id  = $medicine->session_info->device_id;
+$sess_token = $medicine->session_info->access_token;
 $validate_session = $appointmentObj->validate_session_info($doctor_id,$device_id,$sess_token);
 
 if($validate_session != ""){
