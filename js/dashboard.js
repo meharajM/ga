@@ -1,7 +1,7 @@
 var appointment_id, hs_id,appointment_list,sessionId,token,apiKey,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, summary_details;
 var appointment,apmt_type,consultation_id,record_id;
 var showToaster, session;
-var doctor_id, doctor_name,doc_photo, hcc_id, template_id, login_token, appointment_date;
+var doctor_id, doctor_name,doc_photo, template_id, login_token, appointment_date, selectedAppointment
 //var apiKey = "45638452";
 function showMessage(message) {
     $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
@@ -27,6 +27,9 @@ $(document).ready(function(){
 	/*getting appointment details*/
 	var getAppointmentDetails = function(ev){
 		appointment_id = ev.currentTarget.id;
+        selectedAppointment = appointment_list.filter(function (ap) {
+            return ap.appointment_id === appointment_id;
+        })[0];
 		getData.getAppointmentDetails(appointment_id).then(function(res){
 		    $('.no-appointment-selected').addClass('d-none');
 

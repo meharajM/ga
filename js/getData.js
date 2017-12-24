@@ -5,7 +5,7 @@ var session_info = {
     "doctor_id": sessionStorage.getItem("doctorId")
 };
 var doctor_id = sessionStorage.getItem("doctorId");
-var base_url = "https://52.66.157.195/growayu/ganewdesign/"           //Test Server
+var base_url = "https://52.66.157.195/growayu/ganewdesign/";      //Test Server
 //var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
 var getData = {
     getDashboardData: function(date){
@@ -13,7 +13,7 @@ var getData = {
         var apmt_input = {
             "date" : date,
             "doctor_id" : doctor_id,
-            "hcc_id" : "1"
+            "hcc_id" : ""
         };
         var data = {
             appntment_input: apmt_input,
@@ -45,7 +45,7 @@ var getData = {
         var apmt_input= {
             apmt_id : id,
             doctor_id :doctorId,
-            hcc_id : "1"
+            "hcc_id" : selectedAppointment.hcc_det.hcc_id,
         }
         var data = {
             apmt_input: apmt_input,
@@ -137,7 +137,7 @@ var getData = {
     startVideoConsultation: function(id,hs_id){
         var url = "/api/startVideoConsultation.php";
         var apmt_info = {
-            "hcc_id" : "1",
+            "hcc_id" : selectedAppointment.hcc_det.hcc_id,
             "doctor_id" : doctor_id,
             "apmt_id" : id,
             "health_seeker_id" : hs_id,
@@ -175,7 +175,7 @@ var getData = {
             apmt_id: id,
             doctor_id: doctorId,
             hs_id: hs_id,
-            hcc_id: "1"
+            "hcc_id" : selectedAppointment.hcc_det.hcc_id,
         };
 
         var data = {
@@ -213,7 +213,7 @@ var getData = {
             apmt_id: id,
             doctor_id: doctorId,
             hs_id: hs_id,
-            hcc_id: "1"
+            "hcc_id" : selectedAppointment.hcc_det.hcc_id,
         };
         /* var summary={
              consultation_id: "",
@@ -277,7 +277,7 @@ var getData = {
         var apmt_input = {
             apmt_id: id,
             doctor_id: doctorId,
-            hcc_id: "",
+            hcc_id: selectedAppointment.hcc_det.hcc_id,
             date: ""
         };
         var data = {
@@ -433,7 +433,7 @@ var getData = {
         var apmt_input = {
             apmt_id: id,
             doctor_id: doctorId,
-            hcc_id:"1",
+            hcc_id : selectedAppointment.hcc_det.hcc_id,
             date: date
         };
         var data = {

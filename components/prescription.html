@@ -626,7 +626,7 @@
         });
         $('#suggestions').on('click', 'a', function (ev) {
             var text = $(this).text();
-			$('#timings-text').text(text);
+			$('#timings-text').val($('#timings-text').val() + text);
         })
     })
         /*	$("#autocomplete").autocomplete(function (evt) {
