@@ -78,3 +78,9 @@ body{
   height: 50px;  
   width: 50px;
 }
+.tags{
+    height: 24px;
+    background-color: #1f7bf3;
+    color: #ffffff;
+    line-height: 24px;
+}

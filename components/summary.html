@@ -1,25 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/css/select2.min.css" />
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.1/js/select2.min.js"></script>
-<!--
-<script  type="text/x-handlebars-template" id="summarytable">
-
-        I would like to summarize the online consultation with <b>Dr. NISHANT</b> on <b>	{{appointments_det.apmt_date}}</b> as below: <br>
-        <b>Diagnosis: </b>{{consultation_details.consultation_summary.Diagnosis}}<br>
-        <b>Management Plan: </b>{{consultation_details.consultation_summary.mgmt_plan}}<br>
-        <b>Next Follow-up in: </b>{{consultation_details.consultation_summary.followup_in}}<br>
-        <b>Next Follow-up Consultation: </b>{{consultation_details.consultation_summary.followup_date}}<br>
-        <b>Suggested Investigations: </b>{{consultation_details.consultation_summary.ga_notes}}<br>
-        <b>Referred to Doctor: </b>{{consultation_details.consultation_summary.reffered_doctor}}<br>
-        </p>
-        <p>
-            Regards,<br>
-            Dr. Nishant Verma
-        </p>
-        <p>
-            (This is electronically generated consultation summary. Signature not required.)
-        </p>
-</script>-->
 
 <script  type="text/x-handlebars-template" id="summarytable">
 
@@ -168,6 +146,9 @@
                         <input class="form-input form-input" name="suggested_test" id="suggested_test" placeholder="Suggested Test">
                      <!--   <select class="test_id col-md-6" multiple="" name="suggested_test" id="suggested_test"></select>-->
                     </div>
+                    <div id="suggested_test_list" class="m-1">
+
+                    </div>
                 </div>
 
                 <div class="form-group ">
@@ -181,9 +162,14 @@
 
             </form>
             <div class="form-group-inline">
-                <button class="btn btn-success col-md-2" id="save" type="submit">Save</button>
-                <button class="btn btn-info col-md-2 text-center" id="preview_summary" data-toggle="modal" data-target="#summary-preview">Preview Summary</button>
-                <button class="btn btn-danger col-md-2" id="close">Close</button>
+                <button class="btn btn-success" id="save" type="submit">Save</button>
+                <button class="btn btn-info text-center" id="preview_summary" >Preview Summary</button>
+                <button class="btn btn-danger" id="close">Close</button>
+
+               <!--    <button class="btn btn-primary col-md-2" id="print">Print</button> -->
+
+               <a href="#"  rel={{record_id}} id="print" data-target="#printPDF" data-toggle="modal" class="btn btn-primary">Print</a>
+
                 <span class="summary-form-error"></span>
             </div>
         </div>
@@ -194,14 +180,35 @@
          <button class="btn-success btn-lg text-center" id="generate_pdf">Generate PDF</button>
          </div>-->
         <div class="generate">
-            <button class="btn btn-info btn-sm" id="edit_summary">Edit Summary</button>
+            <button class="btn btn-info btn-sm" id="edit_summary">Back</button>
             <div class="generate_preview"></div>
         </div>
-
-
-
         </div>
-        <div class="modal fade bd-example-modal-lg" id="summary-prev" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!--Modal to display pdf inside modal onclick print button  starts here-->
+                <div class="modal fade bd-example-modal-lg" id="printPDF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <span class="document-title"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+
+                </div>
+                </div>
+                </div>
+<!--Modal to display pdf inside modal onclick print button  end here-->
+
+
+
+
+       <!--  <div class="modal fade bd-example-modal-lg" id="summary-prev"
+        class="summary-prev"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -216,7 +223,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="close-consultation modal fade bd-example-modal-lg" id="close-consultation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="close-consult modal-dialog modal-sm" role="document">
                 <div class="modal-content">
@@ -236,50 +243,50 @@
             </div>
         </div>
     </div>
-</div>
 
 
-</body>
-</html>
+
 
 <script type="text/javascript">
-
-function validateForm(formData){
+    $(document).ready(function() {
+        $("#print").hide();
+        var rec_id;
+        function validateForm(formData){
 //console.log($('#followup_date').val());
-var fdate = $('#followup_date').val();
-        var isValid = true;
-        $('.form-error').addClass('hidden-xs-up');
-        $('#diagnosis').removeClass('error');
-        $('#mgmt_plan').removeClass('error');
-        $('#followup_date').removeClass('error');
-        $('.form-error').text('');
+            var fdate = $('#followup_date').val();
+            var isValid = true;
+            $('.form-error').addClass('hidden-xs-up');
+            $('#diagnosis').removeClass('error');
+            $('#mgmt_plan').removeClass('error');
+            $('#followup_date').removeClass('error');
+            $('.form-error').text('');
 
-        if($('#diagnosis').val() == ''){
-            $('#diagnosis').addClass('error'); 
-            isValid =false;
+            if($('#diagnosis').val() == ''){
+                $('#diagnosis').addClass('error');
+                isValid =false;
+            }
+            if($('#mgmt_plan').val() == ''){
+                $('#mgmt_plan').addClass('error');
+                isValid =false;
+            }
+            if(fdate  == ''){
+                $('#followup_date').addClass('error');
+                isValid =false;
+            }
+
+            if(isValid == false){
+                $('.summary-form-error').text('Please fill the mandatory column');
+            } else{
+                $('.summary-form-error').text('');
+            }
+
+            return isValid;
         }
-        if($('#mgmt_plan').val() == ''){
-            $('#mgmt_plan').addClass('error');
-            isValid =false;
-        }
-        if(fdate  == ''){
-            $('#followup_date').addClass('error');
-            isValid =false;
-        }
-
-        if(isValid == false){
-            $('.summary-form-error').text('Please fill the mandatory column');
-        } else{
-            $('.summary-form-error').text('');
-        }
-
-        return isValid;    
-}
 
 
-    // var consultation_id;
-
-         $("#suggested_test").autocomplete({
+        // var consultation_id;
+        var suggested_test_list = [];
+        $("#suggested_test").autocomplete({
             minLength: 3,
             placeholder: "Search for a template",
             allowClear: true,
@@ -291,12 +298,19 @@ var fdate = $('#followup_date').val();
                 getData.getLabTest(req.term).then(function(res){
                     response(res.labTest.tests.map(function (t) { return {label:t.labtest_name, id:t.labtest_id} }));
                 });;
+            },
+            select: function (ev, ui) {
+                
+                ev.preventDefault();
+                $(this).val("");
+                if(suggested_test_list.indexOf(ui.item.id)){
+                    suggested_test_list.push({test_id: ui.item.id, test_name: ui.item.label});
+                    var tag = "<span class='tags'>"+ui.item.label+"<i class='fa fa-times ml-1' id='"+ui.item.id+"' aria-hidden='true'></i></span>";
+
+                    $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
+                }
             }
         });
-
-
-
-
         $("select").on("select2:select", function (evt) {
             var element = evt.params.data.element;
             var $element = $(element);
@@ -308,11 +322,13 @@ var fdate = $('#followup_date').val();
         $('.test_id').on('select2:select', function () {
             var test_id=$(".test_id").val();
             var test_name=$(".test_id").text();
+
             var suggested_test=[
                 {
                     "test_id": test_id,
                     "test_name": test_name
                 }];
+            debug
             var data=JSON.stringify(suggested_test);
             console.log(data);
         });
@@ -320,14 +336,33 @@ var fdate = $('#followup_date').val();
         $("#preview_summary").on("click", function () {
             getData.previewConsultationSummary(appointment_id).then(function (res) {
                 $(".generate").removeClass('d-none');
-                $(".generate_preview").html(res.document.body);
+                $(".generate_preview").html(atob(res.document.body));
                 $("#form4").hide();
                 $("#save").hide();
                 $("#preview_summary").hide();
                 $("#close").hide();
             });
-
         });
+
+        $("#print").click(function(){
+
+            var  objbuilder = '';
+            var data ='';
+            getData.getDocumentBlobData(hs_id,summary_record_id).then(function (res) {
+                data=res.document.doc_data;
+
+
+                objbuilder += ('<object width="100%" height="100%" data="data:application/pdf;base64,');
+                objbuilder += (data);
+                objbuilder += ('" type="application/pdf" class="internal">');
+                objbuilder += ('<embed src="data:application/pdf;base64,');
+                objbuilder += (data);
+                objbuilder += ('" type="application/pdf"  />');
+                objbuilder += ('</object>');
+                $('.modal-body').html(objbuilder);
+            });
+
+        })
 
         $("#edit_summary").on("click", function (evt) {
             $(".generate").addClass('d-none');
@@ -338,43 +373,40 @@ var fdate = $('#followup_date').val();
 
         })
 
-        /* $("#generate_pdf").hide();*/
         var showSummary = function(data){
             var source   = $("#summarytable").html();
             var template = Handlebars.compile(source);
             $('#summary').html(template(data));
         };
 
-        if(apmt_status=="closed"||apmt_status=="expired")
-        {
-            $("#form4").hide();
+        if(apmt_status=="closed"||apmt_status=="expired"){
             $("#save").hide();
             $("#preview_summary").hide();
             $("#edit_summary").hide();
             $("#close").hide();
+            $("#start-vedio-consultation").hide();
 
             getData.previewConsultationSummary(appointment_id).then(function (res) {
                 $(".generate").removeClass('d-none');
                 $(".generate_preview").html(res);
             });
         }
-        if((summary_details&&apmt_status=="closed")||(summary_details&&apmt_status=="expired"))
-        {
-            $("#form4").hide();
-            getData.previewConsultationSummary(appointment_id).then(function (res) {
-                $(".generate_preview").html(res);
-            });
+        if((summary_details&&apmt_status=="closed")){
+            $("#form4").show();
+            $("#print").show();
+            $("#start-vedio-consultation").hide();
         }
+        if(summary_details !=""){
+            if(summary_details && apmt_status=="closed"){
+                $('#form4 :input').attr('readonly', 'readonly');
+                $('#p_check').prop('readonly', true);
+            }
 
-        if ((summary_details && apmt_status=="booked")||(summary_details && apmt_status=="paid")||(summary_details && apmt_status=="released"))
-        {
             $("#diagnosis").val(summary_details.Diagnosis);
             $("#mgmt_plan").val(summary_details.mgmt_plan);
             $("#follow_up").val(summary_details.followup_in);
             $("#followup_date").val(summary_details.followup_date);
             $("#reffered_doctor").val(summary_details.reffered_doctor);
-           // $('.waiver option[value="' + summary_details.waive_fee + '"]').attr('checked', true);
-
             if(summary_details.waive_fee == 'Full'){
                 $('.Full_fee').addClass('active');
                 $('.No_fee').removeClass('active');
@@ -390,7 +422,6 @@ var fdate = $('#followup_date').val();
                 $('.Partial_fee').removeClass('active');
                 $("#ifPartial").hide();
                 $("input[name='waiver_status']:checked").val(summary_details.waive_fee);
-
             }else {
                 $('.Partial_fee').addClass('active');
                 $('.Full_fee').removeClass('active');
@@ -408,18 +439,17 @@ var fdate = $('#followup_date').val();
 
         $("#save").on("click",function(evt) {
             var formData = $("#form4").serializeArray();
-
             if(validateForm(formData)){
-          
-                evt.preventDefault();              
+                evt.preventDefault();
                 var data={};
                 formData.map(function (feild) {
                     data[feild.name] = feild.value;
                 });
-
                 if(consultation_id) {
                     data.consultation_id=consultation_id;
                 }
+                data.suggested_test = suggested_test_list;
+                
                 getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
                     return res;
                 });
@@ -429,18 +459,18 @@ var fdate = $('#followup_date').val();
         $("#close-yes").on("click", function (evt) {
             getData.closeConsultation(appointment_id).then(function(res){
                 res.appointment_status=="closed";
-            });
-            getData.previewConsultationSummary(appointment_id).then(function (res) {
-                $(".generate_preview").html(res.document.body);
+                summary_record_id=res.consultation.record_id;
+
             });
             evt.preventDefault();
         });
 
         $("#close").on("click",function(evt) {
-           // alert("Do you want to close this Consultation? You wouldn't be able to edit details after closing the Consulation");
+            //console.log(evt);
             $('#close-consultation').modal({
                 show: true
             });
+
             evt.preventDefault();
         });
 
@@ -486,5 +516,31 @@ var fdate = $('#followup_date').val();
                 $("#ifPartial").hide();
             }
         });
-    //});
+        $('#suggested_test_list').on('click', '.fa-times' ,function (ev) {
+            
+           var id = ev.target.id;
+           suggested_test_list.splice(suggested_test_list.indexOf(id), 1);
+           $(this).parent().remove();
+        });
+        //});
+        /*  $("#print").on("click", function () {
+            alert(123);
+            getData.previewConsultationSummary(appointment_id).then(function (res) {
+                window.open("data:application/pdf;base64, " + res.document.body);
+            });
+        });*/
+        /* window.open("data:application/pdf;base64, " + res.document.body);*/
+    });
+
 </script>
+<style>
+.tags{
+    height: 14px;
+    background-color: #1f7bf3;
+    color: #ffffff;
+    line-height: 14px;
+    padding: 4px;
+    margin-left: 4px;
+    font-size: 12px;
+}
+</style>

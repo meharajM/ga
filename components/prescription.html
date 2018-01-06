@@ -10,6 +10,7 @@
 		<td>{{med_intake}}</td>
 		<td>{{remarks}}</td>
 		<td>
+
 			<span class="edit" id="e_{{prescription_id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
 			<span class="delete" id="d_{{prescription_id}}"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></span>
 		</td>
@@ -157,9 +158,14 @@
 	<hr/>
 	<div>
 		<div class="row">
-			<div class="col-7">
+			<div class="col-5">
 				<b>Prescribed Medications</b>
 			</div>
+            <div class="col-3 pull-right">
+                <select class="previous_prescription form-control" name="previous_prescription" id="previous_prescription">
+                    
+                </select>
+            </div>
 			<div class="col-3 pull-right">
 				<select class="template_name form-control" name="template_name" id="template_name">	</select>
 			</div>
@@ -194,10 +200,11 @@
 	</div>
 
 </div>
-<div class="template modal fade bd-example-modal-lg" id="template-alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="template modal fade bd-example-modal-lg template-alert" id="template-alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="template-msg modal-dialog modal-sm" role="document">
             <div class=" modal-content">
                 <div class="modal-header">
+                    <span class="document-title"></span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -207,8 +214,8 @@
                 Do you want to replace the existing medicines or append it?
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-info btn-sm" id="replace" data-dismiss="modal" >Replace</button>
-                    <button type="button" class="btn btn-primary btn-sm" id="append" data-dismiss="modal" >Append</button>
+                    <button type="button" class="btn btn-info btn-sm replace" id="replace" data-dismiss="modal" >Replace</button>
+                    <button type="button" class="btn btn-primary btn-sm append" id="append" data-dismiss="modal" >Append</button>
                 </div>
             </div>
         </div>
@@ -216,15 +223,19 @@
 
 </div>
 <script type="text/javascript">
-	var prescriptionDetais = {
-	    Tablet: {
-	        unit: "No",
+var showPrescriptions;
+var prescription_data = [];
+$(document).ready(function() {
+  
+    var prescriptionDetais = {
+        Tablet: {
+            unit: "No",
             baseQuantity: 0.5,
-			min: 0,
-			max: 10,
-			element: 'standerd',
-			suggestions: ["Every 3 hours", "3 times a day"]
-		},
+            min: 0,
+            max: 10,
+            element: 'standerd',
+            suggestions: ["Every 3 hours", "3 times a day"]
+        },
         Capsule: {
             unit: "No",
             baseQuantity: 1,
@@ -267,290 +278,298 @@
             element: 'freetext',
             suggestions: ["Every 3 hours", "3 times a day"]
         },
-		Ointment: {
-			element: "freetext",
+        Ointment: {
+            element: "freetext",
             suggestions: ["Every 3 hours", "3 times a day"]
         },
-		Implants: {
-	        element: "freetext"
-		}
-	}
-    $(document).ready(function() {
-
-        var prescription_data = [];
-        var selectedPrescriptionDetails = prescriptionDetais.tablet;
-        function setUnit() {
-            selectedPrescriptionDetails = prescriptionDetais[$('#med_type').val()];
-            $('.unit').html("");
-            $('.quantity').removeAttr("min");
-            $('.quantity').removeAttr("max");
-            if(selectedPrescriptionDetails.unit){
-                $('.unit').html(selectedPrescriptionDetails.unit);
-            }
-            if(selectedPrescriptionDetails.min){
-                $('.quantity').prop("min", selectedPrescriptionDetails.min);
-            }
-            if(selectedPrescriptionDetails.max){
-                $('.quantity').prop("max", selectedPrescriptionDetails.max);
-            }
-            if(selectedPrescriptionDetails.element === "freetext"){
-                $('#free-text').click();
-                selectedPrescriptionDetails.suggestions && $('#suggestions').html(selectedPrescriptionDetails.suggestions.map(function (value) { return "<a href='#'>"+value+"</a>" }).join(','));
-            }else{
-                $('#standard').click();
-            }
+        Implants: {
+             element: "freetext"
         }
-        	$('#med_type').on('change',function (ev) {
-			setUnit();
-        })
-        $("#template_name").select2({
-            width: '200px',
-            tags: true,
-            placeholder: "Search for a template",
-            allowClear: true,
-            minimumInputLength: 3,
-            containerCssClass : "custom-select ",
-            ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-                type: "post",
-                url: base_url+"/api/getPrescriptionTemplateList.php",
-                dataType: 'json',
-           //     contentType: 'application/json; charset=UTF-8',
-                data: function (term) {
-                    return JSON.stringify({
-                        template_input : {
-                        	doctor_id: doctor_id,
-                          	//doctor_id: 1,
-                            template_id: 1,
-                            template_name:term.term,
-                            speciality: ""
-                        },
-						session_info: {
-                            "user_id": sessionStorage.getItem("userId"),
-                            "access_token": sessionStorage.getItem("token"),
-                            "device_id": "web",
-                            "doctor_id": sessionStorage.getItem("doctorId")
-                        }
-                    })
-                },
-                processResults: function (data) { // parse the results into the format expected by Select2.
-                    // since we are using custom formatting functions we do not need to alter the remote JSON data
+    }
 
-                    return {
-                        results: $.map(data.template_det, function (smthg) {
-                           return {id: smthg.template_id, text: smthg.template_name}
-                        })
-                    };
-                }
-            },
-            cache: true
-		}).addClass('custom-select ');
+     if (apmt_status == "closed" || apmt_status == "expired") {
+        $("#add").hide();
+        $("#save_continue").hide();
+        $("#strong").hide();
+        $(".edit").hide();
+        $(".delete").hide();
+        $('#template_name').hide();
+        $('#previous_prescription').hide();
+    }
 
-        $('#template_name').on('select2:select', function (e) {
-            var template_id = $(this).val();
-              var template_name=$("#template_name").text();         
-            
-            getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
-             
-                $(".modal-header").html(template_name);
-                $('#template-alert').modal({
-                    show: true
-                });
-                $("#replace").on("click", function (evt) {
-                    prescription_data = prescription_data.map(function (p) {
-						p.delete_flag = 'Y';
-                    });
-                    prescription_data =prescription_data.concat(res.prescription_details);
-                    getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
-                        showPrescriptions(res.prescription_details);
-                    });
-                    evt.preventDefault();
-                });
-                $("#append").on("click", function (evt) {
-                    //  var prev_data = showPrescriptions(res.prescription_details);
 
-                    //debugger
-                    prescription_data =prescription_data.concat(res.prescription_details);
-					getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
-						showPrescriptions(res.prescription_details);
+    function validateForm(formData){
+        var isValid = true;
+        $('.form-error').addClass('hidden-xs-up')
+        $('#med_search').removeClass('error');
+        $('input[name="course"]').removeClass('error');
+        if(formData['med_name'] == ""){
+            $('#med_search').addClass('error');
+            isValid =false;
+        }
+        $('#med_type').removeClass('error');
+        $('.quantity').removeClass('error');
+        $('#timings-text').removeClass('error');
 
-					});
+        if(formData['frequency_type'] == "std_MAE" && formData['frequency_string'] == "0-0-0"){
+            $('.quantity').addClass('error');
+            isValid = false;
+        }else if(formData['frequency_type'] == "Others" && formData['frequency_string'].trim() == ""){
+            isValid = false
+        $('#timings-text').addClass('error');
+        }
+        if($('input[name="course"]').val() == ""){
+            $('input[name="course"]').addClass('error');
+            isValid = false;
+        }
+        if(!isValid){
+            $('.form-error').removeClass('hidden-xs-up');
+        }
+        if(isValid == false){
+            $('#add').hide();
+        }else{
+            $('#add').show();
+        }
+        return isValid;
+    }
 
-                evt.preventDefault();
-                });
-
+    getData.getPreviousAppointmentDate().then(function (res) {
+        var result = res.previous_appointments;
+        if(result != ''){
+            $.each(result, function(k, v) {
+                 $('#previous_prescription').append('<option value="' + v.appointment_id + '">' + v.formated_date + '</option>');
             });
+        }
+    });
+
+
+    var selectedPrescriptionDetails = prescriptionDetais.tablet;
+    function setUnit() {
+        selectedPrescriptionDetails = prescriptionDetais[$('#med_type').val()];
+        $('.unit').html("");
+        $('.quantity').removeAttr("min");
+        $('.quantity').removeAttr("max");
+        if(selectedPrescriptionDetails.unit){
+            $('.unit').html(selectedPrescriptionDetails.unit);
+        }
+        if(selectedPrescriptionDetails.min){
+            $('.quantity').prop("min", selectedPrescriptionDetails.min);
+        }
+        if(selectedPrescriptionDetails.max){
+            $('.quantity').prop("max", selectedPrescriptionDetails.max);
+        }
+        if(selectedPrescriptionDetails.element === "freetext"){
+            $('#free-text').click();
+            selectedPrescriptionDetails.suggestions && $('#suggestions').html(selectedPrescriptionDetails.suggestions.map(function (value) { return "<a href='#'>"+value+"</a>" }).join(','));
+        }else{
+            $('#standard').click();
+        }
+    }
+    $('#med_type').on('change',function (ev) {
+    $('#med_search').val('');
+    $('#dosage').val('');
+    $('#morning').val('');
+    $('#afternoon').val('');
+    $('#evening').val('');
+    $('#before-food').prop('checked', false);
+    $('#after-food').prop('checked', false);
+    $('#timings-text').val('');
+    setUnit();
+})
+
+
+$("#template_name").select2({
+    width: '200px',
+    tags: true,
+    placeholder: "Search for a template",
+    allowClear: true,
+    minimumInputLength: 3,
+    containerCssClass : "custom-select ",
+        ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+            type: "post",
+            url: base_url+"/api/getPrescriptionTemplateList.php",
+            dataType: 'json',
+            //contentType: 'application/json; charset=UTF-8',
+            data: function (term) {
+                return JSON.stringify({
+                    template_input : {
+                    	doctor_id: doctor_id,
+                      	//doctor_id: 1,
+                        template_id: 1,
+                        template_name:term.term,
+                        speciality: ""
+                    },
+                	session_info: {
+                        "user_id": sessionStorage.getItem("userId"),
+                        "access_token": sessionStorage.getItem("token"),
+                        "device_id": "web",
+                        "doctor_id": sessionStorage.getItem("doctorId")
+                    }
+                })
+            },
+            processResults: function (data) { // parse the results into the format expected by Select2.
+            // since we are using custom formatting functions we do not need to alter the remote JSON data
+                return {
+                    results: $.map(data.template_det, function (smthg) {
+                       return {id: smthg.template_id, text: smthg.template_name}
+                    })
+                };
+            }
+        },
+    cache: true
+}).addClass('custom-select ');
+
+
+$('#template_name').on('select2:select', function (e) {
+    var template_id = $(this).val();
+    var template_name=$("#template_name").text();       
+    getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
+        $(".modal-header").html(template_name);
+        $('#template-alert').modal({
+             show: true
         });
+    $("#replace").on("click", function (evt) {
+            prescription_data = prescription_data.map(function (p) {
+            	p.delete_flag = 'Y';
+                return p;
+            });
+        prescription_data   =   prescription_data.concat(res.prescription_details);
+        getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
+            showPrescriptions(res.prescription_details);
+        });
+        evt.preventDefault();
+    });
+    $("#append").on("click", function (evt) {
+        prescription_data = prescription_data.concat(res.prescription_details);
+        getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
+    	   showPrescriptions(res.prescription_details);
+        });
+        evt.preventDefault();
+    });
+});
+});
 
 /*  Code start for append and replace  */
 
-        
-    
-
-
-
 /*  code end here for append and replace  */
-        $("#med_search").autocomplete({
-            minLength: 3,
-            placeholder: "Search for a template",
-            allowClear: true,
-            classes: {
-                "ui-autocomplete": "menu"
-            },
-            source: function(req, response){
-                getData.getMymedicineList(req.term).then(function(res){
-                    response(res.my_medicine.map(function (t) { return {label:t.med_brand_name, id:t.med_id, dosage: t.dosage } }));
-                });;
-            },
-            select: function (ev, ui) {
-                $('#dosage').val(ui.item.dosage);
-            }
-        });
-
-        $("select").on("select2:select", function (evt) {
-            var element = evt.params.data.element;
-            var $element = $(element);
-
-            $element.detach();
-            $(this).append($element);
-            $(this).trigger("change");
-        });
-        $('#med_search').change(function(){
-            var med_name = $('#med_search').val();
-            $("#med_name").val=med_name;
-          // alert("med name:"+med_name);
-        });
-
-        if (prescriptions_list) {
-            prescription_data = prescriptions_list;
+    $("#med_search").autocomplete({
+        minLength: 3,
+        placeholder: "Search for a Medicine",
+        allowClear: true,
+        classes: {
+          "ui-autocomplete": "menu"
+        },
+        source: function(req, response){
+            getData.getMymedicineList(req.term).then(function(res){
+                response(res.my_medicine.map(function (t) { 
+                    return {label:t.med_brand_name, id:t.med_id, dosage: t.dosage }
+                }));
+            });;
+        },
+        select: function (ev, ui) {
+            $('#dosage').val(ui.item.dosage);
         }
+    });
+
+    $("select").on("select2:select", function (evt) {
+
+        var element = evt.params.data.element;
+        var $element = $(element);
+        $element.detach();
+        $(this).append($element);
+        $(this).trigger("change");
+    });
+    $('#med_search').change(function(){
+        var med_name = $('#med_search').val();
+        $("#med_name").val=med_name;
+    });
+
+    if (prescriptions_list) {
+        prescription_data = prescriptions_list;
+    }
+    $('.form').hide();
+    $('#add').on('click', function (ev) {
+        $(this).hide();
+        $("#form3").get(0).reset();
+        $('.form').show();
+        ev.stopPropagation();
+        $('#add-prescription').html("Add");
+    });
+    $("#close-button").on('click', function (ev) {
+        $('#add').show();
         $('.form').hide();
-        
-        $('#add').on('click', function (ev) {
-            $(this).hide();
-            $("#form3").get(0).reset();
-            $('.form').show();
-            ev.stopPropagation();
-            $('#add-prescription').html("Add");
+        $("#form3").get(0).reset();
+        $("#med_name").val("");
+        ev.stopPropagation();
+    })
+    showPrescriptions = function (prescriptions_list) {
+        prescription_data = prescriptions_list;
+        var source = $("#prescriptiontable").html();
+        var template = Handlebars.compile(source);
+        var rows = prescriptions_list.map(function (data) {
+            if (!data.delete_flag || data.delete_flag != 'Y') {
+                if(!!data.med_id){
+                    data.prescription_id = data.med_id;
+                }
+            return template({prescription: data});
+            }
         });
-        $("#close-button").on('click', function (ev) {
-             $('#add').show();
+        $('#tab1').html(rows.join(''));
+    };
+    showPrescriptions(prescription_data);
+
+
+
+    $("#add-prescription").click(function (evt) {
+        var formData = $("#form3").serializeArray();
+        evt.preventDefault();
+        var data = {};
+        formData.map(function (feild) {
+            data[feild.name] = feild.value;
+        });
+
+        if(!data.med_dosage_text){
+            frequency_string = data.morning + '-' + data.afternoon + '-' + data.night;
+            frequency_type= "std_MAE";
+        }else{
+            frequency_string = data.med_dosage_text;
+            frequency_type = "Others";
+        }
+        data.frequency_string =  frequency_string;
+        data.frequency_type = frequency_type;
+        data.course = data.course + ' ' + data.duration;
+        data.med_name=data.med_search;
+        if(validateForm(data)){
+            if ($('.form').attr('data-id')) {
+                data.prescription_id = $('.form').attr('data-id')
+                prescription_data = prescription_data.filter(function (p) {
+                    return p.prescription_id != data.prescription_id;
+                })
+            }
+            prescription_data.push(data);
             $('.form').hide();
-            $("#form3").get(0).reset();
-            $("#med_name").val("");
-            ev.stopPropagation();
-        })
-        var showPrescriptions = function (prescriptions_list) {
-            prescription_data = prescriptions_list;
-            var source = $("#prescriptiontable").html();
-            var template = Handlebars.compile(source);
-            var rows = prescriptions_list.map(function (data) {
-                if (!data.delete_flag || data.delete_flag != 'Y') {
-                    if(!!data.med_id){
-                        data.prescription_id = data.med_id;
-                    }
-                    return template({prescription: data});
-                }
-                //alert(({prescription:data}));
-            });
-            $('#tab1').html(rows.join(''));
-        };
-        if (apmt_status == "closed" || apmt_status == "expired") {
-            $("#add").hide();
-            $("#save_continue").hide();
-            $("#strong").hide();
-            $(".edit").hide();
-            $(".delete").hide();
-            $('#template_name').hide();
         }
-        //  $("#form4").hide()
-        showPrescriptions(prescription_data);
-        function validateForm(formData){
-            var isValid = true;
-            $('.form-error').addClass('hidden-xs-up')
-            $('#med_search').removeClass('error');
-           if(formData['med_name'] == ""){
-               $('#med_search').addClass('error');
-               isValid =false;
-           }
-           $('#med_type').removeClass('error');
-            $('.quantity').removeClass('error');
-            $('#timings-text').removeClass('error');
-
-            if(formData['frequency_type'] == "std_MAE" && formData['frequency_string'] == "0-0-0"){
-                $('.quantity').addClass('error');
-                isValid = false;
-           }else if(formData['frequency_type'] == "Others" && formData['frequency_string'].trim() == ""){
-                isValid = false
-                $('#timings-text').addClass('error');
-            }
-            $('input[name="course"]').removeClass('error');
-    		if($('input[name="course"]').val() == ""){
-                $('input[name="course"]').addClass('error');
-                isValid = false;
-            }
-            if(!isValid){
-    		    $('.form-error').removeClass('hidden-xs-up');
-			}
-            return isValid;
-        }
-        $("#add-prescription").click(function (evt) {
-              $('#add').show();
-            var formData = $("#form3").serializeArray();
-            evt.preventDefault();
-			//debugger
-            var data = {};
-            formData.map(function (feild) {
-                data[feild.name] = feild.value;
-            });
-             //debugger
-            if(!data.med_dosage_text){
-                frequency_string = data.morning + '-' + data.afternoon + '-' + data.night;
-                frequency_type= "std_MAE";
-                /*data.frequency_string = data.morning + '-' + data.afternoon + '-' + data.night;
-                data.frequency_type= "std_MAE";*/
-            }else{
-                frequency_string = data.med_dosage_text;
-                frequency_type = "Others";
-               /* data.frequency_string = data.med_dosage_text;
-                data.frequency_type = "Others";*/
-            }
-                data.frequency_string =  frequency_string;
-                data.frequency_type = frequency_type;
-
-          // data.frequency = Number(!!data.morning) + '-' + Number(!!data.afternoon) + '-' + Number(!!data.night);
-            data.course = data.course + ' ' + data.duration;
-            data.med_name=data.med_search;
-            if(validateForm(data)){
-                if ($('.form').attr('data-id')) {
-                    data.prescription_id = $('.form').attr('data-id')
-                    prescription_data = prescription_data.filter(function (p) {
-                        return p.prescription_id != data.prescription_id;
-                    })
-                }
-                prescription_data.push(data);
-                // showPrescriptions(prescription_data);
-                $('.form').hide();
-			}
-            getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
-                showPrescriptions(res.prescription_details);
-            });
-            //$("#form3").get(0).reset();
+        getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
+            showPrescriptions(res.prescription_details);
         });
-        $("#save_continue").on("click", function (evt) {
-            var next = $('#mytabs li.active').next();
-            next.length ?
-                next.find('a').click() :
-                $('#mytabs li a')[2].click();
-            evt.preventDefault();
+    });
+
+
+    $("#save_continue").on("click", function (evt) {
+        var next = $('#mytabs li.active').next();
+        next.length ?
+        next.find('a').click() :
+        $('#mytabs li a')[2].click();
+                evt.preventDefault();
         });
         $('#tab1').on('click', '.edit', function (ev) {
             var id = ev.currentTarget.id.split('_')[1];
             $('#add-prescription').html('Update');
             var prescription = prescription_data.filter(function (p) {
-                return p.prescription_id == id
+                  return p.prescription_id == id
             });
             if (prescription.length) {
-                prescription = prescription[0];
+                  prescription = prescription[0];
             }
             $('.form').attr('data-id', prescription.prescription_id);
             $('#med_search').val(prescription.med_name);
@@ -562,7 +581,7 @@
                 $('#standard').click();
             }else{
                 $('#timings-text').val(prescription.frequency_string);
-				$('#free-text').click();
+                $('#free-text').click();
             }
             $('#dosage').val(prescription.dosage);
             $('input[name="course"]').val(prescription.course.split(' ')[0]);
@@ -579,10 +598,9 @@
                         p.delete_flag = 'Y';
                     }
                     return p;
-                });
-                getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
-                    showPrescriptions(res.prescription_details);
-
+            });
+            getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
+                     showPrescriptions(res.prescription_details);
                 });
             }
         });
@@ -590,59 +608,88 @@
         $('#standard').click(function (ev) {
             $('#standard').addClass('selected');
             $('#free-text').removeClass('selected');
-			$('#standard-tab').show();
-			$('#free-text-tab').hide();
+            $('#timings-text').val('');
+            $('#standard-tab').show();
+            $('#free-text-tab').hide();
         });
         $('#free-text').click(function (ev) {
             $('#free-text').addClass('selected');
-            $('#standard').removeClass('selected')
+            $('#standard').removeClass('selected');
+            $('#morning').val('');
+            $('#afternoon').val('');
+            $('#evening').val('');
+            $('#before-food').prop('checked', false);
+            $('#after-food').prop('checked', false);
             $('#standard-tab').hide();
             $('#free-text-tab').show();
         });
         $('.timings .fa-plus').on('click', function (ev) {
-			var target = $(this).attr('for')
-			var currentValue = $('#'+target).val();
-			currentValue = !!currentValue ? Number(currentValue) : undefined;
-
-			if(currentValue){
-			    currentValue+=selectedPrescriptionDetails.baseQuantity;
-			}else{
-			    currentValue=selectedPrescriptionDetails.baseQuantity;
-			}
-            $('#'+target).val(currentValue);
-			ev.stopPropagation();
+            var target = $(this).attr('for')
+            var currentValue = $('#'+target).val();
+            currentValue = !!currentValue ?Number(currentValue) : undefined;
+        if(currentValue){
+            currentValue+=selectedPrescriptionDetails.baseQuantity;
+        }else{
+            currentValue=selectedPrescriptionDetails.baseQuantity;
+        }
+        $('#'+target).val(currentValue);
+             ev.stopPropagation();
         });
         $('.timings .fa-minus').on('click', function (ev) {
             var target = $(this).attr('for')
             var currentValue = $('#'+target).val();
-            currentValue = !!currentValue ? Number(currentValue) : undefined;
+            currentValue = !!currentValue ? Number(currentValue) :undefined;
             if(currentValue){
-                currentValue-=selectedPrescriptionDetails.baseQuantity;
+                 currentValue-=selectedPrescriptionDetails.baseQuantity;
             }else{
                 currentValue=selectedPrescriptionDetails.baseQuantity;
             }
             $('#'+target).val(currentValue);
-            ev.stopPropagation();
-        });
-        $('#suggestions').on('click', 'a', function (ev) {
-            var text = $(this).text();
-			$('#timings-text').val($('#timings-text').val() + text);
-        })
-    })
-        /*	$("#autocomplete").autocomplete(function (evt) {
-                getData.getMymedicineList(med);
-                evt.preventDefault();
+                 ev.stopPropagation();
             });
-    */
-            /*$("#autocomplete").autocomplete(function(evt){
-                debugger
-                var formData=$("#autocomplete").serializeArray();
-                var data={};
-                formData.map(function(feild){
-                    data[feild.name]=feild.value;
-                });
-                medicine_data.push(data);
-                getData.getMymedicineList(medicine_data);
-                evt.preventDefault();
-            });*/
+            $('#suggestions').on('click', 'a', function (ev) {
+                var text = $(this).text();
+                $('#timings-text').val($('#timings-text').val() + text);
+            })
+        })
+
+
+/*$('#previous_prescription').select2({
+     width: '200px',
+    placeholder: "Search for previous prescrption",
+    containerCssClass : "custom-select "
+
+})*/
+
+$('#previous_prescription').change(function(){
+    var apmt_id = $(this).val();
+    getData.getPrescription(apmt_id).then(function (res) {
+       // prescription_data = res.prescription_details;
+        $(".modal-header").html("Previous Prescriptions");
+        $('.template-alert').modal({
+            show: true
+        });
+        $(".replace").on("click", function (evt) {
+           
+            prescription_data = prescription_data.map(function (p) {
+                p.delete_flag = 'Y';
+                return p;
+            });
+            prescription_data   =   prescription_data.concat(res.prescription_details);
+            getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
+                showPrescriptions(res.prescription_details);
+            });
+             evt.preventDefault();
+        });
+        $(".append").on("click", function (evt) {
+            prescription_data =prescription_data.concat(res.prescription_details);
+            getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
+                showPrescriptions(res.prescription_details);
+            });
+            evt.preventDefault();
+        });
+    });
+})
+
+
 </script>

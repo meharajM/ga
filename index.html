@@ -98,7 +98,13 @@
                                 <tr><td>Address:</td><td>	{{health_seeker_profile.address}}</td></tr> -->
                         </table>
                         </p>
-                        <div>Reason {{case_sheet.consultation_reason}}</div>
+
+                        <p>
+                            {{#appointment_det.case_sheet}}
+                        <div><b>Reason :</b> {{consultation_reason}}</div>
+                         <div><b>Description :</b> {{case_description}}</div>
+                         {{/appointment_det.case_sheet}}
+                        </p>
 
                     </div>
                 </div>
@@ -119,8 +125,17 @@
 
                         <p>
                             {{#appointment_det.health_record}}
-                        <a href="#" id="{{id}}" class="health_record" data-toggle="modal" data-target="#myModal"> <span class="fa fa-file-text-o m-1"></span>{{description}}</a>
+                        <a href="#" id="{{id}}" class="health_record"  rel="{{doc_datatype}}" data-toggle="modal" data-target="#myModal"> <span class="fa fa-file-text-o m-1"></span>{{description}}</a>
                             {{/appointment_det.health_record}}
+                        </p>
+
+                         <b class="mt-2 summary-docs">Summary Document</b>
+
+
+                        <p>
+                            {{#appointment_det}}
+                        <a href="#" id="{{summary_record_id}}" class="health_record"  rel="application/pdf" data-toggle="modal" data-target="#myModal"> <span class="fa fa-file-text-o m-1 sumary_img"></span>{{summary_record_name}}</a>
+                            {{/appointment_det}}
                         </p>
 
 

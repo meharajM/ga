@@ -1,5 +1,5 @@
 var appointment_id, hs_id,appointment_list,sessionId,token,apiKey,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, summary_details;
-var appointment,apmt_type,consultation_id,record_id;
+var appointment,apmt_type,consultation_id,record_id,summary_record_id;
 var showToaster, session;
 var doctor_id, doctor_name,doc_photo, template_id, login_token, appointment_date, selectedAppointment
 //var apiKey = "45638452";
@@ -32,7 +32,6 @@ $(document).ready(function(){
         })[0];
 		getData.getAppointmentDetails(appointment_id).then(function(res){
 		    $('.no-appointment-selected').addClass('d-none');
-
 		    $('.appointment-info').removeClass('d-none');
 		    var source = $('#detailsTemplate').html();
             var template = Handlebars.compile(source);
@@ -40,8 +39,16 @@ $(document).ready(function(){
             $('#details').html(html);
             $('#prescription').load('./components/prescription.html');
           //  $('#newprescription').load('./components/newprescription.html');
+        
+          if(res.appointments_details.appointment_det.summary_record_id){
+            summary_record_id = res.appointments_details.appointment_det.summary_record_id;
+          }
           if(res.appointments_details.appointment_det.health_record.length == 0){
                 $('.attach-docs').hide();
+          }
+          if(res.appointments_details.appointment_det.summary_record_id == null){
+                $('.summary-docs').hide();
+                $('.sumary_img').hide();
           }
 
 			if(res.appointments_details.appointment_det.apmt_type != "VC"){
@@ -61,16 +68,27 @@ $(document).ready(function(){
 
             });
             $(".health_record").on("click", function (evt) {
-                getData.getDocumentBlobData(hs_id).then(function (res) {
-                	var data=res.document.doc_data;
-                    var objbuilder = '';
-                    objbuilder += ('<object width="100%" height="100%" data="data:application/pdf;base64,');
-                    objbuilder += (data);
-                    objbuilder += ('" type="application/pdf" class="internal">');
-                    objbuilder += ('<embed src="data:application/pdf;base64,');
-                    objbuilder += (data);
-                    objbuilder += ('" type="application/pdf"  />');
-                    objbuilder += ('</object>');
+                 var objbuilder = '';
+                 var data= '';
+                var ftype  = $(this).attr('rel');
+                var rec_id = this.id;
+                console.log(ftype);
+                getData.getDocumentBlobData(hs_id,rec_id).then(function (res) {
+                	 data=res.document.doc_data;
+                     objbuilder = '';
+
+                    if(ftype == "application/pdf"){
+                        objbuilder += ('<object width="100%" height="100%" data="data:application/pdf;base64,');
+                        objbuilder += (data);
+                        objbuilder += ('" type="application/pdf" class="internal">');
+                        objbuilder += ('<embed src="data:application/pdf;base64,');
+                        objbuilder += (data);
+                        objbuilder += ('" type="application/pdf"  />');
+                        objbuilder += ('</object>');
+                    }else{
+                         objbuilder = "<div class='frame'><img  id='sample_picture' src='data:"+ftype+";base64," +data+ "' /></div>";
+                    }
+
                     $('.modal-body').html(objbuilder);
                     $(".document-title").html(res.document.doc_desc);
 

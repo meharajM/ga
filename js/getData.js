@@ -41,10 +41,9 @@ var getData = {
     },
     getAppointmentDetails: function(id){
         var url = "/api/getAppointmentDetails.php";
-        var doctorId = "1";
         var apmt_input= {
             apmt_id : id,
-            doctor_id :doctorId,
+            doctor_id :doctor_id,
             "hcc_id" : selectedAppointment.hcc_det.hcc_id,
         }
         var data = {
@@ -183,6 +182,7 @@ var getData = {
             prescription: prescriptions,
             session_info: session_info
         };
+        debugger
         showLoader();
         hideApiError();
         var call = $.ajax({
@@ -454,13 +454,16 @@ var getData = {
             error: function(err,status){
                 console.error(err, status);
             }
+        }).then(function(res){
+            hideLoader();
+            return res;
         });
         return call;
     },
-    getDocumentBlobData: function (id) {
+    getDocumentBlobData: function (hs_id,rec_id) {
         var url = "/api/getDocumentBlobData.php";
-        var hs_id = id;
-        var record_id=441;
+        var hs_id = hs_id;
+        var record_id= rec_id;
         var document = {
             hs_id:hs_id,
             record_id:record_id
@@ -486,5 +489,83 @@ var getData = {
             }
         });
         return call;
+    },
+
+
+    /* Bala Code starts for get previous appointment dates */
+    getPreviousAppointmentDate: function(term){
+        var url = "api/getPreviousAppointments.php";
+        var doctorId = doctor_id;
+        var date     = moment(appointment_date).format("YYYYMMDD");
+        var hsId    = hs_id;
+
+        hideApiError();
+        call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data:JSON.stringify({
+                apmt_input : {
+                    doctor_id : doctorId,
+                    hs_id     : hsId,
+                    date      : date,
+                    apmt_with_prescription  : "Y"
+                },
+                session_info: session_info
+            }),
+            dataType: 'json',
+            success: function (res,status) {
+               /* var result = res.previous_appointments;
+                if(result != ''){
+                    // Loop through each of the results and append the option to the dropdown
+                    $.each(result, function(k, v) {
+                         $('#previous_prescription').append('<option value="' + v.appointment_id + '">' + v.formated_date + '</option>');
+                    });
+                }*/
+                 showApiError(res.error);
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        });
+        return call;
+    },
+    /* Bala Code ends for get previous appointment date */
+
+    /* Bala code starts here for copy previous prescription */
+
+    getPrescription: function(apmt_id){
+        var url = "/api/getPrescription.php";
+        var doctorId = doctor_id;
+        var apmt_input = {
+            doctor_id: doctorId,
+            apmt_id: apmt_id,
+        };
+        var data = {
+            apmt_input  : apmt_input,
+            session_info: session_info
+        }
+        hideApiError();
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res,status) {
+                console.log(res);
+                 showApiError(res.error);
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        });
+        return call;
     }
+    /* Bala Code ends here for copy  previous prescription */
+
 }
