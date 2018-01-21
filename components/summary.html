@@ -507,6 +507,7 @@
                     data.consultation_id=consultation_id;
                 }
                 data.suggested_test = suggested_test_list;
+                data.notes = $('#note-content').val();
                 getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
                    // debugger;
                     return res;
@@ -558,6 +559,7 @@
                     data.consultation_id=consultation_id;
                 }
                 data.suggested_test = suggested_test_list;
+                data.notes = $('#note-content').val();
                 getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
                     // debugger;
                     $('#close-consultation').modal({

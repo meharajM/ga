@@ -334,16 +334,24 @@ $(document).ready(function(){
         $('.full-screen').removeClass('hidden-xs-up')
         $('.full-screen-off').addClass('hidden-xs-up')
     }
-    showToaster = function (message) {
+    showToaster = function (message, position, delay) {
         var x = $('#toaster');
 
         // Add the "show" class to DIV
         x.html(message);
         x.addClass("show");
+        if(position){
+            x.addClass(position);
+        }else{
+            x.addClass('bottom');
+        }
 
-
+        var tDelay = 1000;
+        if(delay){
+            tDelay = delay;
+        }
         // After 3 seconds, remove the show class from DIV
-        setTimeout(function(){ x.removeClass("show"); x.html('')}, 1000);
+        setTimeout(function(){ x.removeClass("show"); x.html('')}, tDelay);
     }
     //function getDocument() {
     //	debugger;
@@ -382,6 +390,14 @@ $(document).ready(function(){
     $('#logout').on('click', logout);
     $('#api-error').on("click", '.fa-times', function (ev) {
         hideApiError();
+    });
+    $('#add-note').on('click', function (ev) {
+        $('.float-note').removeClass('hidden-xs-up');
+        $('.float-note').draggable();
+        showToaster("You can drag the note popup wherever you want");
+    });
+    $('#close-note').on('click', function () {
+        $('.float-note').addClass('hidden-xs-up');
     });
 });
 

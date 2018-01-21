@@ -331,10 +331,14 @@ body{
     position: fixed; /* Sit on top of the screen */
     z-index: 1; /* Add a z-index if needed */
     left: 50%; /* Center the toaster */
+}
+#toaster.top{
+    top: 30px;
+}
+#toaster.bottom{
     bottom: 30px; /* 30px from the bottom */
 }
-
-/* Show the toaster when clicking on a button (class added with JavaScript) */
+    /* Show the toaster when clicking on a button (class added with JavaScript) */
 #toaster.show {
     visibility: visible; /* Show the toaster */
 
@@ -1158,4 +1162,17 @@ hr.style-three:before {
 
 .date-error{
     color:red;
+}
+.float-note{
+    z-index: 10;
+    position: absolute;
+    padding: 8px;
+    background-color: white;
+    border: 0.5px solid #cccccc;
+    right: 80px;
+    top: 100px;
+}
+.float-note textarea{
+    width: 100%;
+    height: 100%;
 }
