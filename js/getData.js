@@ -5,7 +5,7 @@ var session_info = {
     "doctor_id": sessionStorage.getItem("doctorId")
 };
 var doctor_id = sessionStorage.getItem("doctorId");
-var base_url = "https://52.66.157.195/growayu/ganewdesign/";      //Test Server
+var base_url = "http://52.66.157.195/growayu/ganewdesign/";      //Test Server
 //var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
 var getData = {
     getDashboardData: function(date){
@@ -44,8 +44,8 @@ var getData = {
         var apmt_input= {
             apmt_id : id,
             doctor_id :doctor_id,
-            "hcc_id" : selectedAppointment.hcc_det.hcc_id,
-        }
+            "hcc_id" : selectedAppointment.hcc_det.hcc_id
+        };
         var data = {
             apmt_input: apmt_input,
             session_info: session_info
@@ -77,7 +77,7 @@ var getData = {
             "doctor_pwd": password,
             "location": {
                 "latitude": "",
-                "langitude": ""
+                "longitude": ""
             },
             "device_id": "web",
         };
@@ -182,7 +182,6 @@ var getData = {
             prescription: prescriptions,
             session_info: session_info
         };
-        debugger
         showLoader();
         hideApiError();
         var call = $.ajax({
@@ -215,35 +214,6 @@ var getData = {
             hs_id: hs_id,
             "hcc_id" : selectedAppointment.hcc_det.hcc_id,
         };
-        /* var summary={
-             consultation_id: "",
-             diagnosis:"pain in chest",
-             mgmt_plan:"hello",
-             followup_date:"20-12-2017",
-             followup_in: "2 days",
-             waiver_status: "Partial",
-             waived_amount: "1000",
-             ga_notes: "bye",
-             doctor_notes: "hi there",
-             suggested_test: [
-                 {
-                     test_id: "1",
-                     test_name: "Blood"
-                 },
-                 {
-                     test_id: "2",
-                     test_name: "Chemo"
-                 }
-             ],
-             seeker_instructions: [
-                 {
-                     instruction_id: "",
-                     instruction_text: ""
-                 }
-             ]
-         };*/
-
-
         var data = {
             apmt_input: apmt_input,
             summary:summary,
@@ -259,6 +229,12 @@ var getData = {
             success: function (res,status) {
                 //alert("success in update summary");
                  showApiError(res.error);
+                 if(!res.error.error_message)
+                 {
+                     $('.alert-autocloseable-success').show();
+                     $('.alert-autocloseable-success').delay(3000).fadeOut("slow", function () {
+                     });
+                 }
                 return res;
             },
             error: function(err,status){
@@ -292,15 +268,10 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-               // console.log(res);
-            
-                 showApiError(res.error);
-                //  alert("success in preview summary");
-
+                showApiError(res.error);
                 return res;
             },
             error: function(err,status){
-                // alert("error in preview summary");
                 console.error(err, status);
             }
         }).then(function(res){
@@ -319,24 +290,48 @@ var getData = {
             data: JSON.stringify({
                 medicine_list: {
                     doctor_id: doctorId,
-                    //doctor_id:1,
                     med_name: term
                 },
                 session_info: session_info
             }),
             dataType: 'json',
             success: function (res) {
-                //   alert("success in med");
-                showApiError(res.error)
+                showApiError(res.error);
                 return res;
             },
             error: function(err,status){
-                //  alert("error in med");
                 console.error(err, status);
             }
         });
         return call;
     },
+    addMyMedicineList: function(medicine){
+        var url = "/api/addMyMedicineList.php";
+        var data = {
+            medicine: medicine,
+            session_info: session_info
+        };
+        showLoader();
+        hideApiError();
+        var call = $.ajax({
+            type: "POST",
+            url: base_url+url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res,status) {
+                showApiError(res.error);
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            hideLoader();
+            return res;
+        });
+        return call;
+    },
+
     getPrescriptionTemplateList: function(term){
         var url = "/api/getPrescriptionTemplateList.php";
         var doctorId = doctor_id;
@@ -377,7 +372,7 @@ var getData = {
         var data = {
             template_input: template_input,
             session_info: session_info
-        }
+        };
         hideApiError();
         var call = $.ajax({
             type: "POST",
@@ -448,9 +443,15 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-                 showApiError(res.error);
-                return res;
-            },
+                  showApiError(res.error);
+                if(!res.error.error_message)
+                {
+                    $('.alert-autocloseable-success').show();
+                    $('.alert-autocloseable-success').html("Your Consultation is Closed !!")
+                    $('.alert-autocloseable-success').delay(3000).fadeOut("slow", function () {
+                    });
+                }
+                return res;            },
             error: function(err,status){
                 console.error(err, status);
             }
@@ -479,7 +480,6 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res, status){
-               // alert("success in blob");
                 showApiError(res.error);
                 return res;
             },
@@ -493,8 +493,8 @@ var getData = {
 
 
     /* Bala Code starts for get previous appointment dates */
-    getPreviousAppointmentDate: function(term){
-        var url = "api/getPreviousAppointments.php";
+    getPreviousAppointmentDate: function(){
+        var url = "/api/getPreviousAppointments.php";
         var doctorId = doctor_id;
         var date     = moment(appointment_date).format("YYYYMMDD");
         var hsId    = hs_id;
@@ -508,7 +508,7 @@ var getData = {
                     doctor_id : doctorId,
                     hs_id     : hsId,
                     date      : date,
-                    apmt_with_prescription  : "Y"
+                    apmt_with_prescription  : ""
                 },
                 session_info: session_info
             }),
@@ -532,6 +532,39 @@ var getData = {
         });
         return call;
     },
+
+    getPreviousPrescriptions: function(){
+        var url = "/api/getPreviousAppointments.php";
+        var doctorId = doctor_id;
+        var date     = moment(appointment_date).format("YYYYMMDD");
+        var hsId    = hs_id;
+
+        hideApiError();
+        call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+            data:JSON.stringify({
+                apmt_input : {
+                    doctor_id : doctorId,
+                    hs_id     : hsId,
+                    date      : date,
+                    apmt_with_prescription  : "Y"
+                },
+                session_info: session_info
+            }),
+            dataType: 'json',
+            success: function (res,status) {
+                showApiError(res.error);
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        });
+        return call;
+    },
     /* Bala Code ends for get previous appointment date */
 
     /* Bala code starts here for copy previous prescription */
@@ -541,7 +574,7 @@ var getData = {
         var doctorId = doctor_id;
         var apmt_input = {
             doctor_id: doctorId,
-            apmt_id: apmt_id,
+            apmt_id: apmt_id
         };
         var data = {
             apmt_input  : apmt_input,
@@ -568,4 +601,4 @@ var getData = {
     }
     /* Bala Code ends here for copy  previous prescription */
 
-}
+};

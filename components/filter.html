@@ -1,8 +1,8 @@
 <script src="./js/bootstrap-datepicker.min.js"></script>
 <div class="bg-light border">
-    <div class="text-center pt-2 pb-1 mt-2 mb-2">
+    <div class="text-center pt-2 pb-1 mt-2 mb-2 body-font">
                     <div class="fa fa-angle-left prev"  id="previous_day"></div>
-                    <input id="date" name="date" type="text" style="text-align:center"/>
+                    <input id="date" class="form-input" name="date" type="text" style="text-align:center"/>
                     <input type="hidden" name="sel_date" id="sel_date">
                     <div class="fa fa-angle-right next" id="next_day">
                     </div>
@@ -12,25 +12,25 @@
                 <div class="filter-area hidden-xs-up">
                     <div class="btn-group btn-group-sm status-filter" data-toggle="buttons">
                         <label class="all-button btn btn-light active all-btn">
-                            <input class='filter-btn' type="radio" name="filter_1" value="all" id="all" autocomplete="off" checked="checked">All<sup><span id="all_button"></span></sup>
+                            <input class='filter-btn body-font' type="radio" name="filter_1" value="all" id="all" autocomplete="off" checked="checked">All<sup><span id="all_button"></span></sup>
                         </label>
                         <label class="pending-button btn btn-light pending-btn">
-                            <input class='filter-btn' type="radio" name="filter_1" value="booked" id="pending" autocomplete="off">Pending<sup><span id="pending_button"></span></sup>
+                            <input class='filter-btn body-font' type="radio" name="filter_1" value="booked" id="pending" autocomplete="off">Pending<sup><span id="pending_button"></span></sup>
                         </label>
                         <label class="closed-button btn btn-light closed-btn">
-                            <input class='filter-btn' type="radio" name="filter_1" value="closed" id="closed" autocomplete="off">Closed<sup><span id="closed_button"></span></sup>
+                            <input class='filter-btn body-font' type="radio" name="filter_1" value="closed" id="closed" autocomplete="off">Closed<sup><span id="closed_button"></span></sup>
                         </label>
                     </div>
 
-                    <div class="btn-group btn-group-sm mode-filter" data-toggle="buttons">
+                    <div class="btn-group btn-group-sm mode-filter body-font" data-toggle="buttons">
                         <label class="btn btn-light active">
-                            <input class='filter-btn' type="radio" name="filter_2" value="all_filter_2" id="all_filter_2" autocomplete="off"  checked="checked">All
+                            <input class='filter-btn body-font' type="radio" name="filter_2" value="all_filter_2" id="all_filter_2" autocomplete="off"  checked="checked">All
                         </label>
                         <label class="btn btn-light">
-                            <input class='filter-btn' type="radio" name="filter_2" value="VC" id="video1" autocomplete="off" ><i class="fa fa-video-camera"></i>
+                            <input class='filter-btn body-font' type="radio" name="filter_2" value="VC" id="video1" autocomplete="off" ><i class="fa fa-video-camera"></i>
                         </label>
                         <label class="btn btn-light">
-                            <input class='filter-btn' type="radio" name="filter_2" value="PC" id="physical1" autocomplete="off"><i class="fa fa-user"></i>
+                            <input class='filter-btn body-font' type="radio" name="filter_2" value="PC" id="physical1" autocomplete="off"><i class="fa fa-user"></i>
                         </label>
                     </div>
                 </div>
@@ -39,11 +39,43 @@
         </div>
 
 </div>
+<script  type="text/x-handlebars-template" id="filter_template">
+    <div class="btn-group btn-group-sm status-filter" data-toggle="buttons">
+        <label class="all-button btn btn-light active all-btn">
+        <input class='filter-btn body-font' type="radio" name="filter_1" value="all" id="all" autocomplete="off" checked="checked">All<sup><span id="all_button"></span></sup>
+    </label>
+    <label class="pending-button btn btn-light pending-btn">
+        <input class='filter-btn body-font' type="radio" name="filter_1" value="booked" id="pending" autocomplete="off">Pending<sup><span id="pending_button"></span></sup>
+    </label>
+    <label class="closed-button btn btn-light closed-btn">
+        <input class='filter-btn body-font' type="radio" name="filter_1" value="closed" id="closed" autocomplete="off">Closed<sup><span id="closed_button"></span></sup>
+    </label>
+    </div>
+
+    <div class="btn-group btn-group-sm mode-filter body-font" data-toggle="buttons">
+        <label class="btn btn-light active">
+        <input class='filter-btn body-font' type="radio" name="filter_2" value="all_filter_2" id="all_filter_2" autocomplete="off"  checked="checked">All
+        </label>
+        <label class="btn btn-light">
+        <input class='filter-btn body-font' type="radio" name="filter_2" value="VC" id="video1" autocomplete="off" ><i class="fa fa-video-camera"></i>
+        </label>
+        <label class="btn btn-light">
+        <input class='filter-btn body-font' type="radio" name="filter_2" value="PC" id="physical1" autocomplete="off"><i class="fa fa-user"></i>
+        </label>
+        </div>
+</script>
+
 
 <script>
 $(document).ready(function () {
     var filter1, filter2;
      var selDate = $('sel_date').val();
+     var reset_filter=function(){
+         var source = $("#filter_template").html();
+         var template = Handlebars.compile(source);
+         var html = template();
+         $(".filter-area").html(html);
+     }
      $('#date').val(selDate);
      $('.filter-btn').on('change',  function(ev){
         if( 'all' == ev.target.value){
@@ -84,7 +116,8 @@ $(document).ready(function () {
         minDate: 0,
         todayHighlight: true,
         autoclose: true,
-    }).on('changeDate', function(e) {         
+    }).on('changeDate', function(e) {
+       // reset_filter();
         var actualDate = e.date;      
         $("#sel_date").val(moment(actualDate).format("dddd,ll"));
         selDate = moment(actualDate).format("dddd,ll");
@@ -100,6 +133,7 @@ $(document).ready(function () {
         selDate =moment().format("dddd, ll");
         // Hook up previous button event
         $('#previous_day').click(function () {
+         //   reset_filter();
             if(prev_apmt_date) {
                 var date = prev_apmt_date;
                 getData.getDashboardData(date).then(function (res) {
@@ -117,6 +151,7 @@ $(document).ready(function () {
         });
     // Hook up next button event
         $('#next_day').click(function () {
+          //  reset_filter();
             if(next_apmt_date) {
                 var date = next_apmt_date;
                 getData.getDashboardData(date).then(function (res) {
@@ -136,4 +171,8 @@ $(document).ready(function () {
           });
     });  
 })
+
+
+    // Make a reset_filter function
+
 </script>

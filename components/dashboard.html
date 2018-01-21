@@ -10,15 +10,15 @@
             <ul class="navbar-nav mr-auto">
             </ul>
             <div>
-                <span class="doc-name"></span>
-                <img class="mr-1" id="mr-1" style="height: 25px">
-                <span class="fa fa-power-off" id="logout">  </span>
+                <span class="doc-name body-font"></span>
+                <img class="mr-1" id="mr-1"><!--<span class="fa fa-user-md" id="default_profile pic"></span>-->
+                <span class="fa fa-power-off body-font" id="logout">  </span>
             </div>
         </div>
     </nav>
 </div>
 <div id="api-error" class="hidden-xs-up">
-    <span id="api-error-message"></span><span class="fa fa-times font-12 m-2"></span>
+    <span id="api-error-message"></span><span class="fa fa-times small-font m-2"></span>
 </div>
 <div class="content-container container bg-faded pt-2">
 
@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col-sm-12 appointment-info details d-none">
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist" id="mytabs">
+                    <ul class="nav nav-tabs heading-font" role="tablist" id="mytabs">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#details" role="tab"><span class="fa fa-info-circle"> </span> Details</a>
                         </li>
@@ -73,9 +73,18 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#summary" role="tab"><span class="fa fa-list-alt"> </span> Summary</a>
                         </li>
+
+                        <!-- Bala Code starts here-->
+                         <li class="nav-item">
+                            <a class="history_tab nav-link" data-toggle="tab" href="#history" role="tab"><span class="fa fa-history"> </span> History</a>
+                        </li>
+                        <!-- Bala Code ends here -->
                     <!--    <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#newprescription" role="tab"><span class="fa fa-pencil"> </span> New Prescription</a>
                         </li>-->
+                        <li class="nav-item">
+                            <a class="parameters_tab nav-link" data-toggle="tab" href="#parameters" role="tab"><span class="fa fa-medkit"> </span> Health Parameters</a>
+                        </li>
                         <li class="nav-item">
                             <div class="btn-success btn btn-default" id="start-vedio-consultation"><span class="fa fa-caret-square-o-right"> </span></div>
                         </li>
@@ -83,18 +92,19 @@
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div class="tab-pane active" id="details" role="tabpanel">
-
-
-                        </div>
+                        <div class="tab-pane active" id="details" role="tabpanel"></div>
                         <div class="tab-pane" id="prescription" role="tabpanel">...</div>
                         <div class="tab-pane" id="summary" role="tabpanel">...</div>
+                         <div class="tab-pane" id="history" role="tabpanel">...</div>
+                        <div class="tab-pane" id="parameters" role="tabpanel">
+                            <iframe class='iframe'></iframe>
+                        </div>
                         <!--<div class="tab-pane" id="newprescription" role="tabpanel">...</div>-->
                     </div>
                 </div>
                 <div class="no-appointment-selected col-9 text-center">
                     <img src="img/no_time.png" />
-                    <p id="no-appointment-selected-message">You don't have any scheduled appointments</p>
+                    <p id="no-appointment-selected-message" class="heading-font">You don't have any scheduled appointments</p>
                 </div>
             </div>
         </div>
@@ -107,6 +117,17 @@
 <script type="text/javascript" src="./js/getData.js"></script>
 <script type="text/javascript" src="./js/dashboard.js"></script>
 <script>
-    document.getElementById("mr-1").src =doc_photo;
+   // document.getElementById("mr-1").src =doc_photo;
     $(".doc-name").html('<b> Dr. '+doctor_name+'</b>');
+
+  //  if(doc_photo=="http://52.66.157.195/growayu/ganewdesign/uploads/doctor_photo/" || doc_photo=="")
+ //  if(doc_photo=="https://13.126.208.181/gadoctor/uploads/doctor_photo/" || doc_photo=="")
+	if(doc_photo=="https://doctor.growayu.com/growayudoctor/uploads/doctor_photo/" || doc_photo=="")
+   {
+        document.getElementById("mr-1").src ="img/doctor_profile_pic.png";
+    }
+    else
+        {
+            document.getElementById("mr-1").src =doc_photo
+        }
 </script>

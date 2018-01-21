@@ -17,160 +17,157 @@
     <p>
         (This is electronically generated consultation summary. Signature not required.)
     </p>
-
-
 </script>
-<div class="container">
+<div class="container col-12 pl-4 pr-4">
     <div class="row">
-        <div class="col-xs-12 col-md-12 font-14" style="display:block;width:100%; padding-bottom:10px">
+        <div class="col-xs-12 col-md-12 body-font" style="display:block;width:100%; padding-bottom:10px">
             <br>
 
             <form id="form4" method="get" data-toggle="validator" role="form" name="summary-form">
-                <div class="form-group">
-                    <label class="font-12 control-label required field" for="diagnosis"><b>Patient Diagnosis / Diagnoses</b><span class="asteriskField">*</span></label>
-
-                    <div class="input-group">
-                        <input class="form-control col-md-6 form-input" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" />
-
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label class="small-font control-label required field" for="diagnosis"><b>Patient Diagnosis / Diagnoses</b><span class="asteriskField">*</span></label>
+                        <div class="input-group">
+                            <input class="form-control col-md-10 form-input small-font input-height" type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis / diagnoses" title="Please enter Diagnosis" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label class="control-label required field small-font" for="plan"><b>Management Plan / Advice</b><span class="asteriskField">*</span></label>
+                        <div class="input-group">
+                            <textarea class="form-control col-md-10 small-font" cols="40" id="mgmt_plan" name="mgmt_plan" rows="3" placeholder="Enter Management Plan"  title="Please enter details"></textarea>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label class="control-label small-font" for="suggested_test">
+                            <b>Suggested Tests</b>
+                        </label>
+                        <div class="input-group">
+                            <input class="form-input col-10 small-font input-height" name="suggested_test" id="suggested_test" placeholder="Suggested Test">
+                            <!--   <select class="test_id col-md-6" multiple="" name="suggested_test" id="suggested_test"></select>-->
+                        </div>
+                        <div id="suggested_test_list" class="m-1 small-font">
 
-                    <label class="control-label required field font-12" for="plan"><b>Management Plan / Advice</b><span class="asteriskField">*</span></label>
-
-                    <div class="input-group">
-                        <textarea class="form-control col-md-6" cols="40" id="mgmt_plan" name="mgmt_plan" rows="3" placeholder="Enter Management Plan"  title="Please enter details"></textarea>
+                        </div>
                     </div>
-                </div>
+                    <div class="col-6">
+                        <label class="control-label small-font" for="follow_up">
+                            <b>Next Follow-up?</b>
+                            <div id="date-error-text"></div>
+                        </label>
 
-                <div class="form-group">
-                    <label class="control-label font-12" for="radio">
-                        <b> Changes made to current medication?</b>
-                    </label>
-                    <div class="form-group row">
-                        <div class="col-sm-4">
-                            <div class="medicin-unit">
-                                <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-light active">
-                                        <input type="radio" name="change_medication" autocomplete="off"> Yes
-                                    </label>
-                                    <label class="btn btn-light">
-                                        <input type="radio" name="change_medication" autocomplete="off"> No
-                                    </label>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-5 col-sm-12">
+                                <div class="dropdown">
+                                    <select class="followup form-input form-control small-font" name="followup_in" id="follow_up">
+                                        <option name="followup_in" selected disabled>Select</option>
+                                        <option id="No_Follow_up">No Follow-up</option>
+                                        <option id="After_2_Days">After 2 Days</option>
+                                        <option id="After_1_Week">After 1 Week</option>
+                                        <option id="After_10_Days">After 10 Days</option>
+                                        <option id="After_2_Weeks">After 2 Weeks</option>
+                                        <option id="After_1_Month">After 1 Month</option>
+                                        <option id="Others">Others</option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-
-                    <label class="control-label font-12" for="waive">
-                        <b>Waive Fee for this Consultation?</b>
-                    </label>
-                    <!-- <div class="row"> -->
-                    <div class="form-group row">
-                        <div class="col-sm-4 col-md-3" >
-                            <div class="medicin-unit">
-                                <div class="btn-group waiver" data-toggle="buttons">
-                                    <label class="btn btn-light active No_fee">
-                                        <input type="radio" name="waiver_status" value="No" id="No_fee" autocomplete="off" checked="checked"> No
-                                    </label>
-                                    <label class="btn btn-light Full_fee">
-                                        <input type="radio" name="waiver_status" value="Full" id="Full_fee" autocomplete="off"> Full
-                                    </label>
-                                    <label class="btn btn-light Partial_fee">
-                                        <input type="radio" name="waiver_status" value="Partial" id="Partial_fee" autocomplete="off"> Partial
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-4 input-control" id="ifPartial" style="display: none">
-                            <label class="control-label">
-                                <input class="form-control form-input" type="text" name="waived_amount" id="p_check" autocomplete="off">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="form-group">
-                    <label class="control-label font-12" for="follow_up">
-                        <b>Next Follow-up?</b>
-                    </label>
-
-
-                    <div class="form-group row">
-                        <div class="col-md-3 col-sm-12">
-                            <div class="dropdown">
-
-
-                                <select class="followup form-control" name="followup_in" id="follow_up">
-                                    <option name="followup_in" selected>Select</option>
-                                    <option id="After_2_Days">After 2 Days</option>
-                                    <option id="After_1_Week">After 1 Week</option>
-                                    <option id="After_10_Days">After 10 Days</option>
-                                    <option id="After_2_Weeks">After 2 Weeks</option>
-                                    <option id="After_1_Month">After 1 Month</option>
-                                    <option id="Others">Others</option>
-                                </select>
-
-
-                                <!--  <ul class="dropdown-menu text-center">
-                                      <li id="After_1_Week" name="followup_in">After 1 Week</li>
-                                      <li id="After_10_Days" name="followup_in">After 10 Days</li>
-                                      <li id="After_2_Weeks" name="followup_in">After 2 Weeks</li>
-                                      <li id="After_1_Month" name="followup_in">After 1 Month</li>
-                                  </ul>-->
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-12">
-                            <div class="input-group">
-                                <input class="form-control form-input" type="text" id="followup_date" name="followup_date" />
-                                <div class="input-group-addon form-input" id="cal">
-                                    <i class="fa fa-calendar-times-o"></i>
+                            <div class="col-md-5 col-sm-12">
+                                <div class="input-group">
+                                    <input class="form-control form-input small-font input-height" type="text" id="followup_date" name="followup_date" />
+                                    <div class="input-group-addon form-input" id="cal">
+                                        <i class="fa fa-calendar-times-o"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-                <div class="form-group">
-                    <label class="control-label font-12" for="suggested_test">
-                        <b>Suggested Tests</b>
-                    </label>
-                    <div class="input-group">
-                        <input class="form-input form-input" name="suggested_test" id="suggested_test" placeholder="Suggested Test">
-                     <!--   <select class="test_id col-md-6" multiple="" name="suggested_test" id="suggested_test"></select>-->
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label class="control-label small-font" for="radio">
+                            <b> Changes made to current medication?</b>
+                        </label>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <div class="medicin-unit">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-light change_medication_yes active small-font">
+                                            <input type="radio" name="change_medication" autocomplete="off" class="small-font input-height"> Yes
+                                        </label>
+                                        <label class="btn btn-light change_medication_no small-font">
+                                            <input type="radio" name="change_medication" autocomplete="off" class="small-font  input-height"> No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="suggested_test_list" class="m-1">
-
+                    <div class="col-6">
+                        <label class="control-label small-font" for="waive">
+                            <b>Waive Fee for this Consultation?</b>
+                        </label>
+                        <!-- <div class="row"> -->
+                        <div class="form-group row">
+                            <div class="col-md-6" >
+                                <div class="medicin-unit">
+                                    <div class="btn-group waiver" data-toggle="buttons">
+                                        <label class="btn btn-light active No_fee small-font">
+                                            <input type="radio" class="small-font input-height" name="waiver_status" value="No" id="No_fee" autocomplete="off" checked="checked"> No
+                                        </label>
+                                        <label class="btn btn-light Full_fee small-font">
+                                            <input type="radio" class="small-font input-height"  name="waiver_status" value="Full" id="Full_fee" autocomplete="off"> Full
+                                        </label>
+                                        <label class="btn btn-light Partial_fee small-font">
+                                            <input type="radio" class="small-font input-height"  name="waiver_status" value="Partial" id="Partial_fee" autocomplete="off"> Partial
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 input-control" id="ifPartial" style="display: none">
+                                <label class="control-label fee">
+                                    <input class="form-control form-input small-font input-height" type="text" name="waived_amount" id="p_check" autocomplete="off">
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label class="control-label small-font" for="refer">
+                            <b> Consultation on Behalf of</b>
+                        </label>
+                        <div class="input-group">
+                            <input class="form-control col-md-10 form-input small-font input-height" id="behalf_of" name="behalf_of" type="text" />
+                        </div>
+                    </div>
 
-                <div class="form-group ">
-
-                    <label class="control-label font-12" for="refer">
-                        <b>  Referred to Doctor (Optional)</b>
-                    </label>
-                    <div class="input-group">
-                        <input class="form-control col-md-6 form-input" id="reffered_doctor" name="reffered_doctor" type="text" />
-                    </div></div>
-
+                    <div class="col-6">
+                        <label class="control-label small-font" for="refer">
+                            <b>  Referred to Doctor (Optional)</b>
+                        </label>
+                        <div class="input-group">
+                            <input class="form-control col-md-10 form-input small-font input-height" id="reffered_doctor" name="reffered_doctor" type="text" />
+                        </div>
+                    </div>
+                </div>
             </form>
             <div class="form-group-inline">
-                <button class="btn btn-success" id="save" type="submit">Save</button>
-                <button class="btn btn-info text-center" id="preview_summary" >Preview Summary</button>
-                <button class="btn btn-danger" id="close">Close</button>
+                <button class="btn btn-success body-font" id="save" type="submit">Save</button>
+                <button class="btn btn-info text-center body-font" id="preview_summary" >Preview Summary</button>
+                <button class="btn btn-danger body-font" id="close">Close</button>
+                <div class="alert alert-success alert-autocloseable-success text-center mt-2 body-font">
+                    Consultation Summary is saved Successfully !!
+                </div>
+                <!--    <button class="btn btn-primary col-md-2" id="print">Print</button> -->
 
-               <!--    <button class="btn btn-primary col-md-2" id="print">Print</button> -->
+                <a href="#"  id="print" data-target="#printPDF" data-toggle="modal" class="btn btn-primary body-font">Print</a>
 
-               <a href="#"  rel={{record_id}} id="print" data-target="#printPDF" data-toggle="modal" class="btn btn-primary">Print</a>
-
-                <span class="summary-form-error"></span>
+                <span class="summary-form-error small-font"></span>
             </div>
         </div>
 
@@ -180,69 +177,70 @@
          <button class="btn-success btn-lg text-center" id="generate_pdf">Generate PDF</button>
          </div>-->
         <div class="generate">
-            <button class="btn btn-info btn-sm" id="edit_summary">Back</button>
+            <button class="btn btn-info btn-sm body-font" id="edit_summary">Back</button>
             <div class="generate_preview"></div>
         </div>
-        </div>
+    </div>
 
-<!--Modal to display pdf inside modal onclick print button  starts here-->
-                <div class="modal fade bd-example-modal-lg" id="printPDF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
+    <!--Modal to display pdf inside modal onclick print button  starts here-->
+    <div class="modal fade bd-example-modal-lg" id="printPDF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                <span class="document-title"></span>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                    <span class="document-title"></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
 
                 </div>
 
-                </div>
-                </div>
-                </div>
-<!--Modal to display pdf inside modal onclick print button  end here-->
-
-
-
-
-       <!--  <div class="modal fade bd-example-modal-lg" id="summary-prev"
-        class="summary-prev"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Consultation Summary</h4>
-                    </div>
-                    <div class="modal-body-summary">
-
-                    </div>
-
-                </div>
             </div>
-        </div> -->
-        <div class="close-consultation modal fade bd-example-modal-lg" id="close-consultation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="close-consult modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Close Consultation</h4>
-                    </div>
-                    <div class="modal-close-consultation">
-                        Do you want to close the current Consultation? You will not be able to edit details after closing the Consulation!!                    </div>
-                    <div class="modal-footer text-center">
-                        <button type="button" class="btn btn-success" id="close-yes" data-dismiss="modal" >Yes</button>
-                        <button type="button" class="btn btn-primary" id="close-no" data-dismiss="modal" >No</button>
-                    </div>
+        </div>
+    </div>
+    <!--Modal to display pdf inside modal onclick print button  end here-->
+
+
+
+
+    <!--  <div class="modal fade bd-example-modal-lg" id="summary-prev"
+     class="summary-prev"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                     <h4 class="modal-title">Consultation Summary</h4>
+                 </div>
+                 <div class="modal-body-summary">
+
+                 </div>
+
+             </div>
+         </div>
+     </div> -->
+    <div class="close-consultation modal fade bd-example-modal-lg" id="close-consultation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="close-consult modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close small-font" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="body-font fa fa-close"></span>
+                    </button>
+                    <h4 class="modal-title body-font">Close Consultation</h4>
+                </div>
+                <div class="modal-close-consultation body-font">
+                    Do you want to close the current Consultation? You will not be able to edit details after closing the Consulation!!
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-success body-font" id="close-yes" data-dismiss="modal" >Yes</button>
+                    <button type="button" class="btn btn-primary body-font" id="close-no" data-dismiss="modal" >No</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -269,10 +267,10 @@
                 $('#mgmt_plan').addClass('error');
                 isValid =false;
             }
-            if(fdate  == ''){
+           /* if(fdate  == ''){
                 $('#followup_date').addClass('error');
                 isValid =false;
-            }
+            }*/
 
             if(isValid == false){
                 $('.summary-form-error').text('Please fill the mandatory column');
@@ -296,17 +294,22 @@
             source: function(req, response){
 
                 getData.getLabTest(req.term).then(function(res){
+                    /*if(res.labTest.tests=="")
+                    {
+                        $(this).val($("#suggested_test").val());
+                        debugger;
+                    }*/
                     response(res.labTest.tests.map(function (t) { return {label:t.labtest_name, id:t.labtest_id} }));
-                });;
+
+                });
             },
             select: function (ev, ui) {
-                
+
                 ev.preventDefault();
                 $(this).val("");
                 if(suggested_test_list.indexOf(ui.item.id)){
                     suggested_test_list.push({test_id: ui.item.id, test_name: ui.item.label});
-                    var tag = "<span class='tags'>"+ui.item.label+"<i class='fa fa-times ml-1' id='"+ui.item.id+"' aria-hidden='true'></i></span>";
-
+                    var tag = "<span class='tags col-10 body-font'>"+ui.item.label+"<i class='fa fa-times ml-1' id='"+ui.item.id+"' aria-hidden='true'></i></span>";
                     $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
                 }
             }
@@ -328,9 +331,7 @@
                     "test_id": test_id,
                     "test_name": test_name
                 }];
-            debug
             var data=JSON.stringify(suggested_test);
-            console.log(data);
         });
 
         $("#preview_summary").on("click", function () {
@@ -343,15 +344,16 @@
                 $("#close").hide();
             });
         });
+        $(".generate").addClass('d-none');
+
 
         $("#print").click(function(){
-
-            var  objbuilder = '';
+            //var rec_id = this.id;
+            $('.modal-body').html("<iframe class='iframe' src='https://doctor.growayu.com/growayuassist/view_med_record.php?health_record_id="+summary_record_id+"'></iframe>")
+/*            var  objbuilder = '';
             var data ='';
             getData.getDocumentBlobData(hs_id,summary_record_id).then(function (res) {
                 data=res.document.doc_data;
-
-
                 objbuilder += ('<object width="100%" height="100%" data="data:application/pdf;base64,');
                 objbuilder += (data);
                 objbuilder += ('" type="application/pdf" class="internal">');
@@ -359,10 +361,8 @@
                 objbuilder += (data);
                 objbuilder += ('" type="application/pdf"  />');
                 objbuilder += ('</object>');
-                $('.modal-body').html(objbuilder);
+                $('.modal-body').html(objbuilder);*/
             });
-
-        })
 
         $("#edit_summary").on("click", function (evt) {
             $(".generate").addClass('d-none');
@@ -379,34 +379,65 @@
             $('#summary').html(template(data));
         };
 
-        if(apmt_status=="closed"||apmt_status=="expired"){
+        if(!summary_details && apmt_status=="closed"||apmt_status=="expired"){
             $("#save").hide();
             $("#preview_summary").hide();
             $("#edit_summary").hide();
             $("#close").hide();
             $("#start-vedio-consultation").hide();
+            $('#form4 :input').attr('readonly', 'readonly');
+            $("#follow_up")[0].disabled = true;
+            $('.No_fee').addClass('disabled');
+            $('.Full_fee').addClass('disabled');
+            $('.Partial_fee').addClass('disabled');
+            $('.fee').addClass('disabled');
+            $("#followup_date").attr('disabled', 'disabled');
+            $('.change_medication_yes').addClass('disabled');
+            $('.change_medication_no').addClass('disabled');
+            $("#p_check").attr('disabled', 'disabled');
 
             getData.previewConsultationSummary(appointment_id).then(function (res) {
                 $(".generate").removeClass('d-none');
                 $(".generate_preview").html(res);
             });
         }
-        if((summary_details&&apmt_status=="closed")){
-            $("#form4").show();
-            $("#print").show();
-            $("#start-vedio-consultation").hide();
-        }
-        if(summary_details !=""){
-            if(summary_details && apmt_status=="closed"){
-                $('#form4 :input').attr('readonly', 'readonly');
-                $('#p_check').prop('readonly', true);
-            }
+
+        /*      if(summary_details.suggested_test!= " ")
+              {
+                  var suggested_tests_details=summary_details.suggested_test.map(function (item) {
+                      suggested_test=[
+                      {
+                          "test_id": item.test_id,
+                          "test_name": item.test_name
+                      }];
+                  data=JSON.stringify(suggested_test);
+                  suggested_test_list.push({test_id: item.test_id, test_name: item.test_name});
+                  data.suggested_test = suggested_test_list;
+                  });
+              }
+      */
+        if(summary_details !="" ){
+
+            var suggested_tests_details=summary_details.suggested_test.map(function (item) {
+                var tag = "<span class='tags body-font'>"+item.test_name+"<i class='fa fa-times ml-1' id='"+item.test_id+"' aria-hidden='true'></i></span>";
+                $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
+                suggested_test_list.push({test_id: item.test_id, test_name: item.test_name});
+//               data.suggested_test = suggested_test_list;
+                // debugger
+            });
 
             $("#diagnosis").val(summary_details.Diagnosis);
             $("#mgmt_plan").val(summary_details.mgmt_plan);
             $("#follow_up").val(summary_details.followup_in);
             $("#followup_date").val(summary_details.followup_date);
+
+            if(summary_details.followup_date=="0000-00-00"){
+                $('#follow_up').val(summary_details.followup_in);
+                $("#followup_date").val("");
+            }
+
             $("#reffered_doctor").val(summary_details.reffered_doctor);
+            $("#p_check").val(summary_details.waived_amount);
             if(summary_details.waive_fee == 'Full'){
                 $('.Full_fee').addClass('active');
                 $('.No_fee').removeClass('active');
@@ -414,7 +445,7 @@
                 $("#p_check")[0].disabled = false;
                 $("#ifPartial").show();
                 $("#p_check").val(summary_details.waived_amount);
-                $('#p_check').attr('readonly', true);
+                //$('#p_check').attr('readonly', true);
                 $("input[name='waiver_status']:checked").val(summary_details.waive_fee);
             }else if(summary_details.waive_fee == 'No'){
                 $('.No_fee').addClass('active');
@@ -432,11 +463,38 @@
                 $("#p_check").val(summary_details.waived_amount);
                 $("input[name='waiver_status']:checked").val(summary_details.waive_fee);
             }
-            $("#p_check").val(summary_details.waived_amount);
+            if(apmt_status=="closed" || apmt_status=="expired")
+            {
+                $("#save").hide();
+                $("#preview_summary").hide();
+                $("#edit_summary").hide();
+                $("#close").hide();
+                $("#form4").show();
+                $("#print").show();
+                $("#start-vedio-consultation").hide();
+                $('#form4 :input').attr('readonly', 'readonly');
+                $("#follow_up")[0].disabled = true;
+                $('.No_fee').addClass('disabled');
+                $('.Full_fee').addClass('disabled');
+                $('.Partial_fee').addClass('disabled');
+                $('.fee').addClass('disabled');
+                $('.change_medication_yes').addClass('disabled');
+                $('.change_medication_no').addClass('disabled');
+                $("#followup_date").attr('disabled', 'disabled');
+                $('#p_check').attr('readonly', true);
+                /*
+                $(".waiver input[name='waiver_status']").attr('disabled', 'disabled');
+                $(".btn-group input[name='change_medication']").attr('disabled', 'disabled');
+                $("#No_fee").attr('disabled', 'disabled');
+                $("#Full_fee").attr('disabled', 'disabled');
+                $("#Partial_fee").attr('disabled', 'disabled');
+                */
+
+                // $("#p_check")[0].disabled = true;
+            }
+            //$("#p_check").val(summary_details.waived_amount);
+            // $("#p_check").removeAttr('disabled');
         }
-
-
-
         $("#save").on("click",function(evt) {
             var formData = $("#form4").serializeArray();
             if(validateForm(formData)){
@@ -449,17 +507,38 @@
                     data.consultation_id=consultation_id;
                 }
                 data.suggested_test = suggested_test_list;
-                
                 getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
+                   // debugger;
                     return res;
                 });
             }
         });
+        $('.alert-autocloseable-success').hide();
 
         $("#close-yes").on("click", function (evt) {
             getData.closeConsultation(appointment_id).then(function(res){
                 res.appointment_status=="closed";
                 summary_record_id=res.consultation.record_id;
+
+                //New Code added what happens after close consultation
+                $("#save").hide();
+                $("#preview_summary").hide();
+                $("#edit_summary").hide();
+                $("#close").hide();
+                $("#form4").show();
+                $("#print").show();
+                $("#start-vedio-consultation").hide();
+                $('#form4 :input').attr('readonly', 'readonly');
+                $("#follow_up")[0].disabled = true;
+                $('.No_fee').addClass('disabled');
+                $('.Full_fee').addClass('disabled');
+                $('.Partial_fee').addClass('disabled');
+                $('.fee').addClass('disabled');
+                $('.change_medication_yes').addClass('disabled');
+                $('.change_medication_no').addClass('disabled');
+                $("#followup_date").attr('disabled', 'disabled');
+                $('#p_check').attr('readonly', true);
+                // Code Ended
 
             });
             evt.preventDefault();
@@ -467,9 +546,28 @@
 
         $("#close").on("click",function(evt) {
             //console.log(evt);
-            $('#close-consultation').modal({
-                show: true
-            });
+
+            var formData = $("#form4").serializeArray();
+            if(validateForm(formData)){
+                evt.preventDefault();
+                var data={};
+                formData.map(function (feild) {
+                    data[feild.name] = feild.value;
+                });
+                if(consultation_id) {
+                    data.consultation_id=consultation_id;
+                }
+                data.suggested_test = suggested_test_list;
+                getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
+                    // debugger;
+                    $('#close-consultation').modal({
+                        show: true
+                    });
+                    return res;
+                });
+            }
+
+
 
             evt.preventDefault();
         });
@@ -477,29 +575,86 @@
         $('#follow_up').change(function(){
             var followup_days = $('#follow_up').val();
             if(followup_days=="After 2 Days"){
+                $("#followup_date").attr('disabled', false);
                 $("#followup_date").val(moment().add(2,'days').format("YYYY-MM-DD"));
+                //$("#followup_date").attr('readonly', true);
             }
             if(followup_days=="After 1 Week"){
+                $("#followup_date").attr('disabled', false);
                 $("#followup_date").val(moment().add(7,'days').format("YYYY-MM-DD"));
+                //$("#followup_date").attr('readonly', true);
             }
             if(followup_days=="After 10 Days"){
+                $("#followup_date").attr('disabled', false);
                 $("#followup_date").val(moment().add(10,'days').format("YYYY-MM-DD"));
+                //$("#followup_date").attr('readonly', true);
             }
             if(followup_days=="After 2 Weeks"){
+                $("#followup_date").attr('disabled', false);
                 $("#followup_date").val(moment().add(14,'days').format("YYYY-MM-DD"));
+           //    $("#followup_date").attr('readonly', true);
             }
             if(followup_days=="After 1 Month"){
+                $("#followup_date").attr('disabled', false);
                 $("#followup_date").val(moment().add(30,'days').format("YYYY-MM-DD"));
+               // $("#followup_date").attr('readonly', true);
+            }
+            if(followup_days=="Others"){
+                $("#followup_date").attr('disabled', false);
+                //$("#followup_date").attr('readonly', false);
+                $("#followup_date").val("");
+            }
+            if(followup_days=="No Follow-up"){
+                $("#followup_date").attr('disabled', true);
+                $("#followup_date").val("");
             }
         });
-
+        // $("#followup_date").attr('readonly', true);
         var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
         var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
         date_input.datepicker({
-            format: 'yyyy-dd-mm',
-            container: container,
+            format: 'yyyy-mm-dd',
+            // container: container,
+            changeMonth: true,
+            changeYear: true,
+            minDate: 0,
             todayHighlight: true,
             autoclose: true
+        }).on('changeDate', function() {
+            if($('input[name="followup_date"]').val()==moment().add(2,'days').format("YYYY-MM-DD")){
+                $('#follow_up').val("After 2 Days");
+            }else if($('input[name="followup_date"]').val()==moment().add(7,'days').format("YYYY-MM-DD")){
+                $('#follow_up').val("After 1 Week");
+            }else if($('input[name="followup_date"]').val()==moment().add(10,'days').format("YYYY-MM-DD")){
+                $('#follow_up').val("After 10 Days");
+            }else if($('input[name="followup_date"]').val()==moment().add(14,'days').format("YYYY-MM-DD")){
+                $('#follow_up').val("After 2 Weeks");
+            }else if($('input[name="followup_date"]').val()==moment().add(30,'days').format("YYYY-MM-DD")) {
+                $('#follow_up').val("After 1 Month");
+            }else if($('input[name="followup_date"]').val()=="0000-00-00"){
+                    $('#follow_up').val("No Follow-up");
+            }else{
+                $('#follow_up').val("Others");
+            }
+            var dateString = $("#followup_date").val();
+            var myDate = new Date(dateString);
+            var today = new Date();
+            if ( myDate < today ) {
+                $('#date-error-text').removeClass('d-none');
+                $("#followup_date").addClass('error');
+                $('#date-error-text').addClass('date-error');
+                $('#date-error-text').html("Please Select a Date in the future!!");
+                return false;
+            }
+            else{
+                $('#date-error-text').addClass('d-none');
+                $('#date-error-text').removeClass('date-error');
+                $("#followup_date").removeClass('error')
+
+            }
+            return true;
+
+
         });
         $("input[name='waiver_status']").change(function(){
             if($(this).val()=="Partial"){
@@ -510,17 +665,18 @@
             }else if($(this).val()=="Full"){
                 $("#p_check")[0].disabled = false;
                 $("#ifPartial").show();
-                $("#p_check").val("1000");
-                $('#p_check').attr('readonly', true);
+                $("#p_check").val("");
+                // $("#p_check").val("1000");
+                // $('#p_check').attr('readonly', true);
             }else{
                 $("#ifPartial").hide();
             }
         });
         $('#suggested_test_list').on('click', '.fa-times' ,function (ev) {
-            
-           var id = ev.target.id;
-           suggested_test_list.splice(suggested_test_list.indexOf(id), 1);
-           $(this).parent().remove();
+
+            var id = ev.target.id;
+            suggested_test_list.splice(suggested_test_list.indexOf(id), 1);
+            $(this).parent().remove();
         });
         //});
         /*  $("#print").on("click", function () {
@@ -533,14 +689,3 @@
     });
 
 </script>
-<style>
-.tags{
-    height: 14px;
-    background-color: #1f7bf3;
-    color: #ffffff;
-    line-height: 14px;
-    padding: 4px;
-    margin-left: 4px;
-    font-size: 12px;
-}
-</style>

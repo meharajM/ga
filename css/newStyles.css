@@ -104,14 +104,6 @@ body{
     white-space:nowrap;
     overflow: scroll;
 }
-.medicin-unit label{
-    border: 0.5px solid #00b050;
-    font-size: 12px;
-}
-.medicin-unit .active, .food .active, .duration .active, .waiver .active{
-    background-color:  #00b050;
-    font-size: 12px;
-}
 
 .timings .morning{
     background-image:  url('../img/mor.png');
@@ -284,35 +276,24 @@ body{
     display: none !important;
 }
 
-#p_check{
-    width:35%;
-}
 
 .closed{
     background-color: #00b050;
-    font-size: 12px;
 }
 .booked{
     background-color: #bf800c;
-    font-size: 12px;
 
 }
 .inprogress{
     background-color: #0275d8;
-    font-size: 12px;
 }
 
 .pending{
     background-color: #843534;
-    font-size: 12px;
 }
 
 .expired{
     background-color: #840755;
-    font-size: 12px;
-}
-.apmt_time{
-    font-size: 14px;
 }
 
 #close-button{
@@ -363,6 +344,31 @@ body{
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+#toaster_1 {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 312px; /* Set a default minimum width */
+    margin-left: -48px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the toaster */
+    bottom: 84px; /* 30px from the bottom */
+}
+
+/* Show the toaster when clicking on a button (class added with JavaScript) */
+#toaster_1.show {
+    visibility: visible; /* Show the toaster */
+
+    /* Add animation: Take 0.5 seconds to fade in and out the toaster.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
 /* Animations to fade the toaster in and out */
 @-webkit-keyframes fadein {
     from {bottom: 0; opacity: 0;}
@@ -389,9 +395,13 @@ body{
     cursor: pointer;
 }
 
-.appointment:hover {
+.appointment:hover{
     background: #e9ffe0;
 }
+/*
+.appointment:active {
+    background: #fffd88;
+}*/
 #hs-name-container{
     position: absolute;
     padding: 10px;
@@ -406,27 +416,330 @@ body{
     right: 20px;
 }
 
-
-::-webkit-input-placeholder {
-    font-size: 12px!important;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-    font-size: 12px!important;
-}
-::-moz-placeholder {  /* Firefox 19+ */
-    font-size: 12px!important;
-}
-
-.custom-select{
-    font-size:12px;
-}
 #start-vedio-consultation{
     color: #fff;
     background-color: #5cb85c;
     border-color: #5cb85c;
     padding-top: 11px;
     border-bottom: 3px solid #5495d8;
+}
+.heading-font {
+    font-size: 16px;
+}
+
+.body-font {
+    font-size: 14px;
+}
+
+.small-font {
+    font-size: 12px;
+}
+
+.heath-seeker-profile{
+    height: 40px;
+    width:40px;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .no-prev-appointments{
+        padding-top: 150px;
+        font-size: 24px;
+    }
+
+    .form-group {
+        margin-bottom: 0.5rem;
+    }
+
+    #p_check{
+        height:32px;
+    }
+
+    .medicin-unit label{
+        border: 0.5px solid #00b050;
+        font-size: 12px;
+    }
+    .medicin-unit .active, .food .active, .duration .active, .waiver .active{
+        background-color:  #00b050;
+        font-size: 12px;
+    }
+
+    .history-table{
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 0.5rem;
+        line-height: 0.5;
+    }
+
+    .appointment-table{
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 0.5rem;
+        line-height: 0.5;
+    }
+
+
+
+    .tags{
+        height: 14px;
+        background-color: #1f7bf3;
+        color: #ffffff;
+        line-height: 14px;
+        margin-left: 4px;
+    }
+
+    ::-webkit-input-placeholder {
+        font-size: 12px!important;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+        font-size: 12px!important;
+    }
+    ::-moz-placeholder {  /* Firefox 19+ */
+        font-size: 12px!important;
+    }
+
+
+    .mr-1{
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+    }
+    #default_profile pic{
+        height: 25px;
+        width: 32px;
+    }
+
+    select.form-control:not([size]):not([multiple]){
+        height:32px;
+    }
+    .select2-container .select2-selection--single {
+        box-sizing: border-box;
+        cursor: pointer;
+        display: block;
+        height: 32px;
+    }
+
+    #med_type{
+        height: 32px;
+    }
+
+    .form-input{
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: .2rem;
+        height: 32px;
+        padding: 8px;
+    }
+
+    .heading-font {
+        font-size: 16px;
+    }
+    #suggestions a{
+        font-size: 12px;
+        color: #777777;
+    }
+    .input-height{
+        height:32px;
+    }
+
+    .custom-select{
+        font-size:12px;
+    }
+
+    .body-font {
+        font-size: 14px;
+    }
+
+    .small-font {
+        font-size: 12px;
+    }
+
+    .heath-seeker-profile{
+        height: 40px;
+        width:40px;
+    }
+
+
+    .appointment-type .VC{
+        color: #1f7bf3;
+        cursor: pointer;
+        font-size: 18px;
+        text-align: right;
+        /*   background-image: url(../img/vidiCon.png); */
+    }
+
+    .appointment-type .PC{
+        color: #1f7bf3;
+        cursor: pointer;
+        font-size: 18px;
+        text-align: right;
+
+        /* background-image: url(../img/pc.png); */
+    }
+
+}
+
+.free_text_suggest{
+    color: #4a5b6f;
+    text-decoration: none;
+}
+
+@media only screen and (min-width: 2560px) {
+
+    .no-prev-appointments{
+        padding-top: 200px;
+        font-size: 48px;
+    }
+
+    #p_check{
+        height:48px;
+    }
+
+
+    .medicin-unit label{
+        border: 0.5px solid #00b050;
+        font-size: 22px;
+    }
+    .medicin-unit .active, .food .active, .duration .active, .waiver .active{
+        background-color:  #00b050;
+        font-size: 22px;
+    }
+
+
+    .history-table{
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        line-height: 1;
+    }
+    .appointment-table{
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        line-height: 1;
+    }
+    .status-filter{
+        font-size: 24px;
+    }
+    ::-webkit-input-placeholder {
+        font-size: 22px!important;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+        font-size: 22px!important;
+    }
+    ::-moz-placeholder {  /* Firefox 19+ */
+        font-size: 22px!important;
+    }
+
+    .mr-1{
+        height: 40px;
+        width: 40px;
+    }
+    #default_profile pic{
+        height: 32px;
+        width: 40px;
+    }
+
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #444;
+        line-height: 48px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 48px;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        width: 24px;
+    }
+
+    select.form-control:not([size]):not([multiple]){
+        height:48px;
+    }
+
+    .select2-container .select2-selection--single {
+        box-sizing: border-box;
+        cursor: pointer;
+        display: block;
+        height: 48px;
+    }
+
+    .previous_prescription{
+        height:48px;
+    }
+
+    #med_type{
+        height: 48px;
+    }
+
+
+    .input-height{
+        height:48px;
+    }
+    .form-input{
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: .2rem;
+        height: 48px;
+        padding: 8px;
+    }
+
+    .custom-select{
+        font-size: 20px;
+    }
+    .tags{
+        height: 16px;
+        background-color: #1f7bf3;
+        color: #ffffff;
+        line-height: 16px;
+        margin-left: 6px;
+    }
+
+    .heading-font {
+        font-size: 28px;
+    }
+
+    .body-font {
+        font-size: 24px;
+    }
+    #suggestions a{
+        font-size: 16px;
+        color: #777777;
+    }
+    .small-font {
+        font-size: 22px;
+    }
+
+    .btn-group-sm>.btn, .btn-sm {
+        padding: .25rem .5rem;
+        font-size: 24px;
+        border-radius: .2rem;
+    }
+    .heath-seeker-profile{
+        height: 56px;
+        width:56px;
+    }
+    .custom-select{
+        font-size:16px;
+    }
+    .appointment-type .VC{
+        color: #1f7bf3;
+        cursor: pointer;
+        font-size: 24px;
+        text-align: right;
+        /*   background-image: url(../img/vidiCon.png); */
+    }
+
+    .appointment-type .PC{
+        color: #1f7bf3;
+        cursor: pointer;
+        font-size: 24px;
+        text-align: right;
+
+        /* background-image: url(../img/pc.png); */
+    }
+
 }
 
 .font-12{
@@ -545,12 +858,10 @@ footer {
 } */
 .filter-area label{
     border: 0.5px solid #00b050;
-    font-size: 12px;
 }
 
 .filter-area .active{
     background-color:  #1f7bf3;
-    font-size: 13px;
     color: white;
 }
 .modal-header {
@@ -681,11 +992,6 @@ footer {
     }
 }
 
-.mr-1{
-    height: 35px;
-    width: 35px;
-}
-
 .modal-close-consultation{
     padding: 8px;
 }
@@ -713,6 +1019,10 @@ footer {
     text-decoration-style: solid;
     text-decoration-color: rgb(0, 75, 145);
     color: rgb(0, 75, 145);
+}
+
+.selected_1{
+    background:#00f3ff;
 }
 .timings .nav{
     border: none;
@@ -776,22 +1086,11 @@ footer {
 .fa-plus, .fa-minus{
     cursor: pointer;
 }
-.form-input{
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: .2rem;
-    height: 32px;
-    padding: 8px;
-}
-#med_type{
-    height: 32px;
-}
+
 #med_search{
     width: 100%;
 }
-#suggestions a{
-    font-size: 12px;
-    color: #777777;
-}
+
 .nav-item{
     cursor: pointer;
 }
@@ -820,6 +1119,43 @@ footer {
 }
 .generate{
     position: absolute;
-    left: 20%;
     top:20%;
+}
+
+hr.style-three {
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+hr.style-three:before {
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+.style-one{
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
+}
+
+.iframe{
+    width: 100%;
+    height: 70vh;
+    border:0px;
+}
+
+.date-error{
+    color:red;
 }
