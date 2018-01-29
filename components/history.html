@@ -1,0 +1,299 @@
+<!--
+<iframe src="https://13.126.208.181/growayuassist/hs_health_param_tab.php?prog_hcc='+selectedAppointment.hcc_det.hcc_id+'&hs_id='+hs_id+'&patient_id=IND01-17-C00001&visit_id=4&first_time=1'"></iframe>
+-->
+<div class="container col-12 pl-4 pr-4">
+    <div class="row">
+        <div class="col-12 pt-3 text-left">
+            <span class="heading-prev">Previous Appointments</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" style="margin-top:12px;" id="history_templates">
+                     <script  type="text/x-handlebars-template" id="historytable">
+                <div class="well well-sm col-xs-12 col-md-12 small-font pt-3">
+                    {{#previous_appointments}}
+                    <table class="history-table table table-striped table-bordered small-font">
+                        <colgroup>
+                            <col width="40%">
+                            <col width="40%">
+                            <col width="20%">
+                        </colgroup>
+                    <tr>
+                        <td align="left" class="date_format" id="date_{{appointment_id}}">{{booking_date}}</td>
+                        <td align="left">{{purpose}}</td>
+                        <td align="center"><a href="#0" class="show_history" id="d_{{appointment_id}}">View Details</a></td>
+                    </tr>
+                </table>
+                <div id="h_{{appointment_id}}" class="template-div"> </div>
+                    {{/previous_appointments}}
+                </div>
+            </script>
+        </div>
+    </div>
+</div>
+<div class="container1" id="display_history">
+    <script  type="text/x-handlebars-template" id="history_appointment">
+        <div class="row"  style="padding:3px;">
+            <div class="col-xs-6 col-md-6">
+                <div class="healthseeker-details">
+                    <b class="mt-2 small-font">Appointment Details</b>
+                    <p>
+                    <table class="table appointment-table table-striped table-bordered small-font">
+                        <tbody id="tab3">
+                        <tr>
+                            <td> ID </td>
+                            <td> {{appointment_det.apmt_id}} </td>
+                        </tr>
+                        <tr>
+                            <td> Date </td>
+                            <td class="apmt_date" id="apmt_{{appointment_det.apmt_id}}">{{appointment_det.apmt_date}}</td>
+                        </tr>
+                        <tr>
+                            <td> Status </td>
+                            <td> {{appointment_det.apmt_status}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <b class="mt-2 small-font">Reason for Consultation</b>
+                            <p id="tab6" class="small-font">
+                                {{appointment_det.case_sheet.consultation_reason}}<br>
+                                {{appointment_det.case_sheet.case_description}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <b class="mt-2 small-font">Attached Documents</b>
+                            <ul style="text-decoration: none;" id="attached_docs">
+                                {{#appointment_det.health_record}}
+                                <a href="#" id="hi_{{id}}" class="health_record_history small-font"  rel="{{doc_datatype}}" data-toggle="modal" data-target="#history_pdf"> <span class="fa fa-file-text-o m-1"  style="padding:3px;"></span>{{description}}</a><br>
+                                {{/appointment_det.health_record}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6 small-font" id="summary_det">
+                <b class="mt-2 small-font">Diagnosis  </b><br>
+                {{consultation_details.consultation_summary.Diagnosis}}<br>
+                {{consultation_details.consultation_summary.mgmt_plan}}<br>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <b class="mt-2 small-font">Suggested Tests</b>
+                        <p>
+                        <ol class="small-font">
+                            {{#consultation_details.consultation_summary.suggested_test}}
+                            <li>{{test_name}}</li>
+                            {{/consultation_details.consultation_summary.suggested_test}}
+                        </ol>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <b class="follow-up mt-2 small-font">Followup Date</b>
+                        <p class="small-font">
+                            <span id="cal-icon" class="fa fa-calendar-plus-o" style="padding:6px;margin-left: 15px;"></span><span class="no-follow-up small-font">{{consultation_details.consultation_summary.followup_date}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12 body-font">
+                <hr>
+                <b class="mt-2">Prescribed Medications</b><p></p>
+                <table class="table table-sm table-striped small-font">
+                    <thead>
+                    <tr>
+                        <th><b>Type</b></th>
+                        <th><b>Name</b></th>
+                        <th><b>Dosage</b></th>
+                        <th><b>Timings/Quantity</b></th>
+                        <th><b>Frequency</b></th>
+                        <th><b>Course Duration</b></th>
+                        <th><b>Medicine Intake</b></th>
+                        <th><b>Instructions</b></th>
+                    </tr>
+                    </thead>
+                    <tbody id="tab5" class="small-font">
+                    {{#consultation_details.prescription_details}}
+                    <tr>
+                        <td>{{med_type}}</td>
+                        <td>{{med_name}}</td>
+                        <td>{{dosage}}</td>
+                        <td>{{tmg_qty_string}}</td>
+                        <td>{{frequency}}</td>
+                        <td>{{course}}</td>
+                        <td>{{med_intake}}</td>
+                        <td>{{remarks}}</td>
+                    </tr>
+                    {{/consultation_details.prescription_details}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 text-center">
+                <hr class="style-one">
+            </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg" id="history_pdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="document-title"></span>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal_body_history">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </script>
+    <!-- Modal -->
+
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#display_history').hide();
+        HandlebarsIntl.registerWith(Handlebars);
+        getData.getPreviousAppointmentDate().then(function (res) {
+            /*var id=res.previous_appointments.map(function (t) {
+                return t.appointment_id;
+            });
+            console.log(id);*/
+            var source = $("#historytable").html();
+            var template = Handlebars.compile(source);
+            /*var context = {
+                formated_date: new Date(),
+                purpose:"Hello",
+                appointment_id:"22"
+            };
+            var intlData = {
+                "locales": "en-US",
+                "formats": {
+                    "date": {
+                        "short": {
+                            "day": "numeric",
+                            "month": "long",
+                            "year": "numeric"
+                        }
+                    }
+                }
+            };
+            var html = template(context, {
+                data: {intl: intlData}
+            });
+
+            $("#history_templates").html(html);*/
+            var html = template(res);
+            $("#history_templates").html(html);
+
+            var id=   res.previous_appointments.map(function (t){
+                return t.appointment_id;
+            });
+            for(var i=0;i<id.length;i++) {
+                var history_date = $("#date_" + id[i]).text();
+                var new_history_date = moment(history_date).format("MMMM Do YYYY");
+                $("#date_" + id[i]).text(new_history_date);
+                //$(".apmt_date").text(new_history_date);
+            }
+           /* var context = {
+                formated_date:res.previous_appointments.map(function (t) {
+                    return moment(t.booking_date).format("MMM Do YY");
+                }),
+                purpose:res.previous_appointments.map(function (t) {
+                    return t.purpose;
+                }),
+                appointment_id: res.previous_appointments.map(function (t) {
+                return t.appointment_id;
+                })
+            };*/
+
+            if (res.previous_appointments == "") {
+                $("#history_templates").html("<p class='no-prev-appointments text-center'>No Previous Appointments</p>");
+            }
+
+          /* $("a[href='#0']").click(function() {
+                $(".template-div").animate({ scrollTop: 0 }, "slow");
+                return false;
+            });*/
+
+            $(".history-table").on('click', '.show_history', function (ev) {
+
+
+
+//                 $(".template_div").animate({ scrollTop: 0 }, "slow");
+
+
+             /*   $("div.ui-collapsible-set").live("expand", function(e) {
+                    var top = $(e.target).offset().top;
+                    if ($(window).scrollTop() > top)
+                        $(window).scrollTop(top);
+                });*/
+              //  $(".show_history").focus();
+                var id = ev.currentTarget.id.replace("d_", "");
+                $('.well').css('border', 'none');
+                getData.getAppointmentDetails(id).then(function (evs) {
+                    var source = $("#history_appointment").html();
+                    var template = Handlebars.compile(source);
+                    var html = template(evs.appointments_details);
+                    $("#h_" + id).html(html);
+                    $("#h_" + id).show();
+                    $('#d_' + id).html("Hide Details");
+                    $('#d_' + id).removeClass('show_history').addClass('hide_details');
+
+                    $("#h_"+id).addClass('open');
+
+
+                    var apmt_date=evs.appointments_details.appointment_det.apmt_date;
+                    var converted_apmt_date=moment(apmt_date).format("MMMM Do YYYY");
+                    $("#apmt_"+id).text(converted_apmt_date);
+
+                    $('.template-div.open').animate({
+                        scrollTop: 50
+                    }, 2000);
+
+
+                   /* $(".show_history").animate({ scrollTop: 0 }, "slow");
+                   return false;*/
+  /*                  if(evs.appointments_details.appointment_det.apmt_status=="expired"){
+                        $("#cal-icon").addClass('d-none');
+                    }
+*/
+                    if (evs.appointments_details.consultation_details.consultation_summary.followup_date == "0000-00-00" || evs.appointments_details.consultation_details.consultation_summary.followup_date ==null) {
+                        $(".follow-up").html("<b class='mt-2 small-font'>Follow-up in</b>");
+                        $(".no-follow-up").html(evs.appointments_details.consultation_details.consultation_summary.followup_in);
+                      //  $("#cal-icon").addClass('d-none');
+                    }
+                   /* else{
+                        $("#cal-icon").removeClass('d-none');
+                    }
+*/
+
+                    $(".health_record_history").on("click", function (evt) {
+                                       var rec_id = this.id.replace("hi_", "");
+                                     $('.modal_body_history').html("<iframe class='iframe' src='https://doctor.growayu.com/growayuassist/view_med_record.php?health_record_id=" + rec_id + "'></iframe>");
+                    evt.preventDefault();
+                    });
+                });
+            });
+            $(".history-table").on('click', '.hide_details', function (ev) {
+                var id = ev.currentTarget.id.replace("d_", "");
+                $("#h_" + id).hide();
+                $('#d_' + id).html("View Details");
+                $('#d_' + id).addClass('show_history').removeClass('hide_details');
+                $("h_"+id).removeClass('open');
+
+            });
+        });
+    });
+</script>

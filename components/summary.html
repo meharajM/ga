@@ -63,7 +63,7 @@
                         <div class="form-group row">
                             <div class="col-md-5 col-sm-12">
                                 <div class="dropdown">
-                                    <select class="followup form-input form-control small-font" name="followup_in" id="follow_up">
+                                    <select class="col-12 followup form-input input-height small-font" name="followup_in" id="follow_up">
                                         <option name="followup_in" selected disabled>Select</option>
                                         <option id="No_Follow_up">No Follow-up</option>
                                         <option id="After_2_Days">After 2 Days</option>
@@ -176,7 +176,7 @@
         <!-- <div class="pdf">
          <button class="btn-success btn-lg text-center" id="generate_pdf">Generate PDF</button>
          </div>-->
-        <div class="generate">
+        <div class="generate col-12">
             <button class="btn btn-info btn-sm body-font" id="edit_summary">Back</button>
             <div class="generate_preview"></div>
         </div>
@@ -274,6 +274,14 @@
             if ( myDate < today ) {
                 $('#followup_date').addClass('error');
                 isValid= false;
+                $('#date-error-text').removeClass('d-none');
+                $('#date-error-text').addClass('date-error');
+                $('#date-error-text').html("Please Select a Date in the future!!");
+            }
+            else{
+                $('#followup_date').removeClass('error');
+                $('#date-error-text').addClass('d-none');
+                $('#date-error-text').removeClass('date-error');
             }
            /* if(fdate  == ''){
                 $('#followup_date').addClass('error');
@@ -416,7 +424,7 @@
             $('.change_medication_yes').addClass('disabled');
             $('.change_medication_no').addClass('disabled');
             $("#p_check").attr('disabled', 'disabled');
-            $("#suggested_test").attr('disabled', 'disabled');
+           // $("#suggested_test").attr('disabled', 'disabled');
 
             getData.previewConsultationSummary(appointment_id).then(function (res) {
                 $(".generate").removeClass('d-none');
@@ -453,7 +461,7 @@
 
 //                  Old Working Code
                     $("#suggested_test").val(summary_details.suggested_test.map(function (item) {return item.test_name}).join(', '));
-
+                 //  $('#suggested_test_list').html($('#suggested_test').val());
                     $('#suggested_test').hover(function() {
                         $('#suggested_test_list').html($('#suggested_test').val());
                         $('#suggested_test_list').addClass('text-justify col-10 pl-0 pr-0');
@@ -557,7 +565,7 @@
                 $('.change_medication_no').addClass('disabled');
                 $("#followup_date").attr('disabled', 'disabled');
                 $('#p_check').attr('readonly', true);
-                $("#suggested_test").attr('disabled', 'disabled');
+               // $("#suggested_test").attr('disabled', 'disabled');
 
                 /*
                 $(".waiver input[name='waiver_status']").attr('disabled', 'disabled');

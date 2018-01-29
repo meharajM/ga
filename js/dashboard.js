@@ -150,7 +150,7 @@ $(document).ready(function(){
             summary_details = res.appointments_details.consultation_details.consultation_summary;
             appointment = res.appointments_details;
             consultation_id = summary_details.consultation_id;
-            $('#prescription').load('./components/prescription.html');
+         //   $('#prescription').load('./components/prescription.html');
             //  $('#newprescription').load('./components/newprescription.html');
             $('#summary').load('./components/summary.html');
         });

@@ -166,7 +166,7 @@
 				</div>
 			</div>
 
-			<div class="mt-3">
+			<div class="mt-2">
 				<div class="small-font"><b>Instructions</b></div>
 				<div class="form-group">
 					<textarea class="form-control small-font" id="exampleTextarea" name="remarks" placeholder="Remarks..." rows="3"></textarea>
@@ -175,7 +175,7 @@
 
 			<div class="form-group rows">
 				<button class="btn btn-success btn-sm body-font" id="add-prescription">Add</button>
-				<button class="btn btn-danger btn-sm body-font" id="reset-prescription" type="reset">Reset</button> <span class="form-error hidden-xs-up small-font">Please add all mandatory fields</span>
+				<button class="btn btn-danger btn-sm body-font" id="reset-prescription" type="reset">Reset</button> <span class="form-error hidden-xs-up small-font">Please add all mandatory fields </span>
 
 			</div>
 		</form>
@@ -232,12 +232,13 @@
 			</tbody>
 		</table>
 		<button class="btn btn-primary btn-sm body-font" id="save_continue">Continue</button>
-		<a href="#" id="add_template" value="Add to My Templates" class="small-font pull-right">Add to My Templates</a>
+		<a href="#" id="add_template" value="Add to My Templates" class="small-font pull-right" data-toggle="modal" data-target="#template-add">Add to My Templates</a>
 
 	</div>
 
 </div>
 
+<!--
 <div id="save_template_form" class="pl-3 pt-3">
 	<form id="form_6" method="post">
 		<button type="button" class="close pr-5" id="template_close_list" aria-label="Close">
@@ -266,6 +267,7 @@
 		</div>
 	</form>
 </div>
+-->
 
 <div id="save_medicine" class="pl-3 pt-3">
 	<form id="form_5" method="post">
@@ -275,7 +277,7 @@
 		<div class="form-group small-font">
 			<div class="row">
 				<div class="col-4">
-					<select class="form-control form-control-sm small-font input-height" id="med_type_list" name="med_type" required>
+					<select class="col-12 form-input small-font input-height" id="med_type_list" name="med_type" required>
 						<option value="" disabled selected>Medicine Type</option>
 						<option value="Tablet">Tablet</option>
 						<option value="Syrup">Syrup</option>
@@ -323,7 +325,7 @@
 			<div class="modal-header">
 				<button type="button" class="close small-font" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true" class="body-font fa fa-close"></span>
-				</button>
+					</button>
 				<h4 class="template-modal-title body-font">Template</h4>
 			</div>
 			<div class="modal-body-template body-font">
@@ -332,6 +334,56 @@
 			<div class="modal-footer text-center">
 				<button type="button" class="btn btn-info btn-sm replace body-font" id="replace" data-dismiss="modal" >Replace</button>
 				<button type="button" class="btn btn-primary btn-sm append body-font" id="append" data-dismiss="modal" >Append</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="add-template-modal modal fade bd-example-modal-lg add-template-alert" id="template-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="add-template-msg modal-dialog modal-sm" role="document" style="padding-top: 50px; max-width: 600px">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close body-font" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true" class=" fa fa-close"></span>
+				</button>
+				<h4 class="add-template-modal-title body-font">Add a New Template</h4>
+			</div>
+			<div class="add-modal-body-template body-font">
+				<div id="save_template_form" class="pl-3 pt-3">
+					<form id="form_6" method="post">
+						<div class="form-group add-template-div small-font">
+							<div class="row">
+								<div class="col-4">
+									<!--<div class="small-font"><b>Template Name</b></div>-->
+									<input class="form-control small-font input-height small-font" name="add_template_name" id="add_template_name" placeholder="Enter Template Name *" required />
+								</div>
+								<div class="col-4">
+									<!--<div class="small-font"><b>Diseases</b></div>-->
+									<input class="form-control small-font input-height small-font" name="diseases" id="diseases" placeholder="Enter Diseases" required />
+								</div>
+							<!--	<div class="col-4">
+									<div class="small-font"><b>Speciality</b></div>
+									<input class="form-control small-font input-height small-font" name="speciality" id="speciality" placeholder="Enter Speciality" required />
+								</div>-->
+							</div>
+						<!--	<div class="pt-3">
+								<button type="button" class="btn btn-success body-font" id="save_template_button">Save Template</button>
+								<button type="button" class="btn btn-danger pl-3 body-font" id="close_template_form">Close</button>
+								<span class="form-error hidden-xs-up small-font">Please add all mandatory fields</span>
+							</div>-->
+						</div>
+					</form>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<div class="col-12 add-template-footer text-left">
+				<button type="button" class="btn btn-success body-font" id="save_template_button">Save Template</button>
+				<button type="button" class="btn btn-danger pl-3 body-font" data-dismiss="modal">Close</button>
+				<span class="form-error hidden-xs-up small-font">Please add all mandatory fields</span>
+				</div>
+				<!--<button type="button" class="btn btn-success btn-sm body-font" id="save_template_button" data-dismiss="modal" >Save Template</button>
+				<button type="button" class="btn btn-primary btn-sm body-font" data-dismiss="modal" >Close</button>-->
 			</div>
 		</div>
 	</div>
@@ -411,7 +463,8 @@
         };
         function validateForm(formData){
             var isValid = true;
-            $('.form-error').addClass('hidden-xs-up')
+            $('.form-error').html('Please add all mandatory fields');
+            $('.form-error').addClass('hidden-xs-up');
             $('#med_search').removeClass('error');
             $('input[name="course"]').removeClass('error');
             $('input[name="duration"]').removeClass('error');
@@ -622,39 +675,40 @@
         $("#save_medicine").hide();
         $("#add_medicine").hide();
 
-        $("#save_template_form").hide();
+     //   $("#save_template_form").hide();
         $("#add_template").on('click', function(evt){
             // $('.form-error').addClass('d-none');
-
+            $('.form-error').html('Please add all mandatory fields');
             $('.form-error').addClass('hidden-xs-up');
             $('input[name="add_template_name"]').removeClass('error');
             $('input[name="diseases"]').removeClass('error');
             $('input[name="speciality"]').removeClass('error');
             $("#form_6").get(0).reset();
-            $("#save_template_form").show();
-            $(".appointment-details").hide();
+            //$("#save_template_form").show();
+          //  $(".appointment-details").hide();
             evt.preventDefault();
         });
 
-        $("#template_close_button_list").on('click', function (ev) {
+       /* $("#template_close_button_list").on('click', function (ev) {
             $("#save_template_form").hide();
             $(".appointment-details").show();
 
             ev.preventDefault();
-        });
-        $("#close_template_form").on('click', function (ev) {
+        });*/
+        /*$("#close_template_form").on('click', function (ev) {
             $("#save_template_form").hide();
             $(".appointment-details").show();
             ev.preventDefault();
-        });
+        });*/
 
         function validateTemplate(formData){
             var isValid = true;
+            $('.form-error').html('Please add all mandatory fields');
             $('.form-error').addClass('hidden-xs-up');
             //  $('#brand_name').removeClass('error');
             $('input[name="add_template_name"]').removeClass('error');
             $('input[name="diseases"]').removeClass('error');
-            $('input[name="speciality"]').removeClass('error');
+            //$('input[name="speciality"]').removeClass('error');
 
             if(formData['add_template_name'] == ""){
                 $('#add_template_name').addClass('error');
@@ -689,11 +743,16 @@
                 //Code for addPrescriptionTemplate API
 
                 if(prescription_data.length==0){
-                    $("#api-error").removeClass('hidden-xs-up');
+                   /* $("#api-error").removeClass('hidden-xs-up');
                     $("#api-error-message").show();
-                    $("#api-error-message").html("Please Add Prescribed Medicines in the Template!!");
+                    $("#api-error-message").html("Please Add Prescribed Medicines in the Template!!");*/
+                    $('.form-error').removeClass('hidden-xs-up');
+					$('.form-error').html('Please add Prescribed Medicines in the template !!');
                 }
                 else{
+                    $('.form-error').addClass('hidden-xs-up');
+                    $('.form-error').html('Please add all mandatory fields');
+                    $('#template-add').modal('toggle');
                     getData.addPrescriptionTemplate(template_data.add_template_name,template_data.diseases, prescription_data).then(function (res) {
                         if(!res.error.error_message) {
                             $("#api-success").removeClass('hidden-xs-up');
@@ -702,10 +761,12 @@
                             $('#api-success-message').delay(3000).fadeOut("slow", function (evt) {
                                 $("#api-success").addClass('hidden-xs-up');
                                 $("#api-success-message").html("");
-                                $(".appointment-details").show();
+                               // $(".appointment-details").show();
                                 $("#form_6").get(0).reset();
                                 // $("#form3").get(0).reset();
-                                $("#save_template_form").fadeOut();
+                                //$("#save_template_form").fadeOut();
+
+
                             });
                         }
                         else{
@@ -720,7 +781,7 @@
 
         $('#add').on('click', function (ev) {
 
-
+            $('.form-error').html('Please add all mandatory fields');
             $('.form-error').addClass('hidden-xs-up');
             $('#med_search').removeClass('error');
             $('input[name="course"]').removeClass('error');
@@ -752,11 +813,13 @@
             //  $('.duration input[value="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
         });
         $("#close-button").on('click', function (ev) {
+            //debugger
             $('#add').show();
             $('.form').hide();
             $("#form3").get(0).reset();
             $("#med_name").val("");
             $("#add_medicine").hide();
+           // ev.preventDefault();
             ev.stopPropagation();
         });
         $("#close-button_list").on('click', function (ev) {
@@ -773,6 +836,14 @@
 
         $('.alert-autocloseable-success').hide();
         $("#add_medicine").on('click', function (ev) {
+            $('.form-error').addClass('hidden-xs-up');
+            $('.form-error').html('Please add all mandatory fields');
+            $('#med_type_list').removeClass('error');
+            $('input[name="generic_name"]').removeClass('error');
+            $('input[name="brand_name"]').removeClass('error');
+            $('input[name="dosage"]').removeClass('error');
+            $('input[name="dosage_uom"]').removeClass('error');
+
             $("#form_5").get(0).reset();
             $('#med_brand_name').val($('#med_search').val());
             $('#dosage_list').val($("#dosage").val());
@@ -829,6 +900,7 @@
         });
         function validatedForm(formData){
             var isValid = true;
+            $('.form-error').html('Please add all mandatory fields');
             $('.form-error').addClass('hidden-xs-up');
             //  $('#brand_name').removeClass('error');
             $('#med_type_list').removeClass('error');
@@ -990,7 +1062,16 @@
             $('#dosage').val(prescription.dosage);
             $('#txt_frequency').val(prescription.frequency);
             $('input[name="course"]').val(prescription.course.split(' ')[0]);
-            $('.duration input[value="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
+            $("#"+ prescription.course.toLowerCase().split(' ')[1]).prop('checked', true);
+            if(prescription.course.toLowerCase().split(' ')[1]=="day") {
+                $("#days").prop('checked', true);
+            }else if(prescription.course.toLowerCase().split(' ')[1]=="week"){
+                $("#weeks").prop('checked', true);
+            }else if(prescription.course.toLowerCase().split(' ')[1]=="month"){
+                $("#months").prop('checked', true);
+            }
+
+//            $('.duration input[value="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
             /*  $('input[value="' + prescription.med_intake + '"]').attr('checked', true);*/
             if(prescription.med_intake == 'After Food'){
                 $('#after-food').prop('checked',true);
@@ -1127,7 +1208,7 @@
             var apmt_id = $(this).children(":selected").attr("id");
             getData.getPrescription(apmt_id).then(function (res) {
                 $(".template-modal-title").html("Previous Prescriptions");
-                $('.template-alert').modal({
+                $('.add-template-alert').modal({
                     show: true
                 });
                 $("#replace").unbind().on("click", function (evt) {

@@ -83,7 +83,7 @@ var getData = {
                 "latitude": "",
                 "longitude": ""
             },
-            "device_id": "web",
+            "device_id": "web"
         };
         var data = {
             doctor_info: doctor_info
@@ -178,7 +178,7 @@ var getData = {
             apmt_id: id,
             doctor_id: doctorId,
             hs_id: hs_id,
-            "hcc_id" : selectedAppointment.hcc_det.hcc_id,
+            "hcc_id" : selectedAppointment.hcc_det.hcc_id
         };
 
         var data = {
@@ -422,7 +422,6 @@ var getData = {
             },
             session_info: session_info
         };
-        debugger
         hideApiError();
         var call = $.ajax({
             type: "POST",
