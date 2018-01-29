@@ -342,6 +342,14 @@
     var showPrescriptions;
     var prescription_data = [];
     $(document).ready(function() {
+        getData.getPreviousPrescriptions().then(function (res) {
+            var source = $("#template-prev-date").html();
+            var template = Handlebars.compile(source);
+            var html = template(res);
+            $("#previous_prescription").html(html);
+        });
+
+
         var prescriptionDetais = {
             Tablet: {
                 unit: "No",
@@ -493,7 +501,7 @@
             tags: true,
             placeholder: "Search for a template",
             allowClear: true,
-            minimumInputLength: 3,
+            minimumInputLength: 0,
             containerCssClass : "custom-select ",
             ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
                 type: "post",
@@ -900,7 +908,6 @@
                     data.prescription_id='';
                 }
                 if(prescriptions_list) {
-                    debugger
                     prescription_data.push(data);
                     prescription_add.push(data);
                     //prescriptions_list.push(data);

@@ -96,12 +96,12 @@ $(document).ready(function(){
 
             });
 
-            getData.getPreviousPrescriptions().then(function (res) {
+           /* getData.getPreviousPrescriptions().then(function (res) {
                 var source = $("#template-prev-date").html();
                 var template = Handlebars.compile(source);
                 var html = template(res);
                 $("#previous_prescription").html(html);
-            });
+            });*/
 
 
             $(".health_record").on("click", function (evt) {
