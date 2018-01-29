@@ -39,6 +39,23 @@ $(document).ready(function(){
             var template = Handlebars.compile(source);
             var html = template(res.appointments_details);
             $('#details').html(html);
+
+            $('#add-note-1').on('click', function (ev) {
+                $('.float-note').removeClass('hidden-xs-up');
+                $('.float-note').draggable();
+                showToaster("You can drag the note popup wherever you want");
+            });
+
+            $("#note-content").blur(function(){
+
+               // alert($("#note-content").val());
+                //ADD CODE FOR NOTES-API HERE...
+
+            });
+
+            $('#close-note-1').on('click', function () {
+                $('.float-note').addClass('hidden-xs-up');
+            });
             $('#prescription').load('./components/prescription.html');
             $('#history').load('./components/history.html');
 
@@ -59,6 +76,15 @@ $(document).ready(function(){
                 $('#start-vedio-consultation').show();
             }
             hs_id = res.appointments_details.health_seeker_profile.hs_id;
+
+
+          $('#parameters').html("<iframe class='iframe' src='https://13.126.208.181/growayuassist/hs_health_param_tab.php?prog_hcc="+selectedAppointment.hcc_det.hcc_id+"&hs_id="+hs_id+"&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>");
+           // $('#parameters').html("<iframe class='iframe' src='https://doctor.growayu.com/growayuassist/hs_health_param_tab.php?prog_hcc="+selectedAppointment.hcc_det.hcc_id+"&hs_id="+hs_id+"&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>");
+
+         //   $('.modal-body').html("<iframe class='iframe' src='https://doctor.growayu.com/growayuassist/view_med_record.php?health_record_id=" + rec_id + "'></iframe>")
+
+
+
             $("#start-vedio-consultation").on("click", function (vid) {
                 getData.startVideoConsultation(appointment_id, hs_id).then(function (res) {
                     sessionId = res.video_session_det.session;
@@ -76,6 +102,7 @@ $(document).ready(function(){
                 var html = template(res);
                 $("#previous_prescription").html(html);
             });
+
 
             $(".health_record").on("click", function (evt) {
                 var rec_id = this.id;
@@ -126,8 +153,6 @@ $(document).ready(function(){
             $('#prescription').load('./components/prescription.html');
             //  $('#newprescription').load('./components/newprescription.html');
             $('#summary').load('./components/summary.html');
-
-
         });
     };
     showDashboardDetails=function(res, fromFilter){
@@ -145,11 +170,10 @@ $(document).ready(function(){
             $('#pending_button').text(res.appointments_details.appointment.filter(function(ap){ return ap.appointment_status === "inprogress" || ap.appointment_status === "booked" || ap.appointment_status === "paid"}).length);
             $('#closed_button').text(res.appointments_details.appointment.filter(function(ap){ return ap.appointment_status === "closed" || ap.appointment_status === "expired"}).length);
         }
-        //debugger
-       $('#parameters').html("<iframe class='iframe' src='https://13.126.208.181/growayuassist/hs_health_param_tab.php?prog_hcc=22&hs_id=2320&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>")
+      // $('#parameters').html("<iframe class='iframe' src='https://13.126.208.181/growayuassist/hs_health_param_tab.php?prog_hcc=22&hs_id=2320&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>")
         // $('#parameters').attr('src', 'https://13.126.208.181/growayuassist/hs_health_param_tab.php?prog_hcc=22&hs_id=2320&patient_id=IND01-17-C00001&visit_id=4&first_time=1');
-        //$('#parameters').html("<iframe class='iframe' src='https://doctor.growayu.com/growayuassist/hs_health_param_tab.php?prog_hcc=22&hs_id=2320&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>")
-        $('#parameters').attr('src', 'https://doctor.growayu.com/growayuassist/hs_health_param_tab.php?prog_hcc=22&hs_id=2320&patient_id=IND01-17-C00001&visit_id=4&first_time=1');
+        //$('#parameters').attr('src', 'https://doctor.growayu.com/growayuassist/hs_health_param_tab.php?prog_hcc=22&hs_id=2320&patient_id=IND01-17-C00001&visit_id=4&first_time=1');
+       // $('#parameters').attr('src', 'https://doctor.growayu.com/growayuassist/hs_health_param_tab.php?prog_hcc='+selectedAppointment.hcc_det.hcc_id+'&hs_id='+hs_id+'&patient_id=IND01-17-C00001&visit_id=4&first_time=1');
 
         $('.iframe').load(function (ev) {
             var iframe = $('.iframe').contents();
@@ -187,7 +211,6 @@ $(document).ready(function(){
         $(".VC").html('<i class="fa fa-video-camera"></i>');
     };
     var addPrescription = function(ev){
-
     };
 
     // Handling all of our errors here by alerting them
@@ -366,9 +389,15 @@ $(document).ready(function(){
         next.length?
             next.find('a').click():
             $('#mytabs li a')[0].click();
-        //$(this).addClass("active");
-    });
 
+        $('.float-note').addClass('hidden-xs-up');
+        $("#note-content").val("");
+    });
+    $("#appointment-list").on('click','li', function(e) {
+        var $this = $(this);
+        $('#appointment-list').find('.active').removeClass('active');
+        $this.addClass('active');
+    });
 
     /* $("#appointment-list").on('click', function (evt) {
         // $('#appointment-list').removeClass('active');
@@ -391,14 +420,15 @@ $(document).ready(function(){
     $('#api-error').on("click", '.fa-times', function (ev) {
         hideApiError();
     });
-    $('#add-note').on('click', function (ev) {
+/*    $('#add-note').on('click', function (ev) {
+        debugger
         $('.float-note').removeClass('hidden-xs-up');
         $('.float-note').draggable();
         showToaster("You can drag the note popup wherever you want");
     });
     $('#close-note').on('click', function () {
         $('.float-note').addClass('hidden-xs-up');
-    });
+    });*/
 });
 
 

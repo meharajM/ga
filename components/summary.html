@@ -48,7 +48,7 @@
                             <input class="form-input col-10 small-font input-height" name="suggested_test" id="suggested_test" placeholder="Suggested Test">
                             <!--   <select class="test_id col-md-6" multiple="" name="suggested_test" id="suggested_test"></select>-->
                         </div>
-                        <div id="suggested_test_list" class="m-1 small-font">
+                        <div id="suggested_test_list" class="pr-5 m-1 small-font">
 
                         </div>
                     </div>
@@ -267,6 +267,14 @@
                 $('#mgmt_plan').addClass('error');
                 isValid =false;
             }
+
+            var dateString = $("#followup_date").val();
+            var myDate = new Date(dateString);
+            var today = new Date();
+            if ( myDate < today ) {
+                $('#followup_date').addClass('error');
+                isValid= false;
+            }
            /* if(fdate  == ''){
                 $('#followup_date').addClass('error');
                 isValid =false;
@@ -294,13 +302,25 @@
             source: function(req, response){
 
                 getData.getLabTest(req.term).then(function(res){
+
+                    $("#suggested_test").keypress(function(e) {
+                        if (e.which == 13) {
+                            if($(this).val()) {
+                                suggested_test_list.push({test_id: "0", test_name: $(this).val()});
+                                var tag = "<span class='tags small-font'>" + $(this).val() + "<i class='fa fa-times ml-1' id='" + 0 + "' aria-hidden='true'></i></span>";
+                                $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
+                                $(this).val("");
+                            }
+                        }
+                    });
+
+
                     /*if(res.labTest.tests=="")
                     {
                         $(this).val($("#suggested_test").val());
                         debugger;
                     }*/
                     response(res.labTest.tests.map(function (t) { return {label:t.labtest_name, id:t.labtest_id} }));
-
                 });
             },
             select: function (ev, ui) {
@@ -309,7 +329,7 @@
                 $(this).val("");
                 if(suggested_test_list.indexOf(ui.item.id)){
                     suggested_test_list.push({test_id: ui.item.id, test_name: ui.item.label});
-                    var tag = "<span class='tags col-10 body-font'>"+ui.item.label+"<i class='fa fa-times ml-1' id='"+ui.item.id+"' aria-hidden='true'></i></span>";
+                    var tag = "<span class='tags small-font'>"+ui.item.label+"<i class='fa fa-times ml-1' id='"+ui.item.id+"' aria-hidden='true'></i></span>";
                     $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
                 }
             }
@@ -380,6 +400,7 @@
         };
 
         if(!summary_details && apmt_status=="closed"||apmt_status=="expired"){
+
             $("#save").hide();
             $("#preview_summary").hide();
             $("#edit_summary").hide();
@@ -395,6 +416,7 @@
             $('.change_medication_yes').addClass('disabled');
             $('.change_medication_no').addClass('disabled');
             $("#p_check").attr('disabled', 'disabled');
+            $("#suggested_test").attr('disabled', 'disabled');
 
             getData.previewConsultationSummary(appointment_id).then(function (res) {
                 $(".generate").removeClass('d-none');
@@ -417,14 +439,60 @@
               }
       */
         if(summary_details !="" ){
+                if(apmt_status=="closed")
+                {
+  /*                  var suggested_tests=summary_details.test_names.split('~');
+                    $("#suggested_test").val(suggested_tests);
+                    debugger
+                    for(var i=0; i<suggested_tests.length;i++)
+                    {
+                        var tag = "<span class='tags small-font'>"+suggested_tests[i]+"<i class='fa fa-times ml-1' aria-hidden='true'></i></span>";
+                        $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
+                    }
+*/
 
-            var suggested_tests_details=summary_details.suggested_test.map(function (item) {
-                var tag = "<span class='tags body-font'>"+item.test_name+"<i class='fa fa-times ml-1' id='"+item.test_id+"' aria-hidden='true'></i></span>";
-                $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
-                suggested_test_list.push({test_id: item.test_id, test_name: item.test_name});
-//               data.suggested_test = suggested_test_list;
-                // debugger
-            });
+//                  Old Working Code
+                    $("#suggested_test").val(summary_details.suggested_test.map(function (item) {return item.test_name}).join(', '));
+
+                    $('#suggested_test').hover(function() {
+                        $('#suggested_test_list').html($('#suggested_test').val());
+                        $('#suggested_test_list').addClass('text-justify col-10 pl-0 pr-0');
+                        $('#suggested_test_list').removeClass('d-none');
+
+                    },function(){
+                        $('#suggested_test_list').addClass('d-none');
+                        });
+
+                   /* ALready Commented
+                    var suggested_tests_details=summary_details.suggested_test.map(function (item) {
+                        var tag = "<span class='tags body-font'>"+item.test_name+"<i class='ml-1' id='"+item.test_id+"' aria-hidden='true'></i></span>";
+                        $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
+                        suggested_test_list.push({test_id: item.test_id, test_name: item.test_name});
+                        debugger;
+                        $("#suggested_test").val(item.test_name);
+                        });
+                        */
+
+                }else{
+
+/*
+                     var suggested_tests=summary_details.test_names.split('~');
+                    for(var i=0; i<suggested_tests.length;i++)
+                    {
+                        var tag = "<span class='tags small-font'>"+suggested_tests[i]+"<i class='fa fa-times ml-1' aria-hidden='true'></i></span>";
+                        $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
+                        suggested_test_list.push({test_id: 0, test_name: suggested_tests[i]});
+                    }
+*/
+
+                   // Old Working Code
+                   var suggested_tests_details=summary_details.suggested_test.map(function (item) {
+                        var tag = "<span class='tags small-font'>"+item.test_name+"<i class='fa fa-times ml-1' id='"+item.test_id+"' aria-hidden='true'></i></span>";
+                        $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
+                        suggested_test_list.push({test_id: item.test_id, test_name: item.test_name});
+
+                    });
+                }
 
             $("#diagnosis").val(summary_details.Diagnosis);
             $("#mgmt_plan").val(summary_details.mgmt_plan);
@@ -432,10 +500,17 @@
             $("#followup_date").val(summary_details.followup_date);
 
             if(summary_details.followup_date=="0000-00-00"){
-                $('#follow_up').val(summary_details.followup_in);
-                $("#followup_date").val("");
+              //  $('#follow_up').val("Others");
+                if(summary_details.followup_in=="No Follow-up"){
+                    $('#follow_up').val("No Follow-up");
+                    $("#followup_date").val("");
+                    $("#cal").addClass('d-none');
+                }
+                else{
+                    $("#followup_date").val(summary_details.followup_in);
+                    $("#cal").addClass('d-none');
+                }
             }
-
             $("#reffered_doctor").val(summary_details.reffered_doctor);
             $("#p_check").val(summary_details.waived_amount);
             if(summary_details.waive_fee == 'Full'){
@@ -482,6 +557,8 @@
                 $('.change_medication_no').addClass('disabled');
                 $("#followup_date").attr('disabled', 'disabled');
                 $('#p_check').attr('readonly', true);
+                $("#suggested_test").attr('disabled', 'disabled');
+
                 /*
                 $(".waiver input[name='waiver_status']").attr('disabled', 'disabled');
                 $(".btn-group input[name='change_medication']").attr('disabled', 'disabled');
@@ -510,6 +587,17 @@
                 data.notes = $('#note-content').val();
                 getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
                    // debugger;
+                    if(!res.error.error_message){
+                        $("#api-success").removeClass('hidden-xs-up');
+                        $("#api-success-message").show();
+                        $("#api-success-message").html("Consultation Details are saved successfully !!");
+                        $('#api-success-message').delay(3000).fadeOut("slow", function (evt) {
+                            $("#api-success").addClass('hidden-xs-up');
+                            $("#api-success-message").html("");
+                           // showToaster("Consultation Details are saved successfully !!",top, 2000);
+
+                        });
+                        }
                     return res;
                 });
             }
@@ -518,175 +606,200 @@
 
         $("#close-yes").on("click", function (evt) {
             getData.closeConsultation(appointment_id).then(function(res){
-                res.appointment_status=="closed";
-                summary_record_id=res.consultation.record_id;
 
-                //New Code added what happens after close consultation
-                $("#save").hide();
-                $("#preview_summary").hide();
-                $("#edit_summary").hide();
-                $("#close").hide();
-                $("#form4").show();
-                $("#print").show();
-                $("#start-vedio-consultation").hide();
-                $('#form4 :input').attr('readonly', 'readonly');
-                $("#follow_up")[0].disabled = true;
-                $('.No_fee').addClass('disabled');
-                $('.Full_fee').addClass('disabled');
-                $('.Partial_fee').addClass('disabled');
-                $('.fee').addClass('disabled');
-                $('.change_medication_yes').addClass('disabled');
-                $('.change_medication_no').addClass('disabled');
-                $("#followup_date").attr('disabled', 'disabled');
-                $('#p_check').attr('readonly', true);
-                // Code Ended
+                    if(!res.error.error_message){
+                        $("#api-success").removeClass('hidden-xs-up');
+                        $("#api-success-message").show();
+                        $("#api-success-message").html("Your Consultation is closed !!");
+                        $('#api-success-message').delay(3000).fadeOut("slow", function (evt) {
+                            $("#api-success").addClass('hidden-xs-up');
+                            $("#api-success-message").html("");
+                            var date = moment(appointment_date).format("YYYYMMDD");
+                            getData.getDashboardData(date).then(function (res) {
+                                appointment_list = res.appointments_details.appointment;
+                                showDashboardDetails(res);
+                                appointment_date = moment(date).format("YYYY-MM-DD");
 
-            });
-            evt.preventDefault();
-        });
+                                $("#" + appointment_id).click();
+                                var next = $('#mytabs li.active').next();
+                                next.length ?
+                                    next.find('a').click() :
+                                    $('#mytabs li a')[2].click();
+                            });
+                        });
+                        }
+                        res.appointment_status=="closed";
+                        summary_record_id=res.consultation.record_id;
 
-        $("#close").on("click",function(evt) {
-            //console.log(evt);
+                                        //New Code added what happens after close consultation
+                                        $("#save").hide();
+                                        $("#preview_summary").hide();
+                                        $("#edit_summary").hide();
+                                        $("#close").hide();
+                                        $("#form4").show();
+                                        $("#print").show();
+                                        $("#start-vedio-consultation").hide();
+                                        $('#form4 :input').attr('readonly', 'readonly');
+                                        $("#follow_up")[0].disabled = true;
+                                        $('.No_fee').addClass('disabled');
+                                        $('.Full_fee').addClass('disabled');
+                                        $('.Partial_fee').addClass('disabled');
+                                        $('.fee').addClass('disabled');
+                                        $('.change_medication_yes').addClass('disabled');
+                                        $('.change_medication_no').addClass('disabled');
+                                        $("#followup_date").attr('disabled', 'disabled');
+                                        $('#p_check').attr('readonly', true);
+                                        // Code Ended
 
-            var formData = $("#form4").serializeArray();
-            if(validateForm(formData)){
-                evt.preventDefault();
-                var data={};
-                formData.map(function (feild) {
-                    data[feild.name] = feild.value;
-                });
-                if(consultation_id) {
-                    data.consultation_id=consultation_id;
-                }
-                data.suggested_test = suggested_test_list;
-                data.notes = $('#note-content').val();
-                getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
-                    // debugger;
-                    $('#close-consultation').modal({
-                        show: true
-                    });
-                    return res;
-                });
-            }
+                                    });
+                                    evt.preventDefault();
+                                });
 
+                                $("#close").on("click",function(evt) {
+                                    //console.log(evt);
 
+                                    var formData = $("#form4").serializeArray();
+                                    if(validateForm(formData)){
+                                        evt.preventDefault();
+                                        var data={};
+                                        formData.map(function (feild) {
+                                            data[feild.name] = feild.value;
+                                        });
+                                        if(consultation_id) {
+                                            data.consultation_id=consultation_id;
+                                        }
+                                        data.suggested_test = suggested_test_list;
+                                        data.notes = $('#note-content').val();
+                                        getData.UpdateConsultationSummary(appointment_id,data).then(function (res) {
 
-            evt.preventDefault();
-        });
-
-        $('#follow_up').change(function(){
-            var followup_days = $('#follow_up').val();
-            if(followup_days=="After 2 Days"){
-                $("#followup_date").attr('disabled', false);
-                $("#followup_date").val(moment().add(2,'days').format("YYYY-MM-DD"));
-                //$("#followup_date").attr('readonly', true);
-            }
-            if(followup_days=="After 1 Week"){
-                $("#followup_date").attr('disabled', false);
-                $("#followup_date").val(moment().add(7,'days').format("YYYY-MM-DD"));
-                //$("#followup_date").attr('readonly', true);
-            }
-            if(followup_days=="After 10 Days"){
-                $("#followup_date").attr('disabled', false);
-                $("#followup_date").val(moment().add(10,'days').format("YYYY-MM-DD"));
-                //$("#followup_date").attr('readonly', true);
-            }
-            if(followup_days=="After 2 Weeks"){
-                $("#followup_date").attr('disabled', false);
-                $("#followup_date").val(moment().add(14,'days').format("YYYY-MM-DD"));
-           //    $("#followup_date").attr('readonly', true);
-            }
-            if(followup_days=="After 1 Month"){
-                $("#followup_date").attr('disabled', false);
-                $("#followup_date").val(moment().add(30,'days').format("YYYY-MM-DD"));
-               // $("#followup_date").attr('readonly', true);
-            }
-            if(followup_days=="Others"){
-                $("#followup_date").attr('disabled', false);
-                //$("#followup_date").attr('readonly', false);
-                $("#followup_date").val("");
-            }
-            if(followup_days=="No Follow-up"){
-                $("#followup_date").attr('disabled', true);
-                $("#followup_date").val("");
-            }
-        });
-        // $("#followup_date").attr('readonly', true);
-        var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'yyyy-mm-dd',
-            // container: container,
-            changeMonth: true,
-            changeYear: true,
-            minDate: 0,
-            todayHighlight: true,
-            autoclose: true
-        }).on('changeDate', function() {
-            if($('input[name="followup_date"]').val()==moment().add(2,'days').format("YYYY-MM-DD")){
-                $('#follow_up').val("After 2 Days");
-            }else if($('input[name="followup_date"]').val()==moment().add(7,'days').format("YYYY-MM-DD")){
-                $('#follow_up').val("After 1 Week");
-            }else if($('input[name="followup_date"]').val()==moment().add(10,'days').format("YYYY-MM-DD")){
-                $('#follow_up').val("After 10 Days");
-            }else if($('input[name="followup_date"]').val()==moment().add(14,'days').format("YYYY-MM-DD")){
-                $('#follow_up').val("After 2 Weeks");
-            }else if($('input[name="followup_date"]').val()==moment().add(30,'days').format("YYYY-MM-DD")) {
-                $('#follow_up').val("After 1 Month");
-            }else if($('input[name="followup_date"]').val()=="0000-00-00"){
-                    $('#follow_up').val("No Follow-up");
-            }else{
-                $('#follow_up').val("Others");
-            }
-            var dateString = $("#followup_date").val();
-            var myDate = new Date(dateString);
-            var today = new Date();
-            if ( myDate < today ) {
-                $('#date-error-text').removeClass('d-none');
-                $("#followup_date").addClass('error');
-                $('#date-error-text').addClass('date-error');
-                $('#date-error-text').html("Please Select a Date in the future!!");
-                return false;
-            }
-            else{
-                $('#date-error-text').addClass('d-none');
-                $('#date-error-text').removeClass('date-error');
-                $("#followup_date").removeClass('error')
-
-            }
-            return true;
+                                            if(!res.error.error_message) {
+                                                // debugger;
+                                                $('#close-consultation').modal({
+                                                    show: true
+                                                });
+                                            }
+                                            return res;
+                                        });
+                                    }
 
 
-        });
-        $("input[name='waiver_status']").change(function(){
-            if($(this).val()=="Partial"){
-                $("#p_check")[0].disabled = false;
-                $('#p_check').attr('readonly', false);
-                $("#ifPartial").show();
-                $("#p_check").val("");
-            }else if($(this).val()=="Full"){
-                $("#p_check")[0].disabled = false;
-                $("#ifPartial").show();
-                $("#p_check").val("");
-                // $("#p_check").val("1000");
-                // $('#p_check').attr('readonly', true);
-            }else{
-                $("#ifPartial").hide();
-            }
-        });
-        $('#suggested_test_list').on('click', '.fa-times' ,function (ev) {
 
-            var id = ev.target.id;
-            suggested_test_list.splice(suggested_test_list.indexOf(id), 1);
-            $(this).parent().remove();
-        });
-        //});
-        /*  $("#print").on("click", function () {
-            alert(123);
-            getData.previewConsultationSummary(appointment_id).then(function (res) {
-                window.open("data:application/pdf;base64, " + res.document.body);
-            });
-        });*/
+                                    evt.preventDefault();
+                                });
+
+                                $('#follow_up').change(function(){
+                                    var followup_days = $('#follow_up').val();
+                                    if(followup_days=="After 2 Days"){
+                                        $("#followup_date").attr('disabled', false);
+                                        $("#followup_date").val(moment().add(2,'days').format("YYYY-MM-DD"));
+                                        //$("#followup_date").attr('readonly', true);
+                                    }
+                                    if(followup_days=="After 1 Week"){
+                                        $("#followup_date").attr('disabled', false);
+                                        $("#followup_date").val(moment().add(7,'days').format("YYYY-MM-DD"));
+                                        //$("#followup_date").attr('readonly', true);
+                                    }
+                                    if(followup_days=="After 10 Days"){
+                                        $("#followup_date").attr('disabled', false);
+                                        $("#followup_date").val(moment().add(10,'days').format("YYYY-MM-DD"));
+                                        //$("#followup_date").attr('readonly', true);
+                                    }
+                                    if(followup_days=="After 2 Weeks"){
+                                        $("#followup_date").attr('disabled', false);
+                                        $("#followup_date").val(moment().add(14,'days').format("YYYY-MM-DD"));
+                                   //    $("#followup_date").attr('readonly', true);
+                                    }
+                                    if(followup_days=="After 1 Month"){
+                                        $("#followup_date").attr('disabled', false);
+                                        $("#followup_date").val(moment().add(30,'days').format("YYYY-MM-DD"));
+                                       // $("#followup_date").attr('readonly', true);
+                                    }
+                                    if(followup_days=="Others"){
+                                        $("#followup_date").attr('disabled', false);
+                                        //$("#followup_date").attr('readonly', false);
+                                        $("#followup_date").val("");
+                                    }
+                                    if(followup_days=="No Follow-up"){
+                                        $("#followup_date").attr('disabled', true);
+                                        $("#followup_date").val("");
+                                    }
+                                });
+                                // $("#followup_date").attr('readonly', true);
+                                var date_input=$('input[name="followup_date"]'); //our date input has the name "date"
+                                var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                                date_input.datepicker({
+                                    format: 'yyyy-mm-dd',
+                                    // container: container,
+                                    changeMonth: true,
+                                    changeYear: true,
+                                    minDate: 0,
+                                    todayHighlight: true,
+                                    autoclose: true
+                                }).on('changeDate', function() {
+                                    if($('input[name="followup_date"]').val()==moment().add(2,'days').format("YYYY-MM-DD")){
+                                        $('#follow_up').val("After 2 Days");
+                                    }else if($('input[name="followup_date"]').val()==moment().add(7,'days').format("YYYY-MM-DD")){
+                                        $('#follow_up').val("After 1 Week");
+                                    }else if($('input[name="followup_date"]').val()==moment().add(10,'days').format("YYYY-MM-DD")){
+                                        $('#follow_up').val("After 10 Days");
+                                    }else if($('input[name="followup_date"]').val()==moment().add(14,'days').format("YYYY-MM-DD")){
+                                        $('#follow_up').val("After 2 Weeks");
+                                    }else if($('input[name="followup_date"]').val()==moment().add(30,'days').format("YYYY-MM-DD")) {
+                                        $('#follow_up').val("After 1 Month");
+                                    }else if($('input[name="followup_date"]').val()=="0000-00-00"){
+                                            $('#follow_up').val("No Follow-up");
+                                    }else{
+                                        $('#follow_up').val("Others");
+                                    }
+                                    var dateString = $("#followup_date").val();
+                                    var myDate = new Date(dateString);
+                                    var today = new Date();
+                                    if ( myDate < today ) {
+                                        $('#date-error-text').removeClass('d-none');
+                                        $("#followup_date").addClass('error');
+                                        $('#date-error-text').addClass('date-error');
+                                        $('#date-error-text').html("Please Select a Date in the future!!");
+                                        return false;
+                                    }
+                                    else{
+                                        $('#date-error-text').addClass('d-none');
+                                        $('#date-error-text').removeClass('date-error');
+                                        $("#followup_date").removeClass('error')
+
+                                    }
+                                    return true;
+
+
+                                });
+                                $("input[name='waiver_status']").change(function(){
+                                    if($(this).val()=="Partial"){
+                                        $("#p_check")[0].disabled = false;
+                                        $('#p_check').attr('readonly', false);
+                                        $("#ifPartial").show();
+                                        $("#p_check").val("");
+                                    }else if($(this).val()=="Full"){
+                                        $("#p_check")[0].disabled = false;
+                                        $("#ifPartial").show();
+                                        $("#p_check").val("");
+                                        // $("#p_check").val("1000");
+                                        // $('#p_check').attr('readonly', true);
+                                    }else{
+                                        $("#ifPartial").hide();
+                                    }
+                                });
+                                $('#suggested_test_list').on('click', '.fa-times' ,function (ev) {
+
+                                    var id = ev.target.id;
+                                    suggested_test_list.splice(suggested_test_list.indexOf(id), 1);
+                                    $(this).parent().remove();
+                                });
+
+                                /*  $("#print").on("click", function () {
+                                    alert(123);
+                                    getData.previewConsultationSummary(appointment_id).then(function (res) {
+                                        window.open("data:application/pdf;base64, " + res.document.body);
+                                    });
+                                });*/
         /* window.open("data:application/pdf;base64, " + res.document.body);*/
     });
 

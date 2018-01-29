@@ -21,6 +21,10 @@
     <!--</script>-->
     <link rel="stylesheet" type="text/css" href="css/newStyles.css">
     <script type="text/javascript" src="js/libs/handlebars.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-intl.js"></script>
+
+    <!--    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/handlebars-dateformat.js"></script>-->
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datepicker.min.js"></script>
@@ -69,7 +73,7 @@
     <script type="text/x-handlebars-template" id="detailsTemplate">
         <div class="col-12">
             <div class="row">
-                <div class="col-6">
+                <div class="col-5">
                     <div class="appointment-details">
                         <b class="mt-2 body-font">General</b>
                         <p>
@@ -115,9 +119,9 @@
 
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <div class="appointment-details">
-                        <p>
+                       <!-- <p>-->
                             <!--<b>Medical Details</b><br>-->
                             <!--BP:	120/80<br>-->
                             <!--Pulse Rate:	60 to 100 beats a minute<br>-->
@@ -132,7 +136,7 @@
 
                         <p>
                             {{#appointment_det.health_record}}
-                        <a href="#" id="{{id}}" class="health_record"  rel="{{doc_datatype}}" data-toggle="modal" data-target="#myModal"> <span class="fa fa-file-text-o m-1 small-font"></span>{{description}}</a>
+                        <a href="#" id="{{id}}" class="health_record small-font"  rel="{{doc_datatype}}" data-toggle="modal" data-target="#myModal"> <span class="fa fa-file-text-o m-1 small-font"></span>{{description}}</a>
                             {{/appointment_det.health_record}}
                         </p>
 
@@ -141,7 +145,7 @@
 
                         <p>
                             {{#appointment_det}}
-                        <a href="#" id="{{summary_record_id}}" class="health_record"  rel="application/pdf" data-toggle="modal" data-target="#myModal"> <span class="fa fa-file-text-o m-1 sumary_img small-font"></span>{{summary_record_name}}</a>
+                        <a href="#" id="{{summary_record_id}}" class="health_record small-font"  rel="application/pdf" data-toggle="modal" data-target="#myModal"> <span class="fa fa-file-text-o m-1 sumary_img small-font"></span>{{summary_record_name}}</a>
                             {{/appointment_det}}
                         </p>
 
@@ -149,7 +153,7 @@
 
                         <!-- Modal -->
                         <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-dialog modal-lg" role="document" style="padding-top: 32px;">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <span class="document-title"></span>
@@ -158,24 +162,18 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
 
-
-
-
-
-                        <div id="record_preview">
-
-                        </div>
-
-
                     </div>
                 </div>
+            <div class="col-2">
+                <div class="btn btn-default btn-block small-font"><a id="add-note-1"><img class="add-doctor-note" src="img/note-2.png">Add Note</a></div>
+            </div>
+
+
             </div>
         </div>
     </script>
@@ -187,8 +185,8 @@
 <body>
 <div class="float-note hidden-xs-up">
     <div>
-        <div>Note <span class="pull-right" id="close-note"><span class="fa fa-times"></span> </span></div>
-                <textarea rows="2" id="note-content">
+        <div>Doctor Notes <span class="pull-right" id="close-note-1"><span class="fa fa-times"></span> </span></div>
+                <textarea rows="6" id="note-content">
 
                 </textarea>
     </div>

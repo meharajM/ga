@@ -25,6 +25,7 @@ $(document).ready(function(){
     }
     showDashboard();
     $('#body').on('click', '#login', function () {
+
         var user = $('#username').val();
         var pass = $('#password').val();
         getData.doDoctorLogin(user,pass).then(function (res) {
@@ -38,12 +39,18 @@ $(document).ready(function(){
             }
             if(res.error.error_message == "Invalid Data : Email and password mismatch"){
                 $('.error-message').html(res.error.error_message)
+
             }else{
                 isLoggedIn = true; //checkLogin();
                 showDashboard();
                 }
         });
-    })
+        //Added By Nishant....delete it if any problem comes
+        $('.login-error-icon').on("click", function (ev) {
+            hideApiError();
+        });
+    });
+
 });
 function showApiError(error){
     //debugger

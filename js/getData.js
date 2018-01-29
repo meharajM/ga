@@ -5,8 +5,12 @@ var session_info = {
     "doctor_id": sessionStorage.getItem("doctorId")
 };
 var doctor_id = sessionStorage.getItem("doctorId");
-var base_url = "http://52.66.157.195/growayu/ganewdesign/";      //Test Server
+
+//var base_url = "https://52.66.157.195/growayu/ganewdesign";      //Test Server
 //var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
+var base_url = "https://13.126.208.181/gadoctor";                   //Migration Server
+//var base_url = "https://doctor.growayu.com/gadoctor";                  //Production Server
+
 var getData = {
     getDashboardData: function(date){
         var url = "/api/getDocAppointmentDashboard.php";
@@ -229,12 +233,17 @@ var getData = {
             success: function (res,status) {
                 //alert("success in update summary");
                  showApiError(res.error);
-                 if(!res.error.error_message)
+                 /*if(!res.error.error_message)
                  {
                      $('.alert-autocloseable-success').show();
-                     $('.alert-autocloseable-success').delay(3000).fadeOut("slow", function () {
+                     $('.alert-autocloseable-success').delay(5000).fadeOut("slow", function () {
+                         $("#" + appointment_id).click();
+                         var next = $('#mytabs li.active').next();
+                         next.length?
+                             next.find('a').click():
+                             $('#mytabs li a')[2].click();
                      });
-                 }
+                 }*/
                 return res;
             },
             error: function(err,status){
@@ -391,6 +400,48 @@ var getData = {
         });
         return call;
     },
+
+
+    addPrescriptionTemplate: function(template_name,diseases, prescription){
+        var url = "/api/addPrescriptionTemplate.php";
+     // var url = "https://52.66.157.195/growayu/ganewdesign/api/addPrescriptionTemplate.php";
+        var doctorId = doctor_id;
+        var template= {
+            doctor_id: doctorId,
+            "hcc_id" : selectedAppointment.hcc_det.hcc_id,
+            template_id: "",
+            template_name:template_name,
+            disease:diseases
+        };
+
+        var prescription=prescription;
+        var data = {
+            template_details: {
+                "template":template,
+                    "prescription": prescription
+            },
+            session_info: session_info
+        };
+        debugger
+        hideApiError();
+        var call = $.ajax({
+            type: "POST",
+            //url: base_url + url,
+            url:base_url+url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res,status) {
+                showApiError(res.error);
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        });
+        return call;
+    },
 /* Bala Code Starts Here*/
 
     getLabTest: function(term){
@@ -443,15 +494,16 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-                  showApiError(res.error);
-                if(!res.error.error_message)
+                 showApiError(res.error);
+              /*  if(!res.error.error_message)
                 {
                     $('.alert-autocloseable-success').show();
                     $('.alert-autocloseable-success').html("Your Consultation is Closed !!")
                     $('.alert-autocloseable-success').delay(3000).fadeOut("slow", function () {
                     });
-                }
-                return res;            },
+                }*/
+                return res;
+            },
             error: function(err,status){
                 console.error(err, status);
             }

@@ -39,6 +39,11 @@ body{
     border-bottom: 3px solid #5495d8;
 }
 
+/* Added By Nishant*/
+.nav-item {
+    border-top: 1px solid #ddd;
+}
+
 body{
     background-color: #f5f5f5;
 }
@@ -229,6 +234,10 @@ body{
 }
 .content-container.container{
     width: 100%;
+    position: absolute;
+    /*
+    z-index: -2;
+    */
 }
 
 .appointment-type .VC{
@@ -246,6 +255,11 @@ body{
     text-align: right;
 
     /* background-image: url(../img/pc.png); */
+}
+
+.add-doctor-note{
+    height:32px;
+    width:32px;
 }
 
 /*
@@ -400,12 +414,13 @@ body{
 }
 
 .appointment:hover{
-    background: #e9ffe0;
+    background: #eaeae6;
 }
-/*
-.appointment:active {
-    background: #fffd88;
-}*/
+
+.list-group-item.active {
+    background: #715b50;
+}
+
 #hs-name-container{
     position: absolute;
     padding: 10px;
@@ -445,6 +460,34 @@ body{
 }
 
 @media only screen and (min-width: 768px) {
+
+    .select2-selection__placeholder{
+        font-size: 12px;
+    }
+/*
+    .previous_pres{
+        margin-top: -4px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }*/
+
+    .search_template{
+        padding-top: 0px;
+        padding-bottom: 5px;
+    }
+
+/*    #add{
+!*        margin-top: 0.25rem;*!
+        height: 32px;
+        width: 36px;
+        padding-top: 8px;
+        padding-bottom: 22px;
+    }*/
+    #add {
+        height: 28px;
+        width: 32px;
+        padding-top: 6px;
+    }
 
     .no-prev-appointments{
         padding-top: 150px;
@@ -513,15 +556,16 @@ body{
         height: 25px;
         width: 32px;
     }
-
-    select.form-control:not([size]):not([multiple]){
-        height:32px;
+    select.form-control:not([size]):not([multiple]) {
+        height: 28px;
+        padding-top: 4px;
     }
+
     .select2-container .select2-selection--single {
         box-sizing: border-box;
         cursor: pointer;
         display: block;
-        height: 32px;
+        height: 28px;
     }
 
     #med_type{
@@ -1098,11 +1142,35 @@ footer {
 .nav-item{
     cursor: pointer;
 }
+
 #api-error{
-    padding-left: 10px;
+    position: absolute;
+    z-index: 1;
+    padding-left: 16px;
+    padding-top: 2px;
     color: red;
-    padding-top: 8px;
 }
+#api-error-message{
+    padding: 6px;
+}
+#api-success-message{
+    padding: 6px;
+}
+
+
+#api-success{
+    position: absolute;
+    z-index: 1;
+    padding-left: 16px;
+    padding-top: 7px;
+}
+hr {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
 .appointment-details span{
 
 }
@@ -1169,10 +1237,29 @@ hr.style-three:before {
     padding: 8px;
     background-color: white;
     border: 0.5px solid #cccccc;
-    right: 80px;
-    top: 100px;
+    right: 40px;
+    top: 184px;
 }
 .float-note textarea{
     width: 100%;
     height: 100%;
 }
+
+/*.modal-backdrop{
+    position: absolute;
+    z-index: -3;
+}*/
+
+.active-class{
+    background-color:red;
+}
+
+.heading-prev{
+    font-size: 24px;
+    color: darkcyan;
+}
+
+/*
+.well{
+    border: 1px solid grey;border-radius: 3px;
+}*/

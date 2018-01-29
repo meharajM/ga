@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7acdf6ac-880e-4f4d-9cd5-8bd742f82442" name="Default" comment="new UI changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/components/dashboard.html" afterPath="$PROJECT_DIR$/components/dashboard.html" />
-      <change beforePath="$PROJECT_DIR$/components/summary.html" afterPath="$PROJECT_DIR$/components/summary.html" />
-      <change beforePath="$PROJECT_DIR$/css/newStyles.css" afterPath="$PROJECT_DIR$/css/newStyles.css" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change beforePath="$PROJECT_DIR$/js/dashboard.js" afterPath="$PROJECT_DIR$/js/dashboard.js" />
+    <list default="true" id="07f80515-0211-44b8-ba38-73a55937896f" name="Default" comment="nishant changes">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/filter.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/newprescription.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/summary.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/summary_apii.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/summary_new.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/patch.patch" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sever.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/dashboard.html" afterPath="$PROJECT_DIR$/components/dashboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/login.html" afterPath="$PROJECT_DIR$/components/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/prescription.html" afterPath="$PROJECT_DIR$/components/prescription.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/summary.html" afterPath="$PROJECT_DIR$/components/summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/newStyles.css" afterPath="$PROJECT_DIR$/css/newStyles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/dashboard.js" afterPath="$PROJECT_DIR$/js/dashboard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/getData.js" afterPath="$PROJECT_DIR$/js/getData.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/index.js" afterPath="$PROJECT_DIR$/js/index.js" />
     </list>
-    <list id="cc5adccf-fbfe-4f79-a5ae-620c508ff6d6" name="nishant changes" comment="" />
-    <ignored path="$PROJECT_DIR$/.idea/shelf/" />
+    <ignored path="C:\xampp\htdocs\ga\.idea\shelf/" />
+    <ignored path=".htaccess" />
+    <ignored path=".htaccess.txt" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,41 +34,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="918">
+              <caret line="54" column="28" lean-forward="false" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="190" column="51" lean-forward="false" selection-start-line="190" selection-start-column="39" selection-end-line="190" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="getData.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/getData.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="207" column="29" lean-forward="false" selection-start-line="207" selection-start-column="4" selection-end-line="207" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="filter.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/filter.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2970">
-              <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/dashboard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="405" column="0" lean-forward="true" selection-start-line="405" selection-start-column="0" selection-end-line="405" selection-end-column="0" />
+            <state relative-caret-position="816">
+              <caret line="48" column="19" lean-forward="false" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -63,18 +57,82 @@
       <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="91" column="40" lean-forward="false" selection-start-line="91" selection-start-column="40" selection-end-line="91" selection-end-column="40" />
+            <state relative-caret-position="2363">
+              <caret line="139" column="59" lean-forward="false" selection-start-line="139" selection-start-column="59" selection-end-line="139" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tokBoxHandlers.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/tokBoxHandlers.js">
+      <file leaf-file-name="summary.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/summary.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-786">
-              <caret line="0" column="51" lean-forward="false" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="51" />
+            <state relative-caret-position="-3661">
+              <caret line="332" column="76" lean-forward="false" selection-start-line="332" selection-start-column="76" selection-end-line="332" selection-end-column="76" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#11281#11288#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="prescription.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/components/prescription.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="990" column="29" lean-forward="true" selection-start-line="990" selection-start-column="29" selection-end-line="990" selection-end-column="29" />
+              <folding>
+                <element signature="e#1306#1313#1" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="e#10466#10473#1" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="e#11915#11922#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="444">
+              <caret line="59" column="9" lean-forward="false" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="history.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/history.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="285" column="23" lean-forward="false" selection-start-line="285" selection-start-column="23" selection-end-line="285" selection-end-column="23" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getData.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/getData.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/dashboard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6817">
+              <caret line="401" column="4" lean-forward="false" selection-start-line="401" selection-start-column="4" selection-end-line="401" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -83,28 +141,8 @@
       <file leaf-file-name="newStyles.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/newStyles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4240">
-              <caret line="334" column="13" lean-forward="true" selection-start-line="334" selection-start-column="13" selection-end-line="334" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="summary.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/components/summary.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="506" column="57" lean-forward="true" selection-start-line="506" selection-start-column="57" selection-end-line="506" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ecstatic.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/ecstatic/lib/ecstatic.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="25" column="57" lean-forward="true" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
+            <state relative-caret-position="19754">
+              <caret line="1162" column="14" lean-forward="false" selection-start-line="1162" selection-start-column="14" selection-end-line="1162" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -112,56 +150,94 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.appointment</find>
-      <find>hcc_id</find>
-      <find>d</find>
-      <find>doctor_id</find>
-      <find>appoint</find>
-      <find>doctorId</find>
-      <find>#presc</find>
-      <find>previous_prescription</find>
-      <find>select2</find>
-      <find>tags</find>
-      <find>summa</find>
-      <find>selectp2</find>
-      <find>suggested_test_list</find>
-      <find>fa-times</find>
-      <find>getDa</find>
-      <find>suggested_test</find>
-      <find>test_id</find>
-      <find>update</find>
-      <find>debugger</find>
-      <find>draggable</find>
-      <find>publisher</find>
-      <find>dragga</find>
-      <find>float</find>
-      <find>appointment-details</find>
-      <find>#toaster</find>
-      <find>closeConsultation</find>
-      <find>close</find>
-      <find>updatecon</find>
-      <find>showToaster</find>
-      <find>UpdateConsultationSummary</find>
+      <find>api-e</find>
+      <find>content-c</find>
+      <find>api</find>
+      <find>pres</find>
+      <find>length</find>
+      <find>debu</find>
+      <find>prescriptions_l</find>
+      <find>delete_flag</find>
+      <find>add-pr</find>
+      <find>validateForm</find>
+      <find>med_TYPE</find>
+      <find>DEB</find>
+      <find>api-err</find>
+      <find>fa-p</find>
+      <find>follow_up</find>
+      <find>.edit</find>
+      <find>add-</find>
+      <find>append</find>
+      <find>replace</find>
+      <find>Do You</find>
+      <find>#previous_p</find>
+      <find>#previous_p7</find>
+      <find>appe</find>
+      <find>save_template_button</find>
+      <find>unde</find>
+      <find>validateF</find>
+      <find>add</find>
+      <find>error</find>
+      <find>validate</find>
+      <find>valida</find>
     </findStrings>
+    <replaceStrings>
+      <replace>b</replace>
+      <replace>dosage</replace>
+      <replace>frequency</replace>
+      <replace>course</replace>
+      <replace>med_intake</replace>
+      <replace>remarks</replace>
+      <replace>api</replace>
+      <replace>reffered_doctor</replace>
+      <replace>form5</replace>
+      <replace>close-button2</replace>
+      <replace>table2</replace>
+      <replace>add2</replace>
+      <replace>font-14</replace>
+      <replace>small-font</replace>
+      <replace>body-font</replace>
+      <replace>others</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/components/filter.html" />
+        <option value="$PROJECT_DIR$/css/bootstrap.min.css" />
+        <option value="$PROJECT_DIR$/Login - Copy.html" />
+        <option value="$PROJECT_DIR$/components/Login.html" />
+        <option value="$PROJECT_DIR$/components/Dashboard.html" />
         <option value="$PROJECT_DIR$/js/tokBoxHandlers.js" />
-        <option value="$PROJECT_DIR$/js/getData.js" />
-        <option value="$PROJECT_DIR$/components/prescription.html" />
-        <option value="$PROJECT_DIR$/node_modules/ecstatic/lib/ecstatic.js" />
-        <option value="$PROJECT_DIR$/newStyles.css" />
-        <option value="$PROJECT_DIR$/components/dashboard.html" />
+        <option value="$PROJECT_DIR$/components/logout.html" />
+        <option value="$PROJECT_DIR$/components/newprescription.html" />
+        <option value="$PROJECT_DIR$/components/login.html" />
+        <option value="$PROJECT_DIR$/components/filter.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/getData.js" />
         <option value="$PROJECT_DIR$/css/newStyles.css" />
+        <option value="$PROJECT_DIR$/js/index.js" />
+        <option value="$PROJECT_DIR$/components/dashboard.html" />
         <option value="$PROJECT_DIR$/js/dashboard.js" />
+        <option value="$PROJECT_DIR$/components/history.html" />
+        <option value="$PROJECT_DIR$/components/prescription.html" />
         <option value="$PROJECT_DIR$/components/summary.html" />
       </list>
     </option>
@@ -176,11 +252,12 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="37" />
-    <option name="y" value="-17" />
-    <option name="width" value="1330" />
-    <option name="height" value="786" />
+    <option name="x" value="10" />
+    <option name="y" value="20" />
+    <option name="width" value="1346" />
+    <option name="height" value="688" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -196,8 +273,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -205,17 +280,37 @@
               <item name="ga" type="b2602c69:ProjectViewProjectNode" />
               <item name="ga" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ga" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ga" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ga" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ga" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ga" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ga" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="SearchEverywhereHistoryKey" value="ne&#9;FILE&#9;file:///home/meharaj/project/ga/css/newStyles.css&#10;new&#9;FILE&#9;file:///home/meharaj/project/ga/newStyles.css&#10;in&#9;FILE&#9;file:///home/meharaj/project/ga/index.html&#10;newC&#9;FILE&#9;file:///home/meharaj/project/ga/newStyles.css&#10;index&#9;FILE&#9;file:///home/meharaj/project/ga/index.html&#10;su&#9;FILE&#9;file:///home/meharaj/project/ga/components/summary.html&#10;filter&#9;FILE&#9;file:///home/meharaj/project/ga/components/filter.html&#10;get&#9;FILE&#9;file:///home/meharaj/project/ga/js/getData.js&#10;pres&#9;FILE&#9;file:///home/meharaj/project/ga/components/prescription.html" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../nishant_changes.patch" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/xampp/htdocs/ga/js/index.js&#10;get&#9;FILE&#9;file://C:/xampp/htdocs/ga/js/getData.js" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -229,6 +324,89 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+  </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
@@ -236,103 +414,456 @@
     <configuration />
   </component>
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="prescriptions map">
-      <created>1514040697588</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1514040697588</updated>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="07f80515-0211-44b8-ba38-73a55937896f" name="nishant" comment="" />
+      <created>1510761782923</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1510761782923</updated>
+      <workItem from="1510761784383" duration="445000" />
+      <workItem from="1510809211655" duration="2214000" />
+      <workItem from="1510895749013" duration="1231000" />
+      <workItem from="1510985762753" duration="19494000" />
+      <workItem from="1511112693802" duration="1842000" />
+      <workItem from="1511149158537" duration="6302000" />
+      <workItem from="1511158983963" duration="62719000" />
+      <workItem from="1511323399029" duration="78648000" />
+      <workItem from="1511491198469" duration="40013000" />
+      <workItem from="1511755110790" duration="27845000" />
+      <workItem from="1511840227487" duration="32344000" />
+      <workItem from="1511933097123" duration="29423000" />
+      <workItem from="1512020566299" duration="27885000" />
+      <workItem from="1512106179793" duration="26051000" />
+      <workItem from="1512191761418" duration="23570000" />
+      <workItem from="1512364736651" duration="33678000" />
+      <workItem from="1512464655393" duration="24841000" />
+      <workItem from="1512534735648" duration="56259000" />
+      <workItem from="1512710544667" duration="26602000" />
+      <workItem from="1515475282834" duration="153375000" />
+      <workItem from="1516475269075" duration="8336000" />
+      <workItem from="1516558322243" duration="949000" />
+      <workItem from="1517203765658" duration="140000" />
     </task>
-    <task id="LOCAL-00002" summary="prescriptions ui changes">
-      <created>1514051389139</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1514051389139</updated>
-    </task>
-    <task id="LOCAL-00003" summary="prescriptions ui changes">
-      <created>1514059259453</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1514059259453</updated>
-    </task>
-    <task id="LOCAL-00004" summary="prescriptions ui changes">
-      <created>1514059298044</created>
+    <task id="LOCAL-00004" summary="summary.html alignment changed and added css in newStyles.css">
+      <created>1510995033935</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1514059298044</updated>
+      <updated>1510995033935</updated>
     </task>
-    <task id="LOCAL-00005" summary="prescriptions ui changes">
-      <created>1514059772759</created>
+    <task id="LOCAL-00005" summary="API file code added">
+      <created>1511005821549</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1514059772759</updated>
+      <updated>1511005821549</updated>
     </task>
-    <task id="LOCAL-00006" summary="prescriptions ui changes">
-      <created>1514098799775</created>
+    <task id="LOCAL-00006" summary="API file code added">
+      <created>1511009260261</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1514098799775</updated>
+      <updated>1511009260261</updated>
     </task>
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="7acdf6ac-880e-4f4d-9cd5-8bd742f82442" name="Default" comment="" />
-      <created>1515227444273</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1515227444273</updated>
-      <workItem from="1515227447092" duration="11381000" />
-    </task>
-    <task id="LOCAL-00007" summary="new UI changes">
-      <created>1516518053366</created>
+    <task id="LOCAL-00007" summary="API file code added">
+      <created>1511009351972</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1516518053366</updated>
+      <updated>1511009351972</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="API file code added">
+      <created>1511009928917</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1511009928917</updated>
+    </task>
+    <task id="LOCAL-00009" summary="API file code added">
+      <created>1511010463307</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1511010463307</updated>
+    </task>
+    <task id="LOCAL-00010" summary="latest till now">
+      <created>1511150263809</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1511150263809</updated>
+    </task>
+    <task id="LOCAL-00011" summary="get appointment details modifications">
+      <created>1511151921889</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1511151921889</updated>
+    </task>
+    <task id="LOCAL-00012" summary="buttons functionality">
+      <created>1511188206950</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1511188206950</updated>
+    </task>
+    <task id="LOCAL-00013" summary="date functionality added in getDashboard Data..next and previous date">
+      <created>1511191038841</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1511191038841</updated>
+    </task>
+    <task id="LOCAL-00014" summary="data mapping in prescriptions">
+      <created>1511194235748</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1511194235748</updated>
+    </task>
+    <task id="LOCAL-00015" summary="API added and date format changed">
+      <created>1511236634284</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1511236634284</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Prescriptions, Summary : alignment corrected&#10;getData: API written">
+      <created>1511275611587</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1511275611587</updated>
+    </task>
+    <task id="LOCAL-00017" summary="radio button functionality corrected (error was in radio button name)">
+      <created>1511276072225</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1511276072225</updated>
+    </task>
+    <task id="LOCAL-00018" summary="index.js">
+      <created>1511280496698</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1511280496698</updated>
+    </task>
+    <task id="LOCAL-00019" summary="update prescription, summary">
+      <created>1511371289956</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1511371289956</updated>
+    </task>
+    <task id="LOCAL-00020" summary="prescription list details">
+      <created>1511409422766</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1511409422766</updated>
+    </task>
+    <task id="LOCAL-00021" summary="today work">
+      <created>1511456766436</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1511456766436</updated>
+    </task>
+    <task id="LOCAL-00022" summary="today work&#10;Summary...select-2 text box added...multi select is there...&#10;problem:taking only 1 value..instead of all&#10;&#10;getdata&#10;getDoctorProfile API added&#10;closeconsultation api&#10;&#10;prescription...close button added&#10;to-do: edit/delete button....and hide these buttons when apmt_status is closed">
+      <created>1511549921425</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1511549921425</updated>
+    </task>
+    <task id="LOCAL-00023" summary="friday's work shelved">
+      <created>1511755296381</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1511755296381</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Monday's work&#10;&#10;font size same everywhere...12px&#10;APIs added">
+      <created>1511806773849</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1511806773849</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Monday's work">
+      <created>1511841167478</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1511841167478</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Tuesday's work...&#10;&#10;&#10;work done today&#10;1. login page created...remaining work to be done...API integration and all..how to generate password in encrypted form...couldn't figure out&#10;2. Tabs work done, badges-positioning, fonts&#10;3. Pointer=cursor..and change div color&#10;4. Start VIDEO Consultation API integrated&#10;5. doDoctorLogin Api added...but yet to integrate with Login.html&#10;&#10;&#10;problems persisting:&#10;1. prescription table....use prescription_id...i don't know how to use...values missing in table on showing&#10;2. How to call [0].values ...array values from response.....thats y some global variables couldn't be created">
+      <created>1511880722141</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1511880722141</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Tuesday's work...&#10;&#10;&#10;work done today&#10;1. login page created...remaining work to be done...API integration and all..how to generate password in encrypted form...couldn't figure out&#10;2. Tabs work done, badges-positioning, fonts&#10;3. Pointer=cursor..and change div color&#10;4. Start VIDEO Consultation API integrated&#10;5. doDoctorLogin Api added...but yet to integrate with Login.html&#10;&#10;&#10;problems persisting:&#10;1. prescription table....use prescription_id...i don't know how to use...values missing in table on showing&#10;2. How to call [0].values ...array values from response.....thats y some global variables couldn't be created">
+      <created>1511883581349</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1511883581349</updated>
+    </task>
+    <task id="LOCAL-00028" summary="login separate page...preview pdf summary">
+      <created>1511941060753</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1511941060753</updated>
+    </task>
+    <task id="LOCAL-00029" summary="pres name changed">
+      <created>1511945431261</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1511945431261</updated>
+    </task>
+    <task id="LOCAL-00030" summary="blob data">
+      <created>1511950550537</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1511950550537</updated>
+    </task>
+    <task id="LOCAL-00031" summary="blob API added">
+      <created>1511953066490</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1511953066490</updated>
+    </task>
+    <task id="LOCAL-00032" summary="index">
+      <created>1511954251317</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1511954251317</updated>
+    </task>
+    <task id="LOCAL-00033" summary="login page&#10;filter buttons&#10;iframe pdf&#10;template search box">
+      <created>1512134957329</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1512134957329</updated>
+    </task>
+    <task id="LOCAL-00034" summary="filter buttons&#10;pdf iframe">
+      <created>1512155004982</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1512155004983</updated>
+    </task>
+    <task id="LOCAL-00035" summary="filter buttons&#10;pdf iframe">
+      <created>1512225580846</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1512225580846</updated>
+    </task>
+    <task id="LOCAL-00036" summary="filter buttons&#10;pdf iframe">
+      <created>1512225616655</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1512225616655</updated>
+    </task>
+    <task id="LOCAL-00037" summary="summary page edited&#10;modals added&#10;My medicine, presc template-list, template-details, logout API integrated">
+      <created>1512493936929</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1512493936929</updated>
+    </task>
+    <task id="LOCAL-00038" summary="summary page edited&#10;modals added&#10;My medicine, presc template-list, template-details, logout API integrated">
+      <created>1512496439780</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1512496439780</updated>
+    </task>
+    <task id="LOCAL-00039" summary="new patch">
+      <created>1512501766406</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1512501766406</updated>
+    </task>
+    <task id="LOCAL-00040" summary="new patch">
+      <created>1512501813683</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1512501813683</updated>
+    </task>
+    <task id="LOCAL-00041" summary="next, prev appointment buttons&#10;suggested tests API&#10;no-appointments functionality&#10;summary...buttons hide on closed apmts&#10;local storage variables created...coding..i dont know&#10;doctor image from back-end">
+      <created>1512576219134</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1512576219134</updated>
+    </task>
+    <task id="LOCAL-00042" summary="next, prev appointment buttons&#10;suggested tests API&#10;no-appointments functionality&#10;summary...buttons hide on closed apmts&#10;local storage variables created...coding..i dont know&#10;doctor image from back-end">
+      <created>1512637120667</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1512637120667</updated>
+    </task>
+    <task id="LOCAL-00043" summary="next, prev appointment buttons&#10;suggested tests API&#10;no-appointments functionality&#10;summary...buttons hide on closed apmts&#10;local storage variables created...coding..i dont know&#10;doctor image from back-end">
+      <created>1512637146265</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1512637146265</updated>
+    </task>
+    <task id="LOCAL-00044" summary="filter show/hide&#10;suggested test&#10;logout&#10;hide template search option">
+      <created>1512653270076</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1512653270076</updated>
+    </task>
+    <task id="LOCAL-00045" summary="close consultation API">
+      <created>1512710954025</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1512710954025</updated>
+    </task>
+    <task id="LOCAL-00046" summary="close consultation API&#10;edit summary&#10;append prepend&#10;1. sometimes error come in select2....val function&#10;2. problems in template search...&#10;&#9;event is triggering twice&#10;&#9;store labtest in proper format....object of array form&#10;3. after click of pending...if we click on next...no appointments&#10;4. on clicking medicine...automatically map remaining values&#10;5. medicine appending is done but unable to give edit and delete functionality....">
+      <created>1512737974295</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1512737974295</updated>
+    </task>
+    <task id="LOCAL-00047" summary="on clicking plus icon, details come in the last of the page, not just below the icon....console throws this error: &quot;You must pass a string or Handlebars AST to Handlebars.compile. You passed undefined&quot;...&#10;&#10;couldn't correct this error...&#10;and same details show every time...same template shows on the front end but in the back end, it is calling the correct api...some coding prob">
+      <created>1515593176699</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1515593176699</updated>
+    </task>
+    <task id="LOCAL-00048" summary="work done upto 16th jan morning...font resized">
+      <created>1516084410460</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1516084410460</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Merge branch 'master' of https://github.com/meharajM/ga&#10;&#10;# Conflicts:&#10;#&#9;components/dashboard.html&#10;#&#9;components/filter.html&#10;#&#9;components/prescription.html&#10;#&#9;components/summary.html&#10;#&#9;css/newStyles.css&#10;#&#9;index.html&#10;#&#9;js/dashboard.js&#10;#&#9;js/getData.js&#10;#&#9;newStyles.css">
+      <created>1516477952180</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1516477952180</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Merge branch 'master' of https://github.com/meharajM/ga&#10;&#10;# Conflicts:&#10;#&#9;components/dashboard.html&#10;#&#9;components/filter.html&#10;#&#9;components/prescription.html&#10;#&#9;components/summary.html&#10;#&#9;css/newStyles.css&#10;#&#9;index.html&#10;#&#9;js/dashboard.js&#10;#&#9;js/getData.js&#10;#&#9;newStyles.css">
+      <created>1516477976922</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1516477976923</updated>
+    </task>
+    <task id="LOCAL-00051" summary="nishant">
+      <created>1516478931599</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1516478931599</updated>
+    </task>
+    <task id="LOCAL-00052" summary="nishant changes">
+      <created>1516508804708</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1516508804708</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48243000" />
+    <option name="totallyTimeSpent" value="930541000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976282" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44790047" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29769737" sideWeight="0.5151286" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21710527" sideWeight="0.48184568" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281493" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29769737" sideWeight="0.48487142" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10741301" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39869282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977098" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.49394855" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44885495" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976282" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39869282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29769737" sideWeight="0.5151286" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.49394855" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21710527" sideWeight="0.48184568" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29769737" sideWeight="0.48487142" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10741301" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -367,322 +898,450 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="prescriptions map" />
-    <MESSAGE value="prescriptions ui changes" />
-    <MESSAGE value="UI changes" />
-    <MESSAGE value="new UI changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="new UI changes" />
+    <MESSAGE value="friday's work shelved" />
+    <MESSAGE value="Monday's work&#10;&#10;font size same everywhere...12px&#10;APIs added" />
+    <MESSAGE value="Monday's work" />
+    <MESSAGE value="Tuesday's work...&#10;&#10;&#10;work done today&#10;1. login page created...remaining work to be done...API integration and all..how to generate password in encrypted form...couldn't figure out&#10;2. Tabs work done, badges-positioning, fonts&#10;3. Pointer=cursor..and change div color&#10;4. Start VIDEO Consultation API integrated&#10;5. doDoctorLogin Api added...but yet to integrate with Login.html&#10;&#10;&#10;problems persisting:&#10;1. prescription table....use prescription_id...i don't know how to use...values missing in table on showing&#10;2. How to call [0].values ...array values from response.....thats y some global variables couldn't be created" />
+    <MESSAGE value="login separate page...preview pdf summary" />
+    <MESSAGE value="pres name changed" />
+    <MESSAGE value="blob data" />
+    <MESSAGE value="blob API added" />
+    <MESSAGE value="index" />
+    <MESSAGE value="login page&#10;filter buttons&#10;iframe pdf&#10;template search box" />
+    <MESSAGE value="filter buttons&#10;pdf iframe" />
+    <MESSAGE value="summary page edited&#10;modals added&#10;My medicine, presc template-list, template-details, logout API integrated" />
+    <MESSAGE value="new patch" />
+    <MESSAGE value="next, prev appointment buttons&#10;suggested tests API&#10;no-appointments functionality&#10;summary...buttons hide on closed apmts&#10;local storage variables created...coding..i dont know&#10;doctor image from back-end" />
+    <MESSAGE value="filter show/hide&#10;suggested test&#10;logout&#10;hide template search option" />
+    <MESSAGE value="close consultation API" />
+    <MESSAGE value="close consultation API&#10;edit summary&#10;append prepend&#10;1. sometimes error come in select2....val function&#10;2. problems in template search...&#10;&#9;event is triggering twice&#10;&#9;store labtest in proper format....object of array form&#10;3. after click of pending...if we click on next...no appointments&#10;4. on clicking medicine...automatically map remaining values&#10;5. medicine appending is done but unable to give edit and delete functionality...." />
+    <MESSAGE value="on clicking plus icon, details come in the last of the page, not just below the icon....console throws this error: &quot;You must pass a string or Handlebars AST to Handlebars.compile. You passed undefined&quot;...&#10;&#10;couldn't correct this error...&#10;and same details show every time...same template shows on the front end but in the back end, it is calling the correct api...some coding prob" />
+    <MESSAGE value="work done upto 16th jan morning...font resized" />
+    <MESSAGE value="changes made in history, health parameters and others..." />
+    <MESSAGE value="one file only" />
+    <MESSAGE value="data upto 20th jan" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/meharajM/ga&#10;&#10;# Conflicts:&#10;#&#9;components/dashboard.html&#10;#&#9;components/filter.html&#10;#&#9;components/prescription.html&#10;#&#9;components/summary.html&#10;#&#9;css/newStyles.css&#10;#&#9;index.html&#10;#&#9;js/dashboard.js&#10;#&#9;js/getData.js&#10;#&#9;newStyles.css" />
+    <MESSAGE value="nishant" />
+    <MESSAGE value="nishant changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="nishant changes" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="18" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/doDoctorLogin.php" />
-    <entry file="file://$PROJECT_DIR$/api/getAppointmentDetails.php" />
-    <entry file="file://$PROJECT_DIR$/api/doDoctorLogin.php" />
-    <entry file="file://$PROJECT_DIR$/api/getDocAppointmentDashboard.php" />
-    <entry file="file://$PROJECT_DIR$/api/labTest.php" />
-    <entry file="file://$PROJECT_DIR$/includes/appointmentClass.php">
+    <entry file="file://$PROJECT_DIR$/components/summary.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="37" lean-forward="false" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        <state relative-caret-position="1989">
+          <caret line="117" column="34" lean-forward="true" selection-start-line="117" selection-start-column="34" selection-end-line="117" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#11281#11288#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/UpdateConsultationSummary.php" />
+    <entry file="file://$PROJECT_DIR$/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="54" lean-forward="true" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/filter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="45" column="18" lean-forward="true" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/newStyles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="803" column="0" lean-forward="true" selection-start-line="803" selection-start-column="0" selection-end-line="803" selection-end-column="0" />
+        <state relative-caret-position="3961">
+          <caret line="233" column="1" lean-forward="true" selection-start-line="233" selection-start-column="1" selection-end-line="233" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/js/getData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="36" column="49" lean-forward="false" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/tokBoxHandlers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="51" lean-forward="false" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="51" />
+        <state relative-caret-position="221">
+          <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2286">
-          <caret line="127" column="112" lean-forward="false" selection-start-line="127" selection-start-column="112" selection-end-line="127" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/filter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2340">
-          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2304">
-          <caret line="128" column="53" lean-forward="false" selection-start-line="128" selection-start-column="48" selection-end-line="128" selection-end-column="53" />
+        <state relative-caret-position="1105">
+          <caret line="65" column="18" lean-forward="false" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/prescription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4086">
-          <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/getData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3744">
-          <caret line="208" column="14" lean-forward="false" selection-start-line="208" selection-start-column="14" selection-end-line="208" selection-end-column="14" />
-          <folding />
+        <state relative-caret-position="3026">
+          <caret line="178" column="8" lean-forward="false" selection-start-line="178" selection-start-column="8" selection-end-line="178" selection-end-column="8" />
+          <folding>
+            <element signature="e#1306#1313#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#10466#10473#1" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="e#11915#11922#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/summary.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8820">
-          <caret line="520" column="7" lean-forward="false" selection-start-line="520" selection-start-column="7" selection-end-line="520" selection-end-column="7" />
+        <state relative-caret-position="2363">
+          <caret line="139" column="16" lean-forward="false" selection-start-line="139" selection-start-column="16" selection-end-line="139" selection-end-column="16" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#11281#11288#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newStyles.css">
+    <entry file="file://$PROJECT_DIR$/components/filter.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="36" column="11" lean-forward="false" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
+        <state relative-caret-position="1071">
+          <caret line="63" column="28" lean-forward="false" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/newStyles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3383">
+          <caret line="199" column="41" lean-forward="true" selection-start-line="199" selection-start-column="41" selection-end-line="199" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/getData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2366">
-          <caret line="169" column="20" lean-forward="false" selection-start-line="169" selection-start-column="20" selection-end-line="169" selection-end-column="20" />
+        <state relative-caret-position="442">
+          <caret line="26" column="40" lean-forward="false" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1694">
-          <caret line="121" column="112" lean-forward="true" selection-start-line="121" selection-start-column="70" selection-end-line="121" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/filter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1470">
-          <caret line="105" column="34" lean-forward="false" selection-start-line="105" selection-start-column="33" selection-end-line="105" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1960">
-          <caret line="140" column="9" lean-forward="true" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="36" column="49" lean-forward="false" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/tokBoxHandlers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="51" lean-forward="false" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/summary.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2814">
-          <caret line="201" column="0" lean-forward="true" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+        <state relative-caret-position="2618">
+          <caret line="154" column="30" lean-forward="false" selection-start-line="154" selection-start-column="29" selection-end-line="154" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/prescription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4018">
-          <caret line="362" column="28" lean-forward="false" selection-start-line="362" selection-start-column="28" selection-end-line="362" selection-end-column="28" />
+        <state relative-caret-position="2856">
+          <caret line="168" column="31" lean-forward="true" selection-start-line="168" selection-start-column="31" selection-end-line="168" selection-end-column="31" />
+          <folding>
+            <element signature="e#1306#1313#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#10466#10473#1" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="e#11915#11922#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="10" lean-forward="true" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/getData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5894">
-          <caret line="421" column="24" lean-forward="false" selection-start-line="421" selection-start-column="24" selection-end-line="421" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="30" column="50" lean-forward="false" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/prescription.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6286">
-          <caret line="449" column="29" lean-forward="false" selection-start-line="449" selection-start-column="29" selection-end-line="449" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/getData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7106">
-          <caret line="418" column="24" lean-forward="false" selection-start-line="418" selection-start-column="24" selection-end-line="418" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/UpdateConsultationSummary.php" />
-    <entry file="file://$PROJECT_DIR$/components/prescription.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5202">
-          <caret line="306" column="44" lean-forward="false" selection-start-line="306" selection-start-column="33" selection-end-line="306" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/summary.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5083">
-          <caret line="299" column="31" lean-forward="true" selection-start-line="299" selection-start-column="31" selection-end-line="299" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/doDoctorLogin.php" />
-    <entry file="file://$PROJECT_DIR$/api/doDoctorLogin.php" />
-    <entry file="file://$PROJECT_DIR$/api/getAppointmentDetails.php" />
-    <entry file="file://$PROJECT_DIR$/api/doDoctorLogin.php" />
-    <entry file="file://$PROJECT_DIR$/api/getDocAppointmentDashboard.php" />
-    <entry file="file://$PROJECT_DIR$/api/labTest.php" />
-    <entry file="file://$PROJECT_DIR$/includes/appointmentClass.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="37" lean-forward="false" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/UpdateConsultationSummary.php" />
-    <entry file="file://$PROJECT_DIR$/components/filter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/prescription.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5598">
-          <caret line="311" column="0" lean-forward="false" selection-start-line="311" selection-start-column="0" selection-end-line="311" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ecstatic/lib/ecstatic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="25" column="57" lean-forward="true" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newStyles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="85" column="1" lean-forward="false" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/tokBoxHandlers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-786">
-          <caret line="0" column="51" lean-forward="false" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="51" />
+        <state relative-caret-position="255">
+          <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/newStyles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4240">
-          <caret line="334" column="13" lean-forward="true" selection-start-line="334" selection-start-column="13" selection-end-line="334" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/getData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="207" column="29" lean-forward="false" selection-start-line="207" selection-start-column="4" selection-end-line="207" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="91" column="40" lean-forward="false" selection-start-line="91" selection-start-column="40" selection-end-line="91" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="190" column="51" lean-forward="false" selection-start-line="190" selection-start-column="39" selection-end-line="190" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="405" column="0" lean-forward="true" selection-start-line="405" selection-start-column="0" selection-end-line="405" selection-end-column="0" />
+        <state relative-caret-position="3706">
+          <caret line="218" column="1" lean-forward="true" selection-start-line="218" selection-start-column="1" selection-end-line="218" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/summary.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="506" column="57" lean-forward="true" selection-start-line="506" selection-start-column="57" selection-end-line="506" selection-end-column="57" />
+        <state relative-caret-position="2363">
+          <caret line="139" column="16" lean-forward="true" selection-start-line="139" selection-start-column="16" selection-end-line="139" selection-end-column="16" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#11281#11288#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4199">
+          <caret line="247" column="18" lean-forward="false" selection-start-line="247" selection-start-column="18" selection-end-line="247" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/newStyles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3298">
+          <caret line="194" column="46" lean-forward="false" selection-start-line="194" selection-start-column="46" selection-end-line="194" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/summary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3502">
+          <caret line="206" column="39" lean-forward="true" selection-start-line="206" selection-start-column="39" selection-end-line="206" selection-end-column="39" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#11281#11288#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4199">
+          <caret line="247" column="18" lean-forward="true" selection-start-line="247" selection-start-column="18" selection-end-line="247" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/summary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3298">
+          <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#11281#11288#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/newStyles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3298">
+          <caret line="194" column="46" lean-forward="true" selection-start-line="194" selection-start-column="46" selection-end-line="194" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newStyles.css" />
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4352">
+          <caret line="256" column="7" lean-forward="true" selection-start-line="256" selection-start-column="7" selection-end-line="256" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newStyles.css" />
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/common.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="120" column="22" lean-forward="false" selection-start-line="120" selection-start-column="22" selection-end-line="120" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Login - Copy.html" />
+    <entry file="file://$PROJECT_DIR$/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="93129" lean-forward="false" selection-start-line="5" selection-start-column="93129" selection-end-line="5" selection-end-column="93129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/login-3.html" />
+    <entry file="file://$PROJECT_DIR$/components/logout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="6" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/newprescription.html" />
+    <entry file="file://$PROJECT_DIR$/scss/_fixed-width.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="290" column="3" lean-forward="true" selection-start-line="290" selection-start-column="3" selection-end-line="290" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/xampp/htdocs/ga/js/index.js">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/js/index.js</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="589.0" y="204.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/debug/src/inspector-log.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nishant_changes.patch" />
+    <entry file="file://$PROJECT_DIR$/nishant.patch" />
+    <entry file="file://$PROJECT_DIR$/js/tokBoxHandlers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/filter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="97" column="4" lean-forward="true" selection-start-line="97" selection-start-column="4" selection-end-line="97" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/newStyles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19754">
+          <caret line="1162" column="14" lean-forward="false" selection-start-line="1162" selection-start-column="14" selection-end-line="1162" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="19" lean-forward="false" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2363">
+          <caret line="139" column="59" lean-forward="false" selection-start-line="139" selection-start-column="59" selection-end-line="139" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6817">
+          <caret line="401" column="4" lean-forward="false" selection-start-line="401" selection-start-column="4" selection-end-line="401" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="28" lean-forward="false" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/getData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/summary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3661">
+          <caret line="332" column="76" lean-forward="false" selection-start-line="332" selection-start-column="76" selection-end-line="332" selection-end-column="76" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#11281#11288#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/history.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="285" column="23" lean-forward="false" selection-start-line="285" selection-start-column="23" selection-end-line="285" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="59" column="9" lean-forward="false" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/prescription.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="990" column="29" lean-forward="true" selection-start-line="990" selection-start-column="29" selection-end-line="990" selection-end-column="29" />
+          <folding>
+            <element signature="e#1306#1313#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#10466#10473#1" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="e#11915#11922#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
