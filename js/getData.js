@@ -8,7 +8,7 @@ var doctor_id = sessionStorage.getItem("doctorId");
 
 //var base_url = "https://52.66.157.195/growayu/ganewdesign";      //Test Server
 //var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
-var base_url = "https://13.126.208.181/gadoctor";                   //Migration Server
+  var base_url = "https://13.126.208.181/gadoctor";                   //Migration Server
 //var base_url = "https://doctor.growayu.com/gadoctor";                  //Production Server
 
 var getData = {
@@ -45,6 +45,7 @@ var getData = {
     },
     getAppointmentDetails: function(id){
         var url = "/api/getAppointmentDetails.php";
+       // var url="https://52.77.171.116/gadoctor/api/getAppointmentDetails.php";
         var apmt_input= {
             apmt_id : id,
             doctor_id :doctor_id,
@@ -59,6 +60,7 @@ var getData = {
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
+           // url:url,
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
@@ -231,23 +233,10 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-                //alert("success in update summary");
                  showApiError(res.error);
-                 /*if(!res.error.error_message)
-                 {
-                     $('.alert-autocloseable-success').show();
-                     $('.alert-autocloseable-success').delay(5000).fadeOut("slow", function () {
-                         $("#" + appointment_id).click();
-                         var next = $('#mytabs li.active').next();
-                         next.length?
-                             next.find('a').click():
-                             $('#mytabs li a')[2].click();
-                     });
-                 }*/
                 return res;
             },
             error: function(err,status){
-                //alert("error in update summary");
                 console.error(err, status);
             }
         }).then(function(res){
@@ -649,7 +638,42 @@ var getData = {
             return res;
         });
         return call;
-    }
+    },
     /* Bala Code ends here for copy  previous prescription */
 
+    addGaNotes: function(apmt_id, notes){
+        var url = "/api/addGaNotes.php";
+        var doctorId = doctor_id;
+        var ga_info = {
+            doctor_id: doctorId,
+            apmt_id: apmt_id,
+            hs_id: hs_id,
+            notes:notes,
+            notes_id:notes_id
+        };
+       // debugger
+        var data = {
+            ga_info  : ga_info,
+            session_info: session_info
+        };
+        hideApiError();
+        var call = $.ajax({
+            type: "POST",
+            url: base_url + url,
+           // url: url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res,status) {
+              //  console.log(res);
+                showApiError(res.error);
+                return res;
+            },
+            error: function(err,status){
+                console.error(err, status);
+            }
+        }).then(function(res){
+            return res;
+        });
+        return call;
+    }
 };

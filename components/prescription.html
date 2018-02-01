@@ -789,8 +789,6 @@
             $(".duration").removeClass('error');
             $("#med_type").removeClass('error');
             $('.quantity').removeClass('error');
-
-
             $(this).hide();
             $("#form3").get(0).reset();
             $('.form').show();
@@ -800,7 +798,6 @@
             //  $('#med_type option[value=""]').text();
             // $('#med_type option[value=""]').attr('selected', true);
             $("#med_type").val=$('#med_type option[value=""]').text();
-
             $('#txt_frequency').val('');
             //$('input[name="duration"]').val('');
             $('textarea[name="remarks"]').text('');
@@ -1131,17 +1128,20 @@
             var target = $(this).attr('for');
             var currentValue = $('#'+target).val();
 
-            if($("#med_type").val()==null){
+            if($("#med_type").val()==null && $("#med_search").val()!=""){
+                $("#api-error-message").html("Please Select Medicine Type First !!");
                 $("#api-error").removeClass('hidden-xs-up');
                 $("#api-error-message").show();
-                $("#api-error-message").html("Please Select Medicine Type First !!");
-            }
-
-            if($("#med_search").val()=="") {
+                //$("#api-error-message").html("Please Select Medicine Type First !!");
+            }else if($("#med_search").val()=="" && $("#med_type").val()!=null) {
                 $("#api-error").removeClass('hidden-xs-up');
                 $("#api-error-message").show();
                 $("#api-error-message").html("Please Select Medicine Name First !!");
-            }
+            }else if($("#med_type").val()==null && $("#med_search").val()==""){
+                $("#api-error-message").html("Please Select Medicine Type First !!");
+                $("#api-error").removeClass('hidden-xs-up');
+                $("#api-error-message").show();
+			}
             else{
                 $("#api-error").addClass('hidden-xs-up');
                 $("#api-error-message").hide();
@@ -1208,7 +1208,7 @@
             var apmt_id = $(this).children(":selected").attr("id");
             getData.getPrescription(apmt_id).then(function (res) {
                 $(".template-modal-title").html("Previous Prescriptions");
-                $('.add-template-alert').modal({
+                $('.template-alert').modal({
                     show: true
                 });
                 $("#replace").unbind().on("click", function (evt) {

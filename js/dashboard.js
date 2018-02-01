@@ -1,4 +1,4 @@
-var appointment_id, hs_id,appointment_list,sessionId,token,apiKey,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, summary_details;
+var appointment_id, hs_id,appointment_list,sessionId,token,apiKey,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, summary_details, note_content, notes_id;
 var appointment,apmt_type,consultation_id,record_id,summary_record_id;
 var showToaster, session;
 var doctor_id, doctor_name,doc_photo, template_id, login_token, appointment_date, selectedAppointment
@@ -46,18 +46,33 @@ $(document).ready(function(){
                 showToaster("You can drag the note popup wherever you want");
             });
 
-            $("#note-content").blur(function(){
+            $("#note-content").unbind().blur(function(){
 
                // alert($("#note-content").val());
                 //ADD CODE FOR NOTES-API HERE...
-
+                //debugger
+                if(apmt_status!="closed") {
+                  //  debugger
+                    getData.addGaNotes(appointment_id, $("#note-content").val()).then(function (res) {
+                        notes_id = res.ga_notes.id;
+                        //  alert("Notes saved");
+                    })
+                }
             });
 
             $('#close-note-1').on('click', function () {
                 $('.float-note').addClass('hidden-xs-up');
             });
+            notes_id=res.appointments_details.appointment_det.ga_notes_id;
+            if(!notes_id){
+                notes_id="";
+            }
+            note_content=res.appointments_details.appointment_det.ga_notes;
+            $("#note-content").val(note_content);
+
             $('#prescription').load('./components/prescription.html');
             $('#history').load('./components/history.html');
+            $("#summary").load('./components/summary.html');
 
             if (res.appointments_details.appointment_det.summary_record_id) {
                 summary_record_id = res.appointments_details.appointment_det.summary_record_id;
@@ -152,7 +167,28 @@ $(document).ready(function(){
             consultation_id = summary_details.consultation_id;
          //   $('#prescription').load('./components/prescription.html');
             //  $('#newprescription').load('./components/newprescription.html');
-            $('#summary').load('./components/summary.html');
+           // $('#summary').load('./components/summary.html');
+
+            if(note_content){
+                $("#note-title").text("Notes Saved");
+            }
+
+            if(apmt_status=="closed" && note_content){
+                $("#note-title").text("Notes Saved");
+                $("#note-content").attr('readonly', true);
+            }else{
+                //$("#note-title").text("Add Note");
+                $("#note-content").attr('readonly', false);
+            }
+            if((apmt_status=="expired" || apmt_status=="closed")&&(!note_content)){
+               // $("#add-note-1").hide();
+                $("#note-title").text("Notes Saved");
+                $("#note-content").val('No Doctor Notes!!');
+                $("#note-content").attr('readonly', true);
+
+
+            }
+
         });
     };
     showDashboardDetails=function(res, fromFilter){
@@ -160,6 +196,7 @@ $(document).ready(function(){
         $('.no-appointment-selected').removeClass('d-none');
         $("#no-appointment-selected-message").html("Please select an appointment");
         $(".filter-area").removeClass("hidden-xs-up");
+        $('.float-note').addClass('hidden-xs-up'); //Added for hiding note-cntent on appointment dashboard details change
         if(res.appointments_details.appointment.length === 0 && !fromFilter){
             $(".filter-area").addClass("hidden-xs-up");
             $("#no-appointment-selected-message").html("You don't have any scheduled appointments");
@@ -391,7 +428,9 @@ $(document).ready(function(){
             $('#mytabs li a')[0].click();
 
         $('.float-note').addClass('hidden-xs-up');
-        $("#note-content").val("");
+        if(!note_content) {
+            $("#note-content").val("");
+        }
     });
     $("#appointment-list").on('click','li', function(e) {
         var $this = $(this);

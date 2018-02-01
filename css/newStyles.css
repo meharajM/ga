@@ -544,7 +544,7 @@ body{
 
     .tags{
         height: 14px;
-        background-color: #1f7bf3;
+        background-color: #757677;          /* Old Color #1f7bf3; */
         color: #ffffff;
         line-height: 14px;
         margin-left: 4px;

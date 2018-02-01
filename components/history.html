@@ -57,11 +57,9 @@
                     </p>
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
-                            <b class="mt-2 small-font">Reason for Consultation</b>
-                            <p id="tab6" class="small-font">
+                            <b class="mt-2 small-font">Reason for Consultation</b><br>
                                 {{appointment_det.case_sheet.consultation_reason}}<br>
                                 {{appointment_det.case_sheet.case_description}}
-                            </p>
                         </div>
                     </div>
                     <div class="row">
@@ -83,21 +81,24 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
                         <b class="mt-2 small-font">Suggested Tests</b>
-                        <p>
-                        <ol class="small-font">
+                        <ol class="col-md-12 small-font">
                             {{#consultation_details.consultation_summary.suggested_test}}
                             <li>{{test_name}}</li>
                             {{/consultation_details.consultation_summary.suggested_test}}
                         </ol>
-                        </p>
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
-                        <b class="follow-up mt-2 small-font">Followup Date</b>
-                        <p class="small-font">
-                            <span id="cal-icon" class="fa fa-calendar-plus-o" style="padding:6px;margin-left: 15px;"></span><span class="no-follow-up small-font">{{consultation_details.consultation_summary.followup_date}}</span>
-                        </p>
+                    <b class="mt-2 small-font">Doctor Notes  </b><br>
+                        <span class="doc_note">{{appointment_det.ga_notes}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <b class="follow-up mt-2 small-font">Followup Date</b><br>
+                            <span id="cal-icon" class="fa fa-calendar-plus-o" style="padding:3px"></span><span class="no-follow-up small-font">{{consultation_details.consultation_summary.followup_date}}</span>
                     </div>
                 </div>
             </div>
@@ -172,28 +173,6 @@
             console.log(id);*/
             var source = $("#historytable").html();
             var template = Handlebars.compile(source);
-            /*var context = {
-                formated_date: new Date(),
-                purpose:"Hello",
-                appointment_id:"22"
-            };
-            var intlData = {
-                "locales": "en-US",
-                "formats": {
-                    "date": {
-                        "short": {
-                            "day": "numeric",
-                            "month": "long",
-                            "year": "numeric"
-                        }
-                    }
-                }
-            };
-            var html = template(context, {
-                data: {intl: intlData}
-            });
-
-            $("#history_templates").html(html);*/
             var html = template(res);
             $("#history_templates").html(html);
 
@@ -206,18 +185,6 @@
                 $("#date_" + id[i]).text(new_history_date);
                 //$(".apmt_date").text(new_history_date);
             }
-           /* var context = {
-                formated_date:res.previous_appointments.map(function (t) {
-                    return moment(t.booking_date).format("MMM Do YY");
-                }),
-                purpose:res.previous_appointments.map(function (t) {
-                    return t.purpose;
-                }),
-                appointment_id: res.previous_appointments.map(function (t) {
-                return t.appointment_id;
-                })
-            };*/
-
             if (res.previous_appointments == "") {
                 $("#history_templates").html("<p class='no-prev-appointments text-center'>No Previous Appointments</p>");
             }
