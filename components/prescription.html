@@ -1033,8 +1033,7 @@
             $("#med_type").val=$('#med_type').val(prescription.med_type);
             setUnit();
             //alert($("#med_type").val());
-            //$('#med_type option[value="' + prescription.med_type + '"]').attr('selected', true);
-            if(prescription.tmg_qty_type === "std_MAE"){
+			if(prescription.tmg_qty_type === "std_MAE"){
                 $('#standard').click();
                 $('.timings #morning').val(prescription.tmg_qty_string.split('-')[0]);
                 $('.timings #afternoon').val(prescription.tmg_qty_string.split('-')[1]);

@@ -649,6 +649,11 @@ body{
 
 @media only screen and (min-width: 2560px) {
 
+    .add-doctor-note{
+        height:48px;
+        width:48px;
+    }
+
 
     .select2-container--default .select2-selection--single .select2-selection__rendered {
         color: #444;

@@ -220,6 +220,10 @@
 
                     $("#h_"+id).addClass('open');
 
+                    /*$('html,body').animate({
+                            scrollTop: $(".template-div").offset().top},
+                        'slow');*/ //was working a little bit..only for the first time
+
 
                     var apmt_date=evs.appointments_details.appointment_det.apmt_date;
                     var converted_apmt_date=moment(apmt_date).format("MMMM Do YYYY");
