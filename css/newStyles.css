@@ -458,9 +458,28 @@ body{
     height: 40px;
     width:40px;
 }
+.doc-note{
+    font-size: 28px;
+}
 
 @media only screen and (min-width: 768px) {
 
+    /*
+    .note-badge{
+        line-height: 1.5;
+    }
+    */
+
+    #accordion .panel-heading {
+        background-color: #fff;
+        /*border-bottom: 1px solid #3498db*/
+        border-bottom: 1px solid #b0b2b9;
+        height:32px;
+    }
+
+    .doc-note{
+        font-size: 28px;
+    }
     .select2-container .select2-selection--single .select2-selection__rendered {
         display: block;
         padding-left: 8px;
@@ -649,6 +668,26 @@ body{
 
 @media only screen and (min-width: 2560px) {
 
+    #accordion .panel-heading {
+        background-color: #fff;
+        /*border-bottom: 1px solid #3498db*/
+        border-bottom: 1px solid #b0b2b9;
+        height:48px;
+    }
+
+    #accordion .panel-heading .panel-title a {
+        font-size: 22px;
+        font-weight: 700;
+        display: block;
+        color: #858585
+    }
+
+    .params{
+        font-size: 22px;
+    }
+    .doc-note{
+        font-size: 44px;
+    }
     .add-doctor-note{
         height:48px;
         width:48px;
@@ -657,7 +696,7 @@ body{
 
     .select2-container--default .select2-selection--single .select2-selection__rendered {
         color: #444;
-        line-height: 30 px;
+        line-height: 30px;
         font-size: 22px;
     }
 
@@ -1264,8 +1303,8 @@ hr.style-three:before {
     padding: 8px;
     background-color: white;
     border: 0.5px solid #cccccc;
-    right: 40px;
-    top: 184px;
+    right: 18px;
+    top: 80px;
 }
 .float-note textarea{
     width: 100%;
@@ -1305,3 +1344,201 @@ hr.style-three:before {
 .well{
     border: 1px solid grey;border-radius: 3px;
 }*/
+
+
+
+/*hcc hp paintings  */
+/*
+.input-height read-only{
+    background-color: #eceeef;
+    opacity: 1;
+}*/
+
+input[type="text"]:read-only{
+    background-color: #eceeef;
+    opacity: 1;
+}
+
+.panel-body .control-label{
+    font-weight: 700;
+}
+.param_save{
+    /*padding-top: 10px;*/
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.params{
+    font-size: 12px;
+}
+.params_radio{
+    margin-right: 5px;
+}
+.params_checkbox{
+    margin-right: 5px;
+}
+
+
+/*
+#hs_name{
+    font-size: 12px;
+}
+#purpose_of_visit{
+    font-size: 12px;
+}
+#PDE01001{
+    font-size: 12px;
+}
+#PDE01002{
+    font-size: 12px;
+}
+#PDE01002{
+    font-size: 12px;
+}
+#PDE01003{
+    font-size: 12px;
+}
+#PDE01004{
+    font-size: 12px;
+}
+#PDE01005{
+    font-size: 12px;
+}
+#PDE01006{
+    font-size: 12px;
+}
+#PDE02007{
+     font-size: 12px;
+}
+#PDE02008{
+      font-size: 12px;
+}
+*/
+
+
+
+
+
+#wrapper {
+    width: 100%
+}
+
+#page-wrapper {
+    min-height:10px !important;
+    padding-bottom: 130px;
+   /* background-color: #f2f4f8 */
+}
+
+#login #page-wrapper {
+    padding-top: 130px;
+    margin: 0 !important
+}
+#error #page-wrapper {
+    padding-top: 15px;
+    margin: 0 !important;
+    background-color: transparent
+}
+#page-wrapper {
+    position: inherit;
+    /*margin: 0 0 0 250px; */
+    min-height: 1000px
+}
+@media (max-width: 736px) {
+    #page-wrapper{padding-bottom: 0;}
+    .dropdown.userImg{float: right !important;}
+    #side-menu{margin-top: 25px;}
+    .navbar .nav.navbar-top-links .dropdown-menu {
+        margin: 0 0 0 -117px;
+    }
+    .textleft{text-align: left !important;padding-left: 20px;}
+    .mt-50{margin-top: 50px;}
+
+}
+@media (max-width: 720px) {
+    #page-wrapper{padding-bottom: 0;}
+    .dropdown.userImg{float: right !important;}
+    #side-menu{margin-top: 60px;}
+    .navbar .nav.navbar-top-links .dropdown-menu {
+        margin: 0 0 0 -117px;
+    }
+    .mt-50{margin-top: 50px;}
+
+}
+@media (max-width: 668px) {
+    #page-wrapper{padding-bottom: 0;}
+    .dropdown .userImg{float: right !important;}
+    .mt-40{margin-top: 50px;}
+    .mt-50{margin-top: 50px;}
+}
+@media (min-width: 667px) {
+    #page-wrapper{padding-bottom: 0;}
+    .dropdown.userImg{float: right !important;}
+    #side-menu{margin-top: 25px;}
+    .navbar .nav.navbar-top-links .dropdown-menu {
+        margin: 0 0 0 -117px;
+    }
+    .no-Rpadding {
+        padding: 0 10px;
+    }
+    .mt-40{margin-top: 50px;}
+    .mt-50{margin-top: 50px;}
+}
+
+
+@media (max-width: 420px) {
+    .no-Rpadding {
+        padding: 0 10px;
+    }
+    .mt-40{margin-top: 50px;}
+    #page-wrapper {
+        position: inherit;
+        min-height: 1000px
+    }
+}
+
+.form-control {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
+}
+
+#accordion .panel {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    border-bottom: none
+}
+
+#accordion .panel + .panel {
+    margin-top: 0
+}
+
+#accordion .panel-heading {
+    background-color: #fff;
+    /*border-bottom: 1px solid #3498db*/
+    border-bottom: 1px solid #b0b2b9;
+    height:32px;
+}
+
+#accordion .panel-heading:hover {
+    background-color: #f5f5f5
+}
+
+#accordion .panel-heading .panel-title a {
+    font-size: 12px;
+    font-weight: 700;
+    display: block;
+    color: #858585
+}
+
+#accordion .panel-heading .panel-title a:hover {
+    text-decoration: none
+}
+
+.panel-group {
+    margin-bottom: 20px;
+}
+
+.panel-default{
+    padding-bottom: 1px;
+}

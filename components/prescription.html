@@ -1,4 +1,3 @@
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
 <script  type="text/x-handlebars-template" id="prescriptiontable">
 	{{#prescription}}
 	<tr>
@@ -18,13 +17,6 @@
 	{{/prescription}}
 </script>
 <div class="col-xs-12 appointment-details">
-	<!--<a href="#" id="add_medicine" value="Add to My Medicines">Add to My Medicines</a>-->
-
-	<!--<div class="col-2 pull-right">
-        <button type="button" class="close" id="pres_close" aria-label="Close">
-            <span id="close-button" aria-hidden="true"><h3>&times;</h3></span>
-        </button>
-    </div>-->
 	<div class="form">
 		<form id="form3" method="post">
 			<button type="button" class="close" id="pres_close" aria-label="Close">
@@ -53,7 +45,6 @@
 
 							</input>
 						</div>
-
 					</div>
 					<div class="col-2">
 						<input type="text" class="form-control small-font input-height" name="dosage" id="dosage" placeholder="Dosage"/>
@@ -107,7 +98,6 @@
 
 								</div>
 							</div>
-
 						</div>
 						<div class="row pt-2">
 							<div class="col-4">
@@ -133,27 +123,25 @@
 							</div>
 						</div>
 					</div>
-				</div></div>
-
-
+				</div>
+			</div>
 			<div class="mt-3">
 				<div class="small-font"><b>Course Duration</b></div>
 				<div class="form-group row ">
-
 					<div class="col-sm-6">
 						<input type="number" name="course" placeholder="Duration *" min=0 class=" col-2 form-input small-font input-height" style="width:65px;">
 						<label class="custom-control custom-radio">
-							<input id="days" name="duration" type="radio" value="days" class="custom-control-input input-height" required>
+							<input id="days" name="duration" type="radio" value="Days" class="custom-control-input input-height" required>
 							<span class="custom-control-indicator"></span>
 							<span class="custom-control-description duration small-font">Days</span>
 						</label>
 						<label class="custom-control custom-radio">
-							<input id="weeks" name="duration" type="radio" value='weeks' class="custom-control-input input-height" required>
+							<input id="weeks" name="duration" type="radio" value='Weeks' class="custom-control-input input-height" required>
 							<span class="custom-control-indicator"></span>
 							<span class="custom-control-description duration small-font">Weeks</span>
 						</label>
 						<label class="custom-control custom-radio">
-							<input id="months" name="duration" type="radio" value='months' class="custom-control-input input-height" required>
+							<input id="months" name="duration" type="radio" value='Months' class="custom-control-input input-height" required>
 							<span class="custom-control-indicator"></span>
 							<span class="custom-control-description duration small-font">Months</span>
 						</label>
@@ -176,12 +164,10 @@
 			<div class="form-group rows">
 				<button class="btn btn-success btn-sm body-font" id="add-prescription">Add</button>
 				<button class="btn btn-danger btn-sm body-font" id="reset-prescription" type="reset">Reset</button> <span class="form-error hidden-xs-up small-font">Please add all mandatory fields </span>
-
 			</div>
 		</form>
 	</div>
 	<hr/>
-
 	<div>
 		<div class="row">
 			<div class="col-4 body-font">
@@ -202,12 +188,7 @@
 				<select class="template_name form-control small-font input-height" name="template_name" id="template_name"></select>
 				<div id="add" class="btn btn-default fa fa-plus float-right btn-primary btn-sm"></div>
 			</div>
-			<!--<div class="col-2 pull-right">
-
-			</div>-->
 		</div>
-
-
 		<table class="table table-sm small-font">
 			<thead>
 			<tr>
@@ -223,19 +204,16 @@
 			</tr>
 			</thead>
 			<tbody id="tab1" class="small-font">
-			<tr >
-				<td>
-					Please add Prescriptions.
-				</td>
-			</tr>
-
+				<tr>
+					<td>
+						Please add Prescriptions.
+					</td>
+				</tr>
 			</tbody>
 		</table>
 		<button class="btn btn-primary btn-sm body-font" id="save_continue">Continue</button>
 		<a href="#" id="add_template" value="Add to My Templates" class="small-font pull-right" data-toggle="modal" data-target="#template-add">Add to My Templates</a>
-
 	</div>
-
 </div>
 
 <!--
@@ -268,7 +246,6 @@
 	</form>
 </div>
 -->
-
 <div id="save_medicine" class="pl-3 pt-3">
 	<form id="form_5" method="post">
 		<button type="button" class="close pr-5" id="pres_close_list" aria-label="Close">
@@ -289,7 +266,6 @@
 						<option value="Implants">Implants or patches</option>
 					</select>
 				</div>
-
 			</div>
 			<div class="row pt-3">
 				<div class="col-3">
@@ -338,7 +314,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="add-template-modal modal fade bd-example-modal-lg add-template-alert" id="template-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="add-template-msg modal-dialog modal-sm" role="document" style="padding-top: 50px; max-width: 600px">
 		<div class="modal-content">
@@ -388,7 +363,6 @@
 		</div>
 	</div>
 </div>
-
 </div>
 <script type="text/javascript">
     var showPrescriptions;
@@ -400,8 +374,6 @@
             var html = template(res);
             $("#previous_prescription").html(html);
         });
-
-
         var prescriptionDetais = {
             Tablet: {
                 unit: "No",
@@ -590,14 +562,6 @@
             cache: true
         }).addClass('custom-select ');
 
-        /*  $('#template_name').change(function(){
-              var template_id = $('#template_name').val();
-              var template_name=$("#template_name").text();
-              $("#template_name").val=template_name;
-              alert("id:"+template_id+" name: "+template_name);
-          });*/
-
-
         $('#template_name').on('select2:select', function (e) {
             var template_id = $('#template_name :selected').val();
             var template_name=$('#template_name :selected').text();
@@ -612,22 +576,26 @@
                         p.delete_flag = 'Y';
                         return p;
                     });
-                    //evt.preventDefault();
                     prescription_data   =   prescription_data.concat(my_template.prescription_details);
-                    //   debugger;
                     getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (rep) {
-                        //     debugger;
-                        showPrescriptions(rep.prescription_details);
-                    });
+                            if(rep.prescription_details) {			//Added by nishant (this 'if' condition)
+                                showPrescriptions(rep.prescription_details);
+                            }
+                        });
                     evt.preventDefault();
                 });
                 $("#append").unbind().on("click", function (evt) {
+                    //Added by Nishant
+                    prescription_data = prescription_data.map(function (p) {
+                        p.delete_flag = 'N';
+                        return p;
+                    });
+                    //Extra code ended
                     prescription_data = prescription_data.concat(res.prescription_details);
-                    //debugger;
-                    //evt.preventDefault();
                     getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (app) {
-                        //  debugger;
-                        showPrescriptions(app.prescription_details);
+                        if(app.prescription_details) {				//Added by nishant (this 'if' condition)
+                            showPrescriptions(app.prescription_details);
+                        }
                     });
                     evt.preventDefault();
                 });
@@ -656,7 +624,6 @@
         });
 
         $("select").on("select2:select", function (evt) {
-
             var element = evt.params.data.element;
             var $element = $(element);
             $element.detach();
@@ -667,15 +634,12 @@
             var med_name = $('#med_search').val();
             $("#med_name").val=med_name;
         });
-
-        if (prescriptions_list.length) {
+		if (prescriptions_list.length) {
             prescription_data = prescriptions_list;
         }
         $('.form').hide();
         $("#save_medicine").hide();
         $("#add_medicine").hide();
-
-     //   $("#save_template_form").hide();
         $("#add_template").on('click', function(evt){
             // $('.form-error').addClass('d-none');
             $('.form-error').html('Please add all mandatory fields');
@@ -684,11 +648,8 @@
             $('input[name="diseases"]').removeClass('error');
             $('input[name="speciality"]').removeClass('error');
             $("#form_6").get(0).reset();
-            //$("#save_template_form").show();
-          //  $(".appointment-details").hide();
             evt.preventDefault();
         });
-
        /* $("#template_close_button_list").on('click', function (ev) {
             $("#save_template_form").hide();
             $(".appointment-details").show();
@@ -705,11 +666,8 @@
             var isValid = true;
             $('.form-error').html('Please add all mandatory fields');
             $('.form-error').addClass('hidden-xs-up');
-            //  $('#brand_name').removeClass('error');
             $('input[name="add_template_name"]').removeClass('error');
             $('input[name="diseases"]').removeClass('error');
-            //$('input[name="speciality"]').removeClass('error');
-
             if(formData['add_template_name'] == ""){
                 $('#add_template_name').addClass('error');
                 isValid =false;
@@ -718,7 +676,6 @@
                 $('#diseases').addClass('error');
                 isValid =false;
             }
-
             if($('input[name="add_template_name"]').val() == ""){
                 $('input[name="add_template_name"]').addClass('error');
                 isValid = false;
@@ -761,12 +718,7 @@
                             $('#api-success-message').delay(3000).fadeOut("slow", function (evt) {
                                 $("#api-success").addClass('hidden-xs-up');
                                 $("#api-success-message").html("");
-                               // $(".appointment-details").show();
                                 $("#form_6").get(0).reset();
-                                // $("#form3").get(0).reset();
-                                //$("#save_template_form").fadeOut();
-
-
                             });
                         }
                         else{
@@ -884,8 +836,9 @@
                         $('#api-success-message').delay(3000).fadeOut("slow", function (evt) {
                             $("#api-success").addClass('hidden-xs-up');
                             $("#api-success-message").html("");
-                            $(".appointment-details").toggle();
-                            $("#form_5").get(0).reset();
+                            //$(".appointment-details").toggle();
+                            $(".appointment-details").show();
+							$("#form_5").get(0).reset();
                             // $("#form3").get(0).reset();
                             $("#save_medicine").hide();
                             $(".form").fadeIn();
@@ -933,14 +886,23 @@
             var source = $("#prescriptiontable").html();
             var template = Handlebars.compile(source);
             var rows = prescriptions_list.map(function (data) {
-                if (!data.delete_flag || data.delete_flag != 'Y') {
-                    if(!!data.med_id){
-                        data.prescription_id = data.med_id;
+				if (!data.delete_flag || data.delete_flag != 'Y') {
+                        if (!!data.med_id) {
+                            data.prescription_id = data.med_id;
+                        }
+                        return template({prescription: data});
                     }
-                    return template({prescription: data});
+                });
+                $('#tab1').html(rows.join(''));
+            if(prescriptions_list.length==0){
+                    $("#add_template").hide();
                 }
-            });
-            $('#tab1').html(rows.join(''));
+                else if((apmt_status=="closed"||apmt_status=="expired")&&prescription_data.length ){
+                    $("#add_template").hide();
+                }
+                else if((apmt_status!="closed"||apmt_status!="expired")&&prescription_data.length ){
+                    $("#add_template").show();
+                }
         };
         showPrescriptions(prescription_data);
 
@@ -964,14 +926,13 @@
             data.tmg_qty_type = tmg_qty_type;
             data.course = data.course + ' ' + data.duration;
             data.med_name=data.med_search;
-            if(validateForm(data)){
+			if(validateForm(data)){
                 if ($('.form').attr('data-id')) {
                     data.prescription_id = $('.form').attr('data-id');
-                    debugger;
                     //console.log(data);
                     prescription_data = prescription_data.filter(function (p) {
                         return p.prescription_id != data.prescription_id;
-                    })
+                    });
                     $('.form').removeAttr('data-id');
                 }else{
                     data.prescription_id='';
@@ -980,7 +941,14 @@
                     prescription_data.push(data);
                     prescription_add.push(data);
                     //prescriptions_list.push(data);
+                   //Added by Nishant
+                    prescription_add = prescription_data.map(function (p) {
+                            p.delete_flag = 'N';
+                        return p;
+                    });
+					//Ended extra code here
                     getData.UpdatePrescriptionDetails(appointment_id, prescription_add).then(function (res) {
+                       // debugger;
                         showPrescriptions(res.prescription_details);
                         $('.form').hide();
 
@@ -1085,6 +1053,7 @@
             $('textarea[name="remarks"]').text(prescription.remarks);
             $('.form').show();
         });
+
         $('#tab1').on('click', '.delete', function (ev) {
             var id = ev.currentTarget.id.split('_')[1];
             if (confirm('Are you sure want to delete this medicine?')) {
@@ -1092,6 +1061,11 @@
                     if (p.prescription_id == id) {
                         p.delete_flag = 'Y';
                     }
+                    //Added By Nishant
+                    else{
+                        p.delete_flag = 'N';
+					}
+					//Extra code ends here
                     return p;
                 });
                 getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
@@ -1218,15 +1192,27 @@
                     //evt.preventDefault();
                     prescription_data   =   prescription_data.concat(res.prescription_details);
                     getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (rep) {
-                        showPrescriptions(rep.prescription_details);
+                        if(rep.prescription_details) {
+                            showPrescriptions(rep.prescription_details);
+                        }
                     });
                     evt.preventDefault();
                 });
                 $("#append").unbind().on("click", function (evt) {
+
+                    //Added by Nishant
+                    prescription_data = prescription_data.map(function (p) {
+                        p.delete_flag = 'N';
+                        return p;
+                    });
+                    //Extra code ended
+
                     prescription_data = prescription_data.concat(res.prescription_details);
                     //evt.preventDefault();
                     getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (app) {
-                        showPrescriptions(app.prescription_details);
+                        if(app.prescription_details) {
+                            showPrescriptions(app.prescription_details);
+                        }
                     });
                     evt.preventDefault();
                 });

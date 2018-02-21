@@ -2,7 +2,6 @@ var appointment_id, hs_id,appointment_list,sessionId,token,apiKey,next_apmt_date
 var appointment,apmt_type,consultation_id,record_id,summary_record_id;
 var showToaster, session;
 var doctor_id, doctor_name,doc_photo, template_id, login_token, appointment_date, selectedAppointment
-//var apiKey = "45638452";
 function showMessage(message) {
     $('#subscriber').html("<div class='message'><div class='text'>"+ message +"</div></div>");
 }
@@ -18,13 +17,10 @@ $(document).ready(function(){
     getData.getDashboardData(date).then(function(res){
         $('#filter').load('./components/filter.html');
         appointment_list=res.appointments_details.appointment;
-
         showDashboardDetails(res);
         appointment_date=moment(actualDate).format("YYYY-MM-DD");
 
     });
-
-
     /*getting appointment details*/
     var getAppointmentDetails = function(ev) {
         appointment_id = ev.currentTarget.id;
@@ -39,10 +35,23 @@ $(document).ready(function(){
             var html = template(res.appointments_details);
             $('#details').html(html);
 
-            $('#add-note-1').on('click', function (ev) {
+/*            $(".note-badge").on('click', function () {
                 $('.float-note').removeClass('hidden-xs-up');
                 $('.float-note').draggable();
                 showToaster("You can drag the note popup wherever you want", "bottom", "1500");
+            });*/
+            $('#add-note-1').unbind().on('click', function (ev) {
+                if(!$(".float-note").hasClass("hidden-xs-up")){
+                    $('.float-note').addClass('hidden-xs-up');
+                    $('#add-note-1').attr("title", "Doctor-Notes");
+
+
+                }else{
+                    $('.float-note').removeClass('hidden-xs-up');
+                    $('.float-note').draggable();
+                    $('#add-note-1').attr("title", "Click to close Doctor-Notes");
+                    showToaster("You can drag the note popup wherever you want", "bottom", "1500");
+                }
             });
 
             $("#note-content").unbind().blur(function(){
@@ -51,8 +60,15 @@ $(document).ready(function(){
                   //  debugger
                     getData.addGaNotes(appointment_id, $("#note-content").val()).then(function (res) {
                         notes_id = res.ga_notes.id;
-                        //  alert("Notes saved");
-                    })
+                        if(!res.error.error_message) {
+                            $("#api-success").removeClass('hidden-xs-up');
+                            $("#api-success-message").show();
+                            $("#api-success-message").html("Doctor Notes have been saved successfully !!");
+                            $('#api-success-message').delay(3000).fadeOut("slow", function (evt) {
+
+                            });
+                        }
+                    });
                 }
             });
 
@@ -65,16 +81,22 @@ $(document).ready(function(){
             }
             note_content=res.appointments_details.appointment_det.ga_notes;
             $("#note-content").val(note_content);
-
             $('#prescription').load('./components/prescription.html');
             $('#history').load('./components/history.html');
             $("#summary").load('./components/summary.html');
+
+            $("#health_parameters").load('./components/health_parameters.html');       //Added By Nishant
+/*
+            $(".parameters_tab_2").on('click', function () {
+                $("#health_parameters").load('./components/health_parameters.html');       //Added By Nishant
+            })*/
 
             if (res.appointments_details.appointment_det.summary_record_id) {
                 summary_record_id = res.appointments_details.appointment_det.summary_record_id;
             }
             if (res.appointments_details.appointment_det.health_record.length == 0) {
                 $('.attach-docs').hide();
+                $('.attached-records').hide();
             }
             if (res.appointments_details.appointment_det.summary_record_id == null) {
                 $('.summary-docs').hide();
@@ -87,12 +109,22 @@ $(document).ready(function(){
                 $('#start-vedio-consultation').show();
             }
             hs_id = res.appointments_details.health_seeker_profile.hs_id;
+            apmt_type=res.appointments_details.appointment_det.apmt_type;
 
+//          $('#parameters').html("<iframe class='iframe' src='"+base_url+"/growayuassist/hs_health_param_tab.php?prog_hcc="+selectedAppointment.hcc_det.hcc_id+"&hs_id="+hs_id+"&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>");
+            $(".parameters_tab").on('click', function (evt) { //click function added later, previously, it was loading in the start of click of an apointment
+                //$('#parameters').html("<iframe class='iframe' src='https://13.126.208.181/growayuassist/hs_health_param_tab.php?prog_hcc="+selectedAppointment.hcc_det.hcc_id+"&hs_id="+hs_id+"&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>");
+               if(selectedAppointment.hcc_det.hcc_id) {
+                   //debugger
+                   $('#parameters').html("<iframe class='iframe' src='https://13.126.208.181/growayuassist/health_param.php?&origin=docboard&hcc_id=" + selectedAppointment.hcc_det.hcc_id + "&id=" + appointment_id + "'></iframe>");
+               }
+               else{
+                   //debugger
+                   $('#parameters').html("<iframe class='iframe' src='https://13.126.208.181/growayuassist/hs_health_param_tab.php?&origin=docboard&hcc_id=0&id=" + appointment_id + "'></iframe>");
 
-          $('#parameters').html("<iframe class='iframe' src='https://13.126.208.181/growayuassist/hs_health_param_tab.php?prog_hcc="+selectedAppointment.hcc_det.hcc_id+"&hs_id="+hs_id+"&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>");
-           // $('#parameters').html("<iframe class='iframe' src='https://doctor.growayu.com/growayuassist/hs_health_param_tab.php?prog_hcc="+selectedAppointment.hcc_det.hcc_id+"&hs_id="+hs_id+"&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>");
-
-
+               }
+                // $('#parameters').html("<iframe class='iframe' src='https://doctor.growayu.com/growayuassist/hs_health_param_tab.php?prog_hcc="+selectedAppointment.hcc_det.hcc_id+"&hs_id="+hs_id+"&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>");
+            });
             $("#start-vedio-consultation").on("click", function (vid) {
                 getData.startVideoConsultation(appointment_id, hs_id).then(function (res) {
                     sessionId = res.video_session_det.session;
@@ -100,14 +132,15 @@ $(document).ready(function(){
                     apiKey = res.video_session_det.apiKey;
                     startVedio();
                 });
+             /*   $(".nav-tabs").removeClass("heading-font");
+                $(".nav-tabs").addClass("body-font");*/
                 vid.preventDefault();
-
             });
+
+
             $(".health_record").on("click", function (evt) {
                 var rec_id = this.id;
-
-                $('.modal-body').html("<iframe class='iframe' src='https://13.126.208.181/growayuassist/view_med_record.php?health_record_id=" + rec_id + "'></iframe>")
-              //  $('.modal-body').html("<iframe class='iframe' src='https://doctor.growayu.com/growayuassist/view_med_record.php?health_record_id=" + rec_id + "'></iframe>")
+                $('.modal-body').html("<iframe class='iframe' src='"+base_url+"/api/viewHealthRecord.php?health_record_id=" + rec_id + "&health_seeker_id="+hs_id+"&session_token="+login_token+"'></iframe>");
 
                 /* var objbuilder = '';
                  var data= '';
@@ -132,8 +165,6 @@ $(document).ready(function(){
 
                      $('.modal-body').html(objbuilder);
                      $(".document-title").html(res.document.doc_desc);*/
-
-
                 //to open pdf in new tab
                 /*    var win = window.open("#","_blank");
                     var title = "my tab title";
@@ -144,8 +175,6 @@ $(document).ready(function(){
                 // });
                 evt.preventDefault();
             });
-
-
             apmt_status = res.appointments_details.appointment_det.apmt_status;
             prescriptions_list = res.appointments_details.consultation_details.prescription_details;
             summary_details = res.appointments_details.consultation_details.consultation_summary;
@@ -154,7 +183,6 @@ $(document).ready(function(){
             if(note_content){
                 $("#note-title").text("Notes Saved");
             }
-
             if(apmt_status=="closed" && note_content){
                 $("#note-title").text("Notes Saved");
                 $("#note-content").attr('readonly', true);
@@ -186,11 +214,6 @@ $(document).ready(function(){
             $('#pending_button').text(res.appointments_details.appointment.filter(function(ap){ return ap.appointment_status === "inprogress" || ap.appointment_status === "booked" || ap.appointment_status === "paid"}).length);
             $('#closed_button').text(res.appointments_details.appointment.filter(function(ap){ return ap.appointment_status === "closed" || ap.appointment_status === "expired"}).length);
         }
-      // $('#parameters').html("<iframe class='iframe' src='https://13.126.208.181/growayuassist/hs_health_param_tab.php?prog_hcc=22&hs_id=2320&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>")
-        // $('#parameters').attr('src', 'https://13.126.208.181/growayuassist/hs_health_param_tab.php?prog_hcc=22&hs_id=2320&patient_id=IND01-17-C00001&visit_id=4&first_time=1');
-        //$('#parameters').attr('src', 'https://doctor.growayu.com/growayuassist/hs_health_param_tab.php?prog_hcc=22&hs_id=2320&patient_id=IND01-17-C00001&visit_id=4&first_time=1');
-       // $('#parameters').attr('src', 'https://doctor.growayu.com/growayuassist/hs_health_param_tab.php?prog_hcc='+selectedAppointment.hcc_det.hcc_id+'&hs_id='+hs_id+'&patient_id=IND01-17-C00001&visit_id=4&first_time=1');
-
         $('.iframe').load(function (ev) {
             var iframe = $('.iframe').contents();
             iframe.find('#page-wrapper').css('margin', '0 !important');
@@ -200,9 +223,7 @@ $(document).ready(function(){
         // $('#shcedule-date').text(res.appointments_details.appointment[0].appointment_date);
         var source   = $("#appointmentTemplate").html();
         var template = Handlebars.compile(source);
-
         var html = template(res.appointments_details);
-
         if($(window).width() < 500){
             $('#appointment-list-phone').html(html);
             $('#appointment-list-phone').removeClass('list-group').addClass('list-inline');
@@ -239,7 +260,6 @@ $(document).ready(function(){
     function initializeSession(apiKey, sessionId, token) {
         showMessage("Checking for the Support ans system requirements");
         try{
-
             OT.addEventListener("exception", exceptionHandler);
             if(OT.checkSystemRequirements()){
                 session = OT.initSession(apiKey, sessionId);
@@ -308,7 +328,6 @@ $(document).ready(function(){
             }else{
                 showMessage("your browser does not support webRTC please upgrade your browser");
             }}catch (e){
-            // debugger
             console.error(e)
         }
     }
@@ -319,6 +338,8 @@ $(document).ready(function(){
             token = token,
             // (optional) add server code here
             vedioSession = initializeSession(apiKey, sessionId, token);
+        $(".nav-tabs").removeClass("heading-font");
+        $(".nav-tabs").addClass("body-font");
     };
     var stopVideo = function(){
         if(confirm("Do You really want to close the session ? ")){
@@ -332,6 +353,9 @@ $(document).ready(function(){
                 $('#start-vedio-consultation').removeClass('hidden-xs-up');
                 $('#close-vedio-consultation').addClass('hidden-xs-up');
                 $('.audio, .video, .full-screen, .full-screen-off').addClass('hidden-xs-up');
+
+                $(".nav-tabs").removeClass("body-font");
+                $(".nav-tabs").addClass("heading-font");
             }
         }
     };
@@ -375,7 +399,6 @@ $(document).ready(function(){
     };
     showToaster = function (message, position, delay) {
         var x = $('#toaster');
-
         // Add the "show" class to DIV
         x.html(message);
         x.addClass("show");
@@ -384,7 +407,6 @@ $(document).ready(function(){
         }else{
             x.addClass('bottom');
         }
-
         var tDelay = 1000;
         if(delay){
             tDelay = delay;
@@ -410,13 +432,6 @@ $(document).ready(function(){
         $('#appointment-list').find('.active').removeClass('active');
         $this.addClass('active');
     });
-
-    /* $("#appointment-list").on('click', function (evt) {
-        // $('#appointment-list').removeClass('active');
-         $(".appointment").removeClass('active');
-         $(".list-group-item").addClass('active');
-        // evt.preventDefault();
-         });*/
     $('#appointment-list, #appointment-list-phone').on('click touchstart', '.appointment',getAppointmentDetails);
     $('.appointment-details #prescription').on('submit', addPrescription);
     //$('#start-vedio-consultation').on('click', startVedio)
@@ -432,15 +447,6 @@ $(document).ready(function(){
     $('#api-error').on("click", '.fa-times', function (ev) {
         hideApiError();
     });
-/*    $('#add-note').on('click', function (ev) {
-        debugger
-        $('.float-note').removeClass('hidden-xs-up');
-        $('.float-note').draggable();
-        showToaster("You can drag the note popup wherever you want");
-    });
-    $('#close-note').on('click', function () {
-        $('.float-note').addClass('hidden-xs-up');
-    });*/
 });
 function logout() {
     getData.doDoctorLogout().then(function (res) {
@@ -450,5 +456,4 @@ function logout() {
         delete sessionStorage.doctorId;
         location.reload();
     });
-
 }

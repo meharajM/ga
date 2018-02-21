@@ -5,10 +5,8 @@ var session_info = {
     "doctor_id": sessionStorage.getItem("doctorId")
 };
 var doctor_id = sessionStorage.getItem("doctorId");
-
-//var base_url = "https://52.66.157.195/growayu/ganewdesign";      //Test Server
 //var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
-  var base_url = "https://13.126.208.181/gadoctor";                   //Migration Server
+var base_url = "https://13.126.208.181/gadoctor";                   //Migration Server
 //var base_url = "https://doctor.growayu.com/gadoctor";                  //Production Server
 
 var getData = {
@@ -45,7 +43,6 @@ var getData = {
     },
     getAppointmentDetails: function(id){
         var url = "/api/getAppointmentDetails.php";
-       // var url="https://52.77.171.116/gadoctor/api/getAppointmentDetails.php";
         var apmt_input= {
             apmt_id : id,
             doctor_id :doctor_id,
@@ -60,7 +57,6 @@ var getData = {
         var call = $.ajax({
             type: "POST",
             url: base_url+url,
-           // url:url,
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
@@ -85,7 +81,12 @@ var getData = {
                 "latitude": "",
                 "longitude": ""
             },
-            "device_id": "web"
+            "device_id": "web",
+            //Added by Nishant, Later
+            "device_name":"browser",
+            "device_type":"",
+            "device_version":"",
+            "push_not_token":"",
         };
         var data = {
             doctor_info: doctor_info
@@ -252,7 +253,8 @@ var getData = {
             apmt_id: id,
             doctor_id: doctorId,
             hcc_id: selectedAppointment.hcc_det.hcc_id,
-            date: ""
+            date: "",
+            apmt_type: apmt_type
         };
         var data = {
             apmt_input: apmt_input,
@@ -393,7 +395,6 @@ var getData = {
 
     addPrescriptionTemplate: function(template_name,diseases, prescription){
         var url = "/api/addPrescriptionTemplate.php";
-     // var url = "https://52.66.157.195/growayu/ganewdesign/api/addPrescriptionTemplate.php";
         var doctorId = doctor_id;
         var template= {
             doctor_id: doctorId,
@@ -407,10 +408,11 @@ var getData = {
         var data = {
             template_details: {
                 "template":template,
-                    "prescription": prescription
+                "prescription": prescription
             },
             session_info: session_info
         };
+        showLoader();
         hideApiError();
         var call = $.ajax({
             type: "POST",
@@ -426,6 +428,7 @@ var getData = {
                 console.error(err, status);
             }
         }).then(function(res){
+            hideLoader();
             return res;
         });
         return call;
@@ -446,7 +449,6 @@ var getData = {
             dataType: 'json',
 
             success: function (res,status) {
-             
                 //showApiError(res.error);
                 return res;
             },
@@ -459,7 +461,6 @@ var getData = {
 
 /* Bala Code Ends Here*/
 
-    
     closeConsultation: function (id) {
         var url = "/api/closeConsultation.php";
         var doctorId = doctor_id;
@@ -483,13 +484,6 @@ var getData = {
             dataType: 'json',
             success: function (res,status) {
                  showApiError(res.error);
-              /*  if(!res.error.error_message)
-                {
-                    $('.alert-autocloseable-success').show();
-                    $('.alert-autocloseable-success').html("Your Consultation is Closed !!")
-                    $('.alert-autocloseable-success').delay(3000).fadeOut("slow", function () {
-                    });
-                }*/
                 return res;
             },
             error: function(err,status){
@@ -554,14 +548,7 @@ var getData = {
             }),
             dataType: 'json',
             success: function (res,status) {
-               /* var result = res.previous_appointments;
-                if(result != ''){
-                    // Loop through each of the results and append the option to the dropdown
-                    $.each(result, function(k, v) {
-                         $('#previous_prescription').append('<option value="' + v.appointment_id + '">' + v.formated_date + '</option>');
-                    });
-                }*/
-                 showApiError(res.error);
+                showApiError(res.error);
                 return res;
             },
             error: function(err,status){
@@ -627,7 +614,7 @@ var getData = {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
-                console.log(res);
+               // console.log(res);
                  showApiError(res.error);
                 return res;
             },
@@ -651,16 +638,15 @@ var getData = {
             notes:notes,
             notes_id:notes_id
         };
-       // debugger
         var data = {
             ga_info  : ga_info,
             session_info: session_info
         };
+       // showLoader();
         hideApiError();
         var call = $.ajax({
             type: "POST",
             url: base_url + url,
-           // url: url,
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (res,status) {
@@ -672,6 +658,7 @@ var getData = {
                 console.error(err, status);
             }
         }).then(function(res){
+           // hideLoader();
             return res;
         });
         return call;

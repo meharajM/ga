@@ -24,12 +24,7 @@
     <span id="api-success-message" class="alert alert-success small-font"></span>
 </div>
 
-
-
-
 <div class="content-container container bg-faded pt-4">
-
-
     <div class="row mt-3 content">
         <!-- hiding for small screen -->
         <div class="col-3 hidden-sm-down left-container">
@@ -70,9 +65,12 @@
             <div class="row">
                 <div class="col-sm-12 appointment-info details d-none">
                     <!-- Nav tabs -->
+                    <div class="row">
+                        <div class="col-10">
                     <ul class="nav nav-tabs heading-font" role="tablist" id="mytabs">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#details" role="tab"><span class="fa fa-info-circle"> </span> Details</a>
+                            <a class="nav-link active" data-toggle="tab" href="#details" role="tab"><span class="fa fa-info-circle"> </span> Details <!--<sup><span class="badge badge-success note-badge"><i class="fa fa-sticky-note-o"></i></span></sup>--></a>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#prescription" role="tab"><span class="fa fa-plus-circle"> </span> Prescription</a>
@@ -86,29 +84,40 @@
                             <a class="history_tab nav-link" data-toggle="tab" href="#history" role="tab"><span class="fa fa-history"> </span> History</a>
                         </li>
                         <!-- Bala Code ends here -->
-                    <!--    <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#newprescription" role="tab"><span class="fa fa-pencil"> </span> New Prescription</a>
+                      <!--  <li class="nav-item">
+                            <a class="parameters_tab nav-link" data-toggle="tab" href="#parameters" role="tab"><span class="fa fa-medkit"> </span> Health Parameters</a>
                         </li>-->
                         <li class="nav-item">
-                            <a class="parameters_tab nav-link" data-toggle="tab" href="#parameters" role="tab"><span class="fa fa-medkit"> </span> Health Parameters</a>
+                            <a class="parameters_tab_2 nav-link" data-toggle="tab" href="#health_parameters" role="tab"><span class="fa fa-medkit"> </span> Health Parameters</a>
                         </li>
                         <li class="nav-item">
-                            <div class="btn-success btn btn-default" id="start-vedio-consultation"><span class="fa fa-caret-square-o-right"> </span></div>
+                            <div class="btn-success btn btn-default" id="start-vedio-consultation" title="Start Video Consultation"><span class="fa fa-caret-square-o-right"> </span></div>
                         </li>
-                      <!--  <li class="nav-item">
+                    </ul>
+                        </div>
+                       <!-- <li class="offset-md-1 nav-item" style="border-top:0px">-->
+                        <div class="col-1 pb-0 btn btn-default btn-block text-right">
+                            <a id="add-note-1" title="Doctor-Notes">
+                                <!--<i class="fa fa-file doc-note"></i>-->
+                                <img class="add-doctor-note pb-1" src="img/note-2.png">
+                                <!--<span id="note-title">Add Note</span>-->
+                            </a>
+                        </div>
+                       <!-- </li>-->
+                            <!--  <li class="nav-item">
                             <div class="btn btn-default" ><a id="add-note"><i class="fa fa-pencil-square fa-4"></i></a></div>
                         </li>-->
-                    </ul>
-
+                    </div>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="details" role="tabpanel"></div>
                         <div class="tab-pane" id="prescription" role="tabpanel">...</div>
                         <div class="tab-pane" id="summary" role="tabpanel">...</div>
                          <div class="tab-pane" id="history" role="tabpanel">...</div>
-                        <div class="tab-pane" id="parameters" role="tabpanel">
+                  <!--      <div class="tab-pane" id="parameters" role="tabpanel">
                             <iframe class='iframe'></iframe>
-                        </div>
+                        </div>-->
+                        <div class="tab-pane" id="health_parameters" role="tabpanel">
                         <!--<div class="tab-pane" id="newprescription" role="tabpanel">...</div>-->
                     </div>
                 </div>
@@ -123,20 +132,22 @@
     <div class="loading hidden-xs-up">Loading&#8230;</div>
 </div>
 <div id="toaster">Some text some message..</div>
+<div class="float-note hidden-xs-up">
+    <div>
+        <div class="body-font">Doctor Notes <span class="pull-right" id="close-note-1"><span class="fa fa-times"></span> </span></div>
+        <textarea class="form-control body-font" rows="6" id="note-content">
+                </textarea>
+    </div>
+</div>
+</div>
 <!--end of body-->
 <script type="text/javascript" src="./js/getData.js"></script>
 <script type="text/javascript" src="./js/dashboard.js"></script>
 <script>
-   // document.getElementById("mr-1").src =doc_photo;
     $(".doc-name").html('<b> Dr. '+doctor_name+'</b>');
-
-  //  if(doc_photo=="http://52.66.157.195/growayu/ganewdesign/uploads/doctor_photo/" || doc_photo=="")
-   if(doc_photo=="https://13.126.208.181/gadoctor/uploads/doctor_photo/" || doc_photo=="" || doc_photo=="https://doctor.growayu.com/growayudoctor/uploads/doctor_photo/")
-   {
+   if(doc_photo==base_url+"/uploads/doctor_photo/" || doc_photo==""){
         document.getElementById("mr-1").src ="img/doctor_profile_pic.png";
-    }
-    else
-        {
+    }else{
             document.getElementById("mr-1").src =doc_photo;
         }
 </script>

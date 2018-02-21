@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" xmlns="http://www.w3.org/1999/html">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
+    <style type="text/css">
+        .bs-example {
+            margin: 0px;
+        }
+    </style>
+<!--    <link href="css/default.css" type="text/css" rel="stylesheet">-->
+  <!--  <link href="css/assets/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
+   <!-- <link href="css/assets/css/datepicker.css" rel="stylesheet">-->
+   <!-- <link href="css/assets/icons/font-awesome/css/font-awesome.css" rel="stylesheet">-->
+<!--    <link href="css/assets/css/plugins/morris/morris.css" rel="stylesheet">-->
+  <!--  <link rel="stylesheet" href="css/assets/css/font-awesome.css"/>-->
+<!--    <link rel="stylesheet" href="css/assets/css/bootstrap-multiselect.css" type="text/css"/>
+    <link rel="stylesheet" href="css/assets/css/timepicker.css" type="text/css"/>
+    <link rel="stylesheet" href="css/assets/css/jquery-ui.css" type="text/css"/>-->
+
+<!--   <link href="css/assets/css/styles/default.css" type="text/css" rel="stylesheet" id="style_color"/>-->
+   <!-- <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>-->
+  <!--  <script type="text/javascript" src="assets/js/hcc_hp_painting.js"></script>-->
+</head>
+<body>
+<div id="wrapper">
+    <div id="page-wrapper" class="fixed-navbar">
+        <div class="container-fluid bg-gray small-font">
+            <div class="row" style="margin:0;">
+                <div class="col-md-12">
+                    <div class="login-panel panel panel-default" id="hs_container">
+                        <div class="panel-heading">
+                            <!--<b style="color: steelblue;text-transform: capitalize">Health Parameter</b>-->
+                            <br><span style="text-transform: capitalize;color:red"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var check_total=0;
+    var input_total=0;
+    var total_target_id="";
+    $(document).ready(function () {
+        if(apmt_status=="closed" || apmt_status =="expired"){
+            $('#accordion :input').attr('readonly', 'readonly');
+            $("#save_btn").attr('disabled', 'disabled');
+        }
+        $(".input_integer").keypress(function (e) {
+            return /\d+/.test(String.fromCharCode(e.keyCode));
+        });
+        // debugger
+        var appId = appointment_id;
+        var first_time = 0;     //1
+        var specialization = 2;     //9992
+        var user_type = "doc";
+        var hcc_id = selectedAppointment.hcc_det.hcc_id;
+        var user_id = doctor_name;
+        var health_seeker_id = hs_id;
+        var sub_speciality = '';
+        var locId = '0';
+        //  var query = 'hcc_id='+hcc_id+'&user_type='+user_type+'&appointment_id='+appId+'&speciality='+specialization+'&first_time='+first_time+'&sub_speciality='+sub_speciality  + '&health_seeker_id=' + health_seeker_id;
+        var query = 'user_type='+user_type+'&appointment_id='+appId+'&speciality='+specialization+'&first_time='+first_time+'&sub_speciality='+sub_speciality  + '&health_seeker_id=' + health_seeker_id;
+        //getData.getAppointmentDetails("3867");
+     //   debugger;
+        hpPainting.setHealthSeekerId(health_seeker_id);
+        hpPainting.setLocationId(locId);
+        hpPainting.setType("APPOINTMENT");
+//        hpPainting.onSuccessCallback(onSuccess);
+        hpPainting.init("hs_container", user_id, hcc_id, appId, specialization, query);
+            if(apmt_status=="closed" || apmt_status =="expired"){
+                $('#accordion :input').attr('readonly', 'readonly');
+                $("#save_btn").attr('disabled', 'disabled');
+            }
+    });
+
+    function restrict_max(maximum,code,formula){
+        var val=$('#'+code).val();
+        val= val>maximum?maximum:val;
+        $('#'+code).val(val);
+        calculate(formula);
+    }
+
+    function calculate_checkbox(formula) {
+        var formula = formula.split("=");
+        var target_id = formula[0];
+        var source_id = formula[1];
+        source_id = source_id.split("+");
+        var result_value = 0;
+        var p_value = 0;
+        for (var i = 0; i < source_id.length; i++) {
+            if($('#'+source_id[i]).is(':checked')){
+                p_value = ~~$('#'+source_id[i]).val();
+                result_value = result_value + p_value;
+            }
+        }
+        check_total=result_value;
+        $('#' + target_id).val(result_value);
+        $('#' + total_target_id).val(result_value+input_total);
+    }
+
+    function calculate(formula) {
+        var formula = formula.split("=");
+        total_target_id = formula[0];
+        var source_id = formula[1];
+        source_id = source_id.split("+");
+        var result_value = 0;
+        var p_value = 0;
+        for (var i = 0; i < source_id.length; i++) {
+            p_value = ~~$('#' + source_id[i]).val();
+            result_value = result_value + p_value;
+        }
+        input_total=result_value;
+        $('#' + total_target_id).val(result_value+check_total);
+    }
+
+</script>
+</body>
+</html>
+<!--<script src="./js/hcc_hp_painting.js"></script>-->
