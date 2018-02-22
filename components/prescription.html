@@ -42,8 +42,6 @@
 					<div class="col-6">
 						<div class="ui-front">
 							<input class="form-input small-font input-height" name="med_search" id="med_search" placeholder="Medicine Name *" required>
-
-							</input>
 						</div>
 					</div>
 					<div class="col-2">
@@ -459,7 +457,7 @@
                 $('.quantity').addClass('error');
                 isValid = false;
             }else if(formData['tmg_qty_type'] == "others" && formData['tmg_qty_string'].trim() == ""){
-                isValid = false
+                isValid = false;
                 $('#timings-text').addClass('error');
             }
             if($('input[name="course"]').val() == "") {
@@ -567,25 +565,41 @@
             var template_name=$('#template_name :selected').text();
             getData.getMyprescriptionTemplateDetails(template_id).then(function (res) {
                 var my_template=res;
-                $(".template-modal-title").html(template_name);
-                $('#template-alert').modal({
-                    show: true
-                });
-                $("#replace").unbind().on("click", function (evt) {
-                    prescription_data = prescription_data.map(function (p) {
-                        p.delete_flag = 'Y';
-                        return p;
+
+                if(prescription_data.length) {
+                    $(".template-modal-title").html(template_name);
+                    $('#template-alert').modal({
+                        show: true
                     });
-                    prescription_data   =   prescription_data.concat(my_template.prescription_details);
-                    getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (rep) {
-                            if(rep.prescription_details) {			//Added by nishant (this 'if' condition)
+                    $("#replace").unbind().on("click", function (evt) {
+                        prescription_data = prescription_data.map(function (p) {
+                            p.delete_flag = 'Y';
+                            return p;
+                        });
+                        prescription_data = prescription_data.concat(my_template.prescription_details);
+                        getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (rep) {
+                            if (rep.prescription_details) {			//Added by nishant (this 'if' condition)
                                 showPrescriptions(rep.prescription_details);
                             }
                         });
-                    evt.preventDefault();
-                });
-                $("#append").unbind().on("click", function (evt) {
-                    //Added by Nishant
+                        evt.preventDefault();
+                    });
+                    $("#append").unbind().on("click", function (evt) {
+                        //Added by Nishant
+                        prescription_data = prescription_data.map(function (p) {
+                            p.delete_flag = 'N';
+                            return p;
+                        });
+                        //Extra code ended
+                        prescription_data = prescription_data.concat(res.prescription_details);
+                        getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (app) {
+                            if (app.prescription_details) {				//Added by nishant (this 'if' condition)
+                                showPrescriptions(app.prescription_details);
+                            }
+                        });
+                        evt.preventDefault();
+                    });
+                }else{
                     prescription_data = prescription_data.map(function (p) {
                         p.delete_flag = 'N';
                         return p;
@@ -593,15 +607,13 @@
                     //Extra code ended
                     prescription_data = prescription_data.concat(res.prescription_details);
                     getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (app) {
-                        if(app.prescription_details) {				//Added by nishant (this 'if' condition)
+                        if (app.prescription_details) {				//Added by nishant (this 'if' condition)
                             showPrescriptions(app.prescription_details);
                         }
                     });
-                    evt.preventDefault();
-                });
-            });
+                }
+			});
         });
-
         $("#med_search").autocomplete({
             minLength: 3,
             placeholder: "Search for a Medicine",
@@ -1180,27 +1192,45 @@
         $('#previous_prescription').change(function(ev){
             var apmt_id = $(this).children(":selected").attr("id");
             getData.getPrescription(apmt_id).then(function (res) {
-                $(".template-modal-title").html("Previous Prescriptions");
-                $('.template-alert').modal({
-                    show: true
-                });
-                $("#replace").unbind().on("click", function (evt) {
-                    prescription_data = prescription_data.map(function (p) {
-                        p.delete_flag = 'Y';
-                        return p;
-                    });
-                    //evt.preventDefault();
-                    prescription_data   =   prescription_data.concat(res.prescription_details);
-                    getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (rep) {
-                        if(rep.prescription_details) {
-                            showPrescriptions(rep.prescription_details);
-                        }
-                    });
-                    evt.preventDefault();
-                });
-                $("#append").unbind().on("click", function (evt) {
 
-                    //Added by Nishant
+                if(prescription_data.length) {
+                    $(".template-modal-title").html("Previous Prescriptions");
+                    $('.template-alert').modal({
+                        show: true
+                    });
+                    $("#replace").unbind().on("click", function (evt) {
+                        prescription_data = prescription_data.map(function (p) {
+                            p.delete_flag = 'Y';
+                            return p;
+                        });
+                        //evt.preventDefault();
+                        prescription_data = prescription_data.concat(res.prescription_details);
+                        getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (rep) {
+                            if (rep.prescription_details) {
+                                showPrescriptions(rep.prescription_details);
+                            }
+                        });
+                        evt.preventDefault();
+                    });
+                    $("#append").unbind().on("click", function (evt) {
+
+                        //Added by Nishant
+                        prescription_data = prescription_data.map(function (p) {
+                            p.delete_flag = 'N';
+                            return p;
+                        });
+                        //Extra code ended
+
+                        prescription_data = prescription_data.concat(res.prescription_details);
+                        //evt.preventDefault();
+                        getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (app) {
+                            if (app.prescription_details) {
+                                showPrescriptions(app.prescription_details);
+                            }
+                        });
+                        evt.preventDefault();
+                    });
+                }else{
                     prescription_data = prescription_data.map(function (p) {
                         p.delete_flag = 'N';
                         return p;
@@ -1210,12 +1240,12 @@
                     prescription_data = prescription_data.concat(res.prescription_details);
                     //evt.preventDefault();
                     getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (app) {
-                        if(app.prescription_details) {
+                        if (app.prescription_details) {
                             showPrescriptions(app.prescription_details);
                         }
                     });
-                    evt.preventDefault();
-                });
+
+				}
             });
 		ev.preventDefault();
         });

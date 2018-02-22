@@ -58,8 +58,8 @@
         });
         // debugger
         var appId = appointment_id;
-        var first_time = 0;     //1
-        var specialization = 2;     //9992
+        var first_time = 0;     //1,0
+        var specialization = 2;     //9992,2
         var user_type = "doc";
         var hcc_id = selectedAppointment.hcc_det.hcc_id;
         var user_id = doctor_name;
@@ -75,10 +75,10 @@
         hpPainting.setType("APPOINTMENT");
 //        hpPainting.onSuccessCallback(onSuccess);
         hpPainting.init("hs_container", user_id, hcc_id, appId, specialization, query);
-            if(apmt_status=="closed" || apmt_status =="expired"){
+        if(apmt_status=="closed" || apmt_status =="expired"){
                 $('#accordion :input').attr('readonly', 'readonly');
                 $("#save_btn").attr('disabled', 'disabled');
-            }
+        }
     });
 
     function restrict_max(maximum,code,formula){
@@ -120,8 +120,19 @@
         input_total=result_value;
         $('#' + total_target_id).val(result_value+check_total);
     }
+    function checkBMI() {
+        $('#BMI').attr("readonly", true);
+        var b;
+        var h=$("#Height").val();
+        var w=$("#Weight").val();
+        if (h != "" && w != "") {
+            b = w / (Math.pow(h/100, 2));
+            b = b.toFixed(2);
+        }
+        $('#BMI').val(b);
+        $('#BMI').attr("readonly", true);
+    }
 
 </script>
 </body>
 </html>
-<!--<script src="./js/hcc_hp_painting.js"></script>-->

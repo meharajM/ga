@@ -1,30 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07f80515-0211-44b8-ba38-73a55937896f" name="Default" comment="filter reset done: label class active is changed on Date change....but still...filter is not working correctly (It was an old error...before the change....just it didn't come into notice....filter 1 and filter 2 values take previous values on date changed...like values acc to last date)...">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/ga.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/atsrt_vedio_ui_changes.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/atsrt_vedio_ui_changes/shelved.patch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/bug_fixes.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/bug_fixes/shelved.patch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/filter_changes.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/filter_changes/shelved.patch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/login_changes.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/shelf/login_changes/shelved.patch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dump" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/appointmentClass.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/appointmentClass_old.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/chatClass.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/chatClass_old.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/db.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/dbClass.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newStyles.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reports/blood_test.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reports/sugar_test.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reports/urine_test.pdf" afterPath="" />
+    <list default="true" id="07f80515-0211-44b8-ba38-73a55937896f" name="Default" comment="Health Parameter added.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/health_parameters.html" afterPath="$PROJECT_DIR$/components/health_parameters.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/prescription.html" afterPath="$PROJECT_DIR$/components/prescription.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/summary.html" afterPath="$PROJECT_DIR$/components/summary.html" />
     </list>
     <ignored path="C:\xampp\htdocs\ga\.idea\shelf/" />
     <ignored path=".htaccess" />
@@ -38,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="141" column="6" lean-forward="false" selection-start-line="141" selection-start-column="6" selection-end-line="141" selection-end-column="6" />
+            <state relative-caret-position="172">
+              <caret line="136" column="108" lean-forward="false" selection-start-line="136" selection-start-column="108" selection-end-line="136" selection-end-column="108" />
               <folding />
             </state>
           </provider>
@@ -51,28 +32,28 @@
       <file leaf-file-name="summary.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/summary.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="110">
+              <caret line="668" column="24" lean-forward="false" selection-start-line="668" selection-start-column="24" selection-end-line="668" selection-end-column="24" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#11600#11607#1" expanded="true" />
+                <element signature="e#10869#10876#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prescription.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="prescription.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/prescription.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="151" column="35" lean-forward="true" selection-start-line="151" selection-start-column="35" selection-end-line="151" selection-end-column="35" />
+            <state relative-caret-position="111">
+              <caret line="645" column="16" lean-forward="false" selection-start-line="645" selection-start-column="16" selection-end-line="645" selection-end-column="16" />
               <folding>
                 <element signature="e#891#898#1" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="e#11501#11508#1" expanded="true" />
+                <element signature="e#11484#11491#1" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -92,8 +73,8 @@
       <file leaf-file-name="health_parameters.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/health_parameters.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+            <state relative-caret-position="198">
+              <caret line="123" column="8" lean-forward="true" selection-start-line="123" selection-start-column="8" selection-end-line="123" selection-end-column="41" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -125,20 +106,20 @@
       <file leaf-file-name="hcc_hp_painting.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/hcc_hp_painting.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="363" column="109" lean-forward="true" selection-start-line="363" selection-start-column="109" selection-end-line="363" selection-end-column="109" />
+            <state relative-caret-position="153">
+              <caret line="863" column="9" lean-forward="true" selection-start-line="863" selection-start-column="9" selection-end-line="863" selection-end-column="9" />
               <folding>
-                <element signature="e#8979#10743#0" expanded="false" />
-                <marker date="1519221746445" expanded="true" signature="3238:3263" ph="..." />
-                <marker date="1519221746445" expanded="true" signature="3409:3421" ph="..." />
-                <marker date="1519221746445" expanded="true" signature="4547:4597" ph="..." />
-                <marker date="1519221746445" expanded="true" signature="4737:4743" ph="&amp;nbsp;" />
-                <marker date="1519221746445" expanded="true" signature="4743:4749" ph="&amp;nbsp;" />
-                <marker date="1519221746445" expanded="true" signature="14226:14248" ph="..." />
-                <marker date="1519221746445" expanded="true" signature="14707:14713" ph="&amp;nbsp;" />
-                <marker date="1519221746445" expanded="true" signature="14713:14719" ph="&amp;nbsp;" />
-                <marker date="1519221746445" expanded="true" signature="14719:14725" ph="&amp;nbsp;" />
-                <marker date="1519221746445" expanded="true" signature="14725:14731" ph="&amp;nbsp;" />
+                <marker date="1519308612045" expanded="true" signature="3033:3042" ph="..." />
+                <marker date="1519308612045" expanded="true" signature="3238:3263" ph="..." />
+                <marker date="1519308612045" expanded="true" signature="3409:3421" ph="..." />
+                <marker date="1519308612045" expanded="true" signature="4807:4857" ph="..." />
+                <marker date="1519308612045" expanded="true" signature="4997:5003" ph="&amp;nbsp;" />
+                <marker date="1519308612045" expanded="true" signature="5003:5009" ph="&amp;nbsp;" />
+                <marker date="1519308612045" expanded="true" signature="18997:19019" ph="..." />
+                <marker date="1519308612045" expanded="true" signature="19478:19484" ph="&amp;nbsp;" />
+                <marker date="1519308612045" expanded="true" signature="19484:19490" ph="&amp;nbsp;" />
+                <marker date="1519308612045" expanded="true" signature="19490:19496" ph="&amp;nbsp;" />
+                <marker date="1519308612045" expanded="true" signature="19496:19502" ph="&amp;nbsp;" />
               </folding>
             </state>
           </provider>
@@ -147,8 +128,8 @@
       <file leaf-file-name="newStyles.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/newStyles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="697" column="20" lean-forward="true" selection-start-line="697" selection-start-column="20" selection-end-line="697" selection-end-column="20" />
+            <state relative-caret-position="159">
+              <caret line="684" column="11" lean-forward="false" selection-start-line="684" selection-start-column="5" selection-end-line="684" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -165,36 +146,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addG</find>
-      <find>validateT</find>
-      <find>validateTemplate</find>
-      <find>accordion</find>
-      <find>collapse</find>
-      <find>click</find>
-      <find>sav</find>
-      <find>saved</find>
-      <find>apmt_st</find>
-      <find>sugges</find>
-      <find>text</find>
-      <find>textB</find>
-      <find>panel</find>
-      <find>draw_fields</find>
-      <find>php</find>
-      <find>count</find>
-      <find>check</find>
-      <find>checkB</find>
-      <find>checkb</find>
-      <find>draw_chec</find>
-      <find>diff_row</find>
-      <find>self.draw_checkbox_diff_row</find>
-      <find>sler</find>
-      <find>closed</find>
-      <find>alert</find>
-      <find>checkbo</find>
-      <find>days</find>
-      <find>init</find>
-      <find>radio</find>
+      <find>col-width</find>
+      <find>main_g</find>
+      <find>steel</find>
+      <find>sub_group_color</find>
+      <find>&lt;br&gt;</find>
+      <find>sub_g</find>
       <find>params</find>
+      <find>sub_group</find>
+      <find>deb</find>
+      <find>debu</find>
+      <find>group</find>
+      <find>h</find>
+      <find>map</find>
+      <find>draw</find>
+      <find>draw_f</find>
+      <find>text</find>
+      <find>alert</find>
+      <find>uom</find>
+      <find>case</find>
+      <find>MI</find>
+      <find>column</find>
+      <find>textare</find>
+      <find>sub</find>
+      <find>sub_gro</find>
+      <find>bmi</find>
+      <find>gp</find>
+      <find>.then</find>
+      <find>BMI</find>
+      <find>php</find>
+      <find>.map</find>
     </findStrings>
     <replaceStrings>
       <replace>b</replace>
@@ -214,6 +195,7 @@
       <replace>body-font</replace>
       <replace>others</replace>
       <replace>GetHealthParametersMig</replace>
+      <replace>col_width</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -242,13 +224,13 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/getData.js" />
         <option value="$PROJECT_DIR$/js/dashboard.js" />
-        <option value="$PROJECT_DIR$/components/summary.html" />
-        <option value="$PROJECT_DIR$/js/hcc_hp_painting.js" />
-        <option value="$PROJECT_DIR$/components/health_parameters.html" />
-        <option value="$PROJECT_DIR$/components/prescription.html" />
         <option value="$PROJECT_DIR$/css/newStyles.css" />
         <option value="$PROJECT_DIR$/css/default.css" />
         <option value="$PROJECT_DIR$/components/dashboard.html" />
+        <option value="$PROJECT_DIR$/components/health_parameters.html" />
+        <option value="$PROJECT_DIR$/js/hcc_hp_painting.js" />
+        <option value="$PROJECT_DIR$/components/summary.html" />
+        <option value="$PROJECT_DIR$/components/prescription.html" />
       </list>
     </option>
   </component>
@@ -443,14 +425,7 @@
       <workItem from="1516475269075" duration="8336000" />
       <workItem from="1516558322243" duration="949000" />
       <workItem from="1517203765658" duration="90003000" />
-      <workItem from="1518413550368" duration="132940000" />
-    </task>
-    <task id="LOCAL-00010" summary="latest till now">
-      <created>1511150263809</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1511150263809</updated>
+      <workItem from="1518413550368" duration="159458000" />
     </task>
     <task id="LOCAL-00011" summary="get appointment details modifications">
       <created>1511151921889</created>
@@ -788,11 +763,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519223042883</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Health Parameter added...unwanted files deleted">
+      <created>1519223109163</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1519223109163</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1153344000" />
+    <option name="totallyTimeSpent" value="1179862000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -899,8 +881,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Monday's work" />
-    <MESSAGE value="Tuesday's work...&#10;&#10;&#10;work done today&#10;1. login page created...remaining work to be done...API integration and all..how to generate password in encrypted form...couldn't figure out&#10;2. Tabs work done, badges-positioning, fonts&#10;3. Pointer=cursor..and change div color&#10;4. Start VIDEO Consultation API integrated&#10;5. doDoctorLogin Api added...but yet to integrate with Login.html&#10;&#10;&#10;problems persisting:&#10;1. prescription table....use prescription_id...i don't know how to use...values missing in table on showing&#10;2. How to call [0].values ...array values from response.....thats y some global variables couldn't be created" />
     <MESSAGE value="login separate page...preview pdf summary" />
     <MESSAGE value="pres name changed" />
     <MESSAGE value="blob data" />
@@ -924,7 +904,9 @@
     <MESSAGE value="nishant changes" />
     <MESSAGE value="suggested test, ga notes" />
     <MESSAGE value="filter reset done: label class active is changed on Date change....but still...filter is not working correctly (It was an old error...before the change....just it didn't come into notice....filter 1 and filter 2 values take previous values on date changed...like values acc to last date)..." />
-    <option name="LAST_COMMIT_MESSAGE" value="filter reset done: label class active is changed on Date change....but still...filter is not working correctly (It was an old error...before the change....just it didn't come into notice....filter 1 and filter 2 values take previous values on date changed...like values acc to last date)..." />
+    <MESSAGE value="Health Parameter added...unwanted files deleted" />
+    <MESSAGE value="Health Parameter added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Health Parameter added." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -962,7 +944,7 @@
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#11501#11508#1" expanded="true" />
+            <element signature="e#11484#11491#1" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
           </folding>
         </state>
@@ -975,7 +957,7 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#11600#11607#1" expanded="true" />
+            <element signature="e#10869#10876#1" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1029,7 +1011,7 @@
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#11501#11508#1" expanded="true" />
+            <element signature="e#11484#11491#1" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
           </folding>
         </state>
@@ -1066,7 +1048,7 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#11600#11607#1" expanded="true" />
+            <element signature="e#10869#10876#1" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1094,7 +1076,7 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#11600#11607#1" expanded="true" />
+            <element signature="e#10869#10876#1" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1114,7 +1096,7 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#11600#11607#1" expanded="true" />
+            <element signature="e#10869#10876#1" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1250,77 +1232,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="87" column="12" lean-forward="false" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/getData.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="492">
           <caret line="430" column="25" lean-forward="false" selection-start-line="430" selection-start-column="25" selection-end-line="430" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/hcc_hp_painting.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="363" column="109" lean-forward="true" selection-start-line="363" selection-start-column="109" selection-end-line="363" selection-end-column="109" />
-          <folding>
-            <element signature="e#8979#10743#0" expanded="false" />
-            <marker date="1519221746445" expanded="true" signature="3238:3263" ph="..." />
-            <marker date="1519221746445" expanded="true" signature="3409:3421" ph="..." />
-            <marker date="1519221746445" expanded="true" signature="4547:4597" ph="..." />
-            <marker date="1519221746445" expanded="true" signature="4737:4743" ph="&amp;nbsp;" />
-            <marker date="1519221746445" expanded="true" signature="4743:4749" ph="&amp;nbsp;" />
-            <marker date="1519221746445" expanded="true" signature="14226:14248" ph="..." />
-            <marker date="1519221746445" expanded="true" signature="14707:14713" ph="&amp;nbsp;" />
-            <marker date="1519221746445" expanded="true" signature="14713:14719" ph="&amp;nbsp;" />
-            <marker date="1519221746445" expanded="true" signature="14719:14725" ph="&amp;nbsp;" />
-            <marker date="1519221746445" expanded="true" signature="14725:14731" ph="&amp;nbsp;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/prescription.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="151" column="35" lean-forward="true" selection-start-line="151" selection-start-column="35" selection-end-line="151" selection-end-column="35" />
-          <folding>
-            <element signature="e#891#898#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#11501#11508#1" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/health_parameters.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/summary.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#11600#11607#1" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1340,19 +1256,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/newStyles.css">
+    <entry file="file://$PROJECT_DIR$/components/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="697" column="20" lean-forward="true" selection-start-line="697" selection-start-column="20" selection-end-line="697" selection-end-column="20" />
+        <state relative-caret-position="172">
+          <caret line="136" column="108" lean-forward="false" selection-start-line="136" selection-start-column="108" selection-end-line="136" selection-end-column="108" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/css/newStyles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="141" column="6" lean-forward="false" selection-start-line="141" selection-start-column="6" selection-end-line="141" selection-end-column="6" />
+        <state relative-caret-position="159">
+          <caret line="684" column="11" lean-forward="false" selection-start-line="684" selection-start-column="5" selection-end-line="684" selection-end-column="11" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="87" column="12" lean-forward="false" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/health_parameters.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="123" column="8" lean-forward="true" selection-start-line="123" selection-start-column="8" selection-end-line="123" selection-end-column="41" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/hcc_hp_painting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="863" column="9" lean-forward="true" selection-start-line="863" selection-start-column="9" selection-end-line="863" selection-end-column="9" />
+          <folding>
+            <marker date="1519308612045" expanded="true" signature="3033:3042" ph="..." />
+            <marker date="1519308612045" expanded="true" signature="3238:3263" ph="..." />
+            <marker date="1519308612045" expanded="true" signature="3409:3421" ph="..." />
+            <marker date="1519308612045" expanded="true" signature="4807:4857" ph="..." />
+            <marker date="1519308612045" expanded="true" signature="4997:5003" ph="&amp;nbsp;" />
+            <marker date="1519308612045" expanded="true" signature="5003:5009" ph="&amp;nbsp;" />
+            <marker date="1519308612045" expanded="true" signature="18997:19019" ph="..." />
+            <marker date="1519308612045" expanded="true" signature="19478:19484" ph="&amp;nbsp;" />
+            <marker date="1519308612045" expanded="true" signature="19484:19490" ph="&amp;nbsp;" />
+            <marker date="1519308612045" expanded="true" signature="19490:19496" ph="&amp;nbsp;" />
+            <marker date="1519308612045" expanded="true" signature="19496:19502" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/summary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="668" column="24" lean-forward="false" selection-start-line="668" selection-start-column="24" selection-end-line="668" selection-end-column="24" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#10869#10876#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/prescription.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="645" column="16" lean-forward="false" selection-start-line="645" selection-start-column="16" selection-end-line="645" selection-end-column="16" />
+          <folding>
+            <element signature="e#891#898#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#11484#11491#1" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
