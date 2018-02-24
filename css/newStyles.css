@@ -1542,3 +1542,7 @@ input[type="text"]:read-only{
 .panel-default{
     padding-bottom: 1px;
 }
+
+.asteriskField{
+    color: red;
+}

@@ -28,22 +28,24 @@
              </div>-->
              <div class="panel-body" >
                  <div class="error-message"></div>
-                 <div style="margin-bottom: 25px" class="input-group">
-                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                     <input id="username" type="text" class="form-control" name="username" value="" placeholder="username or email">
-                 </div>
-                 <div style="margin-bottom: 25px" class="input-group">
-                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                     <input id="password" type="password" class="form-control" name="password" placeholder="password">
-                 </div>
-                 <div style="margin-top:10px" class="form-group">
-                     <!-- Button -->
-                     <div class="col-sm-12 controls">
-
-                         <a id="login" href="#" class="btn btn-success btn-block" type="submit">Login  </a>
+                 <form id="login_form" method="post">
+                     <div style="margin-bottom: 25px" class="input-group">
+                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                         <input id="username" type="text" class="form-control" name="username" value="" placeholder="username or email">
                      </div>
+                     <div style="margin-bottom: 25px" class="input-group">
+                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                         <input id="password" type="password" class="form-control" name="password" placeholder="password">
+                     </div>
+                     <div style="margin-top:10px" class="form-group">
+                         <!-- Button -->
+                         <div class="col-sm-12 controls">
 
-                 </div>
+                             <a id="login" href="#" class="btn btn-success btn-block" type="submit">Login  </a>
+                         </div>
+
+                     </div>
+                 </form>
              </div>
          </div>
      </div>

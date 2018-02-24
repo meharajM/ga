@@ -74,41 +74,56 @@
     <script type="text/x-handlebars-template" id="detailsTemplate">
         <div class="col-12">
             <div class="row">
-                <div class="col-5">
+                <div class="col-6">
                     <div class="appointment-details">
                         <b class="mt-2 body-font">General</b>
                         <p>
                             <table class="table table-striped table-sm table-bordered small-font">
                                 <colgroup>
-                                    <col width="50%">
+                                    <col width="30%">
                                     <col width="50%">
                                 </colgroup>
+                        {{#if appointment_det.apmt_id}}
                                 <tr><td  class="p-1">Appointment ID </td><td class="p-1">{{appointment_det.apmt_id}}</td></tr>
-
+                        {{/if}}
+                        {{#if health_seeker_profile.hs_name}}
                                 <tr><td class="p-1">Patient Name</td><td  class="p-1"> {{health_seeker_profile.hs_name}} </td></tr>
-
-                                <tr><td class="p-1"> Contact No</td><td  class="p-1">{{health_seeker_profile.hs_phone}}</td></tr>
-
-                                <tr><td class="p-1"> Age</td><td  class="p-1">{{health_seeker_profile.age}}</td></tr>
-
-                                <tr><td class="p-1"> Gender</td><td  class="p-1">{{health_seeker_profile.gender}}</td></tr>
-
+                        {{/if}}
+                        {{#if appointment_det.hcc_name}}
+                        <tr><td class="p-1">HCC Name</td><td  class="p-1"> {{appointment_det.hcc_name}} </td></tr>
+                        {{/if}}
+                        {{#if health_seeker_profile.patient_id}}
+                        <tr><td class="p-1">Patient ID</td><td  class="p-1"> {{health_seeker_profile.patient_id}}, {{health_seeker_profile.card_no}}</td></tr>
+                        {{/if}}
+                        {{#if health_seeker_profile.hs_phone}}
+                        <tr><td class="p-1"> Contact No</td><td  class="p-1">{{health_seeker_profile.hs_phone}}</td></tr>
+                        {{/if}}
+                        {{#if health_seeker_profile.age}}
+                        <tr><td class="p-1"> Age</td><td  class="p-1">{{health_seeker_profile.age}}</td></tr>
+                        {{/if}}
+                        {{#if health_seeker_profile.gender}}
+                        <tr><td class="p-1"> Gender</td><td  class="p-1">{{health_seeker_profile.gender}}</td></tr>
+                        {{/if}}
                                <!--  <tr><td>Schedule:</td><td> {{appointment_det.apmt_date}} | {{appointment_det.apmt_time}}</td></tr>
                                 -->
-                                <tr><td class="p-1">Blood Group</td><td  class="p-1">	{{health_seeker_profile.blood_group}}</td></tr>
-                               
-
-                                <tr><td class="p-1">Habits</td><td  class="p-1">{{health_seeker_profile.habbits}}
-                                </td></tr>
-
-                                <tr><td class="p-1">Weight</td><td  class="p-1">{{health_seeker_profile.weight}}</td></tr>
-
-                                <tr><td class="p-1">Height	</td><td  class="p-1">{{health_seeker_profile.height}}</td></tr>
-
-                                <tr><td class="p-1">Ailments</td><td  class="p-1"> {{health_seeker_profile.ailments}}</td></tr>
-
-                                <tr><td class="p-1">Allergies</td><td  class="p-1"> {{health_seeker_profile.allergies}}</td></tr>
-
+                        {{#if health_seeker_profile.blood_group}}
+                        <tr><td class="p-1">Blood Group</td><td  class="p-1">	{{health_seeker_profile.blood_group}}</td></tr>
+                        {{/if}}
+                        {{#if health_seeker_profile.habbits}}
+                                <tr><td class="p-1">Habits</td><td  class="p-1">{{health_seeker_profile.habbits}}</td></tr>
+                        {{/if}}
+                        {{#if health_seeker_profile.weight}}
+                        <tr><td class="p-1">Weight</td><td  class="p-1">{{health_seeker_profile.weight}}</td></tr>
+                        {{/if}}
+                        {{#if health_seeker_profile.height}}
+                        <tr><td class="p-1">Height	</td><td  class="p-1">{{health_seeker_profile.height}}</td></tr>
+                        {{/if}}
+                        {{#if health_seeker_profile.ailments}}
+                        <tr><td class="p-1">Ailments</td><td  class="p-1"> {{health_seeker_profile.ailments}}</td></tr>
+                        {{/if}}
+                        {{#if health_seeker_profile.allergies}}
+                        <tr><td class="p-1">Allergies</td><td  class="p-1"> {{health_seeker_profile.allergies}}</td></tr>
+                        {{/if}}
                               <!--   <tr><td>Consultation Type:</td>	<td>{{appointment_det.apmt_type}}</td></tr>
                                 
                                 <tr><td>Address:</td><td>	{{health_seeker_profile.address}}</td></tr> -->
@@ -117,14 +132,16 @@
 
                         <p class="small-font">
                             {{#appointment_det.case_sheet}}
+                            {{#if consultation_reason}}
                             <div><b class="body-font">Reason for Consultation</b><p class="small-font"> {{consultation_reason}}</p></div>
-                         <div>{{case_description}}</div>
+                         <div class="small-font">{{case_description}}</div>
+                            {{/if}}
                          {{/appointment_det.case_sheet}}
                         </p>
 
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <div class="appointment-details">
                         <b class="mt-2 attach-docs body-font">Attached Documents</b>
                         <p class="attached-records">

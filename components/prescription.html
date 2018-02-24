@@ -23,7 +23,7 @@
 				<span id="close-button" class="small-font" aria-hidden="true"><h3 class="header-font">&times;</h3></span>
 			</button>
 			<div class="form-group">
-				<div class="small-font"><b>Medicine</b></div>
+				<div class="small-font"><b>Medicine</b><span class="asteriskField">*</span></div>
 				<div class="row">
 					<div class="col-4">
 						<select class="form-control form-control-sm small-font input-height" id="med_type" name="med_type" required>
@@ -64,21 +64,21 @@
 							<div id="standard-tab" class="col-12">
 								<div class="row">
 									<div class="col-4">
-										<div class="small-font"><b>Morning *</b></div>
+										<div class="small-font"><b>Morning</b><span class="asteriskField">*</span></div>
 										<i class="fa fa-minus" aria-hidden="true" for="morning"></i>
 										<input type="number" name="morning" id="morning" placeholder="Morning"  class="quantity form-input small-font input-height" value="0" min="0">
 										<i class="fa fa-plus" aria-hidden="true" for="morning"></i>
 										<span class="unit"></span>
 									</div>
 									<div class="col-4">
-										<div class="small-font"><b>Afternoon *</b></div>
+										<div class="small-font"><b>Afternoon</b><span class="asteriskField">*</span></div>
 										<i class="fa fa-minus" aria-hidden="true" for="afternoon"></i>
 										<input type="number" name="afternoon" id="afternoon" placeholder="Afternoon" class="quantity form-input small-font input-height" value="0" min="0">
 										<i class="fa fa-plus" aria-hidden="true" for="afternoon"></i>
 										<span class="unit"></span>
 									</div>
 									<div class="col-4">
-										<div class="small-font"><b>Night *</b></div>
+										<div class="small-font"><b>Night</b><span class="asteriskField">*</span></div>
 										<i class="fa fa-minus" aria-hidden="true" for="evening"></i>
 										<input type="number" name="night" id="evening" placeholder="Night" class="quantity form-input small-font input-height" value="0" min="0">
 										<i class="fa fa-plus" aria-hidden="true" for="evening"></i>
@@ -116,7 +116,7 @@
 							<div class="col-4">
 								<div class="small-font"><b>Frequency</b></div>
 								<div class="form-group">
-									<input type="text" class="form-control small-font input-height" id="txt_frequency" name="frequency" placeholder="Enter frequency" >
+									<input type="text" class="form-control small-font input-height" id="txt_frequency" name="frequency" placeholder="eg: Daily, Once in Two Weeks, etc." >
 								</div>
 							</div>
 						</div>
@@ -124,10 +124,10 @@
 				</div>
 			</div>
 			<div class="mt-3">
-				<div class="small-font"><b>Course Duration</b></div>
+				<div class="small-font"><b>Course Duration</b><span class="asteriskField">*</span></div>
 				<div class="form-group row ">
 					<div class="col-sm-6">
-						<input type="number" name="course" placeholder="Duration *" min=0 class=" col-2 form-input small-font input-height" style="width:65px;">
+						<input type="number" name="course" placeholder="Duration" min=0 class=" col-2 form-input small-font input-height" style="width:65px;">
 						<label class="custom-control custom-radio">
 							<input id="days" name="duration" type="radio" value="Days" class="custom-control-input input-height" required>
 							<span class="custom-control-indicator"></span>
@@ -158,7 +158,6 @@
 					<textarea class="form-control small-font" id="exampleTextarea" name="remarks" placeholder="Remarks..." rows="3"></textarea>
 				</div>
 			</div>
-
 			<div class="form-group rows">
 				<button class="btn btn-success btn-sm body-font" id="add-prescription">Add</button>
 				<button class="btn btn-danger btn-sm body-font" id="reset-prescription" type="reset">Reset</button> <span class="form-error hidden-xs-up small-font">Please add all mandatory fields </span>
@@ -253,7 +252,7 @@
 			<div class="row">
 				<div class="col-4">
 					<select class="col-12 form-input small-font input-height" id="med_type_list" name="med_type" required>
-						<option value="" disabled selected>Medicine Type</option>
+						<option value="" disabled selected>Medicine Type*</option>
 						<option value="Tablet">Tablet</option>
 						<option value="Syrup">Syrup</option>
 						<option value="Drops">Drops</option>
@@ -275,10 +274,10 @@
 					<input type="text" class="form-control input-height small-font" name="generic_name" id="med_generic_name" placeholder="Medicine Generic Name"/>
 				</div>
 				<div class="col-2">
-					<input type="text" class="form-control small-font input-height" name="dosage" id="dosage_list" placeholder="Dosage" required/>
+					<input type="text" class="form-control small-font input-height" name="dosage" id="dosage_list" placeholder="Dosage*" required/>
 				</div>
 				<div class="col-2">
-					<input type="text" class="form-control small-font input-height" name="dosage_uom" id="units" placeholder="Units (mg/ml,etc...)" required/>
+					<input type="text" class="form-control small-font input-height" name="dosage_uom" id="units" placeholder="Units (mg/ml,etc...)*" required/>
 				</div>
 			</div>
 			<div class="pt-3">
@@ -328,11 +327,11 @@
 							<div class="row">
 								<div class="col-4">
 									<!--<div class="small-font"><b>Template Name</b></div>-->
-									<input class="form-control small-font input-height small-font" name="add_template_name" id="add_template_name" placeholder="Enter Template Name *" required />
+									<input class="form-control small-font input-height small-font" name="add_template_name" id="add_template_name" placeholder="Enter Template Name*" required />
 								</div>
 								<div class="col-4">
 									<!--<div class="small-font"><b>Diseases</b></div>-->
-									<input class="form-control small-font input-height small-font" name="diseases" id="diseases" placeholder="Enter Diseases" required />
+									<input class="form-control small-font input-height small-font" name="diseases" id="diseases" placeholder="Enter Diseases*" required />
 								</div>
 							<!--	<div class="col-4">
 									<div class="small-font"><b>Speciality</b></div>
@@ -917,7 +916,17 @@
                 }
         };
         showPrescriptions(prescription_data);
-
+        $("#reset-prescription").on('click', function () {
+            $('.form-error').html('Please add all mandatory fields');
+            $('.form-error').addClass('hidden-xs-up');
+            $('#med_search').removeClass('error');
+            $('input[name="course"]').removeClass('error');
+            $('input[name="duration"]').removeClass('error');
+            $(".duration").removeClass('error');
+            $('#med_type').removeClass('error');
+            $('.quantity').removeClass('error');
+            $('#timings-text').removeClass('error');
+        });
         $("#add-prescription").click(function (evt) {
             var formData = $("#form3").serializeArray();
             evt.preventDefault();

@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-6">
                         <label class="control-label small-font" for="follow_up">
-                            <b>Next Follow-up?</b>
+                            <b>Next Follow-up?</b><span class="asteriskField">*</span>
                             <div id="date-error-text"></div>
                         </label>
 
@@ -423,6 +423,7 @@
         };
 
         if(!summary_details && apmt_status=="closed"||apmt_status=="expired"){
+            $(".asteriskField").addClass('d-none');
             $("#save").hide();
             $("#preview_summary").hide();
             $("#edit_summary").hide();
@@ -464,51 +465,22 @@
         if(summary_details !="" ){
                 if(apmt_status=="closed")
                 {
-  /*                  var suggested_tests=summary_details.test_names.split('~');
-                    $("#suggested_test").val(suggested_tests);
-                    debugger
-                    for(var i=0; i<suggested_tests.length;i++)
-                    {
-                        var tag = "<span class='tags small-font'>"+suggested_tests[i]+"<i class='fa fa-times ml-1' aria-hidden='true'></i></span>";
-                        $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
-                    }
-*/
-
-//                  Old Working Code
+                    $(".asteriskField").addClass('d-none');
                     $("#suggested_test").val(summary_details.suggested_test.map(function (item) {return item.test_name}).join(', '));
-                 //  $('#suggested_test_list').html($('#suggested_test').val());
                     $('#suggested_test').hover(function() {     //Won't work if suggested_test field is disabled
-                        /*$('#suggested_test_list').html($('#suggested_test').val());
-                        $('#suggested_test_list').addClass('text-justify col-10 pl-0 pr-0');
-                        $('#suggested_test_list').removeClass('d-none');*/
                         var title=  summary_details.suggested_test.map(function (item) {return item.test_name}).join(', ');
                         $('#suggested_test').attr("title", title);
-
                     },function(){
                         $('#suggested_test_list').addClass('d-none');
                         });
                 }else{
-                    // Old Working Code
                   var suggested_tests_details=summary_details.suggested_test.map(function (item) {
-
                       if(item.test_name!="") {
                             var tag = "<span class='tags small-font'>"+item.test_name+"<i class='fa fa-times ml-1' id='"+item.test_id+"' aria-hidden='true'></i></span>";
                             $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
                           suggested_test_list.push({test_id: item.test_id, test_name: item.test_name});
                       }
                     });
-               /*     if(summary_details.test_names) {
-                        var suggested_tests = summary_details.test_names.split('~');
-                        for (var i = 0; i < suggested_tests.length; i++) {
-                            if (suggested_tests[i] != "") {
-                                suggested_test_list.push({test_id: 0, test_name: suggested_tests[i]});
-                            }
-                        }
-                    }
-                    suggested_test_list.map(function (item) {
-                        var tag = "<span class='tags small-font'>"+item.test_name+"<i class='fa fa-times ml-1' id='"+item.test_id+"' aria-hidden='true'></i></span>";
-                           $('#suggested_test_list').html($('#suggested_test_list').html() + tag);
-                    })*/
                 }
             $("#diagnosis").val(summary_details.Diagnosis);
             $("#mgmt_plan").val(summary_details.mgmt_plan);

@@ -14,18 +14,6 @@
     </style>
 <!--    <link href="css/default.css" type="text/css" rel="stylesheet">-->
   <!--  <link href="css/assets/css/bootstrap.min.css" rel="stylesheet">-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
-   <!-- <link href="css/assets/css/datepicker.css" rel="stylesheet">-->
-   <!-- <link href="css/assets/icons/font-awesome/css/font-awesome.css" rel="stylesheet">-->
-<!--    <link href="css/assets/css/plugins/morris/morris.css" rel="stylesheet">-->
-  <!--  <link rel="stylesheet" href="css/assets/css/font-awesome.css"/>-->
-<!--    <link rel="stylesheet" href="css/assets/css/bootstrap-multiselect.css" type="text/css"/>
-    <link rel="stylesheet" href="css/assets/css/timepicker.css" type="text/css"/>
-    <link rel="stylesheet" href="css/assets/css/jquery-ui.css" type="text/css"/>-->
-
-<!--   <link href="css/assets/css/styles/default.css" type="text/css" rel="stylesheet" id="style_color"/>-->
-   <!-- <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>-->
-  <!--  <script type="text/javascript" src="assets/js/hcc_hp_painting.js"></script>-->
 </head>
 <body>
 <div id="wrapper">
@@ -58,8 +46,8 @@
         });
         // debugger
         var appId = appointment_id;
-        var first_time = 0;     //1,0
-        var specialization = 2;     //9992,2
+        var first_time = 1;     //1,0
+        var specialization = health_param_speciality;  //9992,2,9990
         var user_type = "doc";
         var hcc_id = selectedAppointment.hcc_det.hcc_id;
         var user_id = doctor_name;
@@ -68,8 +56,7 @@
         var locId = '0';
         //  var query = 'hcc_id='+hcc_id+'&user_type='+user_type+'&appointment_id='+appId+'&speciality='+specialization+'&first_time='+first_time+'&sub_speciality='+sub_speciality  + '&health_seeker_id=' + health_seeker_id;
         var query = 'user_type='+user_type+'&appointment_id='+appId+'&speciality='+specialization+'&first_time='+first_time+'&sub_speciality='+sub_speciality  + '&health_seeker_id=' + health_seeker_id;
-        //getData.getAppointmentDetails("3867");
-     //   debugger;
+
         hpPainting.setHealthSeekerId(health_seeker_id);
         hpPainting.setLocationId(locId);
         hpPainting.setType("APPOINTMENT");
@@ -131,6 +118,15 @@
         }
         $('#BMI').val(b);
         $('#BMI').attr("readonly", true);
+    }
+
+    function keypresshandler(event)
+    {
+        var charCode = event.keyCode;
+        //Non-numeric character range
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            //debugger
+            return false;
     }
 
 </script>

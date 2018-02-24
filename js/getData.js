@@ -6,8 +6,12 @@ var session_info = {
 };
 var doctor_id = sessionStorage.getItem("doctorId");
 //var base_url = "https://52.77.171.116/gadoctor";                        //Stage Server
-var base_url = "https://13.126.208.181/gadoctor";                   //Migration Server
+//var API_BASE_PATH="https://doctor.growayu.com/growayuassist/api";       //Production Server
 //var base_url = "https://doctor.growayu.com/gadoctor";                  //Production Server
+var base_url = "https://13.126.208.181/gadoctor";                   //Migration Server
+var API_BASE_PATH="https://13.126.208.181/growayuassist/api";       //Migration Server
+
+
 
 var getData = {
     getDashboardData: function(date){

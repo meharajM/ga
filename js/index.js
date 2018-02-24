@@ -25,7 +25,6 @@ $(document).ready(function(){
     }
     showDashboard();
     $('#body').on('click', '#login', function () {
-
         var user = $('#username').val();
         var pass = $('#password').val();
         getData.doDoctorLogin(user,pass).then(function (res) {
@@ -39,7 +38,6 @@ $(document).ready(function(){
             }
             if(res.error.error_message == "Invalid Data : Email and password mismatch"){
                 $('.error-message').html(res.error.error_message)
-
             }else{
                 isLoggedIn = true; //checkLogin();
                 showDashboard();
@@ -50,11 +48,8 @@ $(document).ready(function(){
             hideApiError();
         });
     });
-
 });
 function showApiError(error){
-    //debugger
-
     if(error.result != 0){
         $('#api-error').removeClass('hidden-xs-up');
         $('#api-error-message').html("['"+error.error_code + "']: "+ error.error_message);

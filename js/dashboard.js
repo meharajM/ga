@@ -1,4 +1,4 @@
-var appointment_id, hs_id,appointment_list,sessionId,token,apiKey,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, summary_details, note_content, notes_id;
+var appointment_id, hs_id,appointment_list,sessionId,token,apiKey,next_apmt_date,prev_apmt_date,apmt_status,prescriptions_list, summary_details, note_content, notes_id, health_param_speciality;
 var appointment,apmt_type,consultation_id,record_id,summary_record_id;
 var showToaster, session;
 var doctor_id, doctor_name,doc_photo, template_id, login_token, appointment_date, selectedAppointment
@@ -53,9 +53,7 @@ $(document).ready(function(){
                     showToaster("You can drag the note popup wherever you want", "bottom", "1500");
                 }
             });
-
             $("#note-content").unbind().blur(function(){
-
                 if(apmt_status!="closed") {
                   //  debugger
                     getData.addGaNotes(appointment_id, $("#note-content").val()).then(function (res) {
@@ -65,13 +63,11 @@ $(document).ready(function(){
                             $("#api-success-message").show();
                             $("#api-success-message").html("Doctor Notes have been saved successfully !!");
                             $('#api-success-message').delay(3000).fadeOut("slow", function (evt) {
-
                             });
                         }
                     });
                 }
             });
-
             $('#close-note-1').on('click', function () {
                 $('.float-note').addClass('hidden-xs-up');
             });
@@ -84,13 +80,7 @@ $(document).ready(function(){
             $('#prescription').load('./components/prescription.html');
             $('#history').load('./components/history.html');
             $("#summary").load('./components/summary.html');
-
             $("#health_parameters").load('./components/health_parameters.html');       //Added By Nishant
-/*
-            $(".parameters_tab_2").on('click', function () {
-                $("#health_parameters").load('./components/health_parameters.html');       //Added By Nishant
-            })*/
-
             if (res.appointments_details.appointment_det.summary_record_id) {
                 summary_record_id = res.appointments_details.appointment_det.summary_record_id;
             }
@@ -102,15 +92,14 @@ $(document).ready(function(){
                 $('.summary-docs').hide();
                 $('.sumary_img').hide();
             }
-
             if (res.appointments_details.appointment_det.apmt_type != "VC") {
                 $('#start-vedio-consultation').hide();
             } else {
                 $('#start-vedio-consultation').show();
             }
             hs_id = res.appointments_details.health_seeker_profile.hs_id;
+            health_param_speciality=res.appointments_details.appointment_det.health_param_speciality;
             apmt_type=res.appointments_details.appointment_det.apmt_type;
-
 //          $('#parameters').html("<iframe class='iframe' src='"+base_url+"/growayuassist/hs_health_param_tab.php?prog_hcc="+selectedAppointment.hcc_det.hcc_id+"&hs_id="+hs_id+"&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>");
             $(".parameters_tab").on('click', function (evt) { //click function added later, previously, it was loading in the start of click of an apointment
                 //$('#parameters').html("<iframe class='iframe' src='https://13.126.208.181/growayuassist/hs_health_param_tab.php?prog_hcc="+selectedAppointment.hcc_det.hcc_id+"&hs_id="+hs_id+"&patient_id=IND01-17-C00001&visit_id=4&first_time=1'></iframe>");
@@ -137,11 +126,9 @@ $(document).ready(function(){
                 vid.preventDefault();
             });
 
-
             $(".health_record").on("click", function (evt) {
                 var rec_id = this.id;
                 $('.modal-body').html("<iframe class='iframe' src='"+base_url+"/api/viewHealthRecord.php?health_record_id=" + rec_id + "&health_seeker_id="+hs_id+"&session_token="+login_token+"'></iframe>");
-
                 /* var objbuilder = '';
                  var data= '';
                  var ftype  = $(this).attr('rel');
@@ -150,7 +137,6 @@ $(document).ready(function(){
                  getData.getDocumentBlobData(hs_id,rec_id).then(function (res) {
                      data=res.document.doc_data;
                      objbuilder = '';
-
                      if(ftype == "application/pdf"){
                          objbuilder += ('<object width="100%" height="100%" data="data:application/pdf;base64,');
                          objbuilder += (data);
