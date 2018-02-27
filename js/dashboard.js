@@ -15,7 +15,7 @@ $(document).ready(function(){
     var actualDate=new Date();
     var date=moment(actualDate).format("YYYYMMDD");
     getData.getDashboardData(date).then(function(res){
-        $('#filter').load('./components/filter.html');
+        $('#filter').load(filter);
         appointment_list=res.appointments_details.appointment;
         showDashboardDetails(res);
         appointment_date=moment(actualDate).format("YYYY-MM-DD");
@@ -77,10 +77,10 @@ $(document).ready(function(){
             }
             note_content=res.appointments_details.appointment_det.ga_notes;
             $("#note-content").val(note_content);
-            $('#prescription').load('./components/prescription.html');
-            $('#history').load('./components/history.html');
-            $("#summary").load('./components/summary.html');
-            $("#health_parameters").load('./components/health_parameters.html');       //Added By Nishant
+            $('#prescription').load(prescription);
+            $('#history').load(history_file);
+            $("#summary").load(summary);
+            $("#health_parameters").load(health_parameters);       //Added By Nishant
             if (res.appointments_details.appointment_det.summary_record_id) {
                 summary_record_id = res.appointments_details.appointment_det.summary_record_id;
             }
@@ -129,36 +129,6 @@ $(document).ready(function(){
             $(".health_record").on("click", function (evt) {
                 var rec_id = this.id;
                 $('.modal-body').html("<iframe class='iframe' src='"+base_url+"/api/viewHealthRecord.php?health_record_id=" + rec_id + "&health_seeker_id="+hs_id+"&session_token="+login_token+"'></iframe>");
-                /* var objbuilder = '';
-                 var data= '';
-                 var ftype  = $(this).attr('rel');
-                 var rec_id = this.id;
-                 console.log(ftype);
-                 getData.getDocumentBlobData(hs_id,rec_id).then(function (res) {
-                     data=res.document.doc_data;
-                     objbuilder = '';
-                     if(ftype == "application/pdf"){
-                         objbuilder += ('<object width="100%" height="100%" data="data:application/pdf;base64,');
-                         objbuilder += (data);
-                         objbuilder += ('" type="application/pdf" class="internal">');
-                         objbuilder += ('<embed src="data:application/pdf;base64,');
-                         objbuilder += (data);
-                         objbuilder += ('" type="application/pdf"  />');
-                         objbuilder += ('</object>');
-                     }else{
-                         objbuilder = "<div class='frame'><img  id='sample_picture' src='data:"+ftype+";base64," +data+ "' /></div>";
-                     }
-
-                     $('.modal-body').html(objbuilder);
-                     $(".document-title").html(res.document.doc_desc);*/
-                //to open pdf in new tab
-                /*    var win = window.open("#","_blank");
-                    var title = "my tab title";
-                    win.document.write('<html><title>'+ title +'</title><body style="margin-top:0px; margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">');
-                    win.document.write(objbuilder);
-                    win.document.write('</body></html>');
-                    layer = jQuery(win.document);*/
-                // });
                 evt.preventDefault();
             });
             apmt_status = res.appointments_details.appointment_det.apmt_status;

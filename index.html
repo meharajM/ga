@@ -12,24 +12,19 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link href="css/styles.css" type="text/css" rel="stylesheet">
     <link href="css/jquery-ui.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" href="css/libs/select2.min.css" />
+    <link rel="stylesheet" href="css/libs/select2.min.css"/>
     <script src="js/libs/jquery.min.js"></script>
     <script src="js/libs/select2.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"-->
-            <!--integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="-->
-            <!--crossorigin="anonymous">-->
-    <!--</script>-->
-    <link rel="stylesheet" type="text/css" href="css/newStyles.css">
+    <!--<link rel="stylesheet" type="text/css" href=newStyles>-->
     <script type="text/javascript" src="js/libs/handlebars.min.js"></script>
     <script type="text/javascript" src="js/handlebars-intl.js"></script>
-
-    <!--    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/handlebars-dateformat.js"></script>-->
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="js/moment.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
+
+    <script src="js/included_files.js?ver=1.1.1"></script>            <!--Contains all the HTML and JS File Paths-->
 
     <script type="text/x-handlebars-template" id="appointmentTemplate">
         {{#appointment}}
@@ -180,7 +175,7 @@
     </script>
     <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
     <link rel="stylesheet" href="css/fa/css/font-awesome.min.css">
-    <script src="js/tokBoxHandlers.js"></script>
+    <!--<script src="js/tokBoxHandlers.js"></script>-->
 </head>
 <body>
 <!--<div class="float-note hidden-xs-up">
@@ -192,9 +187,26 @@
 </div>-->
 <div id="body">
 </div>
-<script src="./js/index.js"></script>
-<script src="js/getData.js"></script>
-<script src="js/hcc_hp_painting.js"></script>
+<!--<script src="js/update_cache.js"></script>
+<script src="js/check_cache.js"></script>
+<script src="js/service-worker.js"></script>
+<script src="js/check_update.js"></script>-->
+<!--<script src="./js/index.js"></script>-->
+
+<script>
+    document.write("<script src=\"" +tokBoxHandlers+ "\"><"+"/script>");
+    document.write("<script src=\"" +index_js+ "\"><"+"/script>");
+    document.write("<script src=\"" +getData_file+ "\"><"+"/script>");
+    document.write("<script src=\"" +hcc_hp_painting+ "\"><"+"/script>");
+    /*document.write("<script src=\"" +dashboard_js+ "\"><"+"/script>");*/
+
+    //CSS File Added
+    document.write("<link rel=\'stylesheet' type='text/css' href='"+newStyles+"'>");
+</script>
+
+
+<!--<script src="js/getData.js"></script>
+<script src="js/hcc_hp_painting.js"></script>-->
 </body>
 </html>
 

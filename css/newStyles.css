@@ -1249,7 +1249,7 @@ hr {
 .error{
     border: 0.5px solid red;
 }
-.form-error, .summary-form-error{
+.form-error, .summary-form-error, .table-form-error{
     color: red;
 }
 .generate_preview{
@@ -1545,4 +1545,12 @@ input[type="text"]:read-only{
 
 .asteriskField{
     color: red;
+}
+
+#myFocus{
+    color:#d33057;
+}
+
+.row-table{
+    background: #dbcbcb;
 }

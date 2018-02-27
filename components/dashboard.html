@@ -1,3 +1,4 @@
+
 <div>
     <!-- add fixed-top for fix nav -->
     <nav class="navbar navbar-toggleable-sm navbar-light">
@@ -141,11 +142,15 @@
 </div>
 </div>
 <!--end of body-->
-<script type="text/javascript" src="./js/getData.js"></script>
+<!--<script type="text/javascript" src="./js/getData.js"></script>-->
 <script type="text/javascript" src="./js/dashboard.js"></script>
+<!--<script>
+   /* document.write("<script src=\"./" +getData_file+ "\"><"+"/script>");*/
+    document.write("<script src=\"" +dashboard_js+ "\"><"+"/script>");
+</script>-->
 <script>
     $(".doc-name").html('<b> Dr. '+doctor_name+'</b>');
-   if(doc_photo==base_url+"/uploads/doctor_photo/" || doc_photo==""){
+    if(doc_photo==base_url+"/uploads/doctor_photo/" || doc_photo==""){
         document.getElementById("mr-1").src ="img/doctor_profile_pic.png";
     }else{
             document.getElementById("mr-1").src =doc_photo;

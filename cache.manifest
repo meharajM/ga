@@ -1,0 +1,20 @@
+CACHE MANIFEST
+# v1.1.2 2018-02-26
+# This is another comment
+
+index.html
+components/summary.html
+components/prescription.html
+components/dashboard.html
+components/history.html
+components/health_parameters.html
+components/login.html
+components/logout.html
+components/filter.html
+js/index.js
+js/dashboard.js
+js/tokBoxHandlers.js
+js/hcc_hp_painting.js
+js/getData.js
+css/newStyles.css
+

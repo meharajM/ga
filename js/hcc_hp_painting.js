@@ -349,7 +349,9 @@ hpPainting = new (function(){
 								html += '<div class="input-group"><input class="form-control input-height params" pattern="^[0-9]+$" id="'+field["display_name"]+'" onkeyup="checkBMI();" oninput="this.value = this.value.replace(/[^0-9]/, \'\')" id="'+field["display_name"]+'" placeholder="' + placeholder + '" data-type="' + field["data_type"] + '" onblur="hpPainting.validate(\'' + field["code"] + '\')" type="text" id="' + field["code"] + '" name="param_' + field["code"] + '" value="' + value + '"/><span class="input-group-addon input-height small-font">'+uom+'</span></div>';
 							}else if(field["display_name"]=="BMI"){
 								html += '<div class="input-group"><input class="form-control input-height params" pattern="^[0-9]+$" id="'+field["display_name"]+'" placeholder="' + placeholder + '" data-type="' + field["data_type"] + '" onblur="hpPainting.validate(\'' + field["code"] + '\')" type="text" id="' + field["code"] + '" name="param_' + field["code"] + '" value="' + value + '"/><span class="input-group-addon input-height small-font">'+uom+'</span></div>';
-							}
+							}else {
+                                html += '<div class="input-group"><input class="form-control input-height params" pattern="^[0-9]+$" id="'+field["display_name"]+'" placeholder="' + placeholder + '" data-type="' + field["data_type"] + '" onblur="hpPainting.validate(\'' + field["code"] + '\')" type="text" id="' + field["code"] + '" name="param_' + field["code"] + '" value="' + value + '"/><span class="input-group-addon input-height small-font">'+uom+'</span></div>';
+                            }
 						}else{
 							if(uom==undefined) {
                                 html += '<input class="form-input input-height col-12 params" placeholder="' + placeholder + '" data-type="' + field["data_type"] + '" onblur="hpPainting.validate(\'' + field["code"] + '\')" type="text" id="' + field["code"] + '" name="param_' + field["code"] + '" value="' + value + '"/>';

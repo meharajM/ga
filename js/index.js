@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
  //   var isLoggedIn = false;
     function showDashboard() {
@@ -7,9 +8,9 @@ $(document).ready(function(){
         doc_photo = sessionStorage.getItem("photo");
         if(checkLogin()){
 
-            $('#body').load('./components/dashboard.html');
+            $('#body').load(dashboard_html);
         }else{
-            $('#body').load('./components/login.html');
+            $('#body').load(login);
         }
     }
     function checkLogin() {

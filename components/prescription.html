@@ -1,7 +1,7 @@
 <script  type="text/x-handlebars-template" id="prescriptiontable">
 	{{#prescription}}
-	<tr>
-		<td>{{med_type}}</td>
+	<tr class="row_{{prescription_id}}">
+		<td><input type="checkbox" id="d_multiple_{{prescription_id}}" name="d_multiple" value="d_multiple_{{prescription_id}}" class="checkbox-class"> {{med_type}}</td>
 		<td>{{med_name}}</td>
 		<td>{{dosage}}</td>
 		<td>{{tmg_qty_string}}</td>
@@ -208,7 +208,9 @@
 				</tr>
 			</tbody>
 		</table>
+		<div class="col-3 offset-md-9 text-right"><a href="#" id="delete_selected" value="DeleteSelected" class="header-font" title="Delete Selected Medicines"><span class="fa fa-trash"></span> Delete Medicines</a></div>
 		<button class="btn btn-primary btn-sm body-font" id="save_continue">Continue</button>
+		<span class="table-form-error hidden-xs-up small-font">You can't edit this medicine. Please close the already opened form first !!</span>
 		<a href="#" id="add_template" value="Add to My Templates" class="small-font pull-right" data-toggle="modal" data-target="#template-add">Add to My Templates</a>
 	</div>
 </div>
@@ -651,6 +653,7 @@
         $('.form').hide();
         $("#save_medicine").hide();
         $("#add_medicine").hide();
+
         $("#add_template").on('click', function(evt){
             // $('.form-error').addClass('d-none');
             $('.form-error').html('Please add all mandatory fields');
@@ -907,6 +910,7 @@
                 $('#tab1').html(rows.join(''));
             if(prescriptions_list.length==0){
                     $("#add_template").hide();
+                    $("#delete_selected").hide();
                 }
                 else if((apmt_status=="closed"||apmt_status=="expired")&&prescription_data.length ){
                     $("#add_template").hide();
@@ -914,6 +918,18 @@
                 else if((apmt_status!="closed"||apmt_status!="expired")&&prescription_data.length ){
                     $("#add_template").show();
                 }
+            $('.checkbox-class').change(function() {
+                if($(".checkbox-class:checked").length>1){
+                    $("#delete_selected").show();
+                    $(".action_buttons").addClass('d-none');
+                    $("#add_template").addClass('d-none');
+                }
+                else{
+                    $("#delete_selected").hide();
+                    $(".action_buttons").removeClass('d-none');
+                    $("#add_template").removeClass('d-none');
+                }
+            });
         };
         showPrescriptions(prescription_data);
         $("#reset-prescription").on('click', function () {
@@ -928,6 +944,7 @@
             $('#timings-text').removeClass('error');
         });
         $("#add-prescription").click(function (evt) {
+            $(".table-form-error").addClass("hidden-xs-up");
             var formData = $("#form3").serializeArray();
             evt.preventDefault();
             var data = {};
@@ -969,7 +986,7 @@
                     });
 					//Ended extra code here
                     getData.UpdatePrescriptionDetails(appointment_id, prescription_add).then(function (res) {
-                       // debugger;
+                      // debugger;
                         showPrescriptions(res.prescription_details);
                         $('.form').hide();
 
@@ -1007,92 +1024,135 @@
             $('#template_name').hide();
             $('#previous_prescription').hide();
             $(".action_buttons").addClass('d-none');
+            $(".checkbox-class").addClass('d-none');
         }
         $('#tab1').on('click', '.edit', function (ev) {
-            var id = ev.currentTarget.id.split('_')[1];
-            $('#add-prescription').html('Update');
-            var prescription = prescription_data.filter(function (p) {
-                return p.prescription_id == id
-            });
-            if (prescription.length) {
-                prescription = prescription[0];
-            }
-            $('.form').attr('data-id', prescription.prescription_id);
-            $('#med_search').val(prescription.med_name);
-            $("#med_type").val=$('#med_type').val(prescription.med_type);
-            setUnit();
-            //alert($("#med_type").val());
-			if(prescription.tmg_qty_type === "std_MAE"){
-                $('#standard').click();
-                $('.timings #morning').val(prescription.tmg_qty_string.split('-')[0]);
-                $('.timings #afternoon').val(prescription.tmg_qty_string.split('-')[1]);
-                $('.timings #evening').val(prescription.tmg_qty_string.split('-')[2]);
+            if ($("#form3").is(":hidden")) {
+                var id = ev.currentTarget.id.split('_')[1];
+                $(".checkbox-class").prop('checked', false);
+                $(".row_" + id).addClass('row-table');
+                $('#d_multiple_'+id).prop('checked', true);
+                $(".checkbox-class").prop("disabled", true);
+                $(".checkbox-class").attr("title", "You can't select any other medicine if the form is opened. Please close the form first");
+                $("#add-prescription").on('click', function () {
+                    $(".row_" + id).removeClass('row-table');
+                    $('#d_multiple_'+id).prop('checked', false);
+                    $(".table-form-error").addClass("hidden-xs-up");
+                    $(".checkbox-class").prop('checked', false);
+                    $(".checkbox-class").prop('disabled', false);
+                });
+                $("#close-button").on('click', function () {
+                    $(".row_" + id).removeClass('row-table');
+                    $('#d_multiple_'+id).prop('checked', false);
+                    $(".table-form-error").addClass("hidden-xs-up");
+                    $(".checkbox-class").prop('checked', false);
+                    $(".checkbox-class").prop('disabled', false);
+                });
+                $('.form-error').addClass('hidden-xs-up');
+                $('#med_search').removeClass('error');
+                $('input[name="course"]').removeClass('error');
+                $('input[name="duration"]').removeClass('error');
+                $(".duration").removeClass('error');
+                $("#med_type").removeClass('error');
+                $('.quantity').removeClass('error');
 
-            }else{
-                $('#free-text').click();
-                $('#timings-text').val(prescription.tmg_qty_string);
+                $('#add-prescription').html('Update');
+                var prescription = prescription_data.filter(function (p) {
+                    return p.prescription_id == id
+                });
+                if (prescription.length) {
+                    prescription = prescription[0];
+                }
+                $('.form').attr('data-id', prescription.prescription_id);
+                $('#med_search').val(prescription.med_name);
+                $("#med_type").val = $('#med_type').val(prescription.med_type);
+                setUnit();
+                //alert($("#med_type").val());
+                if (prescription.tmg_qty_type === "std_MAE") {
+                    $('#standard').click();
+                    $('.timings #morning').val(prescription.tmg_qty_string.split('-')[0]);
+                    $('.timings #afternoon').val(prescription.tmg_qty_string.split('-')[1]);
+                    $('.timings #evening').val(prescription.tmg_qty_string.split('-')[2]);
 
-                if(prescription.med_intake == 'After Food'){
-                    //  console.log('inside after');
-                    $('#after-food').prop('checked',true);
-                }else if(prescription.med_intake == 'Before Food'){
-                    //console.log('inside before');
-                    $('#before-food').prop('checked',true);
-                }else{
-                    $('#after-food').prop('checked',false);
-                    $('#before-food').prop('checked',false);
+                } else {
+                    $('#free-text').click();
+                    $('#timings-text').val(prescription.tmg_qty_string);
+
+                    if (prescription.med_intake == 'After Food') {
+                        //  console.log('inside after');
+                        $('#after-food').prop('checked', true);
+                    } else if (prescription.med_intake == 'Before Food') {
+                        //console.log('inside before');
+                        $('#before-food').prop('checked', true);
+                    } else {
+                        $('#after-food').prop('checked', false);
+                        $('#before-food').prop('checked', false);
+                    }
+
+                }
+                $('#dosage').val(prescription.dosage);
+                $('#txt_frequency').val(prescription.frequency);
+                $('input[name="course"]').val(prescription.course.split(' ')[0]);
+                $('textarea[name="remarks"]').val(prescription.remarks);
+                $("#" + prescription.course.toLowerCase().split(' ')[1]).prop('checked', true);
+                if (prescription.course.toLowerCase().split(' ')[1] == "day") {
+                    $("#days").prop('checked', true);
+                } else if (prescription.course.toLowerCase().split(' ')[1] == "week") {
+                    $("#weeks").prop('checked', true);
+                } else if (prescription.course.toLowerCase().split(' ')[1] == "month") {
+                    $("#months").prop('checked', true);
                 }
 
-            }
-            $('#dosage').val(prescription.dosage);
-            $('#txt_frequency').val(prescription.frequency);
-            $('input[name="course"]').val(prescription.course.split(' ')[0]);
-            $("#"+ prescription.course.toLowerCase().split(' ')[1]).prop('checked', true);
-            if(prescription.course.toLowerCase().split(' ')[1]=="day") {
-                $("#days").prop('checked', true);
-            }else if(prescription.course.toLowerCase().split(' ')[1]=="week"){
-                $("#weeks").prop('checked', true);
-            }else if(prescription.course.toLowerCase().split(' ')[1]=="month"){
-                $("#months").prop('checked', true);
-            }
+                //            $('.duration input[value="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
+                /*  $('input[value="' + prescription.med_intake + '"]').attr('checked', true);*/
+                if (prescription.med_intake == 'After Food') {
+                    $('#after-food').prop('checked', true);
+                    //$('#after-food_1').prop('checked',true);
+                } else if (prescription.med_intake == 'Before Food') {
+                    $('#before-food').prop('checked', true);
+                    //$('#before-food_1').prop('checked',false);
+                } else {
+                    $('#after-food').prop('checked', false);
+                    //$('#after-food_1').prop('checked',true);
+                    $('#before-food').prop('checked', false);
+                    //$('#before-food_1').prop('checked',false);
+                }
 
-//            $('.duration input[value="' + prescription.course.split(' ')[1] + '"]').attr('checked', true);
-            /*  $('input[value="' + prescription.med_intake + '"]').attr('checked', true);*/
-            if(prescription.med_intake == 'After Food'){
-                $('#after-food').prop('checked',true);
-                //$('#after-food_1').prop('checked',true);
-            }else if(prescription.med_intake == 'Before Food'){
-                $('#before-food').prop('checked',true);
-                //$('#before-food_1').prop('checked',false);
+                $('.form').show();
             }else{
-                $('#after-food').prop('checked',false);
-                //$('#after-food_1').prop('checked',true);
-                $('#before-food').prop('checked',false);
-                //$('#before-food_1').prop('checked',false);
-            }
-
-            $('textarea[name="remarks"]').text(prescription.remarks);
-            $('.form').show();
+                $(this).attr("title", "You can't edit this prescription as one prescription is already opened. Please close the already opened form");
+                $(".table-form-error").html("You can't edit this prescription as one prescription is already opened. Please close the already opened form");
+                $(".table-form-error").removeClass('hidden-xs-up');
+/*                $('#tab1').on('click', '.delete', function (ev) {
+                    $(".table-form-error").removeClass("hidden-xs-up");
+                })*/
+			}
         });
 
         $('#tab1').on('click', '.delete', function (ev) {
-            var id = ev.currentTarget.id.split('_')[1];
-            if (confirm('Are you sure want to delete this medicine?')) {
-                prescription_data = prescription_data.map(function (p) {
-                    if (p.prescription_id == id) {
-                        p.delete_flag = 'Y';
-                    }
-                    //Added By Nishant
-                    else{
-                        p.delete_flag = 'N';
-					}
-					//Extra code ends here
-                    return p;
-                });
-                getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
-                    showPrescriptions(res.prescription_details);
-                });
-            }
+            if ($("#form3").is(":hidden")) {
+				var id = ev.currentTarget.id.split('_')[1];
+				if (confirm('Are you sure want to delete this medicine?')) {
+                    prescription_data = prescription_data.map(function (p) {
+                        if (p.prescription_id == id) {
+                            p.delete_flag = 'Y';
+                        }
+                        //Added By Nishant
+                        else {
+                            p.delete_flag = 'N';
+                        }
+                        //Extra code ends here
+                        return p;
+                    });
+                    getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (res) {
+                        showPrescriptions(res.prescription_details);
+                    });
+                }
+            }else{
+                $(this).attr("title", "You can't delete this prescription as one prescription is already opened. Please close the already opened form");
+                $(".table-form-error").removeClass('hidden-xs-up');
+                $(".table-form-error").html("You can't delete this prescription as one prescription is already opened. Please close the already opened form");
+			}
         });
         $('#free-text-tab').hide();
         $('#standard').click(function (ev) {
@@ -1257,6 +1317,41 @@
 				}
             });
 		ev.preventDefault();
+        });
+        $("#delete_selected").hide();
+        $('.checkbox-class').change(function() {
+            if($(".checkbox-class:checked").length>1){
+                $("#delete_selected").show();
+                $(".action_buttons").addClass('d-none');
+            }
+            else{
+                $("#delete_selected").hide();
+                $(".action_buttons").removeClass('d-none');
+            }
+        });
+
+		$("#delete_selected").unbind().on('click', function () {
+            $('table [type="checkbox"]').each(function(i, chk) {
+                if (chk.checked==true) {
+                    var id=chk.id.split('_')[2];
+
+                    prescription_data = prescription_data.map(function (p) {
+						if (p.prescription_id == id) {
+                            p.delete_flag = 'Y';
+                        }
+                        return p;
+                    });
+                }
+            });
+            if (confirm('Are you sure want to delete multiple medicines?')) {
+                getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (app) {
+                    //debugger
+                    if (app.prescription_details) {
+                        showPrescriptions(app.prescription_details);
+                    }
+                    $("#delete_selected").hide();
+                });
+            }
         });
     });
 </script>
