@@ -403,6 +403,16 @@ $(document).ready(function(){
     $('#api-error').on("click", '.fa-times', function (ev) {
         hideApiError();
     });
+    $(".icon-logo").on('click', function () {
+        var actualDate=new Date();
+        var date=moment(actualDate).format("YYYYMMDD");
+        getData.getDashboardData(date).then(function(res){
+            $('#filter').load(filter);
+            appointment_list=res.appointments_details.appointment;
+            showDashboardDetails(res);
+            appointment_date=moment(actualDate).format("YYYY-MM-DD");
+        });
+    })
 });
 function logout() {
     getData.doDoctorLogout().then(function (res) {

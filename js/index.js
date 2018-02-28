@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
  //   var isLoggedIn = false;
     function showDashboard() {
@@ -7,7 +6,6 @@ $(document).ready(function(){
         login_token = sessionStorage.getItem("token");
         doc_photo = sessionStorage.getItem("photo");
         if(checkLogin()){
-
             $('#body').load(dashboard_html);
         }else{
             $('#body').load(login);
@@ -29,20 +27,18 @@ $(document).ready(function(){
         var user = $('#username').val();
         var pass = $('#password').val();
         getData.doDoctorLogin(user,pass).then(function (res) {
-            if (typeof(Storage) !== "undefined") {
-                sessionStorage.setItem("userId", res.doctor.user_id);
-                sessionStorage.setItem("doctorId", res.doctor.doctor_id);
-                sessionStorage.setItem("name", res.doctor.doctor_name);
-                sessionStorage.setItem("token", res.doctor.token);
-                sessionStorage.setItem("photo", res.doctor.photo);
-                //sessionStorage.setItem("hccId", res.doctor.hcc_id);
-            }
-            if(res.error.error_message == "Invalid Data : Email and password mismatch"){
-                $('.error-message').html(res.error.error_message)
-            }else{
+            if(!res.error.error_message) {
+                if (typeof(Storage) !== "undefined") {
+                    sessionStorage.setItem("userId", res.doctor.user_id);
+                    sessionStorage.setItem("doctorId", res.doctor.doctor_id);
+                    sessionStorage.setItem("name", res.doctor.doctor_name);
+                    sessionStorage.setItem("token", res.doctor.token);
+                    sessionStorage.setItem("photo", res.doctor.photo);
+                    //sessionStorage.setItem("hccId", res.doctor.hcc_id);
+                }
                 isLoggedIn = true; //checkLogin();
                 showDashboard();
-                }
+            }
         });
         //Added By Nishant....delete it if any problem comes
         $('.login-error-icon').on("click", function (ev) {

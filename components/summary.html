@@ -741,5 +741,10 @@
                 suggested_test_list.splice(suggested_test_list.indexOf(id), 1);
                 $(this).parent().remove();
             });
+            if(apmt_type=="PC"){
+              $(".generate_preview").css("margin-top", "-275px");
+              $("#edit_summary").css("position","absolute");
+              $("#edit_summary").css("z-index","1");
+            }
     });
 </script>

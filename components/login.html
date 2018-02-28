@@ -51,13 +51,18 @@
      </div>
  </div>
 <footer>
-    <p style="text-align: center">© 2017    <a id="footer-text"  target="_blank" href="http://www.growayu.com">GrowAyu Technologies Pvt. Ltd</a></p>
+    <p style="text-align: center">© 2017<a id="footer-text"  target="_blank" href="http://www.growayu.com">GrowAyu Technologies Pvt. Ltd</a></p>
 </footer>
 <script>
     $(document).ready(function(){
-        $('#password, #username').on('keypress', function () {
-            $('.error-message').html("");
-
+        $('#password, #username').on('keypress', function (e) {
+            hideApiError();
+            if(e.which==13){
+                //checkLogin();         doesn't work here because index.js is not included yet...if we include index.js file, network tab in chrome throws infinite requests
+//                if($(this).val()!==""){
+                    $("#login").click();
+                //}
+            }
         });
     })
 </script>

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07f80515-0211-44b8-ba38-73a55937896f" name="Default" comment="Health Parameter added.">
+    <list default="true" id="07f80515-0211-44b8-ba38-73a55937896f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/health_parameters.html" afterPath="$PROJECT_DIR$/components/health_parameters.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/prescription.html" afterPath="$PROJECT_DIR$/components/prescription.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/dashboard.html" afterPath="$PROJECT_DIR$/components/dashboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/login.html" afterPath="$PROJECT_DIR$/components/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/summary.html" afterPath="$PROJECT_DIR$/components/summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/dashboard.js" afterPath="$PROJECT_DIR$/js/dashboard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/index.js" afterPath="$PROJECT_DIR$/js/index.js" />
     </list>
-    <ignored path="C:\xampp\htdocs\ga\.idea\shelf/" />
-    <ignored path=".htaccess" />
-    <ignored path=".htaccess.txt" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,41 +17,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/dashboard.html">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="136" column="108" lean-forward="false" selection-start-line="136" selection-start-column="108" selection-end-line="136" selection-end-column="108" />
+            <state relative-caret-position="526">
+              <caret line="67" column="1" lean-forward="false" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="summary.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/summary.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="668" column="24" lean-forward="false" selection-start-line="668" selection-start-column="24" selection-end-line="668" selection-end-column="24" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#10869#10876#1" expanded="true" />
-              </folding>
+            <state relative-caret-position="102">
+              <caret line="165" column="34" lean-forward="false" selection-start-line="165" selection-start-column="34" selection-end-line="165" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prescription.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/components/dashboard.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="prescription.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/prescription.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="645" column="16" lean-forward="false" selection-start-line="645" selection-start-column="16" selection-end-line="645" selection-end-column="16" />
+            <state relative-caret-position="129">
+              <caret line="1007" column="17" lean-forward="true" selection-start-line="1007" selection-start-column="17" selection-end-line="1007" selection-end-column="17" />
               <folding>
-                <element signature="e#891#898#1" expanded="true" />
+                <element signature="e#1063#1070#1" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="e#11484#11491#1" expanded="true" />
+                <element signature="e#12201#12208#1" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -63,31 +67,28 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="37" column="23" lean-forward="true" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
+            <state relative-caret-position="240">
+              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="health_parameters.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/health_parameters.html">
+      <file leaf-file-name="included_files.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/included_files.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="123" column="8" lean-forward="true" selection-start-line="123" selection-start-column="8" selection-end-line="123" selection-end-column="41" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="51">
+              <caret line="3" column="48" lean-forward="false" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/dashboard.js">
+      <file leaf-file-name="summary.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/summary.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="87" column="12" lean-forward="false" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
+            <state relative-caret-position="458">
+              <caret line="746" column="52" lean-forward="false" selection-start-line="746" selection-start-column="52" selection-end-line="746" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -96,31 +97,9 @@
       <file leaf-file-name="getData.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/getData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="430" column="25" lean-forward="false" selection-start-line="430" selection-start-column="25" selection-end-line="430" selection-end-column="25" />
+            <state relative-caret-position="509">
+              <caret line="110" column="30" lean-forward="false" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hcc_hp_painting.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/hcc_hp_painting.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="863" column="9" lean-forward="true" selection-start-line="863" selection-start-column="9" selection-end-line="863" selection-end-column="9" />
-              <folding>
-                <marker date="1519308612045" expanded="true" signature="3033:3042" ph="..." />
-                <marker date="1519308612045" expanded="true" signature="3238:3263" ph="..." />
-                <marker date="1519308612045" expanded="true" signature="3409:3421" ph="..." />
-                <marker date="1519308612045" expanded="true" signature="4807:4857" ph="..." />
-                <marker date="1519308612045" expanded="true" signature="4997:5003" ph="&amp;nbsp;" />
-                <marker date="1519308612045" expanded="true" signature="5003:5009" ph="&amp;nbsp;" />
-                <marker date="1519308612045" expanded="true" signature="18997:19019" ph="..." />
-                <marker date="1519308612045" expanded="true" signature="19478:19484" ph="&amp;nbsp;" />
-                <marker date="1519308612045" expanded="true" signature="19484:19490" ph="&amp;nbsp;" />
-                <marker date="1519308612045" expanded="true" signature="19490:19496" ph="&amp;nbsp;" />
-                <marker date="1519308612045" expanded="true" signature="19496:19502" ph="&amp;nbsp;" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -128,8 +107,18 @@
       <file leaf-file-name="newStyles.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/newStyles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="684" column="11" lean-forward="false" selection-start-line="684" selection-start-column="5" selection-end-line="684" selection-end-column="11" />
+            <state relative-caret-position="291">
+              <caret line="1259" column="12" lean-forward="false" selection-start-line="1259" selection-start-column="12" selection-end-line="1259" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/dashboard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="412" column="69" lean-forward="false" selection-start-line="412" selection-start-column="69" selection-end-line="412" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -137,100 +126,62 @@
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-      </list>
-    </option>
-  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>col-width</find>
-      <find>main_g</find>
-      <find>steel</find>
-      <find>sub_group_color</find>
-      <find>&lt;br&gt;</find>
-      <find>sub_g</find>
-      <find>params</find>
-      <find>sub_group</find>
+      <find>hist</find>
+      <find>history</find>
+      <find>dashbo</find>
+      <find>js</find>
+      <find>tok</find>
+      <find>new</find>
+      <find>expired</find>
+      <find>closd</find>
       <find>deb</find>
-      <find>debu</find>
-      <find>group</find>
-      <find>h</find>
-      <find>map</find>
-      <find>draw</find>
-      <find>draw_f</find>
-      <find>text</find>
-      <find>alert</find>
-      <find>uom</find>
-      <find>case</find>
-      <find>MI</find>
-      <find>column</find>
-      <find>textare</find>
-      <find>sub</find>
-      <find>sub_gro</find>
-      <find>bmi</find>
-      <find>gp</find>
-      <find>.then</find>
-      <find>BMI</find>
-      <find>php</find>
-      <find>.map</find>
+      <find>delete_</find>
+      <find>delete_sele</find>
+      <find>showP</find>
+      <find>prev</find>
+      <find>preview_summary</find>
+      <find>li</find>
+      <find>act</find>
+      <find>Continue</find>
+      <find>active</find>
+      <find>#mytabs li.active</find>
+      <find>e.whi</find>
+      <find>error-mess</find>
+      <find>log</find>
+      <find>login-e</find>
+      <find>res.e</find>
+      <find>debu```</find>
+      <find>navbar-brand</find>
+      <find>generat</find>
+      <find>preview</find>
+      <find>generate</find>
+      <find>update</find>
     </findStrings>
-    <replaceStrings>
-      <replace>b</replace>
-      <replace>dosage</replace>
-      <replace>frequency</replace>
-      <replace>course</replace>
-      <replace>med_intake</replace>
-      <replace>remarks</replace>
-      <replace>api</replace>
-      <replace>reffered_doctor</replace>
-      <replace>form5</replace>
-      <replace>close-button2</replace>
-      <replace>table2</replace>
-      <replace>add2</replace>
-      <replace>font-14</replace>
-      <replace>small-font</replace>
-      <replace>body-font</replace>
-      <replace>others</replace>
-      <replace>GetHealthParametersMig</replace>
-      <replace>col_width</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="HARD" />
-  </component>
-  <component name="GradleLocalSettings">
-    <option name="externalProjectsViewState">
-      <projects_view />
-    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/css/bootstrap.min.css" />
-        <option value="$PROJECT_DIR$/Login - Copy.html" />
-        <option value="$PROJECT_DIR$/components/Login.html" />
-        <option value="$PROJECT_DIR$/components/Dashboard.html" />
-        <option value="$PROJECT_DIR$/js/tokBoxHandlers.js" />
-        <option value="$PROJECT_DIR$/components/logout.html" />
-        <option value="$PROJECT_DIR$/components/newprescription.html" />
-        <option value="$PROJECT_DIR$/components/login.html" />
-        <option value="$PROJECT_DIR$/components/filter.html" />
-        <option value="$PROJECT_DIR$/js/index.js" />
+        <option value="$PROJECT_DIR$/js/hcc_hp_painting.js" />
+        <option value="$PROJECT_DIR$/cache.manifest" />
+        <option value="$PROJECT_DIR$/js/update_cache.js" />
+        <option value="$PROJECT_DIR$/js/check_cache.js" />
+        <option value="$PROJECT_DIR$/js/check_update.js" />
         <option value="$PROJECT_DIR$/components/history.html" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/getData.js" />
-        <option value="$PROJECT_DIR$/js/dashboard.js" />
-        <option value="$PROJECT_DIR$/css/newStyles.css" />
-        <option value="$PROJECT_DIR$/css/default.css" />
-        <option value="$PROJECT_DIR$/components/dashboard.html" />
-        <option value="$PROJECT_DIR$/components/health_parameters.html" />
-        <option value="$PROJECT_DIR$/js/hcc_hp_painting.js" />
-        <option value="$PROJECT_DIR$/components/summary.html" />
         <option value="$PROJECT_DIR$/components/prescription.html" />
+        <option value="$PROJECT_DIR$/js/included_files.js" />
+        <option value="$PROJECT_DIR$/js/getData.js" />
+        <option value="$PROJECT_DIR$/components/login.html" />
+        <option value="$PROJECT_DIR$/js/dashboard.js" />
+        <option value="$PROJECT_DIR$/components/dashboard.html" />
+        <option value="$PROJECT_DIR$/js/index.js" />
+        <option value="$PROJECT_DIR$/css/newStyles.css" />
+        <option value="$PROJECT_DIR$/components/summary.html" />
       </list>
     </option>
   </component>
@@ -240,20 +191,17 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="571" />
+    <option name="y" value="69" />
+    <option name="width" value="766" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
-      <showMembers />
+      <showMembers ProjectPane="false" />
       <showModules />
       <showLibraryContents />
       <hideEmptyPackages />
@@ -265,34 +213,15 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ga" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ga" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ga" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ga" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../reactjs-basics" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/xampp/htdocs/ga/js/index.js&#10;get&#9;FILE&#9;file://C:/xampp/htdocs/ga/js/getData.js" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../reactjs/reactjs" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -392,428 +321,56 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="07f80515-0211-44b8-ba38-73a55937896f" name="nishant" comment="" />
-      <created>1510761782923</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1510761782923</updated>
-      <workItem from="1510761784383" duration="445000" />
-      <workItem from="1510809211655" duration="2214000" />
-      <workItem from="1510895749013" duration="1231000" />
-      <workItem from="1510985762753" duration="19494000" />
-      <workItem from="1511112693802" duration="1842000" />
-      <workItem from="1511149158537" duration="6302000" />
-      <workItem from="1511158983963" duration="62719000" />
-      <workItem from="1511323399029" duration="78648000" />
-      <workItem from="1511491198469" duration="40013000" />
-      <workItem from="1511755110790" duration="27845000" />
-      <workItem from="1511840227487" duration="32344000" />
-      <workItem from="1511933097123" duration="29423000" />
-      <workItem from="1512020566299" duration="27885000" />
-      <workItem from="1512106179793" duration="26051000" />
-      <workItem from="1512191761418" duration="23570000" />
-      <workItem from="1512364736651" duration="33678000" />
-      <workItem from="1512464655393" duration="24841000" />
-      <workItem from="1512534735648" duration="56259000" />
-      <workItem from="1512710544667" duration="26602000" />
-      <workItem from="1515475282834" duration="153375000" />
-      <workItem from="1516475269075" duration="8336000" />
-      <workItem from="1516558322243" duration="949000" />
-      <workItem from="1517203765658" duration="90003000" />
-      <workItem from="1518413550368" duration="159458000" />
-    </task>
-    <task id="LOCAL-00011" summary="get appointment details modifications">
-      <created>1511151921889</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
+    <task id="LOCAL-00001" summary="js file">
+      <created>1519464952735</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1511151921889</updated>
+      <updated>1519464952735</updated>
     </task>
-    <task id="LOCAL-00012" summary="buttons functionality">
-      <created>1511188206950</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
+    <task id="LOCAL-00002" summary="?version= ...this part done...please check..as on internet, it was showing tht some browsers do not support this ?ver= feature">
+      <created>1519736809367</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1511188206950</updated>
+      <updated>1519736809367</updated>
     </task>
-    <task id="LOCAL-00013" summary="date functionality added in getDashboard Data..next and previous date">
-      <created>1511191038841</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1511191038841</updated>
-    </task>
-    <task id="LOCAL-00014" summary="data mapping in prescriptions">
-      <created>1511194235748</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1511194235748</updated>
-    </task>
-    <task id="LOCAL-00015" summary="API added and date format changed">
-      <created>1511236634284</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1511236634284</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Prescriptions, Summary : alignment corrected&#10;getData: API written">
-      <created>1511275611587</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1511275611587</updated>
-    </task>
-    <task id="LOCAL-00017" summary="radio button functionality corrected (error was in radio button name)">
-      <created>1511276072225</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1511276072225</updated>
-    </task>
-    <task id="LOCAL-00018" summary="index.js">
-      <created>1511280496698</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1511280496698</updated>
-    </task>
-    <task id="LOCAL-00019" summary="update prescription, summary">
-      <created>1511371289956</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1511371289956</updated>
-    </task>
-    <task id="LOCAL-00020" summary="prescription list details">
-      <created>1511409422766</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1511409422766</updated>
-    </task>
-    <task id="LOCAL-00021" summary="today work">
-      <created>1511456766436</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1511456766436</updated>
-    </task>
-    <task id="LOCAL-00022" summary="today work&#10;Summary...select-2 text box added...multi select is there...&#10;problem:taking only 1 value..instead of all&#10;&#10;getdata&#10;getDoctorProfile API added&#10;closeconsultation api&#10;&#10;prescription...close button added&#10;to-do: edit/delete button....and hide these buttons when apmt_status is closed">
-      <created>1511549921425</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1511549921425</updated>
-    </task>
-    <task id="LOCAL-00023" summary="friday's work shelved">
-      <created>1511755296381</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1511755296381</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Monday's work&#10;&#10;font size same everywhere...12px&#10;APIs added">
-      <created>1511806773849</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1511806773849</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Monday's work">
-      <created>1511841167478</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1511841167478</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Tuesday's work...&#10;&#10;&#10;work done today&#10;1. login page created...remaining work to be done...API integration and all..how to generate password in encrypted form...couldn't figure out&#10;2. Tabs work done, badges-positioning, fonts&#10;3. Pointer=cursor..and change div color&#10;4. Start VIDEO Consultation API integrated&#10;5. doDoctorLogin Api added...but yet to integrate with Login.html&#10;&#10;&#10;problems persisting:&#10;1. prescription table....use prescription_id...i don't know how to use...values missing in table on showing&#10;2. How to call [0].values ...array values from response.....thats y some global variables couldn't be created">
-      <created>1511880722141</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1511880722141</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Tuesday's work...&#10;&#10;&#10;work done today&#10;1. login page created...remaining work to be done...API integration and all..how to generate password in encrypted form...couldn't figure out&#10;2. Tabs work done, badges-positioning, fonts&#10;3. Pointer=cursor..and change div color&#10;4. Start VIDEO Consultation API integrated&#10;5. doDoctorLogin Api added...but yet to integrate with Login.html&#10;&#10;&#10;problems persisting:&#10;1. prescription table....use prescription_id...i don't know how to use...values missing in table on showing&#10;2. How to call [0].values ...array values from response.....thats y some global variables couldn't be created">
-      <created>1511883581349</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1511883581349</updated>
-    </task>
-    <task id="LOCAL-00028" summary="login separate page...preview pdf summary">
-      <created>1511941060753</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1511941060753</updated>
-    </task>
-    <task id="LOCAL-00029" summary="pres name changed">
-      <created>1511945431261</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1511945431261</updated>
-    </task>
-    <task id="LOCAL-00030" summary="blob data">
-      <created>1511950550537</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1511950550537</updated>
-    </task>
-    <task id="LOCAL-00031" summary="blob API added">
-      <created>1511953066490</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1511953066490</updated>
-    </task>
-    <task id="LOCAL-00032" summary="index">
-      <created>1511954251317</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1511954251317</updated>
-    </task>
-    <task id="LOCAL-00033" summary="login page&#10;filter buttons&#10;iframe pdf&#10;template search box">
-      <created>1512134957329</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1512134957329</updated>
-    </task>
-    <task id="LOCAL-00034" summary="filter buttons&#10;pdf iframe">
-      <created>1512155004982</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1512155004983</updated>
-    </task>
-    <task id="LOCAL-00035" summary="filter buttons&#10;pdf iframe">
-      <created>1512225580846</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1512225580846</updated>
-    </task>
-    <task id="LOCAL-00036" summary="filter buttons&#10;pdf iframe">
-      <created>1512225616655</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1512225616655</updated>
-    </task>
-    <task id="LOCAL-00037" summary="summary page edited&#10;modals added&#10;My medicine, presc template-list, template-details, logout API integrated">
-      <created>1512493936929</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1512493936929</updated>
-    </task>
-    <task id="LOCAL-00038" summary="summary page edited&#10;modals added&#10;My medicine, presc template-list, template-details, logout API integrated">
-      <created>1512496439780</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1512496439780</updated>
-    </task>
-    <task id="LOCAL-00039" summary="new patch">
-      <created>1512501766406</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1512501766406</updated>
-    </task>
-    <task id="LOCAL-00040" summary="new patch">
-      <created>1512501813683</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1512501813683</updated>
-    </task>
-    <task id="LOCAL-00041" summary="next, prev appointment buttons&#10;suggested tests API&#10;no-appointments functionality&#10;summary...buttons hide on closed apmts&#10;local storage variables created...coding..i dont know&#10;doctor image from back-end">
-      <created>1512576219134</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1512576219134</updated>
-    </task>
-    <task id="LOCAL-00042" summary="next, prev appointment buttons&#10;suggested tests API&#10;no-appointments functionality&#10;summary...buttons hide on closed apmts&#10;local storage variables created...coding..i dont know&#10;doctor image from back-end">
-      <created>1512637120667</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1512637120667</updated>
-    </task>
-    <task id="LOCAL-00043" summary="next, prev appointment buttons&#10;suggested tests API&#10;no-appointments functionality&#10;summary...buttons hide on closed apmts&#10;local storage variables created...coding..i dont know&#10;doctor image from back-end">
-      <created>1512637146265</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1512637146265</updated>
-    </task>
-    <task id="LOCAL-00044" summary="filter show/hide&#10;suggested test&#10;logout&#10;hide template search option">
-      <created>1512653270076</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1512653270076</updated>
-    </task>
-    <task id="LOCAL-00045" summary="close consultation API">
-      <created>1512710954025</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1512710954025</updated>
-    </task>
-    <task id="LOCAL-00046" summary="close consultation API&#10;edit summary&#10;append prepend&#10;1. sometimes error come in select2....val function&#10;2. problems in template search...&#10;&#9;event is triggering twice&#10;&#9;store labtest in proper format....object of array form&#10;3. after click of pending...if we click on next...no appointments&#10;4. on clicking medicine...automatically map remaining values&#10;5. medicine appending is done but unable to give edit and delete functionality....">
-      <created>1512737974295</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1512737974295</updated>
-    </task>
-    <task id="LOCAL-00047" summary="on clicking plus icon, details come in the last of the page, not just below the icon....console throws this error: &quot;You must pass a string or Handlebars AST to Handlebars.compile. You passed undefined&quot;...&#10;&#10;couldn't correct this error...&#10;and same details show every time...same template shows on the front end but in the back end, it is calling the correct api...some coding prob">
-      <created>1515593176699</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1515593176699</updated>
-    </task>
-    <task id="LOCAL-00048" summary="work done upto 16th jan morning...font resized">
-      <created>1516084410460</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1516084410460</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Merge branch 'master' of https://github.com/meharajM/ga&#10;&#10;# Conflicts:&#10;#&#9;components/dashboard.html&#10;#&#9;components/filter.html&#10;#&#9;components/prescription.html&#10;#&#9;components/summary.html&#10;#&#9;css/newStyles.css&#10;#&#9;index.html&#10;#&#9;js/dashboard.js&#10;#&#9;js/getData.js&#10;#&#9;newStyles.css">
-      <created>1516477952180</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1516477952180</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Merge branch 'master' of https://github.com/meharajM/ga&#10;&#10;# Conflicts:&#10;#&#9;components/dashboard.html&#10;#&#9;components/filter.html&#10;#&#9;components/prescription.html&#10;#&#9;components/summary.html&#10;#&#9;css/newStyles.css&#10;#&#9;index.html&#10;#&#9;js/dashboard.js&#10;#&#9;js/getData.js&#10;#&#9;newStyles.css">
-      <created>1516477976922</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1516477976923</updated>
-    </task>
-    <task id="LOCAL-00051" summary="nishant">
-      <created>1516478931599</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1516478931599</updated>
-    </task>
-    <task id="LOCAL-00052" summary="nishant changes">
-      <created>1516508804708</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1516508804708</updated>
-    </task>
-    <task id="LOCAL-00053" summary="nishant changes">
-      <created>1517203960486</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1517203960486</updated>
-    </task>
-    <task id="LOCAL-00054" summary="nishant changes">
-      <created>1517206716160</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1517206716160</updated>
-    </task>
-    <task id="LOCAL-00055" summary="nishant changes">
-      <created>1517243713595</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1517243713595</updated>
-    </task>
-    <task id="LOCAL-00056" summary="suggested test, ga notes">
-      <created>1517479016957</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1517479016957</updated>
-    </task>
-    <task id="LOCAL-00057" summary="filter reset done: label class active is changed on Date change....but still...filter is not working correctly (It was an old error...before the change....just it didn't come into notice....filter 1 and filter 2 values take previous values on date changed...like values acc to last date)...">
-      <created>1517572152194</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1517572152194</updated>
-    </task>
-    <task id="LOCAL-00058" summary="filter reset done: label class active is changed on Date change....but still...filter is not working correctly (It was an old error...before the change....just it didn't come into notice....filter 1 and filter 2 values take previous values on date changed...like values acc to last date)...">
-      <created>1519223042883</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1519223042883</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Health Parameter added...unwanted files deleted">
-      <created>1519223109163</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1519223109163</updated>
-    </task>
-    <option name="localTasksCounter" value="60" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1179862000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+    <option name="totallyTimeSpent" value="62054000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.49394855" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29769737" sideWeight="0.5151286" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23190789" sideWeight="0.48184568" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3569079" sideWeight="0.48184568" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29769737" sideWeight="0.48487142" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10741301" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2246596" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.49394855" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -848,9 +405,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -877,36 +431,10 @@
       </map>
     </option>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="login separate page...preview pdf summary" />
-    <MESSAGE value="pres name changed" />
-    <MESSAGE value="blob data" />
-    <MESSAGE value="blob API added" />
-    <MESSAGE value="index" />
-    <MESSAGE value="login page&#10;filter buttons&#10;iframe pdf&#10;template search box" />
-    <MESSAGE value="filter buttons&#10;pdf iframe" />
-    <MESSAGE value="summary page edited&#10;modals added&#10;My medicine, presc template-list, template-details, logout API integrated" />
-    <MESSAGE value="new patch" />
-    <MESSAGE value="next, prev appointment buttons&#10;suggested tests API&#10;no-appointments functionality&#10;summary...buttons hide on closed apmts&#10;local storage variables created...coding..i dont know&#10;doctor image from back-end" />
-    <MESSAGE value="filter show/hide&#10;suggested test&#10;logout&#10;hide template search option" />
-    <MESSAGE value="close consultation API" />
-    <MESSAGE value="close consultation API&#10;edit summary&#10;append prepend&#10;1. sometimes error come in select2....val function&#10;2. problems in template search...&#10;&#9;event is triggering twice&#10;&#9;store labtest in proper format....object of array form&#10;3. after click of pending...if we click on next...no appointments&#10;4. on clicking medicine...automatically map remaining values&#10;5. medicine appending is done but unable to give edit and delete functionality...." />
-    <MESSAGE value="on clicking plus icon, details come in the last of the page, not just below the icon....console throws this error: &quot;You must pass a string or Handlebars AST to Handlebars.compile. You passed undefined&quot;...&#10;&#10;couldn't correct this error...&#10;and same details show every time...same template shows on the front end but in the back end, it is calling the correct api...some coding prob" />
-    <MESSAGE value="work done upto 16th jan morning...font resized" />
-    <MESSAGE value="changes made in history, health parameters and others..." />
-    <MESSAGE value="one file only" />
-    <MESSAGE value="data upto 20th jan" />
-    <MESSAGE value="Merge branch 'master' of https://github.com/meharajM/ga&#10;&#10;# Conflicts:&#10;#&#9;components/dashboard.html&#10;#&#9;components/filter.html&#10;#&#9;components/prescription.html&#10;#&#9;components/summary.html&#10;#&#9;css/newStyles.css&#10;#&#9;index.html&#10;#&#9;js/dashboard.js&#10;#&#9;js/getData.js&#10;#&#9;newStyles.css" />
-    <MESSAGE value="nishant" />
-    <MESSAGE value="nishant changes" />
-    <MESSAGE value="suggested test, ga notes" />
-    <MESSAGE value="filter reset done: label class active is changed on Date change....but still...filter is not working correctly (It was an old error...before the change....just it didn't come into notice....filter 1 and filter 2 values take previous values on date changed...like values acc to last date)..." />
-    <MESSAGE value="Health Parameter added...unwanted files deleted" />
-    <MESSAGE value="Health Parameter added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Health Parameter added." />
+    <MESSAGE value="js file" />
+    <MESSAGE value="?version= ...this part done...please check..as on internet, it was showing tht some browsers do not support this ?ver= feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="?version= ...this part done...please check..as on internet, it was showing tht some browsers do not support this ?ver= feature" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -914,67 +442,11 @@
     </breakpoint-manager>
     <watches-manager />
   </component>
-  <component name="antWorkspaceConfiguration">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="FILTER_TARGETS" value="false" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/getData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="18" lean-forward="false" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/prescription.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3026">
-          <caret line="178" column="8" lean-forward="false" selection-start-line="178" selection-start-column="8" selection-end-line="178" selection-end-column="8" />
-          <folding>
-            <element signature="e#891#898#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#11484#11491#1" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/summary.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
-          <caret line="139" column="16" lean-forward="false" selection-start-line="139" selection-start-column="16" selection-end-line="139" selection-end-column="16" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#10869#10876#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/filter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="63" column="28" lean-forward="false" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1007,11 +479,11 @@
         <state relative-caret-position="2856">
           <caret line="168" column="31" lean-forward="true" selection-start-line="168" selection-start-column="31" selection-end-line="168" selection-end-column="31" />
           <folding>
-            <element signature="e#891#898#1" expanded="true" />
+            <element signature="e#1063#1070#1" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#11484#11491#1" expanded="true" />
+            <element signature="e#12201#12208#1" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
           </folding>
         </state>
@@ -1046,9 +518,9 @@
         <state relative-caret-position="2363">
           <caret line="139" column="16" lean-forward="true" selection-start-line="139" selection-start-column="16" selection-end-line="139" selection-end-column="16" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#10869#10876#1" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="e#11051#11058#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1074,9 +546,9 @@
         <state relative-caret-position="3502">
           <caret line="206" column="39" lean-forward="true" selection-start-line="206" selection-start-column="39" selection-end-line="206" selection-end-column="39" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#10869#10876#1" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="e#11051#11058#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1094,9 +566,9 @@
         <state relative-caret-position="3298">
           <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#10869#10876#1" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="e#11051#11058#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1188,7 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1196,7 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1208,133 +678,162 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/index.js">
+    <entry file="file://$PROJECT_DIR$/css/default.css" />
+    <entry file="file://$PROJECT_DIR$/js/hcc_hp_painting.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+        <state relative-caret-position="204">
+          <caret line="348" column="59" lean-forward="true" selection-start-line="348" selection-start-column="59" selection-end-line="348" selection-end-column="59" />
+          <folding>
+            <marker date="1519627959142" expanded="true" signature="3035:3044" ph="..." />
+            <marker date="1519627959142" expanded="true" signature="3240:3265" ph="..." />
+            <marker date="1519627959142" expanded="true" signature="3411:3423" ph="..." />
+            <marker date="1519627959142" expanded="true" signature="4809:4859" ph="..." />
+            <marker date="1519627959142" expanded="true" signature="4999:5005" ph="&amp;nbsp;" />
+            <marker date="1519627959142" expanded="true" signature="5005:5011" ph="&amp;nbsp;" />
+            <marker date="1519627959142" expanded="true" signature="19888:19910" ph="..." />
+            <marker date="1519627959142" expanded="true" signature="20369:20375" ph="&amp;nbsp;" />
+            <marker date="1519627959142" expanded="true" signature="20375:20381" ph="&amp;nbsp;" />
+            <marker date="1519627959142" expanded="true" signature="20381:20387" ph="&amp;nbsp;" />
+            <marker date="1519627959142" expanded="true" signature="20387:20393" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/health_parameters.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cache.manifest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/js/update_cache.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="151" column="42" lean-forward="true" selection-start-line="151" selection-start-column="42" selection-end-line="151" selection-end-column="42" />
+        <state relative-caret-position="0">
+          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/check_cache.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="56" column="6" lean-forward="true" selection-start-line="56" selection-start-column="6" selection-end-line="56" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/check_update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="48" column="3" lean-forward="true" selection-start-line="48" selection-start-column="3" selection-end-line="48" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/history.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="167" column="48" lean-forward="true" selection-start-line="167" selection-start-column="48" selection-end-line="167" selection-end-column="48" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/getData.js">
+    <entry file="file://$PROJECT_DIR$/js/included_files.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="430" column="25" lean-forward="false" selection-start-line="430" selection-start-column="25" selection-end-line="430" selection-end-column="25" />
+        <state relative-caret-position="51">
+          <caret line="3" column="48" lean-forward="false" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="37" column="23" lean-forward="true" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
+        <state relative-caret-position="240">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/default.css">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="7893" column="27" lean-forward="false" selection-start-line="7893" selection-start-column="27" selection-end-line="7893" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="136" column="108" lean-forward="false" selection-start-line="136" selection-start-column="108" selection-end-line="136" selection-end-column="108" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/newStyles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="684" column="11" lean-forward="false" selection-start-line="684" selection-start-column="5" selection-end-line="684" selection-end-column="11" />
+        <state relative-caret-position="102">
+          <caret line="165" column="34" lean-forward="false" selection-start-line="165" selection-start-column="34" selection-end-line="165" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="87" column="12" lean-forward="false" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
+        <state relative-caret-position="240">
+          <caret line="412" column="69" lean-forward="false" selection-start-line="412" selection-start-column="69" selection-end-line="412" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/health_parameters.html">
+    <entry file="file://$PROJECT_DIR$/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="123" column="8" lean-forward="true" selection-start-line="123" selection-start-column="8" selection-end-line="123" selection-end-column="41" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/hcc_hp_painting.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="863" column="9" lean-forward="true" selection-start-line="863" selection-start-column="9" selection-end-line="863" selection-end-column="9" />
-          <folding>
-            <marker date="1519308612045" expanded="true" signature="3033:3042" ph="..." />
-            <marker date="1519308612045" expanded="true" signature="3238:3263" ph="..." />
-            <marker date="1519308612045" expanded="true" signature="3409:3421" ph="..." />
-            <marker date="1519308612045" expanded="true" signature="4807:4857" ph="..." />
-            <marker date="1519308612045" expanded="true" signature="4997:5003" ph="&amp;nbsp;" />
-            <marker date="1519308612045" expanded="true" signature="5003:5009" ph="&amp;nbsp;" />
-            <marker date="1519308612045" expanded="true" signature="18997:19019" ph="..." />
-            <marker date="1519308612045" expanded="true" signature="19478:19484" ph="&amp;nbsp;" />
-            <marker date="1519308612045" expanded="true" signature="19484:19490" ph="&amp;nbsp;" />
-            <marker date="1519308612045" expanded="true" signature="19490:19496" ph="&amp;nbsp;" />
-            <marker date="1519308612045" expanded="true" signature="19496:19502" ph="&amp;nbsp;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/summary.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="668" column="24" lean-forward="false" selection-start-line="668" selection-start-column="24" selection-end-line="668" selection-end-column="24" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#10869#10876#1" expanded="true" />
-          </folding>
+        <state relative-caret-position="526">
+          <caret line="67" column="1" lean-forward="false" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/prescription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="645" column="16" lean-forward="false" selection-start-line="645" selection-start-column="16" selection-end-line="645" selection-end-column="16" />
+        <state relative-caret-position="129">
+          <caret line="1007" column="17" lean-forward="true" selection-start-line="1007" selection-start-column="17" selection-end-line="1007" selection-end-column="17" />
           <folding>
-            <element signature="e#891#898#1" expanded="true" />
+            <element signature="e#1063#1070#1" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h3#0;n#span#0;n#button#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#11484#11491#1" expanded="true" />
+            <element signature="e#12201#12208#1" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/getData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="110" column="30" lean-forward="false" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/newStyles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="1259" column="12" lean-forward="false" selection-start-line="1259" selection-start-column="12" selection-end-line="1259" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/summary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="746" column="52" lean-forward="false" selection-start-line="746" selection-start-column="52" selection-end-line="746" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
