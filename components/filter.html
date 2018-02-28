@@ -1,11 +1,11 @@
 <script src="./js/bootstrap-datepicker.min.js"></script>
 <div class="bg-light border">
     <div class="text-center pt-2 pb-1 mt-2 mb-2 body-font">
-                    <div class="fa fa-angle-left prev"  id="previous_day"></div>
-                    <input id="date" class="form-input" name="date" type="text" style="text-align:center"/>
-                    <input type="hidden" name="sel_date" id="sel_date">
-                    <div class="fa fa-angle-right next" id="next_day">
-                    </div>
+        <div class="fa fa-angle-left prev"  id="previous_day"></div>
+        <input id="date" class="form-input" name="date" type="text" style="text-align:center"/>
+        <input type="hidden" name="sel_date" id="sel_date">
+        <div class="fa fa-angle-right next" id="next_day"></div>
+        <a href="#" class="today" title="Click to see Today's Appointments"><i class="fa fa-calendar" style="font-size: 18px"></i><sub>Today</sub></a>
     </div>
         <div class="row	mt-2 mb-2 pt-2 pb-1">
             <div class="col-sm-12 text-center">
@@ -167,7 +167,7 @@ $(document).ready(function () {
         $(".filter-2-vc").removeClass('active');
         $(".filter-2-pc").removeClass('active');
 
-        var actualDate = e.date;      
+        var actualDate = e.date;
         $("#sel_date").val(moment(actualDate).format("dddd,ll"));
         selDate = moment(actualDate).format("dddd,ll");
         var date = moment(actualDate).format("YYYYMMDD");
@@ -234,7 +234,17 @@ $(document).ready(function () {
           $('#date').focusout(function(){
              $('#date').val(selDate);
           });
-    });  
+    });
+    $(".today").on('click', function () {
+        var actualDate=new Date();
+        var date=moment(actualDate).format("YYYYMMDD");
+        getData.getDashboardData(date).then(function(res){
+            $('#filter').load(filter);
+            appointment_list=res.appointments_details.appointment;
+            showDashboardDetails(res);
+            appointment_date=moment(actualDate).format("YYYY-MM-DD");
+        });
+    });
 })
 
 
