@@ -1,6 +1,6 @@
 <script  type="text/x-handlebars-template" id="prescriptiontable">
 	{{#prescription}}
-	<tr class="row_{{prescription_id}}">
+	<tr class="row_{{prescription_id}} rows">
 		<td><input type="checkbox" id="d_multiple_{{prescription_id}}" name="d_multiple" value="d_multiple_{{prescription_id}}" class="checkbox-class"> {{med_type}}</td>
 		<td>{{med_name}}</td>
 		<td>{{dosage}}</td>
@@ -210,7 +210,7 @@
 		</table>
 		<div class="col-3 offset-md-9 text-right"><a href="#" id="delete_selected" value="DeleteSelected" class="header-font" title="Delete Selected Medicines"><span class="fa fa-trash"></span> Delete Medicines</a></div>
 		<button class="btn btn-primary btn-sm body-font" id="save_continue">Continue</button>
-		<span class="table-form-error hidden-xs-up small-font">You can't edit this medicine. Please close the already opened form first !!</span>
+		<!--<span class="table-form-error hidden-xs-up small-font">You are currently editing a medicine record. Close/complete the same to operate on another record</span>-->
 		<a href="#" id="add_template" value="Add to My Templates" class="small-font pull-right" data-toggle="modal" data-target="#template-add">Add to My Templates</a>
 	</div>
 </div>
@@ -782,6 +782,8 @@
             $("#form3").get(0).reset();
             $("#med_name").val("");
             $("#add_medicine").hide();
+            $("#api-error").addClass('hidden-xs-up');
+            $("#api-error-message").html('');
            // ev.preventDefault();
             ev.stopPropagation();
         });
@@ -919,20 +921,38 @@
                     $("#add_template").show();
                 }
             $('.checkbox-class').change(function() {
+
+                $('table [type="checkbox"]').each(function(i, chk) {
+                    var id=chk.id.split('_')[2];
+                    if (chk.checked == true) {
+                        $(".row_"+id).addClass('row-table');
+                    }else{
+                        $(".row_"+id).removeClass('row-table');
+                    }
+                });
+
                 if($(".checkbox-class:checked").length>1){
                     $("#delete_selected").show();
-                    $(".action_buttons").addClass('d-none');
+                  //  $(".action_buttons").addClass('d-none');
+                    $(".editer").addClass('d-none');
+                    $(".deleter").addClass('d-none');
+                  //  $(".action").addClass('d-none');
                     $("#add_template").addClass('d-none');
                 }
                 else{
                     $("#delete_selected").hide();
-                    $(".action_buttons").removeClass('d-none');
+                   // $(".action_buttons").removeClass('d-none');
+                    $(".editer").removeClass('d-none');
+                    $(".deleter").removeClass('d-none');
+                    //$(".action").removeClass('d-none');
                     $("#add_template").removeClass('d-none');
                 }
             });
         };
         showPrescriptions(prescription_data);
         $("#reset-prescription").on('click', function () {
+            $("#api-error").addClass('hidden-xs-up');
+            $("#api-error-message").html('');
             $('.form-error').html('Please add all mandatory fields');
             $('.form-error').addClass('hidden-xs-up');
             $('#med_search').removeClass('error');
@@ -944,7 +964,9 @@
             $('#timings-text').removeClass('error');
         });
         $("#add-prescription").click(function (evt) {
-            $(".table-form-error").addClass("hidden-xs-up");
+            //$(".table-form-error").addClass("hidden-xs-up");
+            $("#api-error").addClass('hidden-xs-up');
+            $("#api-error-message").html('');
             var formData = $("#form3").serializeArray();
             evt.preventDefault();
             var data = {};
@@ -1030,21 +1052,22 @@
             if ($("#form3").is(":hidden")) {
                 var id = ev.currentTarget.id.split('_')[1];
                 $(".checkbox-class").prop('checked', false);
+                $(".rows").removeClass('row-table');
                 $(".row_" + id).addClass('row-table');
                 $('#d_multiple_'+id).prop('checked', true);
                 $(".checkbox-class").prop("disabled", true);
-                $(".checkbox-class").attr("title", "You can't select any other medicine if the form is opened. Please close the form first");
+                $(".checkbox-class").attr("title", "You are currently editing a medicine record. Close/complete the same to operate on another record");
                 $("#add-prescription").on('click', function () {
                     $(".row_" + id).removeClass('row-table');
                     $('#d_multiple_'+id).prop('checked', false);
-                    $(".table-form-error").addClass("hidden-xs-up");
+                  //  $(".table-form-error").addClass("hidden-xs-up");
                     $(".checkbox-class").prop('checked', false);
                     $(".checkbox-class").prop('disabled', false);
                 });
                 $("#close-button").on('click', function () {
                     $(".row_" + id).removeClass('row-table');
                     $('#d_multiple_'+id).prop('checked', false);
-                    $(".table-form-error").addClass("hidden-xs-up");
+                  //  $(".table-form-error").addClass("hidden-xs-up");
                     $(".checkbox-class").prop('checked', false);
                     $(".checkbox-class").prop('disabled', false);
                 });
@@ -1120,9 +1143,14 @@
 
                 $('.form').show();
             }else{
-                $(this).attr("title", "You can't edit this prescription as one prescription is already opened. Please close the already opened form");
-                $(".table-form-error").html("You can't edit this prescription as one prescription is already opened. Please close the already opened form");
-                $(".table-form-error").removeClass('hidden-xs-up');
+                $(this).attr("title", "You are currently editing a medicine record. Close/complete the same to operate on another record");
+                $("#api-error-message").html("You are currently editing a medicine record. Close/complete the same to operate on another record !!");
+                $("#api-error").removeClass('hidden-xs-up');
+                $("#api-error-message").show();
+
+
+              //  $(".table-form-error").html("You can't edit this prescription as one prescription is already opened. Please close the already opened form");
+                //$(".table-form-error").removeClass('hidden-xs-up');
 /*                $('#tab1').on('click', '.delete', function (ev) {
                     $(".table-form-error").removeClass("hidden-xs-up");
                 })*/
@@ -1149,9 +1177,13 @@
                     });
                 }
             }else{
-                $(this).attr("title", "You can't delete this prescription as one prescription is already opened. Please close the already opened form");
-                $(".table-form-error").removeClass('hidden-xs-up');
-                $(".table-form-error").html("You can't delete this prescription as one prescription is already opened. Please close the already opened form");
+                $(this).attr("title", "You are currently editing a medicine record. Close/complete the same to operate on another record");
+                $("#api-error-message").html("You are currently editing a medicine record. Close/complete the same to operate on another record !!");
+                $("#api-error").removeClass('hidden-xs-up');
+                $("#api-error-message").show();
+
+              //  $(".table-form-error").removeClass('hidden-xs-up');
+               // $(".table-form-error").html("You can't delete this prescription as one prescription is already opened. Please close the already opened form");
 			}
         });
         $('#free-text-tab').hide();
@@ -1320,21 +1352,34 @@
         });
         $("#delete_selected").hide();
         $('.checkbox-class').change(function() {
+            $('table [type="checkbox"]').each(function(i, chk) {
+                var id=chk.id.split('_')[2];
+                if (chk.checked == true) {
+                    $(".row_"+id).addClass('row-table');
+                }else{
+                    $(".row_"+id).removeClass('row-table');
+                }
+            });
             if($(".checkbox-class:checked").length>1){
                 $("#delete_selected").show();
-                $(".action_buttons").addClass('d-none');
+
+                //$(".action_buttons").addClass('d-none');
+             //  $(".action").addClass('d-none');
+             $(".editer").addClass('d-none');
+             $(".deleter").addClass('d-none');
             }
             else{
                 $("#delete_selected").hide();
-                $(".action_buttons").removeClass('d-none');
+               // $(".action_buttons").removeClass('d-none');
+               // $(".action").removeClass('d-none');
+                $(".editer").removeClass('d-none');
+                $(".deleter").removeClass('d-none');
             }
         });
-
 		$("#delete_selected").unbind().on('click', function () {
             $('table [type="checkbox"]').each(function(i, chk) {
                 if (chk.checked==true) {
                     var id=chk.id.split('_')[2];
-
                     prescription_data = prescription_data.map(function (p) {
 						if (p.prescription_id == id) {
                             p.delete_flag = 'Y';
@@ -1343,7 +1388,7 @@
                     });
                 }
             });
-            if (confirm('Are you sure want to delete multiple medicines?')) {
+            if (confirm('Are you sure want to delete selected medicines?')) {
                 getData.UpdatePrescriptionDetails(appointment_id, prescription_data).then(function (app) {
                     //debugger
                     if (app.prescription_details) {
